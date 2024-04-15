@@ -14,7 +14,7 @@ export interface ITypography {
     /**
      * Whether the text should be bold or not
      */
-    bold: boolean
+    bold?: boolean
     /**
      * The text to display
      */

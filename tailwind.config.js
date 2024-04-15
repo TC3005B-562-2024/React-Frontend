@@ -5,11 +5,27 @@ export default {
     fontFamily: {
       'sans': ['Nunito', 'ui-sans-serif', 'system-ui'],
     },
-    colors: {
-      'aci-orange': '#FCA311',
+    extend: {
+      colors: {
+        'aci-orange': '#FCA311',
+      },
     },
-    extend: {},
   },
   plugins: [],
+  safelist: [
+    'text-4xl',
+    'text-2xl',
+    'text-xl',
+    'text-base',
+    'text-black',
+    'text-white',
+    'text-red-600',
+    'text-green-600',
+    'text-blue-600',
+    'text-yellow-600',
+    'text-gray-400',
+    'text-aci-orange',
+    'font-bold',
+  ]
 }
 

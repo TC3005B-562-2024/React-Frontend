@@ -17,14 +17,11 @@ const Typography: React.FC<ITypography> = ({ type, color, bold, text }) => {
     'text-gray-400': color === 'gray',
     'text-aci-orange': color === 'orange',
     'font-bold': bold,
-  }); 
-  
+  });
+
   return (
     <>
-      {type === 'banner' && <h1 className={classes}>{text}</h1>}
-      {type === 'section title' && <h2 className={classes}>{text}</h2>}
-      {type === 'title' && <h3 className={classes}>{text}</h3>}
-      {type === 'text' && <p className={classes}>{text}</p>}
+      <div className={classes}>{text}</div>
     </>
   )
 }
