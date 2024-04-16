@@ -23,11 +23,18 @@ const Icon: React.FC<IIcon> = ({ iconName, color, filled}) => {
         'text-aci-orange': color === 'orange',
     });
 
-    return <>
-        <span style={filled ? filledStyle : unfilledStyle} className={classes}>
-            {iconName}
-        </span>
-    </>
+    return (
+        <>
+            <span style={filled ? filledStyle : unfilledStyle} className={classes}>
+                {iconName}
+            </span>
+        </>
+    );
+};
+
+Icon.defaultProps = {
+    color: 'white',
+    filled: false,
 };
 
 Icon.defaultProps = {

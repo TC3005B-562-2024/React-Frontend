@@ -9,6 +9,13 @@ export default {
       colors: {
         'aci-orange': '#FCA311',
       },
+      fontSize: {
+        'banner': '57px',
+        'section-title': '45px',
+        'title': '36px',
+        'text': '22px',
+        'detail': '16px'
+      }
     },
   },
   plugins: [],
