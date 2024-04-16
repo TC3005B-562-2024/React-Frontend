@@ -30,4 +30,9 @@ const Icon: React.FC<IIcon> = ({ iconName, color, filled}) => {
     </>
 };
 
+Icon.defaultProps = {
+    color: 'white',
+    filled: false,
+};
+
 export default Icon;

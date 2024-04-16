@@ -27,4 +27,10 @@ const Typography: React.FC<ITypography> = ({ type, color, bold, text }) => {
   )
 }
 
+Typography.defaultProps = {
+  type: 'text',
+  color: 'black',
+  bold: false,
+};
+
 export default Typography;
