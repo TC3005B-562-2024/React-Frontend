@@ -1,4 +1,4 @@
-import { Meta, StoryFn } from '@storybook/react';
+import { Meta, StoryFn, StoryObj } from '@storybook/react';
 import { IButton } from './types';
 import Button from './Button';
 
@@ -10,7 +10,13 @@ const meta = {
     },
     argTypes: {
         onClick: { control: { disable: true } },
-        typo: { control: 'object' },
+        text: {
+            control: 'text',
+        },
+        textType: {
+            options: ['banner', 'section-title' , 'title' , 'text' , 'detail'],
+            control: { type: 'select' },
+        },
         color: {
             options: ['white', 'red', 'green', 'blue', 'yellow', 'gray', 'orange'],
             control: { type: 'select' },
@@ -22,18 +28,15 @@ const meta = {
 } satisfies Meta<typeof Button>;
 
 export default meta;
+type Story = StoryObj<typeof meta>;
 
-const Template: StoryFn<IButton> = (args) => <Button {...args} />;
-
-/**
- * A default Button component using Google's symbols.
- */
-export const ButtonExample = Template.bind({});
-
-ButtonExample.args = {
-    onClick: () => alert('Has presionado un botón!'),
-    typo: {type: 'banner', text: 'Click me!'},
-    color: 'orange',
-    icon: {iconName: 'search', filled: true},
-    shadow: true,
+export const Orange: Story = {
+  args: {
+        onClick: () => alert('Has presionado un botón!'),
+        text: 'Click me!',
+        textType: 'banner',
+        color: 'orange',
+        icon: {iconName: 'search', filled: true},
+        shadow: true,
+  },
 };

@@ -1,11 +1,14 @@
 import { IButton } from "./types";
 import './Button.css';
-import { Typography, Icon } from "..";
+import { Icon } from "../Icon";
 import classNames from "classnames";
 
-const Button: React.FC<IButton> = ({ onClick, typo, color, icon, shadow }) => {
+/**
+ * A default Button component using Google's .
+ */
+const Button: React.FC<IButton> = ({ onClick, text, textType, color, icon, shadow }) => {
 
-const classes = classNames({
+const mainClasses = classNames({
     'aci-button': true,
     'bg-blue-500': color === 'blue',
     'bg-red-500': color === 'red',
@@ -16,14 +19,23 @@ const classes = classNames({
     'shadow-md': shadow,
 });
 
+const textClasses = classNames({
+    'font-bold text-white': true,
+    'text-banner': textType === 'banner',
+    'text-section-title': textType === 'section-title',
+    'text-title': textType === 'title',
+    'text-text': textType === 'text',
+    'text-detail': textType === 'detail',
+});
+
     return (
         <>
-            <button className={classes} onClick={onClick}>
-                {typo && <Typography text={typo?.text} type={typo?.type} color="white" />}
+            <button className={mainClasses} onClick={onClick}>
+                {text && <span className={textClasses}>{text}</span>}
                 {icon && <Icon iconName={icon.iconName} color="white" filled={icon.filled} />}
             </button>
         </>
-    )
+    );
 };
 
 Button.defaultProps = {
