@@ -1,5 +1,5 @@
-import { Meta, StoryFn, StoryObj } from '@storybook/react';
-import { IButton } from './types';
+import { Meta, StoryObj } from '@storybook/react';
+import { fn } from '@storybook/test';
 import Button from './Button';
 
 const meta = {
@@ -9,7 +9,7 @@ const meta = {
         layout: 'centered',
     },
     argTypes: {
-        onClick: { control: { disable: true } },
+        onClick: fn(),
         text: {
             control: 'text',
         },

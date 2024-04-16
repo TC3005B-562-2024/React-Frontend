@@ -1,5 +1,5 @@
 import './App.css'
-import { Icon, Button } from './components'
+import { Icon } from './components'
 
 function App() {
 
