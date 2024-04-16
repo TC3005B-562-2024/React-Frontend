@@ -6,7 +6,7 @@ function App() {
   return (
     <>
       <div className="text-red-600">Hola</div>
-      <Icon iconName='star' color='red' filled />
+      <Icon iconName='star' color='orange' filled />
     </>
   )
 }
