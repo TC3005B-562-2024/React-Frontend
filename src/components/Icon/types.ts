@@ -1,3 +1,14 @@
+export interface IIconNoColor {
+    /**
+     * The name of the icon to display
+     */
+    iconName: string
+    /**
+     * Whether the icon will be filled or not
+     */
+    filled?: boolean
+}
+
 export interface IIcon {
     /**
      * The name of the icon to display
