@@ -19,4 +19,5 @@ export interface ITypography {
      * The text to display
      */
     text: string
+
 }
