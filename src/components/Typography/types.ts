@@ -6,7 +6,7 @@ export interface ITypography {
      * - title
      * - text
      */
-    type: 'banner' | 'section title' | 'title' | 'text'
+    type: 'banner' | 'section title' | 'title' | 'text' | 'detail'
     /**
      * The color of the text
      */
