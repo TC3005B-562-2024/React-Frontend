@@ -13,7 +13,7 @@ const meta = {
         text: {
             control: 'text',
         },
-        textType: {
+        size: {
             options: ['banner', 'section-title' , 'title' , 'text' , 'detail'],
             control: { type: 'select' },
         },
@@ -34,7 +34,7 @@ export const Orange: Story = {
   args: {
         onClick: () => alert('Has presionado un botón!'),
         text: 'Click me!',
-        textType: 'banner',
+        size: 'banner',
         color: 'orange',
         icon: {iconName: 'search', filled: true},
         shadow: true,

@@ -1,4 +1,4 @@
-import { IIconNoColor } from "../Icon/types";
+import { IIconNoColorNoSize } from "../Icon/types";
 
 export interface IButton {
     /**
@@ -10,9 +10,9 @@ export interface IButton {
      */
     text?: string;
     /**
-     * The text type prop of the button.
+     * The size of the button.
      */
-    textType?: 'banner'| 'section-title' | 'title' | 'text' | 'detail';
+    size?: 'banner'| 'section-title' | 'title' | 'text' | 'detail';
     /**
      * The color of the button
      */
@@ -20,7 +20,7 @@ export interface IButton {
     /**
      * Icon of the button
      */
-    icon?: IIconNoColor;
+    icon?: IIconNoColorNoSize;
     /**
      * If the button has drop shadow
      */
