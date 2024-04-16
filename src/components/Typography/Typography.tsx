@@ -8,6 +8,7 @@ const Typography: React.FC<ITypography> = ({ type, color, bold, text }) => {
     'text-2xl': type === 'section title',
     'text-xl': type === 'title',
     'text-base': type === 'text',
+    'text-xs': type === 'detail',
     'text-black': color === 'black',
     'text-white': color === 'white',
     'text-red-600': color === 'red',
@@ -44,5 +45,11 @@ const Typography: React.FC<ITypography> = ({ type, color, bold, text }) => {
     </>
   )
 }
+
+Typography.defaultProps = {
+  type: 'text',
+  color: 'black',
+  bold: false,
+};
 
 export default Typography;

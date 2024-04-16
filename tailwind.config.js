@@ -26,6 +26,7 @@ export default {
     'text-gray-400',
     'text-aci-orange',
     'font-bold',
+    'shadow-md',
   ]
 }
 

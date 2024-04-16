@@ -7,12 +7,6 @@ const meta = {
     component: Typography,
     parameters: {
         layout: 'centered',
-        docs: {
-            story: {
-                inline: false,
-                iframeHeight: 400,
-            }
-        },
     },
     argTypes: {
         type: {
@@ -27,7 +21,7 @@ const meta = {
         text: { control: 'text' },
     },
     tags: ["autodocs"]
-} as Meta;
+} satisfies Meta<typeof Typography>;
 
 export default meta;
 
