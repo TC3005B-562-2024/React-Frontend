@@ -1,6 +1,5 @@
 import { IPill } from "./types";
 import classNames from "classnames";
-import { Typography } from "../Typography";
 
 const Pill: React.FC<IPill> = ({ text, color }) => {
 
@@ -16,14 +15,11 @@ const Pill: React.FC<IPill> = ({ text, color }) => {
 
     return (
         <div className={classes}>
-            <Typography
-                type='detail'
-                color='white'
-                bold={false}
-                text={text}
-            />
+            <span className='text-datail text-white'>
+                {text}
+            </span>
         </div>
-    )
+    );
 };
 
 export default Pill;
