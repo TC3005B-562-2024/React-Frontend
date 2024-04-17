@@ -22,9 +22,10 @@ const meta = {
 export default meta;
 
 const Template: StoryFn<ICompleteButton> = (args) => <CompleteButton {...args} />;
-/*
- * A default movie card with all the props
-*/
+
+/**
+ * An complete button component to display a check mark or a radio button in case of a completed or incompleted action.
+ */
 export const Default = Template.bind({});
 Default.args = {
     isComplete: true,
