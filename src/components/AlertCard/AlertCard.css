@@ -1,0 +1,73 @@
+.container { /* se puede eliminar */
+  display: flex;
+  justify-content: center; 
+  align-items: center; 
+  height: 100vh;
+  background-color: #ffffff; 
+}
+
+.alert-card {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between; 
+  width: 40%;
+}
+
+.priority-circle {
+  width: 60px; 
+  height: 80px;
+  border-radius: 10px; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  text-transform: uppercase;
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.priority-circle.critical {
+  background-color: #dc3545;
+  color: #dc3545;
+}
+
+.priority-circle.medium {
+  background-color: #ffc107;
+  color: #ffc107;
+}
+
+.priority-circle.low {
+  background-color: #ffff00;
+  color: #ffff00;
+}
+
+.info-container {
+  display: flex;
+  align-items: flex-end; 
+  flex: 1; 
+}
+
+.alert-info {
+  flex: 1; 
+  padding-left: 10px; 
+}
+
+.alert-name {
+  font-size: 24px; 
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 5px; 
+}
+
+.agent-name {
+  font-size: 18px; 
+  color: #333;
+}
+
+.button-container {
+  margin-left: auto; /* Empuja el botón hacia la derecha */
+}
