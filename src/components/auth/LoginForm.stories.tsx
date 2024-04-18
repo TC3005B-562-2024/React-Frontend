@@ -1,5 +1,6 @@
 import { Meta, StoryFn } from '@storybook/react';
 import LoginForm from "./LoginForm";
+import { ILoginForm } from './types';
 
 const handleLogin = (username: string, password: string) => {
   // logic to handle login, (calling Cognito APIs)
@@ -18,11 +19,20 @@ const meta = {
             }
         },
     },
+    argTypes: {
+        status: {
+            options: ['default', 'error'],
+            control: { type: 'select' },
+        },
+    },
     tags: ["autodocs"]
-} as Meta;
+} as Meta<typeof LoginForm>;;
 
 export default meta;
 
-const Template: StoryFn = () => <LoginForm/>;
+const Template: StoryFn<ILoginForm> = (args) => <LoginForm {...args} />;
 
 export const LoginFormExample = Template.bind({});
+LoginFormExample.args = {
+    status: 'default',
+};

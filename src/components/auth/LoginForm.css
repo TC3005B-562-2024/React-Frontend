@@ -3,5 +3,5 @@ button.submit{
 }
 
 input {
-  @apply border-2 border-yellow-500 rounded py-1 px-4 w-full focus:border-yellow-600 focus:outline-none;
+  @apply border-2 rounded py-1 px-4 w-full focus:border-yellow-600 focus:outline-none;
 }
