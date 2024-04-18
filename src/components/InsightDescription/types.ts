@@ -1,7 +1,9 @@
 import { IIcon } from "../Icon/types";
 
+export type PriorityType = "Intervene" | "Transfer" | "Training";
+
 export interface IInsightDescription {
-    priority: string;
+    priority: PriorityType;
     alertId?: number;
     icon: React.ReactElement<IIcon>
     description: string;
