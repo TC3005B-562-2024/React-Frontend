@@ -4,43 +4,46 @@ import { Icon } from "../Icon";
 import classNames from "classnames";
 
 /**
- * A default Button component using Google's .
+ * A default Button component using Google's Icons.
  */
-const Button: React.FC<IButton> = ({ onClick, text, size, color, icon, shadow }) => {
+const Button: React.FC<IButton> = ({ onClick: task, text, size, color, icon, hasShadow, isDisabled }) => {
 
-const mainClasses = classNames({
+  const mainClasses = classNames({
+    'aci-button--blue': !isDisabled && color === 'blue',
+    'aci-button--red': !isDisabled && color === 'red',
+    'aci-button--green': !isDisabled && color === 'green',
+    'aci-button--yellow': !isDisabled && color === 'yellow',
+    'aci-button--orange': !isDisabled && color === 'orange',
+    'bg-gray-400 border-gray-400': isDisabled,
+    'shadow-md': hasShadow,
     'aci-button': true,
-    'bg-aci-blue': color === 'blue',
-    'bg-aci-red': color === 'red',
-    'bg-aci-green': color === 'green',
-    'bg-aci-yellow': color === 'yellow',
-    'bg-gray-400': color === 'gray',
-    'bg-aci-orange': color === 'orange',
-    'shadow-md': shadow,
-});
-
-const textClasses = classNames({
-    'font-bold text-white': true,
+    // Size
     'text-banner': size === 'banner',
     'text-section-title': size === 'section-title',
     'text-title': size === 'title',
     'text-text': size === 'text',
     'text-detail': size === 'detail',
-});
+  });
 
-    return (
-        <>
-            <button className={mainClasses} onClick={onClick}>
-                {text && <span className={textClasses}>{text}</span>}
-                {icon && <Icon iconName={icon.iconName} color="white" filled={icon.filled} size={size}/>}
-            </button>
-        </>
-    );
+  return (
+    <>
+      <button className={mainClasses} onClick={task} disabled={isDisabled}>
+        {text &&<span>{text}</span>}
+        {icon &&
+          <Icon
+            iconName={icon.iconName}  
+            filled={icon.filled}
+            size={size}
+          />
+        }
+      </button>
+    </>
+  );
 };
 
 Button.defaultProps = {
-    color: 'orange',
-    size: 'text',
+  color: 'orange',
+  size: 'text',
 };
 
 export default Button;

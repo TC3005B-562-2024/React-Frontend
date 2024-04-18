@@ -18,11 +18,12 @@ const meta = {
             control: { type: 'select' },
         },
         color: {
-            options: ['white', 'red', 'green', 'blue', 'yellow', 'gray', 'orange'],
+            options: ['white', 'red', 'green', 'blue', 'yellow', 'orange'],
             control: { type: 'select' },
         },
         icon: { control: 'object' },
-        shadow: { control: 'boolean' },
+        hasShadow: { control: 'boolean' },
+        isDisabled: { control: 'boolean' },
     },
     tags: ["autodocs"]
 } satisfies Meta<typeof Button>;
@@ -37,6 +38,7 @@ export const Orange: Story = {
         size: 'banner',
         color: 'orange',
         icon: {iconName: 'search', filled: true},
-        shadow: true,
+        hasShadow: true,
+        isDisabled: false,
   },
 };

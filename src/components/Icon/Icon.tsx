@@ -40,9 +40,7 @@ const Icon: React.FC<IIcon> = ({ iconName, color, filled, size}) => {
 };
 
 Icon.defaultProps = {
-    color: 'white',
     filled: false,
-    size: 'text',
 };
 
 export default Icon;

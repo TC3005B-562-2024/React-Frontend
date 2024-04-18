@@ -16,7 +16,7 @@ export interface IButton {
     /**
      * The color of the button
      */
-    color?: 'red' | 'green' | 'blue' | 'yellow' | 'gray' | 'orange';
+    color?: 'red' | 'green' | 'blue' | 'yellow' | 'orange';
     /**
      * Icon of the button
      */
@@ -24,5 +24,9 @@ export interface IButton {
     /**
      * If the button has drop shadow
      */
-    shadow?: boolean;
+    hasShadow?: boolean;
+    /**
+     * If the button is disabled
+     */
+    isDisabled?: boolean;
 }
