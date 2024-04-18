@@ -3,3 +3,4 @@ export { Icon } from './Icon';
 export { Button } from './Button';
 export { ItemSubitem } from './ItemSubitem';
 export { CompleteButton } from './CompleteButton';
+export { TrainingCardToggle } from './TrainingCardToggle';
