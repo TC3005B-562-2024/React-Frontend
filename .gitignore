@@ -24,3 +24,8 @@ dist-ssr
 *.sw?
 
 *storybook.log
+
+# Lock files
+package-lock.json
+pnpm-lock.yaml
+bun.lockb
