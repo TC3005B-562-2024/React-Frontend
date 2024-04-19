@@ -1,4 +1,4 @@
-export interface IIconNoColor {
+export interface IIconNoColorNoSize {
     /**
      * The name of the icon to display
      */
@@ -22,4 +22,8 @@ export interface IIcon {
      * Whether the icon will be filled or not
      */
     filled?: boolean
+    /**
+     * The size of the icon
+     */
+    size?: 'banner' | 'section-title' | 'title' | 'text' | 'detail'
 }

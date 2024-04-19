@@ -1,25 +1,28 @@
-import { IIconNoColor } from "../Icon/types"
-import { ITypographyNoColor } from "../Typography/types"
+import { IIconNoColorNoSize } from "../Icon/types";
 
 export interface IButton {
     /**
      * The function to execute when the button is clicked
      */
-    onClick: () => void
+    onClick: () => void;
     /**
-     * The typography props of the button
+     * The text prop of the button.
      */
-    typo?: ITypographyNoColor
+    text?: string;
+    /**
+     * The size of the button.
+     */
+    size?: 'banner'| 'section-title' | 'title' | 'text' | 'detail';
     /**
      * The color of the button
      */
-    color?: 'red' | 'green' | 'blue' | 'yellow' | 'gray' | 'orange'
+    color?: 'red' | 'green' | 'blue' | 'yellow' | 'gray' | 'orange';
     /**
      * Icon of the button
      */
-    icon?: IIconNoColor
+    icon?: IIconNoColorNoSize;
     /**
      * If the button has drop shadow
      */
-    shadow?: boolean
+    shadow?: boolean;
 }

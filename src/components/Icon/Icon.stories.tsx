@@ -15,6 +15,10 @@ const meta = {
             control: { type: 'select' },
         },
         filled: { control: 'boolean' },
+        size: {
+            options: ['banner', 'section-title', 'title', 'text', 'detail'],
+            control: { type: 'select' },
+        },
     },
     tags: ["autodocs"]
 } satisfies Meta<typeof Icon>;

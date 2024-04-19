@@ -8,7 +8,18 @@ export default {
     extend: {
       colors: {
         'aci-orange': '#FCA311',
+        'aci-yellow': '#E7B416',
+        'aci-green': '#99C140',
+        'aci-red': '#CC3232',
+        'aci-blue': '#428ADE',
       },
+      fontSize: {
+        'banner': '57px',
+        'section-title': '45px',
+        'title': '36px',
+        'text': '22px',
+        'detail': '16px'
+      }
     },
   },
   plugins: [],
