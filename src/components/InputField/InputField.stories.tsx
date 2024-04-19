@@ -1,18 +1,11 @@
-import { Meta, StoryFn } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react';
 import InputField from "./InputField";
-import { IInputField } from './types';
 
 const meta = { 
     title: 'Components/InputField',
     component: InputField,
     parameters: {
         layout: 'centered',
-        docs: {
-            story: {
-                inline: false,
-                iframeHeight: 400,
-            }
-        },
     },
     argTypes: {
         color: {
@@ -34,18 +27,33 @@ const meta = {
         onChange: { action: 'changed' },
     },
     tags: ["autodocs"]
-} as Meta<typeof InputField>;
+} satisfies Meta<typeof InputField>;
 
 export default meta;
-const Template: StoryFn<IInputField> = (args) => <InputField {...args} />;
+type Story = StoryObj<typeof meta>;
 
-export const InputFieldExample = Template.bind({});
-InputFieldExample.args = {
-    id: 'email',
-    type: 'text',
-    label: 'Email',
-    labelPosition: 'center',
-    helperText: 'Please enter your email',
-    color: 'yellow',
-    placeholder: 'Enter your email'
+export const GeneralExample: Story = {
+    args: {
+        id: 'email',
+        type: 'text',
+        label: 'Email',
+        labelPosition: 'center',
+        helperText: 'Please enter your email',
+        color: 'yellow',
+        placeholder: 'Enter your email',
+        onChange: () => console.log('On change handler.')
+    },
+};
+
+export const PasswordExample: Story = {
+    args: {
+        id: 'password',
+        type: 'secret',
+        label: 'Password',
+        labelPosition: 'center',
+        helperText: 'Incorrect password!',
+        color: 'green',
+        placeholder: 'Enter your password',
+        onChange: () => console.log('On change handler.')
+    },
 };
