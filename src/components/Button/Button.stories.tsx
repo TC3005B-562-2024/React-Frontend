@@ -37,7 +37,7 @@ export const Orange: Story = {
         text: 'Click me!',
         size: 'banner',
         color: 'orange',
-        icon: {iconName: 'search', filled: true},
+        icon: {iconName: 'search'},
         hasShadow: true,
         isDisabled: false,
   },

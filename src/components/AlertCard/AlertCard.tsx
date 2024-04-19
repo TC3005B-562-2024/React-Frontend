@@ -43,7 +43,7 @@ const AlertCard: React.FC<IAlertCardProps> = ({
               text="View More"
               color="orange"
               size="text"
-              icon={{ iconName: 'arrow_right', filled: true }}
+              icon={{ iconName: 'arrow_forward' }}
             />
           </div>
         </div>

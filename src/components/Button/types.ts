@@ -6,6 +6,10 @@ export interface IButton {
      */
     onClick: () => void;
     /**
+     * The type of the button
+     */
+    type?: 'button' | 'submit' | 'reset';
+    /**
      * The text prop of the button.
      */
     text?: string;

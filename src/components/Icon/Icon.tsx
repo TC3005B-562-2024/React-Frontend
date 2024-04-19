@@ -12,6 +12,7 @@ import {
     CallEnd,
     Cancel,
     CheckCircle,
+    CheckCircleFill,
     ClearNight,
     Close,
     Done,
@@ -22,6 +23,7 @@ import {
     Mitre,
     MoveDown,
     PhoneInTalk,
+    RadioButtonUnchecked,
     SearchFill,
     SentimentDissatisfied,
     SocialLeaderboard,
@@ -52,29 +54,31 @@ const Icon: React.FC<IIcon> = ({ iconName, color}) => {
             return <Alarm className={svgClasses} />;
         case 'logo':
             return <AmazonConnectIcon className={svgClasses} />;
-        case 'arrow-back-ios':
+        case 'arrow_back':
             return <ArrowBackIos className={svgClasses} />;
-        case 'arrow-forward-ios':
+        case 'arrow_forward':
             return <ArrowForwardIos className={svgClasses} />;
-        case 'bar-chart':
+        case 'bar_chart':
             return <BarChart className={svgClasses} />;
-        case 'calendar-today':
+        case 'calendar_today':
             return <CalendarToday className={svgClasses} />;
-        case 'call-end':
+        case 'call_end':
             return <CallEnd className={svgClasses} />;
         case 'cancel':
             return <Cancel className={svgClasses} />;
-        case 'check-circle':
+        case 'check_circle':
             return <CheckCircle className={svgClasses} />;
-        case 'clear-night':
+        case 'check_circle_fill':
+            return <CheckCircleFill className={svgClasses} />;
+        case 'clear_night':
             return <ClearNight className={svgClasses} />;
         case 'close':
             return <Close className={svgClasses} />;
         case 'done':
             return <Done className={svgClasses} />;
-        case 'instant-mix':
+        case 'instant_mix':
             return <InstantMix className={svgClasses} />;
-        case 'keyboard-return':
+        case 'keyboard_return':
             return <KeyboardReturn className={svgClasses} />;
         case 'logout':
             return <Logout className={svgClasses} />;
@@ -82,21 +86,23 @@ const Icon: React.FC<IIcon> = ({ iconName, color}) => {
             return <Menu className={svgClasses} />;
         case 'mitre':
             return <Mitre className={svgClasses} />;
-        case 'move-down':
+        case 'move_down':
             return <MoveDown className={svgClasses} />;
-        case 'phone-in-talk':
+        case 'phone_in_talk':
             return <PhoneInTalk className={svgClasses} />;
-        case 'search-fill':
+        case 'radio_button_unchecked':
+            return <RadioButtonUnchecked className={svgClasses} />;
+        case 'search':
             return <SearchFill className={svgClasses} />;
-        case 'sentiment-dissatisfied':
+        case 'sentiment_dissatisfied':
             return <SentimentDissatisfied className={svgClasses} />;
-        case 'social-leaderboard':
+        case 'social_leaderboard':
             return <SocialLeaderboard className={svgClasses} />;
-        case 'support-agent':
+        case 'support_agent':
             return <SupportAgent className={svgClasses} />;
         case 'visibility':
             return <Visibility className={svgClasses} />;
-        case 'visibility-off':
+        case 'visibility_off':
             return <VisibilityOff className={svgClasses} />;
         case 'warning':
             return <Warning className={svgClasses} />;
@@ -106,7 +112,7 @@ const Icon: React.FC<IIcon> = ({ iconName, color}) => {
 };
 
 Icon.defaultProps = {
-    size: 'text',
+    color: 'white',
 };
 
 export default Icon;

@@ -6,7 +6,7 @@ import classNames from "classnames";
 /**
  * A default Button component using Google's Icons.
  */
-const Button: React.FC<IButton> = ({ onClick: task, text, size, color, icon, hasShadow, isDisabled }) => {
+const Button: React.FC<IButton> = ({ onClick: task, type, text, size, color, icon, hasShadow, isDisabled }) => {
 
   const mainClasses = classNames({
     'aci-button--blue': !isDisabled && color === 'blue',
@@ -37,13 +37,12 @@ const Button: React.FC<IButton> = ({ onClick: task, text, size, color, icon, has
 
   return (
     <>
-      <button className={mainClasses} onClick={task} disabled={isDisabled}>
+      <button className={mainClasses} onClick={task} disabled={isDisabled} type={type}>
         {text && <span>{text}</span>}
         {icon &&
           <div className={iconClasses}>
             <Icon
               iconName={icon.iconName}
-              size={size}
             />
           </div>
         }
@@ -53,6 +52,7 @@ const Button: React.FC<IButton> = ({ onClick: task, text, size, color, icon, has
 };
 
 Button.defaultProps = {
+  type: 'button',
   color: 'orange',
   size: 'text',
 };

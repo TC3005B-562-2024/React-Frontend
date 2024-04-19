@@ -31,19 +31,19 @@
 }
 
 .input-field__container__input-container__input--red {
-  @apply border-red-500 focus:border-red-600;
+  @apply border-aci-red focus:border-aci-red-dark;
 }
 
 .input-field__container__input-container__input--green {
-  @apply border-green-500 focus:border-green-600;
+  @apply border-aci-green focus:border-aci-green-dark;
 }
 
 .input-field__container__input-container__input--blue {
-  @apply border-blue-500 focus:border-blue-600;
+  @apply border-aci-blue focus:border-aci-blue-dark;
 }
 
 .input-field__container__input-container__input--yellow {
-  @apply border-yellow-500 focus:border-yellow-600;
+  @apply border-aci-yellow focus:border-aci-yellow-dark;
 }
 
 .input-field__container__input-container__input--gray {
@@ -51,7 +51,7 @@
 }
 
 .input-field__container__input-container__input--orange {
-  @apply border-aci-orange focus:border-aci-orange;
+  @apply border-aci-orange focus:border-aci-orange-dark;
 }
 
 .input-field__container__input-container__button-container {
@@ -59,7 +59,7 @@
 }
 
 .input-field__container__input-container__button-container__button {
-  @apply border-none cursor-pointer p-0 absolute mr-10 mt-2;
+  @apply border-none cursor-pointer p-0 absolute mr-10 w-text;
 }
 
 .input-field__container__helper-text {
