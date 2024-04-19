@@ -1,6 +1,7 @@
 import React from 'react';
-import { Story, Meta } from '@storybook/react/types-6-0';
-import MultiselectOptions, { IMultiselectOptions } from './MultiselectOptions';
+import { StoryFn, Meta } from '@storybook/react';
+import MultiselectOptions from './MultiselectOptions';
+import { IMultiselectOptions } from './types';
 
 const meta = {
   title: 'Components/MultiselectOptions',
@@ -13,11 +14,11 @@ const meta = {
     label: {control: 'text'}
   },
   tags: ['autodocs'],
-} as Meta<typeof MultiselectOptions>
+} satisfies Meta<typeof MultiselectOptions>
 
 export default meta;
 
-const Template: Story<IMultiselectOptions> = (args) => <MultiselectOptions {...args} />;
+const Template: StoryFn<IMultiselectOptions> = (args) => <MultiselectOptions {...args} />;
 
 /**
  * A default multiselect option component.

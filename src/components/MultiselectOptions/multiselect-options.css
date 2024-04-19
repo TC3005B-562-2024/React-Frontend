@@ -1,0 +1,46 @@
+.multiselect-options__back-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 7px;
+  background-color: white;
+  width: 110px; 
+  height: 40px; 
+}
+
+.multiselect-options__back-container:hover {
+  background-color: #E5E5E5;
+}
+
+.multiselect-options__container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.multiselect-options__checkbox-container {
+  position: relative;
+  height: 1.5rem;
+  width: 1.5rem;
+  background-color: #E5E5E5;
+  border: 2px solid black;
+  border-radius: 5px;
+  margin-right: 0.5rem;
+}
+
+.multiselect-options__checkbox {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  z-index: 10;
+}
+
+.multiselect-options__check-icon {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  width: 100%;
+  color: black;
+  pointer-events: none;
+}
+

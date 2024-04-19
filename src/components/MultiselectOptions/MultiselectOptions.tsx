@@ -1,21 +1,23 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { CheckIcon } from '@heroicons/react/solid'
+import './multiselect-options.css';
 import { IMultiselectOptions } from './types';
-import './MultiselectOptions.css';
 
-const MultiselectOptions: React.FC<IMultiselectOptions> = ({ isSelected, label }) => {
-  const [selectedOptions, setSelectedOptions] = useState({ option1: false, option2: false, option3: false });
+const MultiselectOptions: React.FC<IMultiselectOptions> = ({ label, isSelected, setIsSelected }) => {
 
-  const handleCheckboxChange = (event: { target: { name: any; checked: any; }; }) => {
-    setSelectedOptions({ ...selectedOptions, [event.target.name]: event.target.checked });
+  const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setIsSelected(event.target.checked);
   }
 
   return (
-    <div className="inline-block p-2 bg-white hover:bg-neutral-200">
-      <label className="flex items-center justify-between">
-        <input type="checkbox" name="option1" className="appearance-none bg-neutral-200 bg-check h-6 w-6 border-2 border-black rounded checked:bg-neutral-200 checked:border- focus:outline-none mr-2" checked={selectedOptions.option1} onChange={handleCheckboxChange} />
+    <div className='multiselect-options__back-container'>
+      <div className='multiselect-options__container'>
+        <div className='multiselect-options__checkbox-container'>
+          <input type="checkbox" className='multiselect-options__checkbox' checked={isSelected} onChange={(handleCheckboxChange)} />
+          {isSelected && <CheckIcon className='multiselect-options__checkicon' />}
+        </div>
         {label}
-        <span className="checkmark"></span>
-      </label>
+      </div>
     </div>
   );
 };

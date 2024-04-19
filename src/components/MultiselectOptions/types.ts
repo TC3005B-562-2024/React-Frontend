@@ -1,5 +1,4 @@
 export interface IMultiselectOptions {
- 
     /**
      * Whether the option is selected or not
      */
@@ -8,4 +7,5 @@ export interface IMultiselectOptions {
      * The label to display for the option
      */
     label: string
+    setIsSelected: (isSelected: boolean) => void;
 }
