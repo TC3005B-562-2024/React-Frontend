@@ -1,5 +1,5 @@
 .aci-button {
-    @apply rounded-lg flex px-2 py-1 items-center space-x-2 transition duration-300 border-2 text-white;
+    @apply rounded-lg flex px-2 py-1 items-center space-x-2 transition duration-200 border-2 text-white;
 }
 
 .aci-button--blue {
