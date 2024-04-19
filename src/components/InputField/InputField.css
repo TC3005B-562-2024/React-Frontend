@@ -1,0 +1,3 @@
+input {
+  @apply border-2 rounded py-1 px-4 w-full focus:outline-none;
+}
