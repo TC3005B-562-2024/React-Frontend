@@ -1,9 +1,13 @@
 import React from "react";
 import { IErrorCard } from "./types";
 
+/**
+ * An error card that displays the error message
+ */
+
 const ErrorCard: React.FC<IErrorCard> = ({ title }) => {
     return (
-        <div className="bg-white-500 text-red-700 text-left p-4 rounded-xl shadow-lg text-2xl font-bold">
+        <div className="bg-white text-aci-red text-left px-5 py-1 rounded-xl shadow-lg text-text font-bold">
             {title}
         </div>
     );

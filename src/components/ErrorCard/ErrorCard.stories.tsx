@@ -1,15 +1,26 @@
-import { Meta, StoryFn } from '@storybook/react';
-import { IErrorCard } from './types';
+import { Meta, StoryObj } from '@storybook/react';
+import { fn } from '@storybook/test';
 import ErrorCard from './ErrorCard';
 
-export default {
-    title: 'Components/ErrorCard',
-    component: ErrorCard,
-  } as Meta;
-  
-  const Template: StoryFn<IErrorCard> = (args) => <ErrorCard {...args} />;
-  
-  export const Default = Template.bind({});
-  Default.args = {
+const meta = {
+  title: 'Components/ErrorCard',
+  component: ErrorCard,
+  parameters: {
+    layout: 'centered',
+  },
+  argTypes: {
+    title: {
+      control: 'text',
+    }
+  },
+  tags: ["autodocs"]
+}satisfies Meta<typeof ErrorCard>;
+
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+export const Primary: Story = {
+  args: {
     title: 'Error fetching training data',
-  };
+  },
+}
