@@ -12,12 +12,6 @@ const meta = {
     component: LoginForm,
     parameters: {
         layout: 'centered',
-        docs: {
-            story: {
-                inline: false,
-                iframeHeight: 400,
-            }
-        },
     },
     argTypes: {
         status: {

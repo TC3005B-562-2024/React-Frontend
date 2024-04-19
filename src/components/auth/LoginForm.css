@@ -1,7 +1,0 @@
-button.submit{
-  @apply bg-yellow-500 hover:bg-yellow-600 w-full text-white font-bold py-1 px-4 rounded focus:outline-none 
-}
-
-input {
-  @apply border-2 rounded py-1 px-4 w-full focus:border-yellow-600 focus:outline-none;
-}
