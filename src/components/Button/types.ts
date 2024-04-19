@@ -6,6 +6,10 @@ export interface IButton {
      */
     onClick: () => void;
     /**
+     * The type of the button
+     */
+    type?: 'button' | 'submit' | 'reset';
+    /**
      * The text prop of the button.
      */
     text?: string;
@@ -16,7 +20,7 @@ export interface IButton {
     /**
      * The color of the button
      */
-    color?: 'red' | 'green' | 'blue' | 'yellow' | 'gray' | 'orange';
+    color?: 'red' | 'green' | 'blue' | 'yellow' | 'orange';
     /**
      * Icon of the button
      */
@@ -24,5 +28,9 @@ export interface IButton {
     /**
      * If the button has drop shadow
      */
-    shadow?: boolean;
+    hasShadow?: boolean;
+    /**
+     * If the button is disabled
+     */
+    isDisabled?: boolean;
 }

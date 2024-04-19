@@ -1,0 +1,31 @@
+.login-form__conatiner {
+  @apply flex flex-col space-y-10;
+}
+
+.login-form__conatiner__header {
+  @apply flex flex-col items-center;
+}
+
+.login-form__conatiner__header__title {
+  @apply text-2xl font-bold;
+}
+
+.login-form__conatiner__header__subtitle {
+  @apply text-base;
+}
+
+.login-form__conatiner__header__subtitle--yellow {
+  @apply text-base text-yellow-500;
+}
+
+.login-form__conatiner__form-container {
+  @apply px-6;
+}
+
+.login-form__conatiner__form-container-form {
+  @apply flex flex-col space-y-5;
+}
+
+.login-form__conatiner__form-container-form__button {
+  @apply bg-yellow-500 hover:bg-yellow-600 w-full text-white font-bold py-1 px-4 rounded focus:outline-none 
+}
