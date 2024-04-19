@@ -22,7 +22,7 @@ const CompleteButton: React.FC<ICompleteButton> = ({
     };
 
     return (
-        <button onClick={handleButtonClick}>
+        <button onClick={handleButtonClick} className='flex'>
             <Icon iconName={isComplete ? 'check_circle' : 'radio_button_unchecked'} color={color} filled={isComplete} />
         </button>
     );
