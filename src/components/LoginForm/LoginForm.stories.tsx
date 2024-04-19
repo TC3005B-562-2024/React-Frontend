@@ -1,4 +1,4 @@
-import { Meta, StoryFn } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react';
 import LoginForm from "./LoginForm";
 import { ILoginForm } from './types';
 
@@ -20,13 +20,19 @@ const meta = {
         },
     },
     tags: ["autodocs"]
-} as Meta<typeof LoginForm>;;
+} satisfies Meta<typeof LoginForm>;
 
 export default meta;
+type Story = StoryObj<typeof meta>;
 
-const Template: StoryFn<ILoginForm> = (args) => <LoginForm {...args} />;
+export const Default: Story = {
+    args: {
+      status: 'default',
+    },
+};
 
-export const LoginFormExample = Template.bind({});
-LoginFormExample.args = {
-    status: 'default',
+export const Error: Story = {
+    args: {
+      status: 'error',
+    },
 };

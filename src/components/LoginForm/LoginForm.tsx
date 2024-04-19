@@ -3,6 +3,9 @@ import './LoginForm.css'
 import { ILoginForm } from './types';
 import InputField from '../InputField/InputField';
 
+/**
+ * Log in form component, for landing page.
+ */
 const LoginForm: React.FC<ILoginForm> = ({ status }) => {
 
   const inputColor = status === 'error' ? 'red' : 'yellow';
@@ -61,7 +64,8 @@ const LoginForm: React.FC<ILoginForm> = ({ status }) => {
           />
           <button 
             type="submit"
-            className='submit'>
+            className='login-form__conatiner__form-container-form__button'
+          >
             Login
           </button>
         </form>
