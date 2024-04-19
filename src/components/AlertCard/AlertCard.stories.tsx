@@ -1,21 +1,24 @@
 
-import { Meta, StoryFn } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react';
 import AlertCard from './AlertCard';
 import { IAlertCardProps } from "./types"
 
 // Definición de metadatos y configuración para Storybook
 const meta: Meta<IAlertCardProps> = {
-  title: 'Alert/AlertCard',
+  title: 'Components/AlertCard',
   component: AlertCard,
   parameters: {
-    layout: 'centered',
+    layout: 'padded',
+    docs: {
+      story: {
+        inline: true,
+        iframeWidth: 400,
+      }
+    },
   },
   argTypes: {
     alertName: { control: 'text' },
-    alertOwner: {
-      options: ['skillName', 'queueName', 'agentName'],
-      control: { type: 'select' },
-    },
+    alertOwner: { control: 'text' },
     alertPriority: {
       options: ['CRITIC', 'MEDIUM', 'LOW'],
       control: { type: 'select' },
@@ -26,32 +29,34 @@ const meta: Meta<IAlertCardProps> = {
 } satisfies Meta<typeof AlertCard>;
 
 export default meta;
-
-const Template: StoryFn<IAlertCardProps> = (args) => <AlertCard {...args} />;
+type Story = StoryObj<typeof meta>;
   
-export const CriticalAlert = Template.bind({});
-CriticalAlert.args = {
-  alertName: 'Critical Alert',
-  alertOwner: 'skillName',
-  alertPriority: 'CRITIC',
-  individualAlertLink: 'http://localhost:8080/alerts/', // Enlace base
-  alertId: 1, // ID de la alerta para el botón "Ver más"
+export const CriticalAlert: Story = {
+  args: {
+    alertName: 'Critical Alert',
+    alertOwner: 'Owner Name',
+    alertPriority: 'CRITIC',
+    individualAlertLink: 'http://localhost:8080/alerts/', // Enlace base
+    alertId: 1, // ID de la alerta para el botón "Ver más"
+  },
 };
 
-export const MediumAlert = Template.bind({});
-MediumAlert.args = {
-  alertName: 'Medium Alert',
-  alertOwner: 'queueName',
-  alertPriority: 'MEDIUM',
-  individualAlertLink: 'http://localhost:8080/alerts/', // Enlace base
-  alertId: 2, // ID de la alerta para el botón "Ver más"
+export const MediumAlert: Story = {
+  args: {
+    alertName: 'Medium Alert',
+    alertOwner: 'Owner Name',
+    alertPriority: 'MEDIUM',
+    individualAlertLink: 'http://localhost:8080/alerts/', // Enlace base
+    alertId: 2, // ID de la alerta para el botón "Ver más"
+  },
 };
 
-export const LowAlert = Template.bind({});
-LowAlert.args = {
-  alertName: 'Low Alert',
-  alertOwner: 'agentName',
-  alertPriority: 'LOW',
-  individualAlertLink: 'http://localhost:8080/alerts/', // Enlace base
-  alertId: 3, // ID de la alerta para el botón "Ver más"
+export const LowAlert: Story = {
+  args: {
+    alertName: 'Low Alert',
+    alertOwner: 'Owner Name',
+    alertPriority: 'LOW',
+    individualAlertLink: 'http://localhost:8080/alerts/', // Enlace base
+    alertId: 3, // ID de la alerta para el botón "Ver más"
+  },
 };
