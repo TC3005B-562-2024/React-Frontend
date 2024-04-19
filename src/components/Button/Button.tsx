@@ -25,16 +25,27 @@ const Button: React.FC<IButton> = ({ onClick: task, text, size, color, icon, has
     'text-detail': size === 'detail',
   });
 
+  const iconClasses = classNames({
+    'flex items-center justify-center': true,
+    // Size
+    'w-banner': size === 'banner',
+    'w-section-title': size === 'section-title',
+    'w-title': size === 'title',
+    'w-text': size === 'text',
+    'w-detail': size === 'detail',
+  });
+
   return (
     <>
       <button className={mainClasses} onClick={task} disabled={isDisabled}>
-        {text &&<span>{text}</span>}
+        {text && <span>{text}</span>}
         {icon &&
-          <Icon
-            iconName={icon.iconName}  
-            filled={icon.filled}
-            size={size}
-          />
+          <div className={iconClasses}>
+            <Icon
+              iconName={icon.iconName}
+              size={size}
+            />
+          </div>
         }
       </button>
     </>

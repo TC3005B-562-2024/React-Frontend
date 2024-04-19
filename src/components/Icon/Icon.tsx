@@ -1,61 +1,111 @@
+/// <reference types="vite-plugin-svgr/client" />
 import { IIcon } from "./types";
 import classNames from "classnames";
 
-import AmazonConnectIcon from '../../assets/icons/AmazonConnect.svg?react';
+import {
+    Alarm,
+    AmazonConnectIcon,
+    ArrowBackIos,
+    ArrowForwardIos,
+    BarChart,
+    CalendarToday,
+    CallEnd,
+    Cancel,
+    CheckCircle,
+    ClearNight,
+    Close,
+    Done,
+    InstantMix,
+    KeyboardReturn,
+    Logout,
+    Menu,
+    Mitre,
+    MoveDown,
+    PhoneInTalk,
+    SearchFill,
+    SentimentDissatisfied,
+    SocialLeaderboard,
+    SupportAgent,
+    Visibility,
+    VisibilityOff,
+    Warning
+} from "../../assets";
 
-const Icon: React.FC<IIcon> = ({ iconName, color, filled, size}) => {
 
-    const unfilledStyle = {
-        fontVariationSettings: "'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24"
-    }
+const Icon: React.FC<IIcon> = ({ iconName, color}) => {
 
-    const filledStyle = {
-        fontVariationSettings: "'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24"
-    }
+    const svgClasses = classNames({
+        'w-full h-full': true,
+        'fill-black': color === 'black',
+        'fill-white': color === 'white',
+        'fill-aci-blue': color === 'blue',
+        'fill-aci-red': color === 'red',
+        'fill-aci-green': color === 'green',
+        'fill-aci-yellow': color === 'yellow',
+        'fill-gray-400': color === 'gray',
+        'fill-aci-orange': color === 'orange',
+    });
 
-    if(iconName !== 'logo') {
-        const iconClasses = classNames({
-            'material-symbols-outlined': true,
-            // Color
-            'text-black': color === 'black',
-            'text-white': color === 'white',
-            'text-aci-red': color === 'red',
-            'text-aci-green': color === 'green',
-            'text-aci-blue': color === 'blue',
-            'text-aci-yellow': color === 'yellow',
-            'text-gray-400': color === 'gray',
-            'text-aci-orange': color === 'orange',
-            // Size
-            'text-banner': size === 'banner',
-            'text-section-title': size === 'section-title',
-            'text-title': size === 'title',
-            'text-text': size === 'text',
-            'text-detail': size === 'detail',
-        });
-
-        return (
-            <span style={filled ? filledStyle : unfilledStyle} className={iconClasses}>{iconName}</span>
-        );
-    }else{
-        const svgClasses = classNames({
-            'fill-black': color === 'black',
-            'fill-white': color === 'white',
-            'fill-aci-blue': color === 'blue',
-            'fill-aci-red': color === 'red',
-            'fill-aci-green': color === 'green',
-            'fill-aci-yellow': color === 'yellow',
-            'fill-gray-400': color === 'gray',
-            'fill-aci-orange': color === 'orange',
-        });
-
-        return (
-            <AmazonConnectIcon className={svgClasses}/> 
-        );
+    
+    switch (iconName) {
+        case 'alarm':
+            return <Alarm className={svgClasses} />;
+        case 'logo':
+            return <AmazonConnectIcon className={svgClasses} />;
+        case 'arrow-back-ios':
+            return <ArrowBackIos className={svgClasses} />;
+        case 'arrow-forward-ios':
+            return <ArrowForwardIos className={svgClasses} />;
+        case 'bar-chart':
+            return <BarChart className={svgClasses} />;
+        case 'calendar-today':
+            return <CalendarToday className={svgClasses} />;
+        case 'call-end':
+            return <CallEnd className={svgClasses} />;
+        case 'cancel':
+            return <Cancel className={svgClasses} />;
+        case 'check-circle':
+            return <CheckCircle className={svgClasses} />;
+        case 'clear-night':
+            return <ClearNight className={svgClasses} />;
+        case 'close':
+            return <Close className={svgClasses} />;
+        case 'done':
+            return <Done className={svgClasses} />;
+        case 'instant-mix':
+            return <InstantMix className={svgClasses} />;
+        case 'keyboard-return':
+            return <KeyboardReturn className={svgClasses} />;
+        case 'logout':
+            return <Logout className={svgClasses} />;
+        case 'menu':
+            return <Menu className={svgClasses} />;
+        case 'mitre':
+            return <Mitre className={svgClasses} />;
+        case 'move-down':
+            return <MoveDown className={svgClasses} />;
+        case 'phone-in-talk':
+            return <PhoneInTalk className={svgClasses} />;
+        case 'search-fill':
+            return <SearchFill className={svgClasses} />;
+        case 'sentiment-dissatisfied':
+            return <SentimentDissatisfied className={svgClasses} />;
+        case 'social-leaderboard':
+            return <SocialLeaderboard className={svgClasses} />;
+        case 'support-agent':
+            return <SupportAgent className={svgClasses} />;
+        case 'visibility':
+            return <Visibility className={svgClasses} />;
+        case 'visibility-off':
+            return <VisibilityOff className={svgClasses} />;
+        case 'warning':
+            return <Warning className={svgClasses} />;
+        default:
+            return <span>Icon not found :(</span>;
     }
 };
 
 Icon.defaultProps = {
-    filled: false,
     size: 'text',
 };
 

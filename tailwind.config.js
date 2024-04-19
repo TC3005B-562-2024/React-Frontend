@@ -24,6 +24,13 @@ export default {
         'title': '36px',
         'text': '22px',
         'detail': '16px'
+      },
+      spacing: {
+        'banner': '57px',
+        'section-title': '45px',
+        'title': '36px',
+        'text': '22px',
+        'detail': '16px'
       }
     },
   },
