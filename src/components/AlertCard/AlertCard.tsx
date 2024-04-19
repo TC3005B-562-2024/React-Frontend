@@ -1,6 +1,5 @@
 import React from 'react';
-import classNames from 'classnames';
-import './AlertCard.css'; 
+import './AlertCard.css';
 import { Button } from '../Button';
 
 export interface AlertCardProps {
@@ -8,46 +7,67 @@ export interface AlertCardProps {
   alertOwner: 'skillName' | 'queueName' | 'agentName';
   alertPriority: 'CRITIC' | 'MEDIUM' | 'LOW';
   individualAlertLink: string;
+  alertId: number;
 }
 
 const AlertCard: React.FC<AlertCardProps> = ({
   alertName,
   alertOwner,
   alertPriority,
+  individualAlertLink,
+  alertId,
 }) => {
-  const priorityColorClass = classNames({
-    'priority-circle': true,
-    'critical': alertPriority === 'CRITIC',
-    'medium': alertPriority === 'MEDIUM',
-    'low': alertPriority === 'LOW',
-  });
-
   const handleViewMoreClick = () => {
-    alert("Has presionado un boton")
+    const fullAlertLink = `${individualAlertLink}${alertId}`;
+    window.location.href = fullAlertLink;
+    //alert('Has presionado un botón');
   };
 
+  // Determinar la clase de prioridad dinámicamente según alertPriority
+  let priorityClass = '';
+  switch (alertPriority) {
+    case 'CRITIC':
+      priorityClass = 'high-priority';
+      break;
+    case 'MEDIUM':
+      priorityClass = 'medium-priority';
+      break;
+    case 'LOW':
+      priorityClass = 'low-priority';
+      break;
+    default:
+      priorityClass = 'low-priority';
+      break;
+  }
+
   return (
-    <div className="container">
-      <div className="alert-card">
-        <div className={priorityColorClass}>{alertPriority}</div>
-        <div className="info-container">
-        <div className="alert-info">
-          <div className="alert-name">{alertName}</div>
-          <div className="agent-name">{alertOwner}</div>
-      </div>
-        <div className="button-container">
-          <Button
-            onClick={handleViewMoreClick}
-            text="Ver más"
-            color="orange"
-            size="text"
-            icon={{ iconName: 'arrow_right', filled: true }} // Ejemplo de icono de flecha hacia la derecha
-          />
+    <div className={`alert-card h-25 bg-white p-1 rounded-lg shadow-md flex items-center justify-between max-w-sm`}>
+      {/* Prioridad a la izquierda */}
+      <div className={`priority-indicator ${priorityClass}`}></div>
+
+      {/* Contenedor para alertName y alertOwner/Button */}
+      <div className="alert-details flex-1 pl-5">
+        {/* Div para alertName */}
+        <div className="text-lg font-semibold text-gray-800 mb-2">{alertName}</div>
+        {/* Div para alertOwner y Button */}
+        <div className="flex flex-row items-center justify-between text-base text-gray-600">
+          {/* Div para alertOwner */}
+          <div>{alertOwner}</div>
+          {/* Div para Button */}
+          <div>
+            <Button
+              onClick={handleViewMoreClick}
+              text="View More"
+              color="orange"
+              size="text"
+              icon={{ iconName: 'arrow_right', filled: true }}
+            />
+          </div>
         </div>
-      </div>
       </div>
     </div>
   );
 };
 
 export default AlertCard;
+  
