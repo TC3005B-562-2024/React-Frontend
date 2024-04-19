@@ -17,7 +17,7 @@ const InputField: React.FC<IInputField & { onChange: (id: string, value: string)
     'input-field__container__input-container__input--blue': color === 'blue',
     'input-field__container__input-container__input--yellow': color === 'yellow',
     'input-field__container__input-container__input--gray': color === 'gray',
-    'binput-field__container__input-container__input--orange': color === 'orange',
+    'input-field__container__input-container__input--orange': color === 'orange',
   });
 
   const labelPositionClass = classNames({
@@ -53,14 +53,14 @@ const InputField: React.FC<IInputField & { onChange: (id: string, value: string)
             placeholder={placeholder} 
             required 
           />
-          <span className='input-field__container__input-container__button-container'>
+          <div className='input-field__container__input-container__button-container'>
             <button 
               type='button' 
               onClick={togglePasswordVisibility} 
               className='input-field__container__input-container__button-container__button'>
-              {showPassword ? <Icon iconName='Visibility' color={color} filled /> : <Icon iconName='Visibility_off' color={color} filled />}
+              {showPassword ? <Icon iconName='visibility' color={color} /> : <Icon iconName='visibility_off' color={color} />}
             </button>
-          </span>
+          </div>
         </div>
         {helperText !== '' && (
           <span className='input-field__container__helper-text'>

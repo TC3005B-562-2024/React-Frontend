@@ -6,7 +6,7 @@ export interface ICompleteButton {
     /*
      * The color of the complete button
      */
-    color: string;
+    color: 'red' | 'green' | 'blue' | 'yellow' | 'orange';
     /*
      * Optional callback function to handle toggle complete event
      */
