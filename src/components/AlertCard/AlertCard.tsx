@@ -1,6 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
-import './alert-card.css';
+import './AlertCard.css';
 import { Button } from '../Button';
 import { IAlertCardProps } from './types';
 
