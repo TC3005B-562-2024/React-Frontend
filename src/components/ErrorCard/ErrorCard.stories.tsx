@@ -1,5 +1,4 @@
 import { Meta, StoryObj } from '@storybook/react';
-import { fn } from '@storybook/test';
 import ErrorCard from './ErrorCard';
 
 const meta = {

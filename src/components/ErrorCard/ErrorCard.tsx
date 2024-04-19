@@ -7,7 +7,7 @@ import { IErrorCard } from "./types";
 
 const ErrorCard: React.FC<IErrorCard> = ({ title }) => {
     return (
-        <div className="bg-white text-aci-red text-left px-5 py-1 rounded-xl shadow-lg text-text font-bold">
+        <div className="w-full bg-white text-aci-red text-left px-5 py-1 rounded-xl shadow-lg text-text font-bold">
             {title}
         </div>
     );
