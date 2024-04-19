@@ -1,1 +1,1 @@
-export { default as IInformationBar } from './InformationBar';
+export { default as InformationBar } from './InformationBar';
