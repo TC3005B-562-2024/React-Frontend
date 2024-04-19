@@ -1,14 +1,14 @@
 
 import { Meta, StoryFn } from '@storybook/react';
 import AlertCard from './AlertCard';
-import { AlertCardProps } from "./AlertCard"
+import { IAlertCardProps } from "./types"
 
 // Definición de metadatos y configuración para Storybook
-const meta: Meta<AlertCardProps> = {
+const meta: Meta<IAlertCardProps> = {
   title: 'Alert/AlertCard',
   component: AlertCard,
   parameters: {
-    layout: 'fullscreen',
+    layout: 'centered',
   },
   argTypes: {
     alertName: { control: 'text' },
@@ -22,18 +22,12 @@ const meta: Meta<AlertCardProps> = {
     },
     individualAlertLink: { control: 'text' },
   },
-  decorators: [
-    (StoryComponent) => (
-      <div style={{ margin: '3rem' }}>
-        <StoryComponent />
-      </div>
-    ),
-  ],
-};
+  tags: ["autodocs"]
+} satisfies Meta<typeof AlertCard>;
 
 export default meta;
 
-const Template: StoryFn<AlertCardProps> = (args) => <AlertCard {...args} />;
+const Template: StoryFn<IAlertCardProps> = (args) => <AlertCard {...args} />;
   
 export const CriticalAlert = Template.bind({});
 CriticalAlert.args = {

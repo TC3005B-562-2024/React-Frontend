@@ -1,0 +1,36 @@
+.high-priority {
+    @apply h-20 w-12 rounded-lg bg-aci-red;
+}
+
+.medium-priority {
+    @apply h-20 w-12 rounded-lg bg-aci-orange;
+}
+
+.low-priority {
+    @apply h-20 w-12 rounded-lg bg-aci-yellow;
+}
+
+.alert-card__priority-contents {
+    @apply bg-white p-1 rounded-lg shadow-md flex items-center justify-between max-w-sm;
+}
+  
+.alert-card__container__color-box {
+    @apply h-20 w-12 rounded-lg;
+}
+  
+.alert-card__container__contents {
+    @apply flex-1 pl-5;
+}
+  
+.alert-card__container__contents__name {
+    @apply text-lg font-semibold text-gray-800 mb-2;
+}
+  
+.alert-card__container__contents__lower-contents {
+    @apply flex flex-row items-center justify-between text-base text-gray-600;
+}
+  
+.alert-card__container__contents__button {
+    @apply ml-14; 
+}
+  

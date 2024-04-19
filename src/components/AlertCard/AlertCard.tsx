@@ -1,16 +1,10 @@
 import React from 'react';
-import './AlertCard.css';
+import classNames from 'classnames';
+import './Alert-Card.css';
 import { Button } from '../Button';
+import { IAlertCardProps } from './types';
 
-export interface AlertCardProps {
-  alertName: string;
-  alertOwner: 'skillName' | 'queueName' | 'agentName';
-  alertPriority: 'CRITIC' | 'MEDIUM' | 'LOW';
-  individualAlertLink: string;
-  alertId: number;
-}
-
-const AlertCard: React.FC<AlertCardProps> = ({
+const AlertCard: React.FC<IAlertCardProps> = ({
   alertName,
   alertOwner,
   alertPriority,
@@ -20,41 +14,23 @@ const AlertCard: React.FC<AlertCardProps> = ({
   const handleViewMoreClick = () => {
     const fullAlertLink = `${individualAlertLink}${alertId}`;
     window.location.href = fullAlertLink;
-    //alert('Has presionado un botón');
   };
 
-  // Determinar la clase de prioridad dinámicamente según alertPriority
-  let priorityClass = '';
-  switch (alertPriority) {
-    case 'CRITIC':
-      priorityClass = 'high-priority';
-      break;
-    case 'MEDIUM':
-      priorityClass = 'medium-priority';
-      break;
-    case 'LOW':
-      priorityClass = 'low-priority';
-      break;
-    default:
-      priorityClass = 'low-priority';
-      break;
-  }
+  // Determinar la clase de prioridad dinámicamente usando classNames
+  const priorityClass = classNames({
+    'high-priority': alertPriority === 'CRITIC',
+    'medium-priority': alertPriority === 'MEDIUM',
+    'low-priority': alertPriority === 'LOW' || !alertPriority,
+  });
 
   return (
-    <div className={`alert-card h-25 bg-white p-1 rounded-lg shadow-md flex items-center justify-between max-w-sm`}>
-      {/* Prioridad a la izquierda */}
-      <div className={`priority-indicator ${priorityClass}`}></div>
-
-      {/* Contenedor para alertName y alertOwner/Button */}
-      <div className="alert-details flex-1 pl-5">
-        {/* Div para alertName */}
-        <div className="text-lg font-semibold text-gray-800 mb-2">{alertName}</div>
-        {/* Div para alertOwner y Button */}
-        <div className="flex flex-row items-center justify-between text-base text-gray-600">
-          {/* Div para alertOwner */}
-          <div>{alertOwner}</div>
-          {/* Div para Button */}
-          <div>
+    <div className="alert-card__priority-contents">
+      <div className={classNames('alert-card__container__color-box', priorityClass)}></div>
+      <div className="alert-card__container__contents">
+        <span className="alert-card__container__contents__name">{alertName}</span>
+        <div className="alert-card__container__contents__lower-contents">
+          <span className="alert-card__container__contents__agent">{alertOwner}</span>
+          <div className="alert-card__container__contents__button">
             <Button
               onClick={handleViewMoreClick}
               text="View More"
@@ -70,4 +46,3 @@ const AlertCard: React.FC<AlertCardProps> = ({
 };
 
 export default AlertCard;
-  
