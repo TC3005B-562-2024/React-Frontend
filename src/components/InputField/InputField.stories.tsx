@@ -25,6 +25,12 @@ const meta = {
         },
         placeholder: { control: 'text' },
         id: { control: 'text' },
+        label: { control: 'text' },
+        labelPosition: {
+            options: ['left', 'right', 'center'],
+            control: { type: 'select' },
+        },
+        helperText: { control: 'text' },
         onChange: { action: 'changed' },
     },
     tags: ["autodocs"]
@@ -37,6 +43,9 @@ export const InputFieldExample = Template.bind({});
 InputFieldExample.args = {
     id: 'email',
     type: 'text',
+    label: 'Email',
+    labelPosition: 'center',
+    helperText: 'Please enter your email',
     color: 'yellow',
     placeholder: 'Enter your email'
 };

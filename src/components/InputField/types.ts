@@ -8,6 +8,18 @@ export interface IInputField{
     */
   type: 'email' | 'number' | 'secret' | 'text'
 
+  /**
+     * Text of the label
+     */
+  label: string;
+  /**
+     * Position of the label
+     */
+  labelPosition: 'left' | 'center' | 'right';
+   /**
+     * Text of the helper text
+     */
+   helperText: string;
    /**
    * Placeholder text for the input field
    */
