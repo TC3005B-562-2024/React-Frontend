@@ -13,6 +13,7 @@ const meta = {
     label: {control: 'text'}
   },
   tags: ['autodocs'],
+
 } satisfies Meta<typeof MultiselectOptions>;
 
 export default meta;
