@@ -6,8 +6,9 @@ export { InputField } from './InputField';
 export { AlertCard } from './AlertCard';
 export { ItemSubitem } from './ItemSubitem';
 export { CompleteButton } from './CompleteButton';
+export { MultiselectOptions } from './MultiselectOptions';
 export { InsightDescription } from './InsightDescription';
 export { ErrorCard } from './ErrorCard';
 export { TrainingCardToggle } from './TrainingCardToggle';
 export { InformationBar } from './InformationBar';
-export { MultiselectOptions } from './MultiselectOptions';
+>>>>>>>>> Temporary merge branch 2
