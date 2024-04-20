@@ -3,8 +3,6 @@ import { MultiselectOptions } from '../MultiselectOptions';
 import { IMultiselect } from './types';
 import './multiselect.css';
 
-
-
 const Multiselect: React.FC<IMultiselect> = ({ options }) => {
   const [selectedOptions, setSelectedOptions] = useState(options);
 

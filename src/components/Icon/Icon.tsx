@@ -11,6 +11,7 @@ import {
     CalendarToday,
     CallEnd,
     Cancel,
+    Check,
     CheckCircle,
     CheckCircleFill,
     ClearNight,
@@ -66,6 +67,8 @@ const Icon: React.FC<IIcon> = ({ iconName, color}) => {
             return <CallEnd className={svgClasses} />;
         case 'cancel':
             return <Cancel className={svgClasses} />;
+        case 'check':
+            return <Check className={svgClasses} />;
         case 'check_circle':
             return <CheckCircle className={svgClasses} />;
         case 'check_circle_fill':

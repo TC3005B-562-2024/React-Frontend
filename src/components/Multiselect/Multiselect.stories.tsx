@@ -25,14 +25,18 @@ export const MultiselectExample = Template.bind({});
 MultiselectExample.args = {
   options: [
     {
-      label: 'Option 1',
-      isSelected: false,
-      setIsSelected: () => console.log('Option 1')
+      option: {
+        label: 'Option 1',
+        isSelected: false,
+        setIsSelected: () => console.log('Option 1')
+      }
     },
     {
-      label: 'Option 2',
-      isSelected: false,
-      setIsSelected: () => console.log('Option 2')
+      option: {
+        label: 'Option 2',
+        isSelected: false,
+        setIsSelected: () => console.log('Option 1')
+      }
     },
   ]
-};
+}
