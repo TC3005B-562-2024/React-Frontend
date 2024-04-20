@@ -1,6 +1,7 @@
 import { Meta, StoryFn } from '@storybook/react';
 import { IIcon } from './types';
 import Icon from './Icon';
+import { iconNames } from './types';
 
 const meta = {
     title: 'Components/Icon',
@@ -9,14 +10,12 @@ const meta = {
         layout: 'centered',
     },
     argTypes: {
-        iconName: { control: 'text' },
-        color: {
-            options: ['black', 'white', 'red', 'green', 'blue', 'yellow', 'gray', 'orange'],
+        iconName: {
+            options: iconNames,
             control: { type: 'select' },
         },
-        filled: { control: 'boolean' },
-        size: {
-            options: ['banner', 'section-title', 'title', 'text', 'detail'],
+        color: {
+            options: ['black', 'white', 'red', 'green', 'blue', 'yellow', 'gray', 'orange'],
             control: { type: 'select' },
         },
     },
@@ -32,7 +31,6 @@ const Template: StoryFn<IIcon> = (args) => <Icon {...args} />;
  */
 export const IconExample = Template.bind({});
 IconExample.args = {
-    iconName: 'star',
+    iconName: 'support_agent',
     color: 'black',
-    filled: true,
 };

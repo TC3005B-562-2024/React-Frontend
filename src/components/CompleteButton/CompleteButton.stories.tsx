@@ -1,7 +1,6 @@
 import { Meta, StoryFn } from '@storybook/react';
 import { ICompleteButton } from './types';
 import CompleteButton from './CompleteButton';
-import React from 'react';
 
 const meta = {
     title: 'Components/CompleteButton',
@@ -12,7 +11,7 @@ const meta = {
     argTypes: {
         isComplete: {control: 'boolean'},
         color: {
-            options: ['black', 'white', 'red', 'green', 'blue', 'yellow', 'gray', 'orange'],
+            options: ['red', 'green', 'blue', 'yellow', 'orange'],
             control: { type: 'select' },
         },
     },

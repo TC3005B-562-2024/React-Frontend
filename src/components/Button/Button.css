@@ -1,3 +1,23 @@
 .aci-button {
-    @apply cursor-pointer rounded-lg flex px-2 py-1 items-center space-x-2;
+    @apply rounded-lg flex px-2 py-1 items-center space-x-2 transition duration-200 border-2 text-white fill-white;
+}
+
+.aci-button--blue {
+    @apply bg-aci-blue border-aci-blue hover:bg-aci-blue-dark hover:border-aci-blue-dark active:bg-white active:border-2 active:border-aci-blue active:text-aci-blue active:fill-aci-blue;
+}
+
+.aci-button--red {
+    @apply bg-aci-red border-aci-red hover:bg-aci-red-dark hover:border-aci-red-dark active:bg-white active:border-2 active:border-aci-red active:text-aci-red active:fill-aci-red;
+}
+
+.aci-button--green {
+    @apply bg-aci-green border-aci-green hover:bg-aci-green-dark hover:border-aci-green-dark active:bg-white active:border-2 active:border-aci-green active:text-aci-green active:fill-aci-green;
+}
+
+.aci-button--yellow {
+    @apply bg-aci-yellow border-aci-yellow hover:bg-aci-yellow-dark hover:border-aci-yellow-dark active:bg-white active:border-2 active:border-aci-yellow active:text-aci-yellow active:fill-aci-yellow;
+}
+
+.aci-button--orange {
+    @apply bg-aci-orange border-aci-orange hover:bg-aci-orange-dark hover:border-aci-orange-dark active:bg-white active:border-2 active:border-aci-orange active:text-aci-orange active:fill-aci-orange;
 }
