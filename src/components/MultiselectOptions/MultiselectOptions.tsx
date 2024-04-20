@@ -14,7 +14,7 @@ const MultiselectOptions: React.FC<IMultiselectOptions> = ({ label, isSelected, 
       <div className='multiselect-options__container'>
         <div className='multiselect-options__checkbox-container'>
           <input type="checkbox" className='multiselect-options__checkbox' checked={isSelected} onChange={(handleCheckboxChange)} />
-          {isSelected && <CheckIcon className='multiselect-options__checkicon' />}
+          {isSelected && <CheckIcon className='multiselect-options__check-icon' />}
         </div>
         {label}
       </div>

@@ -1,29 +1,28 @@
 import React, { useState } from 'react';
-import MultiselectOptions from '../components/MultiselectOptions';
+import { MultiselectOptions } from '../MultiselectOptions';
 import { IMultiselect } from './types';
+import './multiselect.css';
 
-const initialOptions = [
-  { label: 'Option 1', isSelected: false },
-  { label: 'Option 2', isSelected: false },
-  { label: 'Option 3', isSelected: false },
-];
 
-const OptionsList: React.FC = () => {
+
+const Multiselect: React.FC<IMultiselect> = ({ label, isSelected, setIsSelected }) => {
+
+
   const [options, setOptions] = useState(initialOptions);
 
-  const toggleOption = (index: number) => {
-    setOptions(options.map((option, i) => i === index ? {...option, isSelected: !option.isSelected} : option));
+  const toggleOption = (index: number, newLabel: string) => {
+    setOptions(options.map((option, i) => i === index ? {...option, isSelected: !option.isSelected, label: newLabel} : option));
   };
 
   return (
-    <div>
+    <div className="multiselect__container">
       {options.map((option, index) => (
-        <div key={index} onClick={() => toggleOption(index)}>
-          <MultiselectOptions label={option.label} isSelected={option.isSelected} />
+        <div key={index} onClick={() => toggleOption(index, option.label)} className="multiselect-option">
+          <MultiselectOptions label={option.label} isSelected={option.isSelected} setIsSelected={() => toggleOption(index, option.label)} />
         </div>
       ))}
     </div>
   );
 };
 
-export default OptionsList;
+export default Multiselect;
