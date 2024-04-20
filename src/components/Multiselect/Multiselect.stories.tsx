@@ -17,6 +17,7 @@ const meta = {
 export default meta;
 const Template: StoryFn<IMultiselect> = (args) => <Multiselect {...args} />;
 
+
 /**
  * A default multiselect component with similar options.
  */

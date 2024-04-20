@@ -1,4 +1,5 @@
 .multiselect-options__container {
+
   @apply w-full flex items-center px-2 py-1 space-x-2;
 }
 
