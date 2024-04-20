@@ -1,7 +1,6 @@
 import { Meta, StoryFn } from '@storybook/react';
 import InsightDescription from "./InsightDescription";
 import { IInsightDescription } from './types';
-import { Icon } from '../Icon';
 
 const meta = {
     title: 'Components/InsightDescription',
