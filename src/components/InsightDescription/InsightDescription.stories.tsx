@@ -8,12 +8,6 @@ const meta = {
     component: InsightDescription,
     parameters: {
         layout: 'centered',
-        docs: {
-            story: {
-                inline: true,
-                iframeHeight: 400,
-            }
-        },
     },
     argTypes: {
         priority: {
@@ -38,6 +32,5 @@ export const InsightDescriptionExample = Template.bind({});
 InsightDescriptionExample.args = {
     priority: "transfer",
     alertId: 123,
-    icon: <Icon iconName="Transfer" color="orange" />,
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et sodales ex. Ut dui ex, tempor a magna eu, commodo lobortis nulla. Suspendisse convallis purus sit amet aliquam blandit. Curabitur in aliquam ipsum. Vivamus sollicitudin enim at enim bibendum ornare. In fringilla non justo eget maximus. Ut id purus vitae nisi aliquam lobortis. Phasellus semper viverra posuere. Quisque orci nunc, laoreet non risus et, fermentum lacinia orci.'
 }

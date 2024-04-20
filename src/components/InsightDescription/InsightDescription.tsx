@@ -1,13 +1,13 @@
 import React from "react";
 import { IInsightDescription, PriorityType } from "./types";
+import { Icon } from "../Icon";
+import classNames from 'classnames';
 
-const InsightDescription: React.FC<IInsightDescription> = ({ priority, alertId, icon, description }) => {
+const InsightDescription: React.FC<IInsightDescription> = ({ priority, alertId, description }) => {
     const styles = getPriorityStyles(priority);
-    const iconName = getIconNameByPriority(priority);
-    const customIcon = React.cloneElement(icon, { iconName: iconName });
 
     return (
-        <div className="">
+        <div className=" container">
             {alertId && (
                 <div>
                     <h1 className={"text-banner font-bold pb-3"}>
@@ -16,8 +16,8 @@ const InsightDescription: React.FC<IInsightDescription> = ({ priority, alertId, 
                 </div>
             )}
             <div className={`flex border-solid border rounded-lg ${styles.bgColor} ${styles.borderColor} ${styles.textColor}`}>
-                <div className="flex items-center justify-center px-4">
-                    {customIcon}
+                <div className=" min-w-16 mx-6">
+                    {renderIcon(priority)}
                 </div>
                 <div className="p-2">
                     <h1 className="text-title capitalize">
@@ -33,6 +33,19 @@ const InsightDescription: React.FC<IInsightDescription> = ({ priority, alertId, 
 };
 
 export default InsightDescription;
+
+const renderIcon = (priority: PriorityType) => {
+    switch (priority) {
+        case "intervene":
+            return <Icon iconName="sentiment_dissatisfied" color="red" />;
+        case "transfer":
+            return <Icon iconName="move_down" color="orange" />;
+        case "training":
+            return <Icon iconName="warning" color="orange" />;
+        default:
+            return <Icon iconName="warning" color="orange" />
+    }
+}
 
 function getPriorityStyles(priority: PriorityType) {
     switch (priority) {
@@ -60,18 +73,5 @@ function getPriorityStyles(priority: PriorityType) {
                 textColor: "text-black",
                 borderColor: "border-gray-300"
             };
-    }
-}
-
-function getIconNameByPriority(priority: PriorityType): string {
-    switch (priority) {
-        case "intervene":
-            return "Intervene";
-        case "transfer":
-            return "Transfer";
-        case "training":
-            return "Training";
-        default:
-            return "DefaultIcon";
     }
 }
