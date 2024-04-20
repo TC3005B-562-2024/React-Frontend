@@ -1,6 +1,6 @@
 import { IIcon } from "../Icon/types";
 
-export type PriorityType = "Intervene" | "Transfer" | "Training";
+export type PriorityType = "intervene" | "transfer" | "training";
 
 export interface IInsightDescription {
     priority: PriorityType;

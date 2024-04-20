@@ -16,12 +16,16 @@ const meta = {
         },
     },
     argTypes: {
-        color: {
-            options: ['black', 'red', 'green', 'yellow', 'gray'],
-            control: { type: 'select' }
+        priority: {
+            options: ['intervene', 'transfer', 'training'],
+            control: { type: 'select'}
         },
-        title: { control: 'text' },
-        content: { control: 'text' },
+        alertId: {
+            control: 'text',
+        },
+        description: {
+            control: 'text'
+        }
     },
     tags: ["autodocs"]
 } as Meta;
@@ -32,8 +36,8 @@ const Template: StoryFn<IInsightDescription> = (args) => <InsightDescription {..
 
 export const InsightDescriptionExample = Template.bind({});
 InsightDescriptionExample.args = {
-    priority: "Transfer",
+    priority: "transfer",
     alertId: 123,
-    icon: <Icon iconName="star" color="orange" />,
+    icon: <Icon iconName="Transfer" color="orange" />,
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et sodales ex. Ut dui ex, tempor a magna eu, commodo lobortis nulla. Suspendisse convallis purus sit amet aliquam blandit. Curabitur in aliquam ipsum. Vivamus sollicitudin enim at enim bibendum ornare. In fringilla non justo eget maximus. Ut id purus vitae nisi aliquam lobortis. Phasellus semper viverra posuere. Quisque orci nunc, laoreet non risus et, fermentum lacinia orci.'
 }
