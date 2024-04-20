@@ -1,14 +1,14 @@
-import './App.css'
-import { Icon } from './components'
+import React from 'react';
+import { RouterProvider } from 'react-router-dom';
+import { router } from './routes/router';
 
-function App() {
 
+const App = () => {
   return (
     <>
-      <div className="text-red-600">Hola</div>
-      <Icon iconName='star' color='orange' filled />
+      <RouterProvider router={router}/>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
