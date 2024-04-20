@@ -1,0 +1,47 @@
+.insight-description__container__alert-id {
+    @apply text-banner font-bold pb-3
+}
+
+.insight-description__container__card__icon {
+    @apply min-w-16 mx-6
+}
+
+.insight-description__container__card__content {
+    @apply p-2
+}
+
+.insight-description__container__card__content {
+
+}
+
+.insight-description__container__card__content__priority {
+    @apply text-title capitalize
+}
+
+.insight-description__container__card__content_description {
+    @apply text-text
+}
+
+.insight-description__container__card--intervene {
+    @apply flex border-solid border rounded-lg bg-aci-red bg-opacity-20 border-aci-red text-aci-red
+}
+
+.insight-description__container__card--transfer {
+    @apply flex border-solid border rounded-lg bg-aci-orange bg-opacity-20 border-aci-orange text-aci-orange
+}
+
+.insight-description__container__card--training {
+    @apply flex border-solid border rounded-lg bg-[#F8C73E] bg-opacity-20 border-[#F8C73E] text-[#F8C73E]
+}
+
+.insight-description__container__alert-id__span--intervene {
+    @apply text-aci-red
+}
+
+.insight-description__container__alert-id__span--transfer {
+    @apply text-aci-orange
+}
+
+.insight-description__container__alert-id__span--training {
+    @apply text-[#F8C73E]
+}
