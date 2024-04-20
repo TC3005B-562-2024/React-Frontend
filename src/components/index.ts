@@ -11,4 +11,3 @@ export { InsightDescription } from './InsightDescription';
 export { ErrorCard } from './ErrorCard';
 export { TrainingCardToggle } from './TrainingCardToggle';
 export { InformationBar } from './InformationBar';
->>>>>>>>> Temporary merge branch 2
