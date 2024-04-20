@@ -17,26 +17,40 @@ const meta = {
 export default meta;
 const Template: StoryFn<IMultiselect> = (args) => <Multiselect {...args} />;
 
-
 /**
- * A default multiselect component.
+ * A default multiselect component with similar options.
  */
 export const MultiselectExample = Template.bind({});
 MultiselectExample.args = {
   options: [
     {
-      option: {
-        label: 'Option 1',
-        isSelected: false,
-        setIsSelected: () => console.log('Option 1')
-      }
+      label: 'Option 1',
+      isSelected: false,
     },
     {
-      option: {
-        label: 'Option 2',
-        isSelected: false,
-        setIsSelected: () => console.log('Option 1')
-      }
+      label: 'Option 2',
+      isSelected: true,
+    }
+  ]
+}
+
+/**
+ * A default multiselect component with a large option.
+ */
+export const MultiselectExampleLargeOption = Template.bind({});
+MultiselectExampleLargeOption.args = {
+  options: [
+    {
+      label: 'Option 1',
+      isSelected: false,
     },
+    {
+      label: 'Option 2',
+      isSelected: true,
+    },
+    {
+      label: 'Very Large Option 3',
+      isSelected: true,
+    }
   ]
 }

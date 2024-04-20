@@ -3,7 +3,5 @@ export interface IMultiselect {
   /**
    * The label of the multiselect
    */
-  options: Array<{
-    option: IMultiselectOptions;
-}>
+  options: Array<IMultiselectOptions>
 }

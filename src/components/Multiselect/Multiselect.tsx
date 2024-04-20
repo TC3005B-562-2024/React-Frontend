@@ -1,21 +1,19 @@
 import React, { useState } from 'react';
 import { MultiselectOptions } from '../MultiselectOptions';
 import { IMultiselect } from './types';
-import './multiselect.css';
+import './Multiselect.css';
 
+/**
+ * A default multiselect component.
+ */
 const Multiselect: React.FC<IMultiselect> = ({ options }) => {
-  const [selectedOptions, setSelectedOptions] = useState(options);
-
-  const toggleOption = (index: number) => {
-    setSelectedOptions(selectedOptions.map((option, i) => i === index ? {...option, isSelected: !option.isSelected} : option));
-  };
-
   return (
     <div className="multiselect__container">
-      {selectedOptions.map((option, index) => (
-        <div key={index} onClick={() => toggleOption(index)} className="multiselect-option">
-          <MultiselectOptions label={option.label} isSelected={option.isSelected} setIsSelected={() => toggleOption(index)} />
-        </div>
+      {options.map((option) => (
+        <MultiselectOptions 
+        label={option.label} 
+        isSelected={option.isSelected}
+        />
       ))}
     </div>
   );
