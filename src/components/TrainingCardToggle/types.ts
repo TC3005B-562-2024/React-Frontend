@@ -1,10 +1,10 @@
 export interface ITrainingCardToggle {
-    /*
-        * The label of the training card toggle
-        */
+    /**
+    * The label of the training card toggle
+    */
     label: string;
-    /*
-        * The color of the complete button
-        */
+    /**
+    * The color of the complete button
+    */
     color: string;
-  }
+};
