@@ -7,23 +7,23 @@ const InsightDescription: React.FC<IInsightDescription> = ({ priority, alertId, 
     const styles = getPriorityStyles(priority);
 
     return (
-        <div className=" container">
+        <div className="container">
             {alertId && (
                 <div>
-                    <h1 className={"text-banner font-bold pb-3"}>
+                    <h1 className={"text-banner font-bold pb-3 insight-description__container__alert-id"}>
                         Alert: <span className={`${styles.textColor}`}>{alertId}</span>
                     </h1>
                 </div>
             )}
             <div className={`flex border-solid border rounded-lg ${styles.bgColor} ${styles.borderColor} ${styles.textColor}`}>
-                <div className=" min-w-16 mx-6">
+                <div className=" min-w-16 mx-6 insight-description__container__card__icon">
                     {renderIcon(priority)}
                 </div>
-                <div className="p-2">
-                    <h1 className="text-title capitalize">
+                <div className="p-2 insight-description__container__card__content">
+                    <h1 className="text-title capitalize insight-description__container__card__content__priority">
                         {priority}
                     </h1>
-                    <p className="text-text">
+                    <p className="text-text insight-description__container__card__content_description">
                         {description}
                     </p>
                 </div>
