@@ -34,29 +34,39 @@ InformationBarExample.args = {
     title: 'Title',
     elements: [
         {
-            title: 'Title',
-            content: 'Cosas',
-            color: 'red',
+            itemsubitem: {
+                title: 'Title',
+                content: 'Cosas',
+                color: 'red',
+            }
         },
         {
-            title: 'Title',
-            content: 'Cosas',
-            color: 'green',
+            itemsubitem: {
+                title: 'Title',
+                content: 'Cosas',
+                color: 'green',
+            }
         },
         {
-            title: 'Title',
-            content: 'Cosas',
-            color: 'yellow',
+            itemsubitem: {
+                title: 'Title',
+                content: 'Cosas',
+                color: 'yellow',
+            }
         },
         {
-            title: 'Title',
-            content: 'Cosas',
-            color: 'gray',
+            itemsubitem: {
+                title: 'Title',
+                content: 'Cosas',
+                color: 'gray',
+            }
         },
         {
-            title: 'Title',
-            content: 'Cosas',
-            color: 'black',
+            itemsubitem: {
+                title: 'Title',
+                content: 'Cosas',
+                color: 'black',
+            }
         },
     ]
 }
