@@ -22,7 +22,7 @@
     @apply text-title capitalize;
 }
 
-.insight-description__container__card__content_description {
+.description__container__card__content__description {
     @apply text-text;
 }
 

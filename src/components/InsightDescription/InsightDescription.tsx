@@ -25,7 +25,7 @@ const InsightDescription: React.FC<IInsightDescription> = ({ priority, alertId, 
         'insight-description__container__card--intervene': priority === 'intervene',
         'insight-description__container__card--transfer': priority === 'transfer',
         'insight-description__container__card--training': priority === 'training',
-      });
+    });
 
     return (
         <div className="insight-description__container">
@@ -44,7 +44,7 @@ const InsightDescription: React.FC<IInsightDescription> = ({ priority, alertId, 
                     <h1 className="insight-description__container__card__content__priority">
                         {priority}
                     </h1>
-                    <p className="insight-description__container__card__content_description">
+                    <p className="insight-description__container__card__content__description">
                         {description}
                     </p>
                 </div>
