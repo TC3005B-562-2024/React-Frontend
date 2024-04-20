@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { MultiselectOptions } from '../MultiselectOptions';
 import { IMultiselect } from './types';
 import './Multiselect.css';
