@@ -4,3 +4,4 @@ export { Button } from './Button';
 export { ItemSubitem } from './ItemSubitem';
 export { CompleteButton } from './CompleteButton';
 export { InsightDescription } from './InsightDescription';
+export { InformationBar } from './InformationBar';
