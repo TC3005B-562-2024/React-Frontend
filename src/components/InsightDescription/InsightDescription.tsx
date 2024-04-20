@@ -1,15 +1,25 @@
 import React from "react";
-import { IInsightDescription, PriorityType } from "./types";
+import { IInsightDescription } from "./types";
 import { Icon } from "../Icon";
 import classNames from 'classnames';
-import './styles.css';
+import './InsightDescription.css';
 
+/**
+ * Component that shows the description of an Insight
+ */
 const InsightDescription: React.FC<IInsightDescription> = ({ priority, alertId, description }) => {
-    const alertClass = classNames({
-        'insight-description__container__alert-id__span--intervene': priority === 'intervene',
-        'insight-description__container__alert-id__span--transfer': priority === 'transfer',
-        'insight-description__container__alert-id__span--training': priority === 'training',
-    });
+    const renderIcon = (priority: "intervene" | "transfer" | "training") => {
+        switch (priority) {
+            case "intervene":
+                return <Icon iconName="sentiment_dissatisfied" color="red" />;
+            case "transfer":
+                return <Icon iconName="move_down" color="orange" />;
+            case "training":
+                return <Icon iconName="warning" color="orange" />;
+            default:
+                return <Icon iconName="warning" color="orange" />
+        }
+    }
 
     const priorityClass = classNames({
         'insight-description__container__card--intervene': priority === 'intervene',
@@ -18,12 +28,12 @@ const InsightDescription: React.FC<IInsightDescription> = ({ priority, alertId, 
       });
 
     return (
-        <div className="w-full">
+        <div className="insight-description__container">
             {alertId && (
                 <div>
-                    <h1 className={"insight-description__container__alert-id"}>
-                        Alert: <span className={alertClass}>{alertId}</span>
-                    </h1>
+                    <span className="insight-description__container__alert-id">
+                        Alert: <span className="text-aci-orange">{alertId}</span>
+                    </span>
                 </div>
             )}
             <div className={priorityClass}>
@@ -44,16 +54,3 @@ const InsightDescription: React.FC<IInsightDescription> = ({ priority, alertId, 
 };
 
 export default InsightDescription;
-
-const renderIcon = (priority: PriorityType) => {
-    switch (priority) {
-        case "intervene":
-            return <Icon iconName="sentiment_dissatisfied" color="red" />;
-        case "transfer":
-            return <Icon iconName="move_down" color="orange" />;
-        case "training":
-            return <Icon iconName="warning" color="orange" />;
-        default:
-            return <Icon iconName="warning" color="orange" />
-    }
-}
