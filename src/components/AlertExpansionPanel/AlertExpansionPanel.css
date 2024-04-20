@@ -1,0 +1,44 @@
+
+.alert-card__container__color-box--high-priority {
+    @apply h-full w-12 rounded-lg bg-aci-red;
+}
+
+.alert-card__container__color-box--medium-priority {
+    @apply h-full w-12 rounded-lg bg-aci-orange;
+}
+
+.alert-card__container__color-box--low-priority {
+    @apply h-full w-12 rounded-lg bg-aci-yellow;
+}
+
+/* Estilos para el panel de expansión */
+.alert-expansion-panel {
+    @apply border border-gray-300 rounded-md mb-4 shadow-md cursor-pointer h-20 rounded-md shadow-md ;
+  }
+  
+  /* Estilos para el encabezado del panel de expansión */
+  .alert-expansion-panel-header {
+    @apply flex justify-between items-center bg-white px-4 py-4 cursor-pointer h-20;
+  }
+  
+  /* Estilos para el texto del encabezado del panel de expansión */
+  .alert-expansion-panel-header-text {
+    @apply font-semibold text-lg text-title ml-3 ;
+  }
+  
+  /* Estilos para el ícono de flecha */
+  .arrow-icon {
+    @apply w-6 h-6 transition-transform duration-300;
+  }
+  
+  /* Estilos para el ícono de flecha cuando el panel está expandido */
+  .expanded {
+    @apply transform rotate-180;
+  }
+  
+  /* Estilos para el contenido del panel de expansión */
+  .alert-expansion-panel-content {
+    @apply p-4;
+  }
+
+  
