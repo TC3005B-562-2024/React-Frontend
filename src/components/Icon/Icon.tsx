@@ -1,7 +1,7 @@
 import { IIcon } from "./types";
 import classNames from "classnames";
 
-import AmazonConnectIcon from '../../assets/icons/AmazonConnect.svg?react';
+import AmazonConnectIcon from '../../assets/amazon-connect.svg?react';
 
 const Icon: React.FC<IIcon> = ({ iconName, color, filled, size}) => {
 
