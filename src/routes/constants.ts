@@ -9,6 +9,10 @@ export const ROUTES = {
     },
     AGENT: {
         path: '/agent',
-        name: 'agent'
+        name: 'Agent'
+    },
+    LOG_OUT: {
+        path: '/logout',
+        name: 'Log Out'
     },
 };
