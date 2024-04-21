@@ -1,6 +1,6 @@
-import React from 'react';
-import { StoryObj, Meta } from '@storybook/react';
+import { StoryFn, Meta } from '@storybook/react';
 import MultiselectOptions from './MultiselectOptions';
+import { IMultiselectOptions } from './types';
 
 const meta = {
   title: 'Components/MultiselectOptions',
@@ -13,28 +13,19 @@ const meta = {
     label: {control: 'text'}
   },
   tags: ['autodocs'],
-
-} satisfies Meta<typeof MultiselectOptions>;
+} satisfies Meta<typeof MultiselectOptions>
 
 export default meta;
-type Story = StoryObj<typeof meta>;
+
+const Template: StoryFn<IMultiselectOptions> = (args) => <MultiselectOptions {...args} />;
 
 /**
- * Example of the component when the isSelected == false.
+ * A default multiselect option component.
  */
-export const MultiselectOptionsUnchecked: Story = {
-  args: {
-    isSelected: false,
-    label: 'Option 1',
-  },
-};
 
-/**
- * Example of the component when the isSelected == true.
- */
-export const MultiselectOptionsChecked: Story = {
-  args: {
-    isSelected: true,
-    label: 'Option 2',
-  },
+export const Default = Template.bind({});
+Default.args = {
+  isSelected: false,
+  label: 'Option 1',
+  setIsSelected: () => {}
 };

@@ -114,8 +114,4 @@ const Icon: React.FC<IIcon> = ({ iconName, color}) => {
     }
 };
 
-Icon.defaultProps = {
-    color: 'white',
-};
-
 export default Icon;
