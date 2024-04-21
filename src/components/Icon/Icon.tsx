@@ -38,7 +38,7 @@ import {
 const Icon: React.FC<IIcon> = ({ iconName, color}) => {
 
     const svgClasses = classNames({
-        'w-full h-full': true,
+        'aspect-square w-full h-full': true,
         'fill-black': color === 'black',
         'fill-white': color === 'white',
         'fill-aci-blue': color === 'blue',
