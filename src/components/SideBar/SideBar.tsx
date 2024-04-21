@@ -5,7 +5,7 @@ import './SideBard.css';
 import { ROUTES } from '../../routes/constants';
 import { ISideBar } from './types';
 
-const SideBar: React.FC<ISideBar> = ({ skills }) => {
+const SideBar: React.FC<ISideBar> = ({ skills = [] }) => {
   const [isExpanded, setExpanded] = useState(true);
 
   const containerClasses = classNames({
