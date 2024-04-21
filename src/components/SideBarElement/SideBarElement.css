@@ -1,0 +1,27 @@
+.side-bar-element__container--unselected {
+  @apply h-14 w-full flex flex-col justify-center px-4 py-2 space-y-3;
+}
+
+.side-bar-element__container--selected {
+  @apply bg-aci-blue-dark h-14 w-full flex flex-col justify-center px-4 py-2 space-y-3;
+}
+
+.side-bar-element__container--unselected:hover {
+  @apply bg-aci-orange-dark;
+}
+
+.side-bar-element__container__content {
+  @apply flex w-full h-8 items-center space-x-2;
+}
+
+.side-bar-element__container__icon {
+  @apply w-8;
+}
+
+.side-bar-element__container__label--unselcted {
+  @apply filter text-text text-white font-bold;
+}
+
+.side-bar-element__container__label--selcted {
+  @apply filter text-text text-aci-orange font-bold;
+}
