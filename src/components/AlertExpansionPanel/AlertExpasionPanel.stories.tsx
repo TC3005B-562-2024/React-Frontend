@@ -5,18 +5,22 @@ import { IAlertCardProps } from './types';
 
 // Define metadata for Storybook
 const meta: Meta = {
-  title: 'Components/AlertExpansionPanel',
-  component: AlertExpansionPanel,
-  parameters: {
-    layout: 'padded',
-    docs: {
-      description: {
-        component: 'Expansion panel that displays a list of alerts of the same category.',
+    title: 'Components/AlertExpansionPanel',
+    component: AlertExpansionPanel,
+    parameters: {
+      layout: 'padded', // Opcional: establece el diseño de las historias
+      docs: {
+        description: {
+          component: 'Expansion panel that displays a list of alerts of the same category.',
+        },
       },
     },
-  },
-};
-
+    argTypes: {
+      alerts: { control: 'array' }, // Ejemplo de definición de propiedades
+    },
+    decorators: [], // Opcional: decoradores para envolver el componente
+    tags: ["autodocs"], // Opcional: etiquetas adicionales para clasificar el componente
+  };
 export default meta;
 
 // Template for stories

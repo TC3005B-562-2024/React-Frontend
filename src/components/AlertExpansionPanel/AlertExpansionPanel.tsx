@@ -4,6 +4,20 @@ import AlertCard from '../AlertCard/AlertCard';
 import { IAlertCardProps } from './types';
 import './AlertExpansionPanel.css';
 
+// Función auxiliar para obtener el texto adecuado según el nivel de alerta
+const getAlertText = (priority: string) => {
+  switch (priority) {
+    case 'CRITIC':
+      return 'Critic Alert';
+    case 'MEDIUM':
+      return 'Medium Alert';
+    case 'LOW':
+      return 'Low Alert';
+    default:
+      return 'Alert';
+  }
+};
+
 const AlertExpansionPanel: React.FC<{ alerts: Array<IAlertCardProps> }> = ({ alerts }) => {
   const [expanded, setExpanded] = useState(false);
 
@@ -27,11 +41,11 @@ const AlertExpansionPanel: React.FC<{ alerts: Array<IAlertCardProps> }> = ({ ale
         className="alert-expansion-panel-header"
         onClick={handlePanelClick}
       >
-        <div className="flex items-center h-20"> {/* Contenedor flex para alinear el texto y el color */}
+        <div className="flex items-center h-20 mt-3"> {/* Contenedor flex para alinear el texto y el color */}
           {/* Barra de color */}
           <div className={`alert-expansion-panel-header__color-box ${priorityClass}`}></div>
           {/* Texto */}
-          <h2 className="alert-expansion-panel-header-text">Alertsssss</h2>
+          <h2 className="alert-expansion-panel-header-text">{getAlertText(alerts[0]?.alertPriority)}</h2>
         </div>
         <svg
           xmlns="http://www.w3.org/2000/svg"
