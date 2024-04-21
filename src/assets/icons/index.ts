@@ -6,6 +6,7 @@ export { default as BarChart } from './BarChart.svg?react';
 export { default as CalendarToday } from './CalendarToday.svg?react';
 export { default as CallEnd } from './CallEnd.svg?react';
 export { default as Cancel } from './Cancel.svg?react';
+export { default as Check } from './Check.svg?react';
 export { default as CheckCircle } from './CheckCircle.svg?react';
 export { default as CheckCircleFill } from './CheckCircleFill.svg?react';
 export { default as ClearNight } from './ClearNight.svg?react';
