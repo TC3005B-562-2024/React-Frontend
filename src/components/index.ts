@@ -1,4 +1,4 @@
-import { LoginForm } from './LoginForm';
+export { LoginForm } from './LoginForm';
 export { Pill } from './Pill';
 export { Icon } from './Icon';
 export { Button } from './Button';
