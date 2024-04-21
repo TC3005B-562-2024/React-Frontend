@@ -20,7 +20,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Primary: Story = {
   args: {
-    placeholder: 'Hola Mundo',
-    onSearch: ()=>console.log('Hola Mundo'),
+    placeholder: 'Search...',
+    onSearch: ()=>console.log('Search...'),
   },
 };
