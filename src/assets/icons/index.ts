@@ -27,3 +27,5 @@ export { default as SupportAgent } from './SupportAgent.svg?react';
 export { default as Visibility } from './Visibility.svg?react';
 export { default as VisibilityOff } from './VisibilityOff.svg?react';
 export { default as Warning } from './Warning.svg?react';
+export {default as ExpandLess} from './ExpandLess.svg?react';
+export {default as ExpandMore} from './ExpandMore.svg?react';

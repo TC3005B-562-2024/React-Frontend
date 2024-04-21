@@ -30,7 +30,9 @@ import {
     SupportAgent,
     Visibility,
     VisibilityOff,
-    Warning
+    Warning,
+    ExpandLess,
+    ExpandMore
 } from "../../assets";
 
 
@@ -106,6 +108,10 @@ const Icon: React.FC<IIcon> = ({ iconName, color}) => {
             return <VisibilityOff className={svgClasses} />;
         case 'warning':
             return <Warning className={svgClasses} />;
+        case 'expand_less':
+            return <ExpandLess className={svgClasses} />;
+        case 'expand_more':
+            return <ExpandMore className={svgClasses} />;
         default:
             return <span>Icon not found :(</span>;
     }

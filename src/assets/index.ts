@@ -26,5 +26,7 @@ export {
     SupportAgent,
     Visibility,
     VisibilityOff,
-    Warning
+    Warning,
+    ExpandLess,
+    ExpandMore
 } from './icons';

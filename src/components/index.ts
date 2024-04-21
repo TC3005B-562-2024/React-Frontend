@@ -9,3 +9,4 @@ export { CompleteButton } from './CompleteButton';
 export { ErrorCard } from './ErrorCard';
 export { TrainingCardToggle } from './TrainingCardToggle';
 export { InformationBar } from './InformationBar';
+export { IndividualTrainingExpansionPanel } from './IndividualTrainingExpansionPanel';
