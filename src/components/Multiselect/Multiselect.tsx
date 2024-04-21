@@ -1,7 +1,7 @@
 import React from 'react';
 import { MultiselectOptions } from '../MultiselectOptions';
 import { IMultiselect } from './types';
-import './Multiselect.css';
+import './multiselect.css';
 
 /**
  * A default multiselect component.
