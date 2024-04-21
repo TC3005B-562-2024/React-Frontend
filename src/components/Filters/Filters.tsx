@@ -21,7 +21,7 @@ const Filters: React.FC<IFilters> = ({ options }) => {
        <Button
               onClick={handleButtonClick}
               text="Filter"
-              color={isMultiselectVisible ? 'green' : 'orange'}
+              color={isMultiselectVisible ? 'orange' : 'orange'}
               size="text"
               icon={{ iconName: 'instant_mix' }}
             />
