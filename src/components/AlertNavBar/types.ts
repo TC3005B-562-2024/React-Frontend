@@ -1,10 +1,3 @@
-import React from 'react';
-import { Icon } from '../Icon';
-
-/**
- * Card that shows important information of an alert.
- */
-
 export interface AlertNavProps {
   /**
    * The instance ID

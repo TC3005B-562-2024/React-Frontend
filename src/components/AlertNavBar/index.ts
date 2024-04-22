@@ -1,1 +1,2 @@
-export { default as AlertCard } from './AlertNav';
+export { default as AlertNav } from './AlertNav';
+

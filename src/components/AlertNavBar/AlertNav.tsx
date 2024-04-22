@@ -1,16 +1,14 @@
 import React from 'react';
 import { Icon } from '../Icon';
 import './AlertNav.css'; // Make sure to import your CSS styles file
-
+import { AlertNavProps } from './types';
 /**
- * Card that shows important information of an alert.
+ * A navigation bar component to display alert information.
+ * @param {Object} props - The props for the AlertNav component.
+ * @param {string} props.instanceId - The unique identifier for the instance.
+ * @param {boolean} props.alertsExists - Specifies whether alerts exist or not.
+ * @returns {JSX.Element} The JSX element representing the AlertNav component.
  */
-
-export interface AlertNavProps {
-  instanceId: string;
-  alertsExists: boolean;
-}
-
 const AlertNav: React.FC<AlertNavProps> = ({ instanceId, alertsExists }) => {
   return (
     <nav className="flex justify-between items-center bg-gray-800 py-4 px-6">
