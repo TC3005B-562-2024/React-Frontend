@@ -17,9 +17,7 @@
 .progress-bar__bar {
     @apply w-full h-4 bg-gray-200 rounded-xl;
 }
-.progress-bar__bar {
-    @apply w-full h-4 bg-gray-200 rounded-xl;
-}
+
 .progress-bar__bar--progress {
     @apply h-full rounded-xl;
 }

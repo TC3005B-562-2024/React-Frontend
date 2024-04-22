@@ -1,0 +1,39 @@
+.agent-info__content {
+  @apply w-full px-6 py-2 rounded-lg bg-white shadow-md space-y-2;
+}
+
+.agent-info__content__main-info {
+  @apply w-full flex space-x-5;
+}
+
+.agent-info__content__main-info__icon {
+  @apply w-12;
+}
+
+.agent-info__content__main-info__text {
+  @apply w-full flex flex-col justify-start;  
+}
+
+.agent-info__content__main-info__text__agent-name {
+  @apply text-title;
+}
+
+.agent-info__content__main-info__text__sentiment-placeholder {
+  @apply text-text;
+}
+
+.agent-info__content__main-info__text__sentiment {
+  @apply text-text;
+}
+
+.agent-info__content__main-info__text__sentiment--positive {
+  @apply text-aci-green;
+}
+
+.agent-info__content__main-info__text__sentiment--negative {
+  @apply text-aci-red;
+}
+
+.agent-info__content__skills {
+  @apply w-full grid grid-cols-4 gap-1;
+}

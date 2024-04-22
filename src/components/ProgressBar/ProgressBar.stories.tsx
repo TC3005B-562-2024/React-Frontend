@@ -40,11 +40,16 @@ export default {
 const Template: StoryFn<IProgressBar> = (args) => <ProgressBar {...args} />;
 
 // Default view of the Progress Bar component
-export const DefaultView = Template.bind({});
-DefaultView.args = {
-  progress: 50,
+export const Completed = Template.bind({});
+Completed.args = {
+  progress: 100,
   color: 'green',
   label : 'Agent Name',
 };
 
-
+export const Uncompleted = Template.bind({});
+Uncompleted.args = {
+  progress: 80,
+  color: 'yellow',
+  label : 'Agent Name',
+};

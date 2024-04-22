@@ -11,5 +11,4 @@ export interface IProgressBar {
      * The label of the progress bar.
      */
     label : string;
-    
 }

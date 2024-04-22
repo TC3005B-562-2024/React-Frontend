@@ -1,14 +1,13 @@
 .multiselect-options__container {
-
   @apply w-full flex items-center px-2 py-1 space-x-2;
 }
 
 .multiselect-options__container:hover {
-  @apply bg-gray-200;
+  @apply bg-neutral-200;
 }
 
 .multiselect-options__container__checkbox-container {
-  @apply relative aspect-square h-7 bg-gray-200 border-2 border-solid	border-black rounded;
+  @apply relative aspect-square h-7 bg-neutral-200 border-2 border-solid	border-black rounded;
 }
 
 .multiselect-options__container__checkbox-container__checkbox {
