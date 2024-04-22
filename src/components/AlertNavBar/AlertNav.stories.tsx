@@ -1,6 +1,7 @@
 import React from 'react';
 import { Meta, StoryFn } from '@storybook/react';
 import AlertNav, { AlertNavProps } from './AlertNav';
+import { Icon } from '../Icon';
 
 export default {
   title: 'Components/AlertNav',
