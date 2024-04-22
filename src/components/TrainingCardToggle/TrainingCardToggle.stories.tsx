@@ -19,13 +19,19 @@ export default meta;
 const Template: StoryFn<ITrainingCardToggle> = (args) => <TrainingCardToggle {...args} />;
 
 /**
- * A training card toggle component to display an action that include a check mark in case of being completed or incompleted.
+ * A training card toggle component to display an action that include a check mark in case of incompleted.
  */
-export const Default = Template.bind({});
-Default.args = {
+export const IncompleteCard = Template.bind({});
+IncompleteCard.args = {
     label: "Training Description",
-    completeButton: {
-        isComplete: false,
-        color: 'green',
-    }
+    isComplete: false,
+};
+
+/**
+ * A training card toggle component to display an action that include a check mark in case of completed.
+ */
+export const CompleteCard = Template.bind({});
+CompleteCard.args = {
+    label: "Training Description",
+    isComplete: true,
 };
