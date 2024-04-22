@@ -25,10 +25,6 @@ export default {
         type: 'text',
       },
     },
-    parameters:
-    {
-        layout : 'centered',
-    },
     
   },tags : ["autodocs"]
   
@@ -40,10 +36,8 @@ const Template: StoryFn<IProgressBar> = (args) => <ProgressBar {...args} />;
 export const DefaultView = Template.bind({});
 DefaultView.args = {
   progress: 50,
-    color: 'green',
-    agentName : 'Agent Name',
-    
-    
+  color: 'green',
+  label : 'Agent Name',
 };
 
 

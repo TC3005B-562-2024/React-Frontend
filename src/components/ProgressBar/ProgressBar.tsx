@@ -1,32 +1,36 @@
-import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
 import { IProgressBar } from './types';
+import './ProgressBar.css';
 
 import classNames from 'classnames';
 
-const ProgressBar: React.FC<IProgressBar> = ({ progress, color , label ,agentName }) => {
-    const progressClasses = classNames({
-        'bg-aci-green': color === 'green',
-        'bg-yellow-400': color === 'yellow',
-        'bg-red-600': color === 'red',
-       
+const ProgressBar: React.FC<IProgressBar> = ({ progress, color , label }) => {
+    const textColorClass = classNames({
+        'text-aci-green': color === 'green',
+        'text-aci-yellow': color === 'yellow',
+        'text-aci-red': color === 'red',
     });
 
-    const progressLabel = label ? label : `${progress}%`;
+    const bgColorClass = classNames({
+        'bg-aci-green': color === 'green',
+        'bg-aci-yellow': color === 'yellow',
+        'bg-aci-red': color === 'red',
+    });
 
-
+    const valueClasses = classNames(textColorClass, 'progress-bar__info__value');
+    const progressClass = classNames(bgColorClass, 'progress-bar__bar--progress');
 
 
     return (
-        <div className=' w-full'>
+        <div className='progress-bar'>
             
-            <div className="flex justify-between">
-                <div className="text-black text-left" style={{fontSize: '90%'}}>{agentName}</div>
-                <div className="text-aci-green text-right" style={{fontSize: '90%'}}>{progressLabel}</div>
+            <div className="progress-bar__info">
+                <span className="progress-bar__info__label" >{label}</span>
+                <span className={valueClasses} >{progress}%</span>
             </div>
-            <div className="w-full h-4 bg-gray-200 rounded-xl">
+            <div className="progress-bar__bar">
                 <div
-                    className={`h-full ${progressClasses} rounded-xl`}
+                    className={progressClass}
                     style={{ width: `${progress}%` }}
                 >
                 </div>
