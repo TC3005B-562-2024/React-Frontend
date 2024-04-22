@@ -8,12 +8,24 @@ export default {
     extend: {
       colors: {
         'aci-orange': '#FCA311',
+        'aci-orange-dark': '#C57E0A',
         'aci-yellow': '#E7B416',
+        'aci-yellow-dark': '#C1960F',
         'aci-green': '#99C140',
+        'aci-green-dark': '#6F9815',
         'aci-red': '#CC3232',
+        'aci-red-dark': '#AC2F2F',
         'aci-blue': '#428ADE',
+        'aci-blue-dark': '#14213D',
       },
       fontSize: {
+        'banner': '57px',
+        'section-title': '45px',
+        'title': '36px',
+        'text': '22px',
+        'detail': '16px'
+      },
+      spacing: {
         'banner': '57px',
         'section-title': '45px',
         'title': '36px',
