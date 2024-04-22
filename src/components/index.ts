@@ -1,3 +1,4 @@
+export { SearchBar } from './SearchBar';
 export { LoginForm } from './LoginForm';
 export { Pill } from './Pill';
 export { Icon } from './Icon';
