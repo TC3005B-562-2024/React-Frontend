@@ -1,7 +1,7 @@
 import { IMultiselectOptions } from "../MultiselectOptions/types";
 export interface IFilters {
   /**
-   * The label of the multiselect
+   * The options to be displayed in the multiselect.
    */
   options: Array<IMultiselectOptions>;
-};
+}
