@@ -11,6 +11,7 @@ import {
     CalendarToday,
     CallEnd,
     Cancel,
+    Check,
     CheckCircle,
     CheckCircleFill,
     ClearNight,
@@ -39,7 +40,7 @@ import {
 const Icon: React.FC<IIcon> = ({ iconName, color}) => {
 
     const svgClasses = classNames({
-        'w-full h-full': true,
+        'aspect-square w-full h-full': true,
         'fill-black': color === 'black',
         'fill-white': color === 'white',
         'fill-aci-blue': color === 'blue',
@@ -68,6 +69,8 @@ const Icon: React.FC<IIcon> = ({ iconName, color}) => {
             return <CallEnd className={svgClasses} />;
         case 'cancel':
             return <Cancel className={svgClasses} />;
+        case 'check':
+            return <Check className={svgClasses} />;
         case 'check_circle':
             return <CheckCircle className={svgClasses} />;
         case 'check_circle_fill':
@@ -115,10 +118,6 @@ const Icon: React.FC<IIcon> = ({ iconName, color}) => {
         default:
             return <span>Icon not found :(</span>;
     }
-};
-
-Icon.defaultProps = {
-    color: 'white',
 };
 
 export default Icon;

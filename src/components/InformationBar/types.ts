@@ -7,7 +7,5 @@ export interface IInformationBar {
     /**
      * The elements of the information bar (the props of the ItemSubitem component)
      */
-    elements: Array<{
-        itemsubitem: IItemSubitem;
-    }>
+    elements: Array<IItemSubitem>
 }
