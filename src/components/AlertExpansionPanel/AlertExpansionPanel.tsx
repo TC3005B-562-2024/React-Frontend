@@ -1,14 +1,28 @@
 import React, { useState } from 'react';
 import classNames from 'classnames';
 import AlertCard from '../AlertCard/AlertCard';
-import { IAlertExpansionPanelProps, getAlertText } from './types';
+import { IAlertExpansionPanel } from './types';
 import './AlertExpansionPanel.css';
 import { Icon } from '../Icon';
 
 /**
  * AlertExpansionPanel component displays a list of alerts in an expansion panel.
  */
-const AlertExpansionPanel: React.FC<IAlertExpansionPanelProps> = ({ alerts }) => {
+const AlertExpansionPanel: React.FC<IAlertExpansionPanel> = ({ alerts }) => {
+
+  const getAlertText = (alertPriority: string) => {
+    switch (alertPriority) {
+      case 'CRITIC':
+        return 'Critical';
+      case 'MEDIUM':
+        return 'Medium';
+      case 'LOW':
+        return 'Low';
+      default:
+        return 'Unknown';
+    }
+  };
+
   const [expanded, setExpanded] = useState(false);
 
   const handlePanelClick = () => {

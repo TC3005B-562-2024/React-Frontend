@@ -1,4 +1,4 @@
-export interface IAlertCardProps {
+export interface IAlertCard {
   /**
    * The name of the alert
    */

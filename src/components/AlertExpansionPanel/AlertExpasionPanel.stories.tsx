@@ -1,7 +1,7 @@
 import React from 'react';
 import { Meta, StoryFn } from '@storybook/react';
 import AlertExpansionPanel from './AlertExpansionPanel';
-import { IAlertCardProps } from './types';
+import { IAlertCard } from '../AlertCard/types';
 
 // Define metadata for Storybook
 const meta: Meta = {
@@ -24,12 +24,12 @@ const meta: Meta = {
 export default meta;
 
 // Template for stories
-const Template: StoryFn<{ alerts: IAlertCardProps[] }> = (args) => (
+const Template: StoryFn<{ alerts: IAlertCard[] }> = (args) => (
   <AlertExpansionPanel {...args} />
 );
 
 // Alert data
-const alerts: IAlertCardProps[] = [
+const alerts: IAlertCard[] = [
   {
     alertName: 'Critical Alert 1',
     alertOwner: 'Owner Name',
@@ -62,17 +62,17 @@ const alerts: IAlertCardProps[] = [
 ];
 
 // Stories for different priorities
-export const CriticalAlerts: StoryFn<{ alerts: IAlertCardProps[] }> = Template.bind({});
+export const CriticalAlerts: StoryFn<{ alerts: IAlertCard[] }> = Template.bind({});
 CriticalAlerts.args = {
   alerts: alerts.filter(alert => alert.alertPriority === 'CRITIC'),
 };
 
-export const MediumAlerts: StoryFn<{ alerts: IAlertCardProps[] }> = Template.bind({});
+export const MediumAlerts: StoryFn<{ alerts: IAlertCard[] }> = Template.bind({});
 MediumAlerts.args = {
   alerts: alerts.filter(alert => alert.alertPriority === 'MEDIUM'),
 };
 
-export const LowAlerts: StoryFn<{ alerts: IAlertCardProps[] }> = Template.bind({});
+export const LowAlerts: StoryFn<{ alerts: IAlertCard[] }> = Template.bind({});
 LowAlerts.args = {
   alerts: alerts.filter(alert => alert.alertPriority === 'LOW'),
 };
