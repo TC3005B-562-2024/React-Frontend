@@ -9,9 +9,11 @@ const meta = {
         layout: "centered",
     },
     argTypes: {
-        isComplete: {control: 'boolean'},
+        isComplete: {
+            control: 'boolean'
+        },
         color: {
-            options: ['red', 'green', 'blue', 'yellow', 'orange'],
+            options: ['black', 'white', 'red', 'green', 'blue', 'yellow', 'gray', 'orange'],
             control: { type: 'select' },
         },
     },
@@ -27,6 +29,6 @@ const Template: StoryFn<ICompleteButton> = (args) => <CompleteButton {...args} /
  */
 export const Default = Template.bind({});
 Default.args = {
-    isComplete: true,
-    color: "green",
+    isComplete: false,
+    color: 'green',
 };
