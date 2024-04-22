@@ -16,3 +16,4 @@ export { TrainingCardToggle } from './TrainingCardToggle';
 export { InformationBar } from './InformationBar';
 export { SideBar } from './SideBar';
 export { SideBarElement } from './SideBarElement';
+export { AlertNav } from './AlertNav';

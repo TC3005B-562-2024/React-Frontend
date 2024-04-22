@@ -1,0 +1,34 @@
+.alert-nav__container {
+  @apply flex justify-between items-center bg-aci-blue-dark p-4;
+}
+
+.alert-nav__container__text-container {
+  @apply flex items-center;
+}
+
+.alert-nav__container__text-container__instance {
+  @apply font-bold text-title text-white mr-2;
+}
+
+.alert-nav__container__text-container__instance-id {
+  @apply text-title text-aci-orange;
+}
+
+.alert-nav__container__icon-container {
+  @apply w-8 flex items-center;
+}
+
+.alert-nav__container__icon-container--bounce {
+  @apply animate-bounce;
+} 
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(-25%);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
+  50% {
+    transform: translateY(0);
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+}
