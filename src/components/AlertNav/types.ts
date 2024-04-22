@@ -1,4 +1,4 @@
-export interface AlertNavProps {
+export interface IAlertNav {
   /**
    * The instance ID
    */
@@ -7,4 +7,4 @@ export interface AlertNavProps {
    * Indicates whether alerts exist
    */
   alertsExists: boolean;
-}
+};
