@@ -1,10 +1,11 @@
 import { Meta, StoryFn } from '@storybook/react';
-import { IProgressBar } from './types';
-import ProgressBar from './ProgressBar';
+import { IJointTrainingExpansionPanel } from './types';
+import JointTrainingExpansionPanel from './JointTrainingExpansionPanel';
+import { ProgressBar } from '../ProgressBar';
 
 export default {
-  title: 'Components/ProgressBar',
-  component: ProgressBar,
+  title: 'Components/ProgressCard',
+  component: JointTrainingExpansionPanel,
   argTypes: {
     progress: {
       control: {
@@ -20,6 +21,11 @@ export default {
         options: ['green', 'yellow', 'red'],
       },
     },
+    rounded: {
+      control: {
+        type: 'boolean',
+      },
+    },
     label: {
       control: {
         type: 'text',
@@ -33,16 +39,14 @@ export default {
   
 } as Meta;
 
-const Template: StoryFn<IProgressBar> = (args) => <ProgressBar {...args} />;
-
+const Template: StoryFn<IJointTrainingExpansionPanel> = (args) => <JointTrainingExpansionPanel {...args} />;
 // Default view of the Progress Bar component
 export const DefaultView = Template.bind({});
 DefaultView.args = {
   progress: 50,
-    color: 'green',
-    agentName : 'Agent Name',
-    
-    
+  color: 'green',
+  agentName : 'Agent Name',
+  trainings : [
+  ],
 };
-
 
