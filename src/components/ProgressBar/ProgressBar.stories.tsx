@@ -29,7 +29,8 @@ export default {
     {
         layout : 'centered',
     },
-  },
+    
+  },tags : ["autodocs"]
   
 } as Meta;
 
