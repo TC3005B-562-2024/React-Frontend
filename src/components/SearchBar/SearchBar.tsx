@@ -2,6 +2,10 @@ import React, { useState } from 'react';
 import { SearchBarProps } from './types';
 import { Icon } from '../Icon';
 
+/**
+ * SearchBar component for searching through data like a Google search bar.
+ * Triggers onSearch function when the user presses enter.
+ */
 const SearchBar: React.FC<SearchBarProps> = ({ placeholder = "Search...", onSearch }) => {
     const [inputValue, setInputValue] = useState('');
 
@@ -16,21 +20,24 @@ const SearchBar: React.FC<SearchBarProps> = ({ placeholder = "Search...", onSear
     };
 
     return (
-        <div className="p-4 relative mx-auto" style={{ width: '750px' }}>
+        <div className="w-full">
             <div className='flex items-center border border-gray-300 rounded-lg focus-within:border-blue-500'>
                 <input
                     type="text"
                     value={inputValue}
                     onChange={handleInputChange}
-                    onKeyPress={handleKeyPress}
+                    onKeyDown={handleKeyPress}
                     placeholder={placeholder}
                     className="w-full p-2 focus:outline-none rounded-l-lg pr-10"
                 />
-                <div className="relative flex justify-center items-center h-5 w-5 bg-yellow-500 rounded" style={{ marginLeft: '-2rem' }}>
-                    <div style={{ position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%, -50%)' }}>
+                <button 
+                    className="relative flex justify-center items-center h-5 w-5 bg-aci-orange rounded mr-2 hover:bg-aci-orange-dark"
+                    onClick={() => onSearch(inputValue)}
+                >
+                    <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
                         <Icon iconName={'search'} color='white'/>
                 </div>
-             </div>
+             </button>
         </div>
     </div>
     );
