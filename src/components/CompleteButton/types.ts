@@ -6,10 +6,6 @@ export interface ICompleteButton {
     /*
      * The color of the complete button
      */
-    color: 'red' | 'green' | 'blue' | 'yellow' | 'orange';
-    /*
-     * Optional callback function to handle toggle complete event
-     */
-    onToggleComplete?: (newValue: boolean) => void;
+    color?: 'black' | 'white' | 'red' | 'green' | 'blue' | 'yellow' | 'gray' | 'orange';
   }
   

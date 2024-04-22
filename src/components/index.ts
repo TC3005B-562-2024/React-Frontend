@@ -14,6 +14,7 @@ export { InsightDescription } from './InsightDescription';
 export { ErrorCard } from './ErrorCard';
 export { TrainingCardToggle } from './TrainingCardToggle';
 export { InformationBar } from './InformationBar';
+export { IndividualTrainingExpansionPanel } from './IndividualTrainingExpansionPanel';
 export { SideBar } from './SideBar';
 export { SideBarElement } from './SideBarElement';
 export { AlertNav } from './AlertNav';
