@@ -6,7 +6,7 @@ export interface ITrainingCardToggle {
     */
     label: string;
     /**
-     * The complete button
+     * The boolean value to determine if the training is complete or not
      */
-    completeButton: ICompleteButton
+    isComplete: boolean;
 };

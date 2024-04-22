@@ -2,7 +2,7 @@ import { ITrainingCardToggle } from './types';
 import { CompleteButton } from '../CompleteButton';
 const TrainingCardToggle: React.FC<ITrainingCardToggle> = ({
     label,
-    completeButton,
+    isComplete,
 }) => {
     return (
         <div className='bg-white box-content rounded-md'>
@@ -11,7 +11,10 @@ const TrainingCardToggle: React.FC<ITrainingCardToggle> = ({
                     {label}
                     </div>
                 <div className='flex items-center my-4 mr-4'>
-                    <CompleteButton {...completeButton}/>
+                    <CompleteButton
+                        isComplete={isComplete}
+                        color='green'
+                    />
                 </div>
             </div>  
         </div>
