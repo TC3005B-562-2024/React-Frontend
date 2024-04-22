@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Icon } from '../Icon';
-import './MultiselectOptions.css';
+import './multiselect-options.css';
 import { IMultiselectOptions } from './types';
 
 /**
