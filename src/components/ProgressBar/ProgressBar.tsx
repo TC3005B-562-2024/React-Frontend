@@ -1,9 +1,17 @@
 import React from 'react';
 import { IProgressBar } from './types';
 import './ProgressBar.css';
-
 import classNames from 'classnames';
 
+/**
+ * A progress bar component that displays a progress bar with a label and a percentage value.
+ * @param progress - The progress value of the progress bar.
+ * @param color - The color of the progress bar. Can be 'green', 'yellow', or 'red'.
+ * @param label - The label of the progress bar.
+ * 
+ * @example
+ * <ProgressBar progress={50} color='green' label='Agent Name' />
+ */
 const ProgressBar: React.FC<IProgressBar> = ({ progress, color , label }) => {
     const textColorClass = classNames({
         'text-aci-green': color === 'green',

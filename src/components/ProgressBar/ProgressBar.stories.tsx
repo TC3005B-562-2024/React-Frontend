@@ -5,6 +5,13 @@ import ProgressBar from './ProgressBar';
 export default {
   title: 'Components/ProgressBar',
   component: ProgressBar,
+  parameters: {
+    docs: {
+      description: {
+        component: 'A progress bar component that displays a progress bar with a label and a percentage value.',
+      },
+    },
+  },
   argTypes: {
     progress: {
       control: {
