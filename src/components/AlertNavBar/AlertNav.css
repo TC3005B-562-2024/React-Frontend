@@ -7,11 +7,11 @@
   }
   
   .animate-wiggle {
-    animation: wiggle 1s infinite;
+    animation: wiggle 0.5s infinite;
   }
   
   .animate-spin {
-    animation: spin 1s linear infinite;
+    animation: spin 0.5s linear infinite;
   }
   
   @keyframes spin {
@@ -35,7 +35,7 @@
   }
   
   .animate-bounce {
-    animation: bounce 1s infinite;
+    animation: bounce 0.5s infinite;
   }
   
   @keyframes bounce {
