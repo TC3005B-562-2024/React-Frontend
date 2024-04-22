@@ -13,6 +13,7 @@ const AlertCard: React.FC<IAlertCardProps> = ({
   alertPriority,
   individualAlertLink,
   alertId,
+  hasShadow = true,
 }) => {
   const handleViewMoreClick = () => {
     const fullAlertLink = `${individualAlertLink}${alertId}`;
@@ -26,8 +27,13 @@ const AlertCard: React.FC<IAlertCardProps> = ({
     'alert-card__container__color-box--low-priority': alertPriority === 'LOW',
   });
 
+  const mainCardClasses = classNames({
+    'alert-card__priority-contents': true,
+    'alert-card__priority-contents--shadow': hasShadow,
+  });
+
   return (
-    <div className="alert-card__priority-contents">
+    <div className={mainCardClasses}>
       <div className={priorityClass}></div>
       <div className="alert-card__container__contents">
         <span className="alert-card__container__contents__name">

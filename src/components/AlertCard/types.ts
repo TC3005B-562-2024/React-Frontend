@@ -19,4 +19,8 @@ export interface IAlertCardProps {
    * The alert id
    */
   alertId: number;
+  /**
+   * The alert cad has shadow.
+   */
+  hasShadow?: boolean;
 }
