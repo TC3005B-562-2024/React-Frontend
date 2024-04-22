@@ -6,7 +6,7 @@ export default {
   title: 'Components/AgentList',
   component: AgentList,
   parameters: {
-    layout: 'centered',
+    layout: 'fullscreen', // Cambiado a fullscreen
   },
 } as Meta;
 
