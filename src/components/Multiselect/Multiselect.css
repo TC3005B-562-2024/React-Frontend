@@ -1,4 +1,3 @@
 .multiselect__container {
-    @apply flex flex-col items-end py-2 rounded-lg shadow-md mt-3 ;
+    @apply flex flex-col items-end py-2 rounded-lg shadow-md bg-white;
 }
-

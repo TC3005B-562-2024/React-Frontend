@@ -21,7 +21,6 @@ const Template: StoryFn<IFilters> = (args) => <Filters {...args} />;
 /**
  * A default filters component with similar options.
  */
-
 export const FiltersExample = Template.bind({});
 FiltersExample.args = {
   options: [
