@@ -13,3 +13,4 @@ export { ErrorCard } from './ErrorCard';
 export { TrainingCardToggle } from './TrainingCardToggle';
 export { InformationBar } from './InformationBar';
 export { Filters } from './Filters';
+export { SideBar } from './SideBar';
