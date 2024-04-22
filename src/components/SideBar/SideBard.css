@@ -1,0 +1,23 @@
+.side-bar__container {
+  @apply transition-all transform duration-700 relative h-screen bg-aci-orange;
+}
+
+.side-bar__container--expaned {
+  @apply w-1/5;
+}
+
+.side-bar__container--unexpaned {
+  @apply w-16;
+}
+
+.side-bar__container__expand-button {
+  @apply transition-all transform duration-700 absolute -right-3 top-9 w-6 flex justify-center rounded-full overflow-hidden aspect-square bg-aci-blue border-solid border-aci-blue border-2;
+}
+
+.side-bar__container__expand-button--unexpaned {
+  @apply rotate-180;
+}
+
+.side-bar__container__elements-container {
+  @apply flex flex-col w-full h-full overflow-hidden justify-between;
+}

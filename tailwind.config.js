@@ -16,7 +16,7 @@ export default {
         'aci-red': '#CC3232',
         'aci-red-dark': '#AC2F2F',
         'aci-blue': '#428ADE',
-        'aci-blue-dark': '#1C63B5',
+        'aci-blue-dark': '#14213D',
       },
       fontSize: {
         'banner': '57px',

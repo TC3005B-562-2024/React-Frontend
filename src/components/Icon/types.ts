@@ -1,10 +1,10 @@
 export const iconNames = [
     'logo', 'alarm', 'arrow_back', 'arrow_forward', 'bar_chart',
-    'calendar_today', 'call_end', 'cancel', 'check_circle',
+    'calendar_today', 'call_end', 'cancel', 'check', 'check_circle',
     'check_circle_fill','clear_night', 'close', 'done', 'exercise',
     'instant_mix', 'keyboard_return', 'logout',
-    'menu', 'mitre', 'move_down', 'phone_in_talk', 'radio_button_unchecked', 'search',
-    'sentiment_dissatisfied', 'social_leaderboard',
+    'menu', 'mitre', 'move_down', 'phone_in_talk', 'radio_button_unchecked', 
+    'search', 'sentiment_dissatisfied', 'social_leaderboard',
     'support_agent', 'visibility', 'visibility_off', 'warning'
 ] as const;
 

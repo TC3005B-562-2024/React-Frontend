@@ -7,6 +7,7 @@ export {
     CalendarToday,
     CallEnd,
     Cancel,
+    Check,
     CheckCircle,
     CheckCircleFill,
     ClearNight,
