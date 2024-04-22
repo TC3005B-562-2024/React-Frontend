@@ -4,26 +4,23 @@ import { Icon } from '../Icon';
 
 const CompleteButton: React.FC<ICompleteButton> = ({
     color = 'green',
-    isComplete: isCompleteProp,
-    onToggleComplete,
+    isComplete = false,
 }) => {
-    const [isComplete, setIsComplete] = useState(isCompleteProp || false);
-
-    useEffect(() => {
-        setIsComplete(isCompleteProp || false);
-    }, [isCompleteProp]);
+    
+    const [completed, setCompleted] = useState(isComplete);
 
     const handleButtonClick = () => {
-        const newValue = !isComplete;
-        setIsComplete(newValue);
-        if (onToggleComplete) {
-            onToggleComplete(newValue);
-        }
+        setCompleted(!completed);
+        isComplete == !isComplete;
     };
+
+    useEffect(() => {
+        setCompleted(isComplete);
+    }, [isComplete]);
 
     return (
         <button onClick={handleButtonClick} className='flex'>
-            <Icon iconName={isComplete ? 'check_circle_fill' : 'radio_button_unchecked'} color={color} />
+            <Icon iconName={completed ? 'check_circle_fill' : 'radio_button_unchecked'} color={color}/>
         </button>
     );
 };
