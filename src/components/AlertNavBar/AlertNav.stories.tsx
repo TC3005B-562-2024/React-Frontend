@@ -11,6 +11,7 @@ import { Icon } from '../Icon';
 export default {
   title: 'Components/AlertNav',
   component: AlertNav,
+  tags: ["autodocs"],
   argTypes: {
     /**
      * The unique identifier for the instance.
@@ -26,6 +27,7 @@ export default {
       control: 'boolean',
       defaultValue: true,
     },
+    
   },
 } as Meta;
 
