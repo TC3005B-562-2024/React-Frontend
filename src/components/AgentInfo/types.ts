@@ -1,20 +1,22 @@
-import {IIcon} from "../Icon/types";
-
-    export type EmotionType = "Positive" | "Neutral" | "Negative";
-    
-    export interface IAgentInfo {
-        AgentName: string
-        Emotion : EmotionType;
-        skillArray: Array<string>;
-        Status: React.ReactElement<IIcon>
-        topPriorityAlert?:React.ReactElement<IIcon>
-    
-}
-/*Emotion = "POSITIVE" | "NEUTRAL" | "NEGATIVE";
-    Status = "ONCALL" | "AVAILABLE" | "DISCONNECTED";
-    Priority = "CRITICAL" | "MEDIUM" | "LOW";
-    agentName: string
-    emotion?: POSITIVE | NEUTRAL | NEGATIVE
-    skillArray: String[]
-    status: ONCALL | AVAILABLE | DISCONECTED
-    topPriorityAlert?: CRITIC | MEDIUM | LOW*/
+export interface IAgentInfo {
+	/**
+	 * The name of the agent.
+	 */
+	agentName: string;
+	/**
+	 * The emotion of the agent call.
+	 */
+	sentiment?: 'POSITIVE' | 'NEUTRAL' | 'NEGATIVE';
+	/**
+	 * The skills of the agent.
+	 */
+	skillArray: Array<string>;
+	/**
+	 * The status of the agent.
+	 */
+	status: 'ONCALL' | 'AVAILABLE' | 'DISCONNECTED';
+	/**
+	 * The top priority alert of the agent.
+	 */
+	topPriorityAlert?: 'CRITICAL' | 'MEDIUM' | 'LOW';
+};

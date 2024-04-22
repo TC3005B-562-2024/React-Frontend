@@ -16,7 +16,7 @@ const InformationBar: React.FC<IInformationBar> = ({
                     return (
                         <ItemSubitem
                             key={index}
-                            {...element.itemsubitem}
+                            {...element}
                         />
                     )
                 })}
