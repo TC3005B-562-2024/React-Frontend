@@ -19,4 +19,5 @@ export { IndividualTrainingExpansionPanel } from './IndividualTrainingExpansionP
 export { SideBar } from './SideBar';
 export { SideBarElement } from './SideBarElement';
 export { AlertNav } from './AlertNav';
+export { ProgressBar } from './ProgressBar';
 export { AgentInfo } from './AgentInfo';

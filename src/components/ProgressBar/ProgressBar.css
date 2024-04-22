@@ -1,0 +1,23 @@
+.progress-bar {
+    @apply w-full space-y-2 p-4 rounded-lg bg-white shadow-md;
+}
+
+.progress-bar__info {
+    @apply flex justify-between;
+}
+
+.progress-bar__info__label {
+    @apply text-text text-ellipsis w-2/3 overflow-hidden;
+}
+
+.progress-bar__info__value {
+    @apply text-text font-bold;
+}
+
+.progress-bar__bar {
+    @apply w-full h-4 bg-gray-200 rounded-xl;
+}
+
+.progress-bar__bar--progress {
+    @apply h-full rounded-xl;
+}
