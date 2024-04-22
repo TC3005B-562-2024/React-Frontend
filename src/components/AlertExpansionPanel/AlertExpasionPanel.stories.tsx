@@ -36,6 +36,7 @@ const alerts: IAlertCardProps[] = [
     alertPriority: 'CRITIC',
     individualAlertLink: 'http://localhost:8080/alerts/',
     alertId: 1,
+    
   },
   {
     alertName: 'Critical Alert 2',

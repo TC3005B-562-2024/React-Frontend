@@ -1,24 +1,10 @@
 import React, { useState } from 'react';
 import classNames from 'classnames';
 import AlertCard from '../AlertCard/AlertCard';
-import { IAlertCardProps } from './types';
+import { IAlertExpansionPanelProps, getAlertText } from './types';
 import './AlertExpansionPanel.css';
 
-// Función auxiliar para obtener el texto adecuado según el nivel de alerta
-const getAlertText = (priority: string) => {
-  switch (priority) {
-    case 'CRITIC':
-      return 'Critic Alert';
-    case 'MEDIUM':
-      return 'Medium Alert';
-    case 'LOW':
-      return 'Low Alert';
-    default:
-      return 'Alert';
-  }
-};
-
-const AlertExpansionPanel: React.FC<{ alerts: Array<IAlertCardProps> }> = ({ alerts }) => {
+const AlertExpansionPanel: React.FC<IAlertExpansionPanelProps> = ({ alerts }) => {
   const [expanded, setExpanded] = useState(false);
 
   const handlePanelClick = () => {
