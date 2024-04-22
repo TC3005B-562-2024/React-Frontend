@@ -18,3 +18,4 @@ export { IndividualTrainingExpansionPanel } from './IndividualTrainingExpansionP
 export { SideBar } from './SideBar';
 export { SideBarElement } from './SideBarElement';
 export { AlertNav } from './AlertNav';
+export { AgentInfo } from './AgentInfo';
