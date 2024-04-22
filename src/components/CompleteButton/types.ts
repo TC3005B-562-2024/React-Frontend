@@ -6,6 +6,6 @@ export interface ICompleteButton {
     /*
      * The color of the complete button
      */
-    color: string;
+    color?: 'black' | 'white' | 'red' | 'green' | 'blue' | 'yellow' | 'gray' | 'orange';
   }
   

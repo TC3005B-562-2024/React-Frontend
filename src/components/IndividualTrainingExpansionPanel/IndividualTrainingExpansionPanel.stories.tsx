@@ -12,7 +12,7 @@ const meta = {
     argTypes: {
         title: {control: 'text'},
         titleColor: {
-            options: ['black', 'red-600', 'aci-green'],
+            options: ['black', 'red', 'green'],
             control: { type: 'select' },
         },
         trainings: {

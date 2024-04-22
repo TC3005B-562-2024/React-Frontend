@@ -3,12 +3,20 @@ import { IIndividualTrainingExpansionPanel } from './types';
 import { Icon } from '../Icon';
 import { TrainingCardToggle } from '../TrainingCardToggle';
 import { ITrainingCardToggle } from '../TrainingCardToggle/types';
+import classNames from 'classnames';
 
 const IndividualTrainingExpansionPanel: React.FC<IIndividualTrainingExpansionPanel> = ({
     title,
     titleColor = 'black',
     trainings,
 }) => {
+
+    const colorClasses = classNames({
+        'text-black': titleColor === 'black',
+        'text-red-600': titleColor === 'red',
+        'text-aci-green': titleColor === 'green',
+    });
+
     const [expanded, setExpanded] = useState(false);
     const [completionPercentage, setCompletionPercentage] = useState(0);
 
@@ -29,7 +37,7 @@ const IndividualTrainingExpansionPanel: React.FC<IIndividualTrainingExpansionPan
     return (
         <div className='bg-white h-10 box-content rounded-md shadow-md'>
             <div className='flex'>
-                <div className={`flex-1 grow font-bold text-${titleColor} mx-4 my-2`}>{title}</div>
+                <div className={`flex-1 grow font-bold mx-4 my-2`}><div className={colorClasses}>{title}</div></div>
                 <div className={` text-aci-green font-semibold mx-2 mr-2 my-2`}>{completionPercentage}%</div>
                 <div className='mx-2 mr-4 my-2'>
                     <button onClick={handleButtonClick} className={`${expanded ? 'transition ease-in-out transform rotate-180' : ''}`}>

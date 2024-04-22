@@ -8,7 +8,7 @@ export interface IIndividualTrainingExpansionPanel {
     /*
         * The color of the Expansion Panel Title
         */
-    titleColor: string;
+    titleColor?: 'black' | 'red' | 'green';
     /*
         * The trainings to be displayed
         */
