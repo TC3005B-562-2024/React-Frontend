@@ -21,3 +21,4 @@ export { SideBarElement } from './SideBarElement';
 export { AlertNav } from './AlertNav';
 export { ProgressBar } from './ProgressBar';
 export { AgentInfo } from './AgentInfo';
+export { AgentList } from './AgentList';
