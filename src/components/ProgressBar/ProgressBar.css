@@ -1,5 +1,9 @@
 .progress-bar {
-    @apply w-full space-y-2 p-4 rounded-lg bg-white shadow-md;
+    @apply w-full space-y-2 p-4 rounded-lg bg-white ;
+}
+
+.progress-bar--shadow {
+    @apply shadow-md;
 }
 
 .progress-bar__info {

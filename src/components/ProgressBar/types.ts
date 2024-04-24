@@ -11,4 +11,8 @@ export interface IProgressBar {
      * The label of the progress bar.
      */
     label : string;
+    /**
+     * The card has shadow.
+     */
+    hasShadow?: boolean;
 }
