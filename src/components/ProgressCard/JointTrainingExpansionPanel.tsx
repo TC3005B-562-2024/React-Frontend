@@ -47,7 +47,8 @@ const MyJointTrainingExpansionPanel: React.FC<IJointTrainingExpansionPanel> = (
                         <ProgressBar 
                             progress={parseInt(trainings[0][i])} 
                             color={color} 
-                            label={trainings[1][i]} 
+                            label={trainings[1][i]}
+                            hasShadow={false}
                         />
                     ))
                 }
