@@ -1,10 +1,10 @@
 
 import { Meta, StoryObj } from '@storybook/react';
 import AlertCard from './AlertCard';
-import { IAlertCardProps } from "./types"
+import { IAlertCard } from "./types"
 
 // Definición de metadatos y configuración para Storybook
-const meta: Meta<IAlertCardProps> = {
+const meta: Meta<IAlertCard> = {
   title: 'Components/AlertCard',
   component: AlertCard,
   parameters: {
