@@ -40,7 +40,7 @@ import { Button } from '../Button';
                         <div className="flex justify-between">
                             <div className="text-left">
                              {trainingLabel} </div>
-                            <div className="flex text-aci-green text-right justify-end text-black">{promedio}% <svg id="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={rotateText}><path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" /></svg>;</div>
+                            <div className="flex text-aci-green text-right justify-end text-black">{promedio}% <svg id="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={rotateText}><path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" /></svg></div>
                                 
                             
 
@@ -49,7 +49,7 @@ import { Button } from '../Button';
                     );
                     if (showBars) {
                         for (let i = 0; i < numberOfBars; i++) {
-                            html.push(<ProgressBar progress={parseInt(trainings[0][i])} color={color} label={trainings[0][i]+"%"} agentName={trainings[1][i]} />);
+                            html.push(<ProgressBar progress={parseInt(trainings[0][i])} color={color} label={trainings[1][i]} />);
                         }
                     }
                 }
