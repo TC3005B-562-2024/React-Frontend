@@ -6,9 +6,13 @@ export interface IProgressBar {
     /**
      * The color of the progress bar.
      */
-    color : 'green' | 'yellow' | 'red';
+    color? : 'green' | 'yellow' | 'red';
     /**
      * The label of the progress bar.
      */
     label : string;
+    /**
+     * The card has shadow.
+     */
+    hasShadow?: boolean;
 }
