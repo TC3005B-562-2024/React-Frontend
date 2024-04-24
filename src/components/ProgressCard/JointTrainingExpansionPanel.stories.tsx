@@ -33,7 +33,7 @@ export default {
     },
     parameters:
     {
-        layout : 'centered',
+        layout : 'centered', 
     },
   },
   tags : ["autodocs"]

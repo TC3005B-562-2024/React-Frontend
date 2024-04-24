@@ -20,7 +20,7 @@ import { Button } from '../Button';
                 const trainingLabel = "Trainings of " + trainings[2][0];
                 
                 const numberOfBars = trainings[0].length;
-                let promedio = 0;
+                let promedio = 0; 
                 const rotateText = rotate ? 'w-6 h-6 text-black' : 'rotate-180 w-6 h-6 text-black';
                 
 
