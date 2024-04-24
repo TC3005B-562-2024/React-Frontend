@@ -43,13 +43,24 @@ const Template: StoryFn<IProgressBar> = (args) => <ProgressBar {...args} />;
 export const Completed = Template.bind({});
 Completed.args = {
   progress: 100,
-  color: 'green',
   label : 'Agent Name',
 };
 
 export const Uncompleted = Template.bind({});
 Uncompleted.args = {
-  progress: 80,
-  color: 'yellow',
+  progress: 79,
+  label : 'Agent Name',
+};
+
+export const UncompletedLow = Template.bind({});
+UncompletedLow.args = {
+  progress: 39,
+  label : 'Agent Name',
+};
+
+export const OverridenColor = Template.bind({});
+OverridenColor.args = {
+  progress: 100,
+  color : 'red',
   label : 'Agent Name',
 };

@@ -13,6 +13,13 @@ import classNames from 'classnames';
  * <ProgressBar progress={50} color='green' label='Agent Name' />
  */
 const ProgressBar: React.FC<IProgressBar> = ({ progress, color , label }) => {
+    if (progress < 0 || progress > 100) throw new Error('Progress value must be between 0 and 100');
+    if (!color){
+        if (progress < 40) color = 'red';
+        else if (progress < 80) color = 'yellow';
+        else color = 'green';
+    }
+
     const textColorClass = classNames({
         'text-aci-green': color === 'green',
         'text-aci-yellow': color === 'yellow',
@@ -31,7 +38,7 @@ const ProgressBar: React.FC<IProgressBar> = ({ progress, color , label }) => {
 
     return (
         <div className='progress-bar'>
-            
+
             <div className="progress-bar__info">
                 <span className="progress-bar__info__label" >{label}</span>
                 <span className={valueClasses} >{progress}%</span>
@@ -45,6 +52,6 @@ const ProgressBar: React.FC<IProgressBar> = ({ progress, color , label }) => {
             </div>
         </div>
     );
-                };
+};
 
 export default ProgressBar;

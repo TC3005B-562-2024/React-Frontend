@@ -1,22 +1,18 @@
-import type { Meta, StoryObj } from '@storybook/react';
 import React, { useState } from 'react';
 import { IJointTrainingExpansionPanel } from './types';
 import { ProgressBar } from '../ProgressBar';
-import { Button } from '../Button';
 
-
-    // ...
-
+/**
+ * This component is used to display the training progress of agents in a queue or skill
+ */
     const MyJointTrainingExpansionPanel: React.FC<IJointTrainingExpansionPanel> = ({ color, trainings }) => {
+        const [showBars, setShowBars] = useState(true); // Initialize showBars state to true
+        const [rotate, setRotate] = useState(false);
         const html = [];
-        const textColor = 'aci-green-600';
-       trainings = [["10", "20", "30", "40", "50"], ["Juan", "Pedro", "Maria", "Jose", "Luis"],["calls"]] 
 
         
         if (trainings !== null) {
             if (trainings[0].length > 0) {
-                const [showBars, setShowBars] = useState(true); // Initialize showBars state to true
-                const [rotate, setRotate] = useState(false);
                 const trainingLabel = "Trainings of " + trainings[2][0];
                 
                 const numberOfBars = trainings[0].length;
@@ -40,7 +36,7 @@ import { Button } from '../Button';
                         <div className="flex justify-between">
                             <div className="text-left">
                              {trainingLabel} </div>
-                            <div className="flex text-aci-green text-right justify-end text-black">{promedio}% <svg id="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={rotateText}><path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" /></svg></div>
+                            <div className="flex text-aci-green text-right justify-end ">{promedio}% <svg id="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={rotateText}><path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" /></svg></div>
                                 
                             
 
