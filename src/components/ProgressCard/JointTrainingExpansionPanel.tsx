@@ -5,15 +5,14 @@ import { ProgressBar } from '../ProgressBar';
 /**
  * This component is used to display the training progress of agents in a queue or skill
  */
-    const MyJointTrainingExpansionPanel: React.FC<IJointTrainingExpansionPanel> = ({ color, trainings }) => {
-        const [showBars, setShowBars] = useState(true); // Initialize showBars state to true
+    const MyJointTrainingExpansionPanel: React.FC<IJointTrainingExpansionPanel> = ({ label, color, trainings }) => {
+        const [isExpanded, setisExpanded] = useState<boolean>(false);
+        const [average, setAverage] = useState<number>(0);
         const [rotate, setRotate] = useState(false);
         const html = [];
 
         
-        if (trainings !== null) {
             if (trainings[0].length > 0) {
-                const trainingLabel = "Trainings of " + trainings[2][0];
                 
                 const numberOfBars = trainings[0].length;
                 let promedio = 0; 
@@ -30,20 +29,25 @@ import { ProgressBar } from '../ProgressBar';
 
                     html.push(
                         <button className="w-full " onClick={() => {
-                            setShowBars(!showBars); // Toggle showBars state
+                            setisExpanded(!isExpanded); // Toggle isExpanded state
                             setRotate(!rotate); // Rotate arrow icon in button
                         }}>
                         <div className="flex justify-between">
-                            <div className="text-left">
-                             {trainingLabel} </div>
-                            <div className="flex text-aci-green text-right justify-end ">{promedio}% <svg id="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={rotateText}><path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" /></svg></div>
+                            <div className="text-title">
+                             {label} </div>
+                            <div className="flex text-aci-green text-right justify-end ">
+                                {promedio}%
+                                <svg id="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                strokeWidth={1.5} stroke="currentColor" className={rotateText}><path strokeLinecap="round"
+                                strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" /></svg>
+                            </div>
                                 
                             
 
                             </div>
                         </button>
                     );
-                    if (showBars) {
+                    if (isExpanded) {
                         for (let i = 0; i < numberOfBars; i++) {
                             html.push(<ProgressBar progress={parseInt(trainings[0][i])} color={color} label={trainings[1][i]} />);
                         }
@@ -57,15 +61,6 @@ import { ProgressBar } from '../ProgressBar';
                         </div>
                     );
                 }
-            }
-            else if (trainings === null) {
-                html.push(
-                    <div className="flex justify-between shadow-xl">
-                        <div className="text-left text-red-700">
-                        Error fetching training data. </div>
-                    </div>
-                );
-            }
         return (
             <div className="w-full shadow-xl shadow-gray-400 rounded-lg border-x-8 border-y-8 border-transparent">
                 {html}

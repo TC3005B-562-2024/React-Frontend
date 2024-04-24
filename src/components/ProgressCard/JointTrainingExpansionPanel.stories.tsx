@@ -6,23 +6,11 @@ export default {
   title: 'Components/ProgressCard',
   component: JointTrainingExpansionPanel,
   argTypes: {
-    progress: {
-      control: {
-        type: 'range',
-        min: 0,
-        max: 100,
-        step: 1,
-      },
-    },
+    trainings: { control: 'object' },
     color: {
       control: {
         type: 'select',
         options: ['green', 'yellow', 'red'],
-      },
-    },
-    rounded: {
-      control: {
-        type: 'boolean',
       },
     },
     label: {
@@ -43,6 +31,7 @@ const Template: StoryFn<IJointTrainingExpansionPanel> = (args) => <JointTraining
 // Default view of the Progress Bar component
 export const DefaultView = Template.bind({});
 DefaultView.args = {
+  label: 'Trainings of calls',
   trainings: [["10", "20", "30", "40", "50"], ["Juan", "Pedro", "Maria", "Jose", "Luis"],["calls"]] 
 };
 
