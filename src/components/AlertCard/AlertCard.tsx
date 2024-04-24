@@ -2,12 +2,12 @@ import React from 'react';
 import classNames from 'classnames';
 import './AlertCard.css';
 import { Button } from '../Button';
-import { IAlertCardProps } from './types';
+import { IAlertCard } from './types';
 
 /**
  * Card that shows important information of an alert.
  */
-const AlertCard: React.FC<IAlertCardProps> = ({
+const AlertCard: React.FC<IAlertCard> = ({
   alertName,
   alertOwner,
   alertPriority,
