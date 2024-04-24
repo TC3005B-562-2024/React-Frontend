@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Outlet } from 'react-router-dom';
-import { SideBar } from '../components';
+import { AlertNav, SideBar } from '../components';
 
 const PrivateRouter = () => {
   const [skills, setSkills] = useState([]);
@@ -11,9 +11,13 @@ const PrivateRouter = () => {
   }, [skills]);
   
   return (
-    <div>
+    <div className='flex'>
       <SideBar skills={skills}/>
-      <Outlet/>
+      <div className=' w-full'>
+      <AlertNav instanceId={'ID'} alertsExists={false}/>
+      <Outlet />
+      </div>
+
     </div>
   );
 };
