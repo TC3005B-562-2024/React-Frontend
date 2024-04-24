@@ -1,0 +1,14 @@
+.git
+.github
+.storybook
+.vscode
+.Dockerignore
+.gitignore
+.env
+.DS_Store
+build
+dist
+node_modules
+docker-compose.yaml
+README.md
+storybook.log
