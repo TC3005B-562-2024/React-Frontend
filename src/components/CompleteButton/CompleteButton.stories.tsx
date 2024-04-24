@@ -1,7 +1,6 @@
 import { Meta, StoryFn } from '@storybook/react';
 import { ICompleteButton } from './types';
 import CompleteButton from './CompleteButton';
-import React from 'react';
 
 const meta = {
     title: 'Components/CompleteButton',
@@ -10,7 +9,9 @@ const meta = {
         layout: "centered",
     },
     argTypes: {
-        isComplete: {control: 'boolean'},
+        isComplete: {
+            control: 'boolean'
+        },
         color: {
             options: ['black', 'white', 'red', 'green', 'blue', 'yellow', 'gray', 'orange'],
             control: { type: 'select' },
@@ -28,6 +29,6 @@ const Template: StoryFn<ICompleteButton> = (args) => <CompleteButton {...args} /
  */
 export const Default = Template.bind({});
 Default.args = {
-    isComplete: true,
-    color: "green",
+    isComplete: false,
+    color: 'green',
 };

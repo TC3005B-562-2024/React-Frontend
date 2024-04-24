@@ -5,6 +5,13 @@ import ProgressBar from './ProgressBar';
 export default {
   title: 'Components/ProgressBar',
   component: ProgressBar,
+  parameters: {
+    docs: {
+      description: {
+        component: 'A progress bar component that displays a progress bar with a label and a percentage value.',
+      },
+    },
+  },
   argTypes: {
     progress: {
       control: {
@@ -25,10 +32,6 @@ export default {
         type: 'text',
       },
     },
-    parameters:
-    {
-        layout : 'centered',
-    },
     
   },tags : ["autodocs"]
   
@@ -37,13 +40,16 @@ export default {
 const Template: StoryFn<IProgressBar> = (args) => <ProgressBar {...args} />;
 
 // Default view of the Progress Bar component
-export const DefaultView = Template.bind({});
-DefaultView.args = {
-  progress: 50,
-    color: 'green',
-    agentName : 'Agent Name',
-    
-    
+export const Completed = Template.bind({});
+Completed.args = {
+  progress: 100,
+  color: 'green',
+  label : 'Agent Name',
 };
 
-
+export const Uncompleted = Template.bind({});
+Uncompleted.args = {
+  progress: 80,
+  color: 'yellow',
+  label : 'Agent Name',
+};

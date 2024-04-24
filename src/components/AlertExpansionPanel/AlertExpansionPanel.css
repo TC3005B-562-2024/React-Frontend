@@ -1,0 +1,49 @@
+/* Estilos para el panel de expansión */
+.alert-expansion-panel__container {
+  @apply rounded-md shadow-md cursor-pointer space-y-1;
+}
+
+/* Estilos para el encabezado del panel de expansión */
+.alert-expansion-panel__container__header {
+  @apply h-28 rounded-md shadow-md flex justify-between items-center p-1 cursor-pointer;
+}
+
+.alert-expansion-panel__container__header__contents {
+  @apply flex items-center h-full space-x-2;
+}
+
+.alert-expansion-panel__container__header__contents__color-box {
+  @apply h-full w-12 rounded-lg;
+}
+
+.alert-expansion-panel__container__header__contents__color-box--high-priority {
+  @apply bg-aci-red;
+}
+
+.alert-expansion-panel__container__header__contents__color-box--medium-priority {
+  @apply bg-aci-orange;
+}
+
+.alert-expansion-panel__container__header__contents__color-box--low-priority {
+  @apply bg-aci-yellow;
+}
+
+/* Estilos para el texto del encabezado del panel de expansión */
+.alert-expansion-panel__container__header__contents__text {
+  @apply font-semibold text-title;
+}
+
+/* Estilos para el ícono de flecha */
+.alert-expansion-panel__container__header__arrow-icon {
+  @apply w-8 h-8 transition-transform duration-300 -rotate-90;
+}
+
+/* Estilos para el ícono de flecha cuando el panel está expandido */
+.alert-expansion-panel__container__header__arrow-icon--expanded {
+  @apply transform rotate-90;
+}
+
+/* Estilos para el contenido del panel de expansión */
+.alert-expansion-panel__container__cards-container {
+  @apply transition duration-1000 ease-in-out;
+}

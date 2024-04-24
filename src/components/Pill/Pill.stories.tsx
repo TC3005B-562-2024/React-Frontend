@@ -10,8 +10,8 @@ const meta = {
   argTypes: {
     text: { control: 'text' },
     color: {
-        options: ['black', 'white', 'red', 'green', 'blue', 'yellow', 'gray', 'orange'],
-        control: { type: 'select' },
+      options: ['black', 'white', 'red', 'green', 'blue', 'yellow', 'gray', 'orange'],
+      control: { type: 'select' },
     },
   },
   tags: ["autodocs"]
