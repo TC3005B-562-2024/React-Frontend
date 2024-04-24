@@ -4,7 +4,7 @@ export interface IJointTrainingExpansionPanel {
     color : 'green' | 'yellow' | 'red';
     label : string;
     agentName : string;
-    trainings : string[];
+    trainings : string[][];
 
     
 }

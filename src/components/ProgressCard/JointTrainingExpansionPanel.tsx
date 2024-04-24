@@ -7,24 +7,26 @@ import { Button } from '../Button';
 
     // ...
 
-    const MyJointTrainingExpansionPanel: React.FC<IJointTrainingExpansionPanel> = ({ progress, color, agentName, trainings }) => {
+    const MyJointTrainingExpansionPanel: React.FC<IJointTrainingExpansionPanel> = ({ color, trainings }) => {
         const html = [];
         const textColor = 'aci-green-600';
+       trainings = [["10", "20", "30", "40", "50"], ["Juan", "Pedro", "Maria", "Jose", "Luis"],["calls"]] 
 
         
         if (trainings !== null) {
-            if (trainings.length > 0) {
+            if (trainings[0].length > 0) {
                 const [showBars, setShowBars] = useState(true); // Initialize showBars state to true
                 const [rotate, setRotate] = useState(false);
+                const trainingLabel = "Trainings of " + trainings[2][0];
                 
-                const numberOfBars = trainings.length;
+                const numberOfBars = trainings[0].length;
                 let promedio = 0;
                 const rotateText = rotate ? 'w-6 h-6 text-black' : 'rotate-180 w-6 h-6 text-black';
                 
 
                 
                     for (let i = 0; i < numberOfBars; i++) {
-                        promedio += parseInt(trainings[i]);
+                        promedio += parseInt(trainings[0][i]);
                     }
                     promedio = promedio / numberOfBars;
                     
@@ -37,7 +39,7 @@ import { Button } from '../Button';
                         }}>
                         <div className="flex justify-between">
                             <div className="text-left">
-                            Trainings of Calls </div>
+                             {trainingLabel} </div>
                             <div className="flex text-aci-green text-right justify-end text-black">{promedio}% <svg id="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={rotateText}><path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" /></svg>;</div>
                                 
                             
@@ -47,7 +49,7 @@ import { Button } from '../Button';
                     );
                     if (showBars) {
                         for (let i = 0; i < numberOfBars; i++) {
-                            html.push(<ProgressBar progress={parseInt(trainings[i])} color={color} label={trainings[i]+"%"} agentName={agentName} />);
+                            html.push(<ProgressBar progress={parseInt(trainings[0][i])} color={color} label={trainings[0][i]+"%"} agentName={trainings[1][i]} />);
                         }
                     }
                 }
