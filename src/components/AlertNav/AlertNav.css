@@ -1,5 +1,5 @@
 .alert-nav__container {
-  @apply flex justify-between items-center bg-aci-blue-dark p-4;
+  @apply sticky top-0 z-10 flex justify-between items-center bg-aci-blue-dark p-4;
 }
 
 .alert-nav__container__text-container {

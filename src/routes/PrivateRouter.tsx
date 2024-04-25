@@ -11,13 +11,16 @@ const PrivateRouter = () => {
   }, [skills]);
   
   return (
-    <div className='flex'>
-      <SideBar skills={skills}/>
-      <div className=' w-full'>
-      <AlertNav instanceId={'ID'} alertsExists={false}/>
-      <Outlet />
-      </div>
 
+    <div className='flex '>
+      <SideBar skills={skills}/>
+      <div className=' w-full h-lvh overflow-scroll'>
+        <AlertNav instanceId={'ID'} alertsExists={false}/>
+
+      <div className='overflow-y-scroll mx-5 my-5 mr-5'>
+        <Outlet />
+      </div>
+      </div>
     </div>
   );
 };
