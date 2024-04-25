@@ -96,21 +96,29 @@ To get a local copy up and running follow these simple example steps.
     https://github.com/TC3005B-562-2024/React-Frontend.git
    ```
 
-2. Install NPM packages
+2. Install Yarn packages
 
    ```sh
-    npm install
+    yarn install
    ```
 
 3. Start the project
 
    ```sh
-    npm run dev
+    yarn dev
    ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+### Storybooks
 
+To run the storybook, run the following command:
+
+```sh
+yarn storybook
+```
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- USAGE EXAMPLES -->
 ## Usage
