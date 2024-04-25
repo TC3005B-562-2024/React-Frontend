@@ -1,5 +1,5 @@
 .side-bar__container {
-  @apply transition-all transform duration-700 relative h-screen bg-aci-orange;
+  @apply z-20 transition-all transform duration-700 relative h-screen bg-aci-orange;
 }
 
 .side-bar__container--expaned {
