@@ -5,6 +5,8 @@ import PrivateRouter from './PrivateRouter';
 import PublicRouter from './PublicRouter';
 import { ROUTES } from "./constants";
 
+import Login from "../pages/login/Login";
+
 const routes: RouteObject[] = [
     {
         path: '/', 
@@ -19,7 +21,7 @@ const routes: RouteObject[] = [
         path: '/login', 
         element: <PublicRouter/>,
         children: [
-            { path: '/login', element: <div> Log In </div>}
+            { path: '/login', element: <Login/> }
         ],
     }
 ]
