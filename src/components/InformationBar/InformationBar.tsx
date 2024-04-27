@@ -7,7 +7,7 @@ const InformationBar: React.FC<IInformationBar> = ({
     elements,
 }) => {
     return (
-        <div className='text-center text-white text-text font-bold inline-block rounded-lg bg-white drop-shadow-lg w-full'>
+        <div className='text-center text-white text-text font-bold inline-block rounded-lg bg-white drop-shadow-lg w-full mb-4'>
             <div className='text-title bg-aci-orange rounded-t-lg text-left indent-2.5 '>
                 {title}
             </div>

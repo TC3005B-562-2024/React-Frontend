@@ -4,6 +4,7 @@ import { RouteObject, createBrowserRouter } from 'react-router-dom';
 import PrivateRouter from './PrivateRouter';
 import PublicRouter from './PublicRouter';
 import { ROUTES } from "./constants";
+import { Alert } from "../pages/Alert";
 
 import Login from "../pages/login/Login";
 
@@ -15,6 +16,7 @@ const routes: RouteObject[] = [
             { path: ROUTES.QUEUE.path, element: <Queue/>},
             { path: ROUTES.SKILL.path, element: <Skill/>},
             { path: ROUTES.AGENT.path, element: <Agent/>},
+            { path: ROUTES.ALERT.path, element: <Alert/>},
         ],
     },
     {

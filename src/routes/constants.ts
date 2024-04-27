@@ -15,4 +15,8 @@ export const ROUTES = {
         path: '/logout',
         name: 'Log Out'
     },
+    ALERT: {
+        path: '/alerts/:id',
+        name: 'Alert'
+    }
 };
