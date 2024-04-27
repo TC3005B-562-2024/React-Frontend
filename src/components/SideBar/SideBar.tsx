@@ -63,10 +63,10 @@ const SideBar: React.FC<ISideBar> = ({ skills = [] }) => {
         </div>
         <div className='side-bar__container__elements-container__lowe-container'>
           <SideBarElement 
-            label={ROUTES.AGENT.name}
+            label={ROUTES.AGENTS.name}
             isSection={true}
             icon={{ iconName: 'support_agent' }}
-            path={ROUTES.AGENT.path}
+            path={ROUTES.AGENTS.path}
             isExpanded={isExpanded}
           />
           <SideBarElement 

@@ -7,12 +7,16 @@ export const ROUTES = {
         path: '/queue',
         name: 'Queue'
     },
-    AGENT: {
-        path: '/agent',
-        name: 'Agent'
+    AGENTS: {
+        path: '/agents',
+        name: 'Agents'
     },
     LOG_OUT: {
         path: '/logout',
         name: 'Log Out'
+    },
+    AGENT: {
+        path: '/agent/:id',
+        name: 'Agent'
     },
 };

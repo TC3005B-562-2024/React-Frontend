@@ -44,7 +44,7 @@ const IndividualTrainingExpansionPanel: React.FC<IIndividualTrainingExpansionPan
           {completionPercentage + '%'}
         </div>
         <div className='mx-2 mr-4 my-2'>
-          <button onClick={handleButtonClick} className={`${expanded ? 'transition ease-in-out transform rotate-180' : ''}`}>
+          <button onClick={handleButtonClick} className={`${expanded ? 'transition-transform duration-300 rotate-180' : 'transition duration-300'}`}>
             <Icon iconName='expand_less' color='black' />
           </button>
         </div>
