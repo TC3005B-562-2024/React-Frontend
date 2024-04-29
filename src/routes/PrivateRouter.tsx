@@ -5,11 +5,7 @@ import { AlertNav, SideBar } from '../components';
 const PrivateRouter = () => {
   const [skills, setSkills] = useState([]);
 
-  useEffect(() => {
-    console.error('PrivateRouter.tsx: Missing getSkills() implementation');
-    setSkills([]);
-  }, [skills]);
-  
+
   return (
 
     <div className='flex '>
