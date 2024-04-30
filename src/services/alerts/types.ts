@@ -1,30 +1,22 @@
-// To parse this data:
-//
-//   import { Convert, IAlert } from "./file";
-//
-//   const iAlert = Convert.toIAlert(json);
-//
-// These functions will throw an error if the JSON doesn't
-// match the expected interface, even if the JSON is valid.
 export interface IAlertResponse {
-  high: IAlert[];
+  high:   IAlert[];
   medium: IAlert[];
-  low: IAlert[];
+  low:    IAlert[];
 }
 
 export interface IAlert {
-  id:                    number;
-  connection:            Connection;
-  insight:               Insight;
+  id:                     number;
+  connection:             Connection;
+  insight:                Insight;
   training?:              Training;
-  resource:              string;
-  dateRegistered:        Date;
-  dateUpdated:           Date;
-  solved:                boolean;
+  resource:               string;
+  dateRegistered:         Date;
+  dateUpdated:            Date;
+  solved:                 boolean;
   dateTrainingCompleted?: Date;
-  hasTraining:           boolean;
-  trainingCompleted:     boolean;
-}
+  hasTraining:            boolean;
+  trainingCompleted:      boolean;
+};
 
 export interface Connection {
   identifier:   number;
@@ -33,7 +25,7 @@ export interface Connection {
   dateJoined:   Date;
   dateUpdated:  Date;
   active:       boolean;
-}
+};
 
 export interface Insight {
   identifier:     number;
@@ -44,7 +36,7 @@ export interface Insight {
   dateUpdated:    Date;
   active:         boolean;
   priority?:      number;
-}
+};
 
 export interface Training {
   identifier:    number;
@@ -65,14 +57,14 @@ export class Convert {
   public static iAlertToJson(value: IAlert): string {
       return JSON.stringify(uncast(value, r("IAlert")), null, 2);
   }
-}
+};
 
 function invalidValue(typ: any, val: any, key: any, parent: any = ''): never {
   const prettyTyp = prettyTypeName(typ);
   const parentText = parent ? ` on ${parent}` : '';
   const keyText = key ? ` for key "${key}"` : '';
   throw Error(`Invalid value${keyText}${parentText}. Expected ${prettyTyp} but got ${JSON.stringify(val)}`);
-}
+};
 
 function prettyTypeName(typ: any): string {
   if (Array.isArray(typ)) {
@@ -86,7 +78,7 @@ function prettyTypeName(typ: any): string {
   } else {
       return typeof typ;
   }
-}
+};
 
 function jsonToJSProps(typ: any): any {
   if (typ.jsonToJS === undefined) {
@@ -95,7 +87,7 @@ function jsonToJSProps(typ: any): any {
       typ.jsonToJS = map;
   }
   return typ.jsonToJS;
-}
+};
 
 function jsToJSONProps(typ: any): any {
   if (typ.jsToJSON === undefined) {
@@ -104,7 +96,7 @@ function jsToJSONProps(typ: any): any {
       typ.jsToJSON = map;
   }
   return typ.jsToJSON;
-}
+};
 
 function transform(val: any, typ: any, getProps: any, key: any = '', parent: any = ''): any {
   function transformPrimitive(typ: string, val: any): any {

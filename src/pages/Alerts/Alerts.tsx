@@ -1,23 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { getAllAlerts } from "../../services";
-import { IAlert } from "../../services/alerts/types";
+import { IAlertResponse } from "../../services/alerts/types";
+import { IAlertCard } from "../../components/AlertCard/types";
 import Config from "../../config";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import AlertExpansionPanel from "../../components/AlertExpansionPanel/AlertExpansionPanel";
 
 const Alerts: React.FC = () => {
-  const [alertsReceivedHigh, setAlertsHigh] = useState<IAlert[]>([]);
-  const [alertsReceivedMedium, setAlertsMedium] = useState<IAlert[]>([]);
-  const [alertsReceivedLow, setAlertsLow] = useState<IAlert[]>([]);
+  const [alertsReceived, setAlertsReceived] = useState<IAlertResponse>();
   const [loading, setLoading] = useState<boolean>(false);
   const [errorAlerts, setErrorAlerts] = useState<boolean>(false);
 
   const getAlerts = async () => {
     await getAllAlerts()
     .then((res) => {
-      setAlertsHigh(res.high);
-      setAlertsMedium(res.medium);
-      setAlertsLow(res.low);
+      setAlertsReceived(res);
     }) 
     .catch(() => {
       setErrorAlerts(true);
@@ -31,46 +28,65 @@ const Alerts: React.FC = () => {
   }, []);
 
   return (
-    <div>
-      <SearchBar onSearch={function (): void {
-        throw new Error("Function not implemented.");}}/>
-      <div className="text-title font-bold">Alerts</div>
-      {loading && <div>Loading...</div>}
-      {errorAlerts && <div>Error fetching alerts</div>}
-      <div className="my-2">
-        <AlertExpansionPanel
-          alerts={alertsReceivedHigh.map(alert => ({
-            alertId: alert.id,
-            alertName: alert.insight.category.denomination, // insight - category - denomination
-            alertOwner: alert.resource, // resource
-            alertPriority: 'CRITIC',
-            individualAlertLink: `${Config.FRONT_URL}alerts/${alert.id}`
-          }))}
-        />
+    <>
+      <SearchBar onSearch={function (): void {throw new Error("Function not implemented.");}}/>
+      <div className="text-title font-bold">
+        Alerts
       </div>
-      <div className="my-2">
-        <AlertExpansionPanel
-          alerts={alertsReceivedMedium.map(alert => ({
-            alertId: alert.id,
-            alertName: alert.insight.category.denomination, // insight - category - denomination
-            alertOwner: alert.resource, // resource
-            alertPriority: 'MEDIUM',
-            individualAlertLink: `${Config.FRONT_URL}alerts/${alert.id}`
-          }))}
-        />
+      {loading && 
+        <div className="text-text">
+          Loading...
+        </div>
+      }
+      {errorAlerts && 
+        <div className="text-text">
+          Error fetching alerts
+        </div>
+      }
+      {!loading && !errorAlerts && 
+        <div className="text-text">
+          No alerts found
+        </div>
+      }
+      
+      <div className="flex flex-col space-y-4 p-1">
+        {alertsReceived !== undefined && alertsReceived.high.length !== 0 &&
+          <AlertExpansionPanel
+            alerts={alertsReceived.high.map(alert => ({
+              alertId: alert.id,
+              alertName: alert.insight.category.denomination,
+              alertOwner: alert.resource,
+              alertPriority: 'CRITIC',
+              individualAlertLink: `${Config.FRONT_URL}alerts/${alert.id}`
+            })) as IAlertCard[]}
+          />
+        }
+
+        {alertsReceived != undefined && alertsReceived?.medium.length !== 0 &&
+          <AlertExpansionPanel
+            alerts={alertsReceived.medium.map(alert => ({
+              alertId: alert.id,
+              alertName: alert.insight.category.denomination,
+              alertOwner: alert.resource,
+              alertPriority: 'MEDIUM',
+              individualAlertLink: `${Config.FRONT_URL}alerts/${alert.id}`
+            })) as IAlertCard[]}
+          />
+        }
+
+        {alertsReceived != undefined && alertsReceived.low.length !== 0 &&
+          <AlertExpansionPanel
+            alerts={alertsReceived.low.map(alert => ({
+              alertId: alert.id,
+              alertName: alert.insight.category.denomination,
+              alertOwner: alert.resource,
+              alertPriority: 'LOW',
+              individualAlertLink: `${Config.FRONT_URL}alerts/${alert.id}`
+            })) as IAlertCard[]}
+          />
+        }
       </div>
-      <div className="my-2">
-        <AlertExpansionPanel
-          alerts={alertsReceivedLow.map(alert => ({
-            alertId: alert.id,
-            alertName: alert.insight.category.denomination, // insight - category - denomination
-            alertOwner: alert.resource, // resource
-            alertPriority: 'LOW',
-            individualAlertLink: `${Config.FRONT_URL}alerts/${alert.id}`
-          }))}
-        />
-      </div>
-    </div>
+    </>
   );
 };
   

@@ -1,6 +1,6 @@
 /* Estilos para el panel de expansión */
 .alert-expansion-panel__container {
-  @apply rounded-md shadow-md  cursor-pointer space-y-1;
+  @apply rounded-md shadow-md cursor-pointer space-y-1;
 }
 
 /* Estilos para el encabezado del panel de expansión */
