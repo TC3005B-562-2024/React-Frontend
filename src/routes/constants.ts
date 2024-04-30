@@ -22,5 +22,9 @@ export const ROUTES = {
     ALERT: {
         path: '/alerts/:id',
         name: 'Alert'
+    },
+    ALERTS: {
+        path: '/alerts',
+        name: 'Alerts'
     }
 };
