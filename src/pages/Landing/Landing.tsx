@@ -7,7 +7,7 @@ const Landing: React.FC = () => {
     return (
         <div>
             <div className='searchBar_container'>
-                <SearchBar onSearch={function(value: string): void{
+                <SearchBar onSearch={function(_value: string): void{
                     throw new Error('Function not implemented.');
                     }} />
                     
