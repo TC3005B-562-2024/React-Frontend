@@ -1,5 +1,9 @@
 // Interfaz para una alerta individual
 export interface IAlertsResponse {
+  alerts: IAlert[];
+}
+
+export interface IAlert{
   id: string;
   description: string;
   priority: string;
