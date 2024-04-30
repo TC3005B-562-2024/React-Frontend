@@ -1,28 +1,19 @@
 import { useState, useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
 import { AlertNav, SideBar } from '../components';
+import { ISideBarElement } from '../components/SideBarElement/types';
 
 const PrivateRouter = () => {
-  const [skills, setSkills] = useState([]);
+  const [skills, setSkills] = useState<ISideBarElement[]>([]);
 
-  /*useEffect(() => {
-    console.error('PrivateRouter.tsx: Missing getSkills() implementation');
-    setSkills([]);
-  }, [skills]);*/
+  const getSkills = async () => {
+    // TODO: Fetch skills from API
+    await new Promise(resolve => setTimeout(resolve, 500));
+    setSkills([{ label: 'Skill', icon: { iconName: 'alarm', }, path: '', isExpanded: false }]);
+  }
 
   useEffect(() => {
-    const fetchSkills = async () => {
-      
-      const fetchedSkills = await fetch('http://localhost:3000/skills') // TODO: Replace with actual endpoint
-        .then((response) => response.json())
-        .then((data) => data)
-        .catch((error) => {
-          console.error('PrivateRouter.tsx: fetchSkills() failed', error);
-          return [];
-        });
-      setSkills(fetchedSkills);
-    }
-    fetchSkills();
+    getSkills();
   }, []); 
 
   
