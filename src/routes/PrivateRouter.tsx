@@ -1,11 +1,14 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
 import { AlertNav, SideBar } from '../components';
 
 const PrivateRouter = () => {
-  const [skills] = useState([]);
+  const [skills, setSkills] = useState([]);
 
-
+  useEffect(() => {
+    setSkills([]);
+  }, []);
+  
   return (
 
     <div className='flex '>

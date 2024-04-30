@@ -16,7 +16,7 @@ const Alerts: React.FC = () => {
     .then((res) => {
       setAlertsReceived(res);
     }) 
-    .catch(() => {
+    .catch((err) => {
       setErrorAlerts(true);
     });
     setLoading(false);
@@ -43,7 +43,7 @@ const Alerts: React.FC = () => {
           Error fetching alerts
         </div>
       }
-      {!loading && !errorAlerts && 
+      {!loading && !errorAlerts &&  alertsReceived !== undefined && alertsReceived.high.length === 0 && alertsReceived.medium.length === 0 && alertsReceived.low.length === 0 &&
         <div className="text-text">
           No alerts found
         </div>
