@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Button, InformationBar, InsightDescription} from '../../components';
 import { useParams } from 'react-router-dom';
 
