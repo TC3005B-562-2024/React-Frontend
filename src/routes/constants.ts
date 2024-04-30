@@ -1,4 +1,8 @@
 export const ROUTES = {
+    LANDING: {
+        path: '/',
+        name: 'Landing'
+    },
     SKILL: {
         path: '/skill',
         name: 'Skill'

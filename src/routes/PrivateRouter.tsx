@@ -8,7 +8,7 @@ const PrivateRouter = () => {
   useEffect(() => {
     console.error('PrivateRouter.tsx: Missing getSkills() implementation');
     setSkills([]);
-  }, [skills]);
+  }, []);
   
   return (
 
