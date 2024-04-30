@@ -1,1 +1,1 @@
-export { default as AlertExpasionPanel } from './AlertExpansionPanel';
+export { default as AlertExpansionPanel } from './AlertExpansionPanel';

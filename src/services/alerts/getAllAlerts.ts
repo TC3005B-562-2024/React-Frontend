@@ -1,15 +1,16 @@
 import httpInstance from "../httpInstance";
-import { IAlertsResponse } from "./types";
+import { IAlertResponse } from "./types";
 
 export const getAllAlerts = async () => {
-    let res: IAlertsResponse =  [] as any;
-    const endpoint = `/alerts/all`;
+    let res: IAlertResponse =  [] as any;
+
+    const endpoint = `/alerts/connections/1`;
     await httpInstance
     .get(endpoint)
     .then((response) => {
         res = response.data;
         console.log(res, "Data");
-        console.log(res.alerts, "Alerts")
+        console.log(res.high, "Alerts High")
     })
     .catch((err) => {
         res = err.response
