@@ -37,7 +37,7 @@ export interface Connection {
 
 export interface Insight {
   identifier:     number;
-  category?:      Insight;
+  category:      Insight;
   denomination:   string;
   description:    string;
   dateRegistered: Date;
@@ -199,20 +199,12 @@ function l(typ: any) {
   return { literal: typ };
 }
 
-function a(typ: any) {
-  return { arrayItems: typ };
-}
-
 function u(...typs: any[]) {
   return { unionMembers: typs };
 }
 
 function o(props: any[], additional: any) {
   return { props, additional };
-}
-
-function m(additional: any) {
-  return { props: [], additional };
 }
 
 function r(name: string) {
