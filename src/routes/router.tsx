@@ -1,4 +1,4 @@
-import { Agent, Queue, Skill } from "../pages";
+import { Agent, Queue, Skill} from "../pages";
 import { RouteObject, createBrowserRouter } from 'react-router-dom';
 
 import PrivateRouter from './PrivateRouter';

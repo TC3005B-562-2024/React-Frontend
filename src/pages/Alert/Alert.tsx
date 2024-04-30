@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { Button, InformationBar, InsightDescription, SearchBar } from '../../components';
+import { Button, InformationBar, InsightDescription} from '../../components';
+import { useParams } from 'react-router-dom';
 
 
 
 const Alert: React.FC = () => {
+    const { id } = useParams();
+    const numberId = Number(id);
     return(
         <div className='h-lvh'>
-            <InsightDescription priority={'intervene'} alertId={1} description={'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In dapibus bibendum sodales. Mauris vel elit quis diam varius tincidunt. Nunc sit amet neque metus. Phasellus mi turpis, consectetur at tortor sit amet, iaculis lobortis lacus. Ut vitae turpis augue. Maecenas et porttitor tortor. Vivamus mauris nisi, pretium a vestibulum id, dapibus at mauris. Aliquam erat volutpat. Nunc quis purus eleifend, molestie lacus at, congue tortor. Praesent mauris orci, rutrum eleifend magna ac, hendrerit fringilla nisl. Cras arcu felis, euismod id finibus vitae, hendrerit interdum orci. Donec consequat tempor ipsum sed rhoncus. Ut libero velit, laoreet sit amet tellus non, dapibus mattis lacus. Fusce bibendum sapien nunc, at maximus enim vestibulum eu.'} />
+            <InsightDescription priority={'intervene'} alertId={numberId} description={'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In dapibus bibendum sodales. Mauris vel elit quis diam varius tincidunt. Nunc sit amet neque metus. Phasellus mi turpis, consectetur at tortor sit amet, iaculis lobortis lacus. Ut vitae turpis augue. Maecenas et porttitor tortor. Vivamus mauris nisi, pretium a vestibulum id, dapibus at mauris. Aliquam erat volutpat. Nunc quis purus eleifend, molestie lacus at, congue tortor. Praesent mauris orci, rutrum eleifend magna ac, hendrerit fringilla nisl. Cras arcu felis, euismod id finibus vitae, hendrerit interdum orci. Donec consequat tempor ipsum sed rhoncus. Ut libero velit, laoreet sit amet tellus non, dapibus mattis lacus. Fusce bibendum sapien nunc, at maximus enim vestibulum eu.'} />
             <div className=' '>
                 <span className='text-banner font-bold pb-3'>
                     Name: 
