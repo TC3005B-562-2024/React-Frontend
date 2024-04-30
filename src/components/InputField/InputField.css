@@ -3,15 +3,15 @@
 }
 
 .input-field__container__title--left {
-  @apply text-base font-bold text-left;
+  @apply text-base lg:text-lg font-bold text-left;
 }
 
 .input-field__container__title--center {
-  @apply text-base font-bold text-center;
+  @apply text-base lg:text-lg font-bold text-center;
 }
 
 .input-field__container__title--right {
-  @apply text-base font-bold text-right;
+  @apply text-base lg:text-lg font-bold text-right;
 }
 
 .input-field__container__input-container {
@@ -19,7 +19,7 @@
 }
 
 .input-field__container__input-container__input {
-  @apply border-2 rounded py-1 px-4 w-full focus:outline-none;
+  @apply border-2 rounded-md py-1 lg:py-2 px-4 w-full focus:outline-none;
 }
 
 .input-field__container__input-container__input--black {
@@ -59,7 +59,7 @@
 }
 
 .input-field__container__input-container__button-container__button {
-  @apply border-none cursor-pointer p-0 absolute mr-10 w-text;
+  @apply border-none cursor-pointer p-0 absolute mr-11 lg:text-lg;
 }
 
 .input-field__container__helper-text {
