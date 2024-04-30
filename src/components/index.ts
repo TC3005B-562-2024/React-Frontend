@@ -5,7 +5,7 @@ export { Icon } from './Icon';
 export { Button } from './Button';
 export { InputField } from './InputField';
 export { AlertCard } from './AlertCard';
-export { AlertExpasionPanel } from './AlertExpansionPanel';
+export { AlertExpansionPanel } from './AlertExpansionPanel';
 export { ItemSubitem } from './ItemSubitem';
 export { CompleteButton } from './CompleteButton';
 export { MultiselectOptions } from './MultiselectOptions';
