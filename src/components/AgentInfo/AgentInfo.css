@@ -35,5 +35,5 @@
 }
 
 .agent-info__content__skills {
-  @apply w-full grid grid-cols-4 gap-1;
+  @apply w-full flex flex-wrap space-x-3;
 }
