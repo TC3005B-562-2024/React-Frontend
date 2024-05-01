@@ -5,6 +5,7 @@ import { IAlertCard } from "../../components/AlertCard/types";
 import Config from "../../config";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import AlertExpansionPanel from "../../components/AlertExpansionPanel/AlertExpansionPanel";
+import { ErrorCard } from "../../components";
 
 const Alerts: React.FC = () => {
   const [alertsReceived, setAlertsReceived] = useState<IAlertResponse>();
@@ -15,6 +16,9 @@ const Alerts: React.FC = () => {
     await getAllAlerts()
     .then((res) => {
       setAlertsReceived(res);
+      if (res === undefined) {
+        setErrorAlerts(true);
+      }
     }) 
     .catch((err) => {
       setErrorAlerts(true);
@@ -34,21 +38,15 @@ const Alerts: React.FC = () => {
         Alerts
       </div>
       {loading && 
-        <div className="text-text">
-          Loading...
-        </div>
+        <ErrorCard title='Loading...'></ErrorCard>
       }
-      {errorAlerts && 
-        <div className="text-text">
-          Error fetching alerts
-        </div>
+      {errorAlerts&&
+        <ErrorCard title='Error fetching alerts'></ErrorCard>
       }
       {!loading && !errorAlerts &&  alertsReceived !== undefined && alertsReceived.high.length === 0 && alertsReceived.medium.length === 0 && alertsReceived.low.length === 0 &&
-        <div className="text-text">
-          No alerts found
-        </div>
+        <ErrorCard title='No alerts found'></ErrorCard>
       }
-      
+
       <div className="flex flex-col space-y-4 p-1">
         {alertsReceived !== undefined && alertsReceived.high.length !== 0 &&
           <AlertExpansionPanel
