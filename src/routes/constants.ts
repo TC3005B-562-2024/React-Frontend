@@ -30,5 +30,5 @@ export const ROUTES = {
     ALERTS: {
         path: '/alerts',
         name: 'Alerts'
-    }
+    },
 };

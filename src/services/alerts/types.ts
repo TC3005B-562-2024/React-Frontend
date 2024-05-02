@@ -18,6 +18,7 @@ export interface IAlert {
   trainingCompleted:      boolean;
 }
 
+
 export interface Connection {
   identifier:   number;
   denomination: string;

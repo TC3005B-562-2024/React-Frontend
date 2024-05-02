@@ -3,6 +3,7 @@ import classNames from 'classnames';
 import './AlertCard.css';
 import { Button } from '../Button';
 import { IAlertCard } from './types';
+import { useNavigate } from 'react-router-dom';
 
 /**
  * Card that shows important information of an alert.
@@ -14,9 +15,10 @@ const AlertCard: React.FC<IAlertCard> = ({
   individualAlertLink,
   hasShadow = true,
 }) => {
+  const navigate = useNavigate();
+
   const handleViewMoreClick = () => {
-    const fullAlertLink = `${individualAlertLink}`;
-    window.location.href = fullAlertLink;
+    navigate(individualAlertLink);
   };
 
   // Determinar la clase de prioridad dinámicamente usando classNames

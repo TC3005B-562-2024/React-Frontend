@@ -6,7 +6,7 @@ import { getAllSkills } from '../services/skills/getAllSkills';
 
 const PrivateRouter = () => {
   const [skillsReceived, setSkillsReceived] = useState<ISkillBrief[]>();
-  const [loading, setLoading] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(true);
   const [errorSkills, setErrorSkills] = useState<boolean>(false);
 
   const getSkills = async () => {
@@ -24,7 +24,6 @@ const PrivateRouter = () => {
   };
     
   useEffect(() => {
-    setLoading(true);
     getSkills();
   }, []);
   
