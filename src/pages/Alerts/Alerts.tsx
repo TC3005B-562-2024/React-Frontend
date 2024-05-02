@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { getAllAlerts } from "../../services";
 import { IAlertResponse } from "../../services/alerts/types";
 import { IAlertCard } from "../../components/AlertCard/types";
-import Config from "../../config";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import AlertExpansionPanel from "../../components/AlertExpansionPanel/AlertExpansionPanel";
 import { ErrorCard } from "../../components";
