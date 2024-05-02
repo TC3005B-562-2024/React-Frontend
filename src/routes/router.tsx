@@ -1,4 +1,4 @@
-import { Agent, Queue, Skill, Landing, Alerts } from "../pages";
+import { Agent, Queue, Skill, Landing, Alerts, Agents } from "../pages";
 import { RouteObject, createBrowserRouter } from 'react-router-dom';
 
 import PrivateRouter from './PrivateRouter';
@@ -14,6 +14,7 @@ const routes: RouteObject[] = [
         children: [
             { path: ROUTES.QUEUE.path, element: <Queue/>},
             { path: ROUTES.SKILL.path, element: <Skill/>},
+            { path: ROUTES.AGENTS.path, element: <Agents/>},
             { path: ROUTES.AGENT.path, element: <Agent/>},
             { path: ROUTES.LANDING.path, element: <Landing/>},
             { path: ROUTES.ALERTS.path, element: <Alerts/>},
