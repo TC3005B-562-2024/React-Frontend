@@ -32,7 +32,7 @@ const LoginForm: React.FC<ILoginForm> = ({ status }) => {
         <p className='login-form__conatiner__header__title'>
           LOGIN
         </p>
-        <span className='ogin-form__conatiner__header__subtitle'>
+        <span className='login-form__conatiner__header__subtitle'>
           Sign in with your 
           <span className='login-form__conatiner__header__subtitle--yellow'> Amazon Connect </span>
           credentials
