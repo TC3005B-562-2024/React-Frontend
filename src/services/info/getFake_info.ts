@@ -7,7 +7,7 @@ export async function getFake_info(alertId:number, resourceArn: string, isSolved
             "resourceArn": resourceArn,
             "isSolved": isSolved
         };
-        const response = await axios.post('http://localhost:5000/fake/info', body);
+        const response = await axios.post('http://djmr5.pythonanywhere.com/fake/info', body);
         //const response = await axios.post('https://temporal-p27ymwll2a-uc.a.run.app/fake/info', body);
         console.log(response);
         return response.data;
