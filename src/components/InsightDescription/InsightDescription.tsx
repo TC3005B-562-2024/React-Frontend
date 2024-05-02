@@ -15,7 +15,7 @@ const InsightDescription: React.FC<IInsightDescription> = ({ priority, alertId, 
             case "transfer":
                 return <Icon iconName="move_down" color="orange" />;
             case "training":
-                return <Icon iconName="warning" color="orange" />;
+                return <Icon iconName="exercise" color="yellow" />;
             default:
                 return <Icon iconName="warning" color="orange" />
         }

@@ -19,6 +19,10 @@ export const ROUTES = {
         path: '/logout',
         name: 'Log Out'
     },
+    ALERT: {
+        path: '/alerts/:id',
+        name: 'Alert'
+    },
     AGENT: {
         path: '/agents/:id',
         name: 'Agent'

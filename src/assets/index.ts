@@ -29,5 +29,6 @@ export {
     VisibilityOff,
     Warning,
     ExpandLess,
-    ExpandMore
+    ExpandMore,
+    Exercise
 } from './icons';
