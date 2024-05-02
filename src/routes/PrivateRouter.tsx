@@ -32,7 +32,7 @@ const PrivateRouter = () => {
     <div className='flex'>
       <SideBar skills={skillsReceived}/>
       <div className='w-full h-lvh overflow-scroll'>
-        <AlertNav instanceId={'ID'} alertsExists={false}/>
+        <AlertNav instanceId={'ID'} alertsExists={true}/>
 
       <div className='overflow-y-scroll mx-5 my-5 mr-5'>
         <Outlet />
