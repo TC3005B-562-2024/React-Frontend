@@ -20,7 +20,7 @@ export const ROUTES = {
         name: 'Log Out'
     },
     AGENT: {
-        path: '/agent/:id',
+        path: '/agents/:id',
         name: 'Agent'
     },
     ALERTS: {
