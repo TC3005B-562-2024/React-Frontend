@@ -1,8 +1,8 @@
 import httpInstance from "../httpInstance";
-import { ISkillBriefList } from "./types";
+import { ISkillBrief } from "./types";
 
 export const getAllSkills = async () => {
-  let res: ISkillBriefList =  [] as any;
+  let res: ISkillBrief[] = [];
 
   const endpoint = '/skills';
   await httpInstance

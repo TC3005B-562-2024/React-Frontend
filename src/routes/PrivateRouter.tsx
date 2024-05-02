@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
 import { AlertNav, SideBar } from '../components';
-import { ISkillBriefList } from '../services/skills/types';
+import { ISkillBrief } from '../services/skills/types';
 import { getAllSkills } from '../services/skills/getAllSkills';
 
 const PrivateRouter = () => {
-  const [skillsReceived, setSkillsReceived] = useState<ISkillBriefList>();
+  const [skillsReceived, setSkillsReceived] = useState<ISkillBrief[]>();
   const [loading, setLoading] = useState<boolean>(false);
   const [errorSkills, setErrorSkills] = useState<boolean>(false);
 
@@ -18,6 +18,9 @@ const PrivateRouter = () => {
       setErrorSkills(true);
     });
     setLoading(false);
+
+    console.log(loading)
+    console.log(errorSkills)
   };
     
   useEffect(() => {

@@ -4,8 +4,3 @@ export interface ISkillBrief {
   alias: string;
   iconName: string;
 }
-
-export interface ISkillBriefList {
-  [x: string]: any;
-  skills: ISkillBrief[];
-}
