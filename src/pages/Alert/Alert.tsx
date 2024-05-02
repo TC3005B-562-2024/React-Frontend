@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Button, InformationBar, InsightDescription } from '../../components';
 import { useNavigate, useParams } from 'react-router-dom';
-import { getFake_info, getAlertById } from '../../services';
+import { getFake_info, getAlertById, postIgnoreAlert, postAcceptAlert } from '../../services';
 import { PriorityType } from '../../components/InsightDescription/types';
 import { IAlert } from '../../services/alerts/types';
 import './Alert.css';
@@ -60,13 +60,13 @@ const Alert: React.FC = () => {
                             }} />
                             <Button text={'Ignore'} size='title' color='red' type='button' icon={{
                                 iconName: 'cancel',
-                            }} onClick={function (): void {
-                                throw new Error('Function not implemented.');
+                            }} onClick={() => {
+                                postIgnoreAlert(numberId);
                             }} />
                             <Button text={'Accept'} size='title' color='green' type='button' icon={{
                                 iconName: 'check_circle',
-                            }} onClick={function (): void {
-                                throw new Error('Function not implemented.');
+                            }} onClick={() => {
+                                postAcceptAlert(numberId);
                             }} />
                         </div>
                     </div>
