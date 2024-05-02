@@ -12,11 +12,10 @@ const AlertCard: React.FC<IAlertCard> = ({
   alertOwner,
   alertPriority,
   individualAlertLink,
-  alertId,
   hasShadow = true,
 }) => {
   const handleViewMoreClick = () => {
-    const fullAlertLink = `${individualAlertLink}${alertId}`;
+    const fullAlertLink = `${individualAlertLink}`;
     window.location.href = fullAlertLink;
   };
 

@@ -3,7 +3,7 @@ import { IAlertResponse } from "./types";
 
 export const getAllAlerts = async () => {
     let res: IAlertResponse =  [] as any;
-    let errorBool = false;
+  
     const endpoint = `/alerts/connections/1`;
     await httpInstance
     .get(endpoint)

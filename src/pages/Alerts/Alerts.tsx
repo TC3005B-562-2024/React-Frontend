@@ -16,6 +16,7 @@ const Alerts: React.FC = () => {
     await getAllAlerts()
     .then((res) => {
       setAlertsReceived(res);
+
       if (res === undefined) {
         setErrorAlerts(true);
       }
@@ -46,7 +47,7 @@ const Alerts: React.FC = () => {
       {!loading && !errorAlerts &&  alertsReceived !== undefined && alertsReceived.high.length === 0 && alertsReceived.medium.length === 0 && alertsReceived.low.length === 0 &&
         <ErrorCard title='No alerts found'></ErrorCard>
       }
-
+    
       <div className="flex flex-col space-y-4 p-1">
         {alertsReceived !== undefined && alertsReceived.high.length !== 0 &&
           <AlertExpansionPanel

@@ -1,19 +1,37 @@
 import { useState, useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
 import { AlertNav, SideBar } from '../components';
+import { ISkillBrief } from '../services/skills/types';
+import { getAllSkills } from '../services/skills/getAllSkills';
 
 const PrivateRouter = () => {
-  const [skills, setSkills] = useState([]);
+  const [skillsReceived, setSkillsReceived] = useState<ISkillBrief[]>();
+  const [loading, setLoading] = useState<boolean>(true);
+  const [errorSkills, setErrorSkills] = useState<boolean>(false);
 
+  const getSkills = async () => {
+    await getAllSkills()
+    .then((res) => {
+      setSkillsReceived(res);
+    }) 
+    .catch(() => {
+      setErrorSkills(true);
+    });
+    setLoading(false);
+
+    console.log(loading)
+    console.log(errorSkills)
+  };
+    
   useEffect(() => {
-    setSkills([]);
+    getSkills();
   }, []);
   
   return (
 
-    <div className='flex '>
-      <SideBar skills={skills}/>
-      <div className=' w-full h-lvh overflow-scroll'>
+    <div className='flex'>
+      <SideBar skills={skillsReceived}/>
+      <div className='w-full h-lvh overflow-scroll'>
         <AlertNav instanceId={'ID'} alertsExists={false}/>
 
       <div className='overflow-y-scroll mx-5 my-5 mr-5'>
