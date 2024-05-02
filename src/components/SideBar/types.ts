@@ -1,7 +1,8 @@
-import { ISideBarElement } from "../SideBarElement/types"
+import { ISkillBrief } from "../../services/skills/types"
+
 export interface ISideBar {
   /**
    * The label of the multiselect
    */
-  skills: Array<ISideBarElement>
+  skills?: ISkillBrief[];
 }

@@ -13,14 +13,18 @@ const IndividualTrainingExpansionPanel: React.FC<IIndividualTrainingExpansionPan
   trainings,
 }) => {
 
+  const [expanded, setExpanded] = useState(false);
+  const [completionPercentage, setCompletionPercentage] = useState(0);
+
   const colorClasses = classNames({
     'text-black': titleColor === 'black',
     'text-aci-red': titleColor === 'red',
     'text-aci-green': titleColor === 'green',
   });
 
-  const [expanded, setExpanded] = useState(false);
-  const [completionPercentage, setCompletionPercentage] = useState(0);
+  const buttonClasses = classNames('transition duration-300', {
+    'transition-transform rotate-180': expanded,
+  });
 
   const handleButtonClick = () => {
     setExpanded(!expanded);
@@ -44,7 +48,7 @@ const IndividualTrainingExpansionPanel: React.FC<IIndividualTrainingExpansionPan
           {completionPercentage + '%'}
         </div>
         <div className='mx-2 mr-4 my-2'>
-          <button onClick={handleButtonClick} className={`${expanded ? 'transition ease-in-out transform rotate-180' : ''}`}>
+          <button onClick={handleButtonClick} className={buttonClasses}>
             <Icon iconName='expand_less' color='black' />
           </button>
         </div>
