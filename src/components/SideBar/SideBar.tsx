@@ -4,8 +4,9 @@ import classNames from "classnames";
 import './SideBard.css';
 import { ROUTES } from '../../routes/constants';
 import { ISideBar } from './types';
+import { IIconNoColorNoSize } from '../Icon/types';
 
-const SideBar: React.FC<ISideBar> = ({ skills = [] }) => {
+const SideBar: React.FC<ISideBar> = ({ skills }) => {
   const [isExpanded, setExpanded] = useState(true);
 
   const containerClasses = classNames({
@@ -52,14 +53,21 @@ const SideBar: React.FC<ISideBar> = ({ skills = [] }) => {
             ignoreIsSelected={true}
           />
 
-          {skills.map((skill) => (
+          {skills != undefined && skills.map((skill: { alias: string; iconName: any; id: string; }) => (
             <SideBarElement 
-              label={skill.label}
-              icon={skill.icon}
-              path={skill.path}
+              label={skill.alias}
+              icon={{ iconName: skill.iconName } as IIconNoColorNoSize}
+              path={`/skills/${skill.id}`}
               isExpanded={isExpanded}
             />
           ))}
+
+          {skills == undefined &&
+            <div className='side-bar__container__elements-container__upper-container__error-alert'>
+              No Skills Found.
+            </div>
+          }
+
         </div>
         <div className='side-bar__container__elements-container__lowe-container'>
           <SideBarElement 

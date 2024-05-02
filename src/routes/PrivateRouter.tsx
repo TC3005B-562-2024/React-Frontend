@@ -1,19 +1,34 @@
 import { useState, useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
 import { AlertNav, SideBar } from '../components';
+import { ISkillBriefList } from '../services/skills/types';
+import { getAllSkills } from '../services/skills/getAllSkills';
 
 const PrivateRouter = () => {
-  const [skills, setSkills] = useState([]);
+  const [skillsReceived, setSkillsReceived] = useState<ISkillBriefList>();
+  const [loading, setLoading] = useState<boolean>(false);
+  const [errorSkills, setErrorSkills] = useState<boolean>(false);
 
+  const getSkills = async () => {
+    await getAllSkills()
+    .then((res) => {
+      setSkillsReceived(res);
+    }) 
+    .catch(() => {
+      setErrorSkills(true);
+    });
+    setLoading(false);
+  };
+    
   useEffect(() => {
-    console.error('PrivateRouter.tsx: Missing getSkills() implementation');
-    setSkills([]);
+    setLoading(true);
+    getSkills();
   }, []);
   
   return (
 
     <div className='flex'>
-      <SideBar skills={skills}/>
+      <SideBar skills={skillsReceived}/>
       <div className='w-full h-lvh overflow-scroll'>
         <AlertNav instanceId={'ID'} alertsExists={false}/>
 
