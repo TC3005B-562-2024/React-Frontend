@@ -1,4 +1,8 @@
 export const ROUTES = {
+    LANDING: {
+        path: '/',
+        name: 'Landing'
+    },
     SKILL: {
         path: '/skill',
         name: 'Skill'
@@ -19,4 +23,8 @@ export const ROUTES = {
         path: '/agent/:id',
         name: 'Agent'
     },
+    ALERTS: {
+        path: '/alerts',
+        name: 'Alerts'
+    }
 };
