@@ -1,0 +1,3 @@
+.button_container{
+    @apply pt-10 flex flex-row float-right space-x-10
+}

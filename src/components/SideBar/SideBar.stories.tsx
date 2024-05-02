@@ -26,28 +26,22 @@ export const ExampleSelectedSkill: Story = {
   args: {
     skills: [
       {
-        label: 'Service',
-        icon: { iconName: 'alarm' },
-        path: '/service',
-        isExpanded: true,
+        id: '1',
+        resource: 'skill1',
+        alias: 'Skill 1',
+        iconName: 'social_leaderboard',
       },
       {
-        label: 'Sales',
-        icon: { iconName: 'call_end' },
-        path: '/sales',
-        isExpanded: true,
+        id: '2',
+        resource: 'skill2',
+        alias: 'Skill 2',
+        iconName: 'visibility_off',
       },
       {
-        label: 'Support',
-        icon: { iconName: 'clear_night' },
-        path: '/',
-        isExpanded: true,
-      },
-      {
-        label: 'Quality',
-        icon: { iconName: 'instant_mix' },
-        path: '/quality',
-        isExpanded: true,
+        id: '3',
+        resource: 'skill3',
+        alias: 'Skill 3',
+        iconName: 'mitre',
       },
     ]
   },

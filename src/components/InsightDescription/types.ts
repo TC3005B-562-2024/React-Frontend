@@ -1,4 +1,4 @@
-type PriorityType = "intervene" | "transfer" | "training";
+export type PriorityType = "intervene" | "transfer" | "training";
 
 export interface IInsightDescription {
     /**
