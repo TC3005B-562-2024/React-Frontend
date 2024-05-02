@@ -22,6 +22,7 @@ const Alerts: React.FC = () => {
       }
     }) 
     .catch((err) => {
+      console.error(err);
       setErrorAlerts(true);
     });
     setLoading(false);
@@ -56,7 +57,7 @@ const Alerts: React.FC = () => {
               alertName: alert.insight.category.denomination,
               alertOwner: alert.resource,
               alertPriority: 'CRITIC',
-              individualAlertLink: `${Config.FRONT_URL}alerts/${alert.id}`
+              individualAlertLink: `${alert.id}`
             })) as IAlertCard[]}
           />
         }
@@ -68,7 +69,7 @@ const Alerts: React.FC = () => {
               alertName: alert.insight.category.denomination,
               alertOwner: alert.resource,
               alertPriority: 'MEDIUM',
-              individualAlertLink: `${Config.FRONT_URL}alerts/${alert.id}`
+              individualAlertLink: `${alert.id}`
             })) as IAlertCard[]}
           />
         }
@@ -80,7 +81,7 @@ const Alerts: React.FC = () => {
               alertName: alert.insight.category.denomination,
               alertOwner: alert.resource,
               alertPriority: 'LOW',
-              individualAlertLink: `${Config.FRONT_URL}alerts/${alert.id}`
+              individualAlertLink: `${alert.id}`
             })) as IAlertCard[]}
           />
         }
