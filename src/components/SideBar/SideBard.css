@@ -21,3 +21,7 @@
 .side-bar__container__elements-container {
   @apply flex flex-col w-full h-full overflow-hidden justify-between;
 }
+
+.side-bar__container__elements-container__upper-container__error-alert {
+  @apply w-full h-10 text-text text-white px-4 py-2;
+}

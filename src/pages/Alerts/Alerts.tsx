@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import { getAllAlerts } from "../../services";
 import { IAlertResponse } from "../../services/alerts/types";
 import { IAlertCard } from "../../components/AlertCard/types";
-import Config from "../../config";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import AlertExpansionPanel from "../../components/AlertExpansionPanel/AlertExpansionPanel";
+import { ErrorCard } from "../../components";
 
 const Alerts: React.FC = () => {
   const [alertsReceived, setAlertsReceived] = useState<IAlertResponse>();
@@ -15,8 +15,13 @@ const Alerts: React.FC = () => {
     await getAllAlerts()
     .then((res) => {
       setAlertsReceived(res);
+
+      if (res === undefined) {
+        setErrorAlerts(true);
+      }
     }) 
-    .catch(() => {
+    .catch((err) => {
+      console.error(err);
       setErrorAlerts(true);
     });
     setLoading(false);
@@ -34,21 +39,15 @@ const Alerts: React.FC = () => {
         Alerts
       </div>
       {loading && 
-        <div className="text-text">
-          Loading...
-        </div>
+        <ErrorCard title='Loading...'></ErrorCard>
       }
-      {errorAlerts && 
-        <div className="text-text">
-          Error fetching alerts
-        </div>
+      {errorAlerts&&
+        <ErrorCard title='Error fetching alerts'></ErrorCard>
       }
-      {!loading && !errorAlerts && 
-        <div className="text-text">
-          No alerts found
-        </div>
+      {!loading && !errorAlerts &&  alertsReceived !== undefined && alertsReceived.high.length === 0 && alertsReceived.medium.length === 0 && alertsReceived.low.length === 0 &&
+        <ErrorCard title='No alerts found'></ErrorCard>
       }
-      
+    
       <div className="flex flex-col space-y-4 p-1">
         {alertsReceived !== undefined && alertsReceived.high.length !== 0 &&
           <AlertExpansionPanel
@@ -57,7 +56,7 @@ const Alerts: React.FC = () => {
               alertName: alert.insight.category.denomination,
               alertOwner: alert.resource,
               alertPriority: 'CRITIC',
-              individualAlertLink: `${Config.FRONT_URL}alerts/${alert.id}`
+              individualAlertLink: `${alert.id}`
             })) as IAlertCard[]}
           />
         }
@@ -69,7 +68,7 @@ const Alerts: React.FC = () => {
               alertName: alert.insight.category.denomination,
               alertOwner: alert.resource,
               alertPriority: 'MEDIUM',
-              individualAlertLink: `${Config.FRONT_URL}alerts/${alert.id}`
+              individualAlertLink: `${alert.id}`
             })) as IAlertCard[]}
           />
         }
@@ -81,7 +80,7 @@ const Alerts: React.FC = () => {
               alertName: alert.insight.category.denomination,
               alertOwner: alert.resource,
               alertPriority: 'LOW',
-              individualAlertLink: `${Config.FRONT_URL}alerts/${alert.id}`
+              individualAlertLink: `${alert.id}`
             })) as IAlertCard[]}
           />
         }

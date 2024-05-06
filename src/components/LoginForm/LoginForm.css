@@ -1,5 +1,6 @@
 .login-form__conatiner {
-  @apply flex flex-col space-y-10;
+  @apply flex flex-col space-y-10 p-4 w-full max-w-md mb-0 m-auto justify-center;
+  height: 90vh;
 }
 
 .login-form__conatiner__header {
@@ -7,15 +8,15 @@
 }
 
 .login-form__conatiner__header__title {
-  @apply text-2xl font-bold;
+  @apply text-2xl lg:text-3xl font-bold;
 }
 
 .login-form__conatiner__header__subtitle {
-  @apply text-base;
+  @apply flex text-base lg:text-lg  gap-1 whitespace-nowrap;
 }
 
 .login-form__conatiner__header__subtitle--yellow {
-  @apply text-base text-yellow-500;
+  @apply text-base lg:text-lg text-yellow-500;
 }
 
 .login-form__conatiner__form-container {
@@ -27,5 +28,5 @@
 }
 
 .login-form__conatiner__form-container-form__button {
-  @apply bg-yellow-500 hover:bg-yellow-600 w-full text-white font-bold py-1 px-4 rounded focus:outline-none 
+  @apply bg-yellow-500 hover:bg-yellow-600 w-full text-white font-bold py-1 lg:py-2 px-4 rounded-md focus:outline-none 
 }

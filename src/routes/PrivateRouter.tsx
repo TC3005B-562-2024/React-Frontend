@@ -1,28 +1,43 @@
 import { useState, useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
 import { AlertNav, SideBar } from '../components';
-import { ISideBarElement } from '../components/SideBarElement/types';
+import { ISkillBrief } from '../services/skills/types';
+import { getAllSkills } from '../services/skills/getAllSkills';
 
 const PrivateRouter = () => {
-  const [skills, setSkills] = useState<ISideBarElement[]>([]);
+  const [skillsReceived, setSkillsReceived] = useState<ISkillBrief[]>();
+  const [loading, setLoading] = useState<boolean>(true);
+  const [errorSkills, setErrorSkills] = useState<boolean>(false);
 
   const getSkills = async () => {
-    // TODO: Fetch skills from API
-    await new Promise(resolve => setTimeout(resolve, 500));
-    setSkills([{ label: 'Skill', icon: { iconName: 'alarm', }, path: '', isExpanded: false }]);
-  }
+    await getAllSkills()
+    .then((res) => {
+      setSkillsReceived(res);
+    }) 
+    .catch(() => {
+      setErrorSkills(true);
+    });
+    setLoading(false);
 
+    console.log(loading)
+    console.log(errorSkills)
+  };
+    
   useEffect(() => {
     getSkills();
+<<<<<<< HEAD
   }, []); 
 
+=======
+  }, []);
+>>>>>>> origin/dev
   
   return (
 
     <div className='flex'>
-      <SideBar skills={skills}/>
+      <SideBar skills={skillsReceived}/>
       <div className='w-full h-lvh overflow-scroll'>
-        <AlertNav instanceId={'ID'} alertsExists={false}/>
+        <AlertNav instanceId={'ID'} alertsExists={true}/>
 
       <div className='overflow-y-scroll mx-5 my-5 mr-5'>
         <Outlet />
