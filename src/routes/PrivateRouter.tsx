@@ -25,7 +25,8 @@ const PrivateRouter = () => {
     
   useEffect(() => {
     getSkills();
-  }, []);
+  }, []); 
+
   
   return (
 
