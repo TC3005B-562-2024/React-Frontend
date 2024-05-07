@@ -7,7 +7,7 @@ import './InputField.css';
 /**
  * Input Field component.
  */
-const InputField: React.FC<IInputField & { onChange: (id: string, value: string) => void }> = ({ id, type, label,labelPosition, helperText, placeholder, color, onChange }) =>  {
+const InputField: React.FC<IInputField & { onChange: (id: string, value: string) => void }> = ({ id, type, label, labelPosition, helperText, placeholder, color, onChange }) => {
   const inputClasses = classNames({
     'input-field__container__input-container__input': true,
     'input-field__container__input-container__input--black': color === 'black',
@@ -30,33 +30,33 @@ const InputField: React.FC<IInputField & { onChange: (id: string, value: string)
   const [showPassword, setShowPassword] = useState(false);
 
   const togglePasswordVisibility = () => {
-    setShowPassword(!showPassword);  
+    setShowPassword(!showPassword);
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
     setValue(value);
-    onChange(id, value); 
+    onChange(id, value);
   };
 
-  if(type === 'secret'){
+  if (type === 'secret') {
     return (
       <div className="input-field__container">
         <div className={labelPositionClass}>
           {label}
         </div>
         <div className='input-field__container__input-container'>
-          <input 
-            className={inputClasses} 
-            type={showPassword ? "text" : "password"} 
-            value={value} onChange={handleChange} 
-            placeholder={placeholder} 
-            required 
+          <input
+            className={inputClasses}
+            type={showPassword ? "text" : "password"}
+            value={value} onChange={handleChange}
+            placeholder={placeholder}
+            required
           />
           <div className='input-field__container__input-container__button-container'>
-            <button 
-              type='button' 
-              onClick={togglePasswordVisibility} 
+            <button
+              type='button'
+              onClick={togglePasswordVisibility}
               className='input-field__container__input-container__button-container__button'>
               {showPassword ? <Icon iconName='visibility' color={color} /> : <Icon iconName='visibility_off' color={color} />}
             </button>
@@ -68,19 +68,19 @@ const InputField: React.FC<IInputField & { onChange: (id: string, value: string)
           </span>
         )}
       </div>
-    );      
-  }else{
+    );
+  } else {
     return (
       <div className='input-field__container'>
         <div className={labelPositionClass}>
           {label}
         </div>
-        <input 
-          className={inputClasses} 
-          type={type} value={ value } 
-          onChange={handleChange} 
-          placeholder={placeholder} 
-          required 
+        <input
+          className={inputClasses}
+          type={type} value={value}
+          onChange={handleChange}
+          placeholder={placeholder}
+          required
         />
         {helperText !== '' && (
           <span className='input-field__container__helper-text'>

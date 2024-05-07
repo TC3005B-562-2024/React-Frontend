@@ -33,36 +33,36 @@ const LoginForm: React.FC<ILoginForm> = ({ status }) => {
           LOGIN
         </p>
         <span className='login-form__conatiner__header__subtitle'>
-          Sign in with your 
+          Sign in with your
           <span className='login-form__conatiner__header__subtitle--yellow'> Amazon Connect </span>
           credentials
         </span>
       </div>
       <div className='login-form__conatiner__form-container'>
-        <form 
-          className="login-form__conatiner__form-container-form" 
+        <form
+          className="login-form__conatiner__form-container-form"
           onSubmit={handleSubmit}>
-          <InputField 
-            id='email' 
-            type='email' 
-            label='Email' 
-            labelPosition='center' 
-            helperText='' 
-            color={inputColor} 
-            placeholder='Enter your email' 
+          <InputField
+            id='email'
+            type='email'
+            label='Email'
+            labelPosition='center'
+            helperText=''
+            color={inputColor}
+            placeholder='Enter your email'
             onChange={handleInputChange}
           />
-          <InputField 
-            id='password' 
-            type='secret' 
-            label='Password' 
-            labelPosition='center' 
-            helperText={status === 'default' ? '': 'Invalid password or email.'}
-            color={inputColor} 
-            placeholder='Enter your password' 
+          <InputField
+            id='password'
+            type='secret'
+            label='Password'
+            labelPosition='center'
+            helperText={status === 'default' ? '' : 'Invalid password or email.'}
+            color={inputColor}
+            placeholder='Enter your password'
             onChange={handleInputChange}
           />
-          <button 
+          <button
             type="submit"
             className='login-form__conatiner__form-container-form__button'
           >

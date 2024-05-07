@@ -9,7 +9,7 @@ const meta = {
     layout: 'centered',
   },
   argTypes: {
-    placeholder: {control: "text"},
+    placeholder: { control: "text" },
     onSearch: fn(),
   },
   tags: ["autodocs"]
@@ -21,6 +21,6 @@ type Story = StoryObj<typeof meta>;
 export const Primary: Story = {
   args: {
     placeholder: 'Search...',
-    onSearch: ()=>console.log('Search...'),
+    onSearch: () => console.log('Search...'),
   },
 };

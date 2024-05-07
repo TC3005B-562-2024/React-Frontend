@@ -13,20 +13,20 @@ const Alerts: React.FC = () => {
 
   const getAlerts = async () => {
     await getAllAlerts()
-    .then((res) => {
-      setAlertsReceived(res);
+      .then((res) => {
+        setAlertsReceived(res);
 
-      if (res === undefined) {
+        if (res === undefined) {
+          setErrorAlerts(true);
+        }
+      })
+      .catch((err) => {
+        console.error(err);
         setErrorAlerts(true);
-      }
-    }) 
-    .catch((err) => {
-      console.error(err);
-      setErrorAlerts(true);
-    });
+      });
     setLoading(false);
   };
-    
+
   useEffect(() => {
     setLoading(true);
     getAlerts();
@@ -34,20 +34,20 @@ const Alerts: React.FC = () => {
 
   return (
     <>
-      <SearchBar onSearch={function (): void {throw new Error("Function not implemented.");}}/>
+      <SearchBar onSearch={function (): void { throw new Error("Function not implemented."); }} />
       <div className="text-title font-bold">
         Alerts
       </div>
-      {loading && 
+      {loading &&
         <ErrorCard title='Loading...'></ErrorCard>
       }
-      {errorAlerts&&
+      {errorAlerts &&
         <ErrorCard title='Error fetching alerts'></ErrorCard>
       }
-      {!loading && !errorAlerts &&  alertsReceived !== undefined && alertsReceived.high.length === 0 && alertsReceived.medium.length === 0 && alertsReceived.low.length === 0 &&
+      {!loading && !errorAlerts && alertsReceived !== undefined && alertsReceived.high.length === 0 && alertsReceived.medium.length === 0 && alertsReceived.low.length === 0 &&
         <ErrorCard title='No alerts found'></ErrorCard>
       }
-    
+
       <div className="flex flex-col space-y-4 p-1">
         {alertsReceived !== undefined && alertsReceived.high.length !== 0 &&
           <AlertExpansionPanel
@@ -88,5 +88,5 @@ const Alerts: React.FC = () => {
     </>
   );
 };
-  
+
 export default Alerts;

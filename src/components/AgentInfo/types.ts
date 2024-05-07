@@ -19,4 +19,4 @@ export interface IAgentInfo {
    * The top priority alert of the agent.
    */
   topPriorityAlert?: 'CRITICAL' | 'MEDIUM' | 'LOW';
-};
+}

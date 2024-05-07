@@ -8,8 +8,8 @@ const meta = {
     layout: 'centered'
   },
   argTypes: {
-    isSelected: {control: 'boolean'},
-    label: {control: 'text'}
+    isSelected: { control: 'boolean' },
+    label: { control: 'text' }
   },
   tags: ['autodocs'],
 

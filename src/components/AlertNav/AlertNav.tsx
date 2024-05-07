@@ -23,16 +23,16 @@ const AlertNav: React.FC<IAlertNav> = ({ instanceId, alertsExists }) => {
           {instanceId}
         </span>
       </div>
-      <button 
-      className={iconClasses}
-      onClick={() => {
-        navigate('/alerts')
-      }}
+      <button
+        className={iconClasses}
+        onClick={() => {
+          navigate('/alerts')
+        }}
       >
-        
-        <Icon 
-          iconName="warning" 
-          color={alertsExists ? "red" : "white"} 
+
+        <Icon
+          iconName="warning"
+          color={alertsExists ? "red" : "white"}
         />
       </button>
     </nav>

@@ -1,1 +1,1 @@
-export {default as IndividualTrainingExpansionPanel} from './IndividualTrainingExpansionPanel.tsx';
+export { default as IndividualTrainingExpansionPanel } from './IndividualTrainingExpansionPanel.tsx';

@@ -11,7 +11,7 @@ const meta = {
   argTypes: {
     options: { control: 'object' },
   },
-    tags: ['autodocs'],
+  tags: ['autodocs'],
 } satisfies Meta<typeof Filters>;
 
 export default meta;

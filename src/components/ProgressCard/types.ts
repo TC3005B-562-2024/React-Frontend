@@ -4,14 +4,14 @@ export interface IJointTrainingExpansionPanel {
     /**
      * The label to display in the expansion panel.
      */
-    label : string;
+    label: string;
     /**
      * A list of trainings to display in the expansion panel.
      */
-    trainings : string[][];
+    trainings: string[][];
     //trainings : Array<IProgressBar>;
     /**
      * Overrides the default color of the progress bar.
      */
-    color? : 'green' | 'yellow' | 'red';
+    color?: 'green' | 'yellow' | 'red';
 }

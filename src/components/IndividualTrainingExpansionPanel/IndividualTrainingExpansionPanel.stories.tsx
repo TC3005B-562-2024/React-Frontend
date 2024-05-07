@@ -9,7 +9,7 @@ const meta = {
     layout: "centered",
   },
   argTypes: {
-    title: {control: 'text'},
+    title: { control: 'text' },
     titleColor: {
       options: ['black', 'red', 'green'],
       control: { type: 'select' },

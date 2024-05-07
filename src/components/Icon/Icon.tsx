@@ -38,7 +38,7 @@ import {
 } from "../../assets";
 
 
-const Icon: React.FC<IIcon> = ({ iconName, color}) => {
+const Icon: React.FC<IIcon> = ({ iconName, color }) => {
 
     const svgClasses = classNames({
         'aspect-square w-full h-full': true,
@@ -52,7 +52,7 @@ const Icon: React.FC<IIcon> = ({ iconName, color}) => {
         'fill-aci-orange': color === 'orange',
     });
 
-    
+
     switch (iconName) {
         case 'alarm':
             return <Alarm className={svgClasses} />;

@@ -12,37 +12,37 @@ const Agent = () => {
   const asaColor = 'yellow';
   const fcrColor = 'red';
   const adherenceColor = 'red';
-  
+
   return (
     <div className="agent-page__container">
       <div className="agent-page__container__header">
         <h1 className="agent-page__container__header__text">Agent: </h1>
         <h1 className="agent-page__container__header__text--orange">{id}</h1>
       </div>
-      <div className="agent-page__container__card-container">  
-        <InformationBar 
-          title="Information" 
-            elements={[
-              {
-                title: 'Name',
-                content: 'Element',
-                color: 'black'
-              },
-              {
-                title:'Skill',
-                content: 'Element',
-                color: 'black'
-              },
-              {
-                title: 'Status',
-                content: 'Element',
-                color: statusColor
-              }
+      <div className="agent-page__container__card-container">
+        <InformationBar
+          title="Information"
+          elements={[
+            {
+              title: 'Name',
+              content: 'Element',
+              color: 'black'
+            },
+            {
+              title: 'Skill',
+              content: 'Element',
+              color: 'black'
+            },
+            {
+              title: 'Status',
+              content: 'Element',
+              color: statusColor
+            }
           ]}
         />
-        <InformationBar 
-          title="Contact Information" 
-            elements={[
+        <InformationBar
+          title="Contact Information"
+          elements={[
             {
               title: 'ID',
               content: 'Element',
@@ -57,36 +57,36 @@ const Agent = () => {
               title: 'Emotion',
               content: 'Element',
               color: emotionColor
-          }]} 
+            }]}
         />
-        <InformationBar 
-          title="Metrics" 
+        <InformationBar
+          title="Metrics"
           elements={[
-          {
-            title: 'Service Level',
-            content: 'Element',
-            color: serviceLevelColor
-          },
-          {
-            title: 'ACR',
-            content: 'Element',
-            color: acrColor
-          },
-          {
-            title: 'ASA',
-            content: 'Element',
-            color: asaColor
-          },
-          {
-            title: 'FCR',
-            content: 'Element',
-            color: fcrColor
-          },
-          {
-          title: 'Adherence',
-          content: 'Element',
-          color: adherenceColor
-          }]}
+            {
+              title: 'Service Level',
+              content: 'Element',
+              color: serviceLevelColor
+            },
+            {
+              title: 'ACR',
+              content: 'Element',
+              color: acrColor
+            },
+            {
+              title: 'ASA',
+              content: 'Element',
+              color: asaColor
+            },
+            {
+              title: 'FCR',
+              content: 'Element',
+              color: fcrColor
+            },
+            {
+              title: 'Adherence',
+              content: 'Element',
+              color: adherenceColor
+            }]}
         />
       </div>
       <div className="agent-page__container__header__text">
@@ -100,22 +100,21 @@ const Agent = () => {
         Trainings
       </div>
       <div className="agent-page__container__card-container">
-        <IndividualTrainingExpansionPanel 
-          title={"Trainings of Agent..."} 
+        <IndividualTrainingExpansionPanel
+          title={"Trainings of Agent..."}
           trainings={[
-          {
-            label: 'Training Description',
-            isComplete: true
-          },
-          {
-            label: 'Training Description',
-            isComplete: false
-          }
+            {
+              label: 'Training Description',
+              isComplete: true
+            },
+            {
+              label: 'Training Description',
+              isComplete: false
+            }
           ]}
         />
       </div>
     </div>
-    );
+  );
 };
 export default Agent;
-  

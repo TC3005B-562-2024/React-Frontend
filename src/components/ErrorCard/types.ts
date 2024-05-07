@@ -1,4 +1,4 @@
-export interface IErrorCard{
+export interface IErrorCard {
     /**
      * The text prop of the ErrorCard
      */

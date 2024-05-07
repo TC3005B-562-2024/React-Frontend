@@ -11,35 +11,37 @@ const PrivateRouter = () => {
 
   const getSkills = async () => {
     await getAllSkills()
-    .then((res) => {
-      setSkillsReceived(res);
-    }) 
-    .catch(() => {
-      setErrorSkills(true);
-    });
+      .then((res) => {
+        setSkillsReceived(res);
+      })
+      .catch(() => {
+        setErrorSkills(true);
+      });
     setLoading(false);
-
-    console.log(loading)
-    console.log(errorSkills)
   };
-    
+
   useEffect(() => {
     getSkills();
-  }, []); 
+  }, []);
 
-  
+
   return (
+    <>
+      {loading && <div>Loading...</div>}
+      {errorSkills && <div>Error</div>}
+      {!loading && !errorSkills &&
+        <div className='flex'>
+          <SideBar skills={skillsReceived} />
+          <div className='w-full h-lvh overflow-scroll'>
+            <AlertNav instanceId={'ID'} alertsExists={true} />
 
-    <div className='flex'>
-      <SideBar skills={skillsReceived}/>
-      <div className='w-full h-lvh overflow-scroll'>
-        <AlertNav instanceId={'ID'} alertsExists={true}/>
-
-      <div className='overflow-y-scroll mx-5 my-5 mr-5'>
-        <Outlet />
-      </div>
-      </div>
-    </div>
+            <div className='overflow-y-scroll mx-5 my-5 mr-5'>
+              <Outlet />
+            </div>
+          </div>
+        </div>
+      }
+    </>
   );
 };
 

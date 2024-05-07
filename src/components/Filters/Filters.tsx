@@ -24,7 +24,7 @@ const Filters: React.FC<IFilters> = ({ options }) => {
         size="text"
         icon={{ iconName: 'instant_mix' }}
       />
-      {isMultiselectVisible && 
+      {isMultiselectVisible &&
         <div className='absolute right-0 mt-3'>
           <Multiselect options={options} />
         </div>

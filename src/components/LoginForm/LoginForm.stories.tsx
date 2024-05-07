@@ -5,7 +5,7 @@ import LoginForm from "./LoginForm";
 // Aquí estaba una función, la borre porque no es necesaria para el ejemplo
 // Además, no se puede hacer el build porque no se está utilizando
 
-const meta = { 
+const meta = {
     title: 'Components/LoginForm',
     component: LoginForm,
     parameters: {
@@ -25,12 +25,12 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
     args: {
-      status: 'default',
+        status: 'default',
     },
 };
 
 export const Error: Story = {
     args: {
-      status: 'error',
+        status: 'error',
     },
 };
