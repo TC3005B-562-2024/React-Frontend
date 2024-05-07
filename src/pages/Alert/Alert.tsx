@@ -23,6 +23,7 @@ const Alert: React.FC = () => {
     useEffect(() => {
         const getAlertInfo = async (alertId: number) => {
             const response = await getAlertById(alertId);
+            if (response === null) return;
             setAlertInfo(response);
 
             const otherResponse = await getFake_info(numberId, response.resource, response.solved);

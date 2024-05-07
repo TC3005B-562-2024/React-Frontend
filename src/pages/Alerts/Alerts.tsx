@@ -14,8 +14,7 @@ const Alerts: React.FC = () => {
   const getAlerts = async () => {
     await getAllAlerts()
       .then((res) => {
-        setAlertsReceived(res);
-
+        if (res !== null) setAlertsReceived(res);
         if (res === undefined) {
           setErrorAlerts(true);
         }
