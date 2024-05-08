@@ -45,7 +45,7 @@ const AlertExpansionPanel: React.FC<IAlertExpansionPanel> = ({ alerts }) => {
     <div className='alert-expansion-panel__container'>
       <div className="alert-expansion-panel__container__header" onClick={handlePanelClick}>
         {/* Contenedor flex para alinear el texto y el color */}
-        <div className="alert-expansion-panel__container__header__contents"> 
+        <div className="alert-expansion-panel__container__header__contents">
           {/* Barra de color */}
           <div className={priorityClass}></div>
           {/* Texto */}

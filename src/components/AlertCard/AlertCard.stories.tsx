@@ -30,7 +30,7 @@ const meta: Meta<IAlertCard> = {
 
 export default meta;
 type Story = StoryObj<typeof meta>;
-  
+
 export const CriticalAlert: Story = {
   args: {
     alertName: 'Critical Alert',

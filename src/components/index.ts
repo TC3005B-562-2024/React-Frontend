@@ -20,5 +20,6 @@ export { SideBar } from './SideBar';
 export { SideBarElement } from './SideBarElement';
 export { AlertNav } from './AlertNav';
 export { ProgressBar } from './ProgressBar';
+export { ProgressCard } from './ProgressCard';
 export { AgentInfo } from './AgentInfo';
 export { AgentList } from './AgentList';

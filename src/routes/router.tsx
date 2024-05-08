@@ -9,23 +9,23 @@ import Login from "../pages/login/Login";
 
 const routes: RouteObject[] = [
     {
-        path: '/', 
-        element: <PrivateRouter/>,
+        path: '/',
+        element: <PrivateRouter />,
         children: [
-            { path: ROUTES.QUEUE.path, element: <Queue/>},
-            { path: ROUTES.SKILL.path, element: <Skill/>},
-            { path: ROUTES.AGENTS.path, element: <Agents/>},
-            { path: ROUTES.AGENT.path, element: <Agent/>},
-            { path: ROUTES.ALERT.path, element: <Alert />},
-            { path: ROUTES.LANDING.path, element: <Landing/>},
-            { path: ROUTES.ALERTS.path, element: <Alerts/>},
+            { path: ROUTES.QUEUE.path, element: <Queue /> },
+            { path: ROUTES.SKILL.path, element: <Skill /> },
+            { path: ROUTES.AGENTS.path, element: <Agents /> },
+            { path: ROUTES.AGENT.path, element: <Agent /> },
+            { path: ROUTES.ALERT.path, element: <Alert /> },
+            { path: ROUTES.LANDING.path, element: <Landing /> },
+            { path: ROUTES.ALERTS.path, element: <Alerts /> },
         ],
     },
     {
-        path: '/login', 
-        element: <PublicRouter/>,
+        path: '/login',
+        element: <PublicRouter />,
         children: [
-            { path: '/login', element: <Login/> }
+            { path: '/login', element: <Login /> }
         ],
     }
 ]

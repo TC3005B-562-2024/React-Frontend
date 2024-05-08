@@ -7,4 +7,4 @@ export interface IAlertNav {
    * Indicates whether alerts exist
    */
   alertsExists: boolean;
-};
+}

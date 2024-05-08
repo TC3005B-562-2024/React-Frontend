@@ -5,7 +5,7 @@
 .alert-card__priority-contents--shadow {
   @apply shadow-md;
 }
-  
+
 .alert-card__container__color-box--high-priority {
   @apply h-full w-12 rounded-lg bg-aci-red;
 }
@@ -17,15 +17,15 @@
 .alert-card__container__color-box--low-priority {
   @apply h-full w-12 rounded-lg bg-aci-yellow;
 }
-  
+
 .alert-card__container__contents {
   @apply w-full h-full flex flex-col justify-between;
 }
-  
+
 .alert-card__container__contents__name {
   @apply text-title font-semibold text-gray-800;
 }
-  
+
 .alert-card__container__contents__lower-contents {
   @apply flex flex-row items-center justify-between text-base text-gray-600;
 }
@@ -33,4 +33,3 @@
 .alert-card__container__contents__owner-name {
   @apply text-text;
 }
-  

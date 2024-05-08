@@ -1,2 +1,1 @@
-export {default as CompleteButton} from './CompleteButton.tsx';
-
+export { default as CompleteButton } from './CompleteButton.tsx';

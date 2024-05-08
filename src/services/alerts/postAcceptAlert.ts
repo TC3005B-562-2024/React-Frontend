@@ -5,12 +5,12 @@ export const postAcceptAlert = async (alertId: number) => {
 
     const endpoint = `/alerts/${alertId}/accept`;
     await httpInstance
-    .post(endpoint)
-    .then((response) => {
-        res = response.data;
-    })
-    .catch((err) => {
-        res = err.response
-    });
+        .post(endpoint)
+        .then((response) => {
+            res = response.data;
+        })
+        .catch((err) => {
+            res = err.response
+        });
     return res;
 };

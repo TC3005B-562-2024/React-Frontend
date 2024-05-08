@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export async function getFake_info(alertId:number, resourceArn: string, isSolved: boolean) {
+export async function getFake_info(alertId: number, resourceArn: string, isSolved: boolean) {
     try {
         const body = {
             "alertId": alertId,

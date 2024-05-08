@@ -12,9 +12,9 @@ import classNames from 'classnames';
  * @example
  * <ProgressBar progress={50} color='green' label='Agent Name' />
  */
-const ProgressBar: React.FC<IProgressBar> = ({ progress, color , label, hasShadow = true }) => {
+const ProgressBar: React.FC<IProgressBar> = ({ progress, color, label, hasShadow = true }) => {
     if (progress < 0 || progress > 100) throw new Error('Progress value must be between 0 and 100');
-    if (!color){
+    if (!color) {
         if (progress < 40) color = 'red';
         else if (progress < 80) color = 'yellow';
         else color = 'green';

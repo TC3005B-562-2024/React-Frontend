@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { IInformationBar } from '../../components/InformationBar/types';
 import { Button, InformationBar, InsightDescription } from '../../components';
 import { useNavigate, useParams } from 'react-router-dom';
 import { getFake_info, getAlertById, postIgnoreAlert, postAcceptAlert } from '../../services';
@@ -12,7 +13,7 @@ const Alert: React.FC = () => {
     const { id } = useParams();
     const numberId = Number(id);
     const navigate = useNavigate();
-    const [informationDetails, setInformationDetails] = useState<any>([]);
+    const [informationDetails, setInformationDetails] = useState<IInformationBar[] | null>(null);
     const [alertInfo, setAlertInfo] = useState<IAlert | null>(null);
 
     const goBack = () => {
@@ -22,6 +23,7 @@ const Alert: React.FC = () => {
     useEffect(() => {
         const getAlertInfo = async (alertId: number) => {
             const response = await getAlertById(alertId);
+            if (response === null) return;
             setAlertInfo(response);
 
             const otherResponse = await getFake_info(numberId, response.resource, response.solved);
@@ -46,7 +48,7 @@ const Alert: React.FC = () => {
                         </span>
                         {informationDetails &&
                             <div>
-                                {informationDetails.map((info: any, index: number) => (
+                                {informationDetails.map((info: IInformationBar, index: number) => (
                                     <InformationBar key={index} title={info.title} elements={info.elements} />
                                 ))}
                             </div>

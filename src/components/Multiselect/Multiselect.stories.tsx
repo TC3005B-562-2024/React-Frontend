@@ -3,15 +3,15 @@ import Multiselect from './Multiselect';
 import { IMultiselect } from './types';
 
 const meta = {
-    title: 'Components/Multiselect',
-    component: Multiselect,
-    parameters: {
-        layout: 'centered'
-    }, 
-    argTypes: {
-        options: { control: 'object' },
-    },
-    tags: ['autodocs'],
+  title: 'Components/Multiselect',
+  component: Multiselect,
+  parameters: {
+    layout: 'centered'
+  },
+  argTypes: {
+    options: { control: 'object' },
+  },
+  tags: ['autodocs'],
 } satisfies Meta<typeof Multiselect>
 
 export default meta;

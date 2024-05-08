@@ -12,7 +12,7 @@
 }
 
 .login-form__conatiner__header__subtitle {
-  @apply flex text-base lg:text-lg  gap-1 whitespace-nowrap;
+  @apply flex text-base lg:text-lg gap-1 whitespace-nowrap;
 }
 
 .login-form__conatiner__header__subtitle--yellow {
@@ -28,5 +28,5 @@
 }
 
 .login-form__conatiner__form-container-form__button {
-  @apply bg-yellow-500 hover:bg-yellow-600 w-full text-white font-bold py-1 lg:py-2 px-4 rounded-md focus:outline-none 
+  @apply bg-yellow-500 hover:bg-yellow-600 w-full text-white font-bold py-1 lg:py-2 px-4 rounded-md focus:outline-none
 }
