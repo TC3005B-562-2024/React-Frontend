@@ -35,14 +35,10 @@ const Alerts: React.FC = () => {
         Alerts
       </div>
       {loading && 
-        <div className="text-text">
-          <ErrorCard title={"Loading..."}></ErrorCard>
-        </div>
+        <ErrorCard title={"Loading..."}></ErrorCard>
       }
       {errorAlerts && 
-        <div className="text-text">
-          <ErrorCard title={"Error fetching alerts"}></ErrorCard>
-        </div>
+        <ErrorCard title={"Error fetching alerts"}></ErrorCard>
       }
       {!loading && !errorAlerts && 
         <ErrorCard title={"No alerts found"}></ErrorCard>

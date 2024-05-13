@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { AlertCard, IndividualTrainingExpansionPanel, InformationBar } from "../../components";
+import { AlertCard, ErrorCard, IndividualTrainingExpansionPanel, InformationBar } from "../../components";
 import classNames from 'classnames';
 import './Agent.css';
 import { IAlertResponse } from "../../services/alerts/types";
@@ -125,17 +125,17 @@ const Agent: React.FC = () => {
 
         {loadingAlerts && 
           <div className="text-text">
-            Loading...
+            <ErrorCard title={"Loading..."}></ErrorCard>
           </div>
         }
         {errorAlerts && 
           <div className="text-text">
-            Error fetching alerts
+            <ErrorCard title={"Error fetching alerts"}></ErrorCard>
           </div>
         }
         {!loadingAlerts && !errorAlerts && 
           <div className="text-text">
-            No alerts found
+            <ErrorCard title={"No alerts found"}></ErrorCard>
           </div>
         }
         {alertsReceived !== undefined && alertsReceived.high.length !== 0 && alertsReceived.high.map(alert =>
