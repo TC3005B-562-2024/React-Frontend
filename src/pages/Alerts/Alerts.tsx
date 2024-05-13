@@ -5,6 +5,7 @@ import { IAlertCard } from "../../components/AlertCard/types";
 import Config from "../../config";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import AlertExpansionPanel from "../../components/AlertExpansionPanel/AlertExpansionPanel";
+import { ErrorCard } from "../../components";
 
 const Alerts: React.FC = () => {
   const [alertsReceived, setAlertsReceived] = useState<IAlertResponse>();
@@ -35,18 +36,16 @@ const Alerts: React.FC = () => {
       </div>
       {loading && 
         <div className="text-text">
-          Loading...
+          <ErrorCard title={"Loading..."}></ErrorCard>
         </div>
       }
       {errorAlerts && 
         <div className="text-text">
-          Error fetching alerts
+          <ErrorCard title={"Error fetching alerts"}></ErrorCard>
         </div>
       }
       {!loading && !errorAlerts && 
-        <div className="text-text">
-          No alerts found
-        </div>
+        <ErrorCard title={"No alerts found"}></ErrorCard>
       }
       
       <div className="flex flex-col space-y-4 p-1">
