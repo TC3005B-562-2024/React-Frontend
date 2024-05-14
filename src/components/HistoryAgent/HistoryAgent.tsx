@@ -29,11 +29,11 @@ const HistoryAgent: React.FC<IHistoryAgentProps> = ({ log, date, icon, descripti
           <div className="history-agent__log">{log}</div>
         </div>
         <div className="history-agent__right">
-        {date && ( // Verifica si date tiene un valor antes de intentar acceder a toDateString()
+        {date && ( 
             <div className="history-agent__date">{date.toDateString()}</div>
         )}
           <div className="history-agent__icon" onClick={handleIconClick}>
-            <Icon iconName={"check"} />
+            <Icon iconName={icon.iconName} />
             <span>{status === 'accepted' ? 'accepted' : 'ignored'}</span>
           </div>
         </div>
