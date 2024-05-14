@@ -35,12 +35,12 @@
 
 /* Estilos para el ícono de flecha */
 .alert-expansion-panel__container__header__arrow-icon {
-  @apply w-8 h-8 transition-transform duration-300 -rotate-90;
+  @apply w-8 h-8 mr-4 transition-transform duration-300 -rotate-90;
 }
 
 /* Estilos para el ícono de flecha cuando el panel está expandido */
 .alert-expansion-panel__container__header__arrow-icon--expanded {
-  @apply transform rotate-90;
+  @apply transform -rotate-270;
 }
 
 /* Estilos para el contenido del panel de expansión */
