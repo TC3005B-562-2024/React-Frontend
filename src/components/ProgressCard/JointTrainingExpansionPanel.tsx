@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { IJointTrainingExpansionPanel } from './types';
+import { IJointTrainingExpansionPanel, ITraning } from './types';
 import { ProgressBar } from '../ProgressBar';
 import classNames from 'classnames';
 import { Icon } from '../Icon';
@@ -15,12 +15,12 @@ const MyJointTrainingExpansionPanel: React.FC<IJointTrainingExpansionPanel> = (
   const [isExpanded, setisExpanded] = useState<boolean>(false);
   const [average, setAverage] = useState<number>(0);
 
-  const calculateAverage = () => {
+  const calculateAverage = (trainings: ITraning[]) => {
     return +(trainings.reduce((acc, training) => acc + training.progress, 0) / trainings.length).toFixed(2);
   };
 
   useEffect(() => {
-    setAverage(calculateAverage());
+    setAverage(calculateAverage(trainings));
   }, [trainings]);
 
   const rotateText = classNames('w-6 h-6 mx-2 text-black transition-transform duration-300 self-center',
