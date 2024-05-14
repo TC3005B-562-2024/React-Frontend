@@ -61,6 +61,4 @@ const MyJointTrainingExpansionPanel: React.FC<IJointTrainingExpansionPanel> = (
   );
 }
 
-
 export default MyJointTrainingExpansionPanel;
-
