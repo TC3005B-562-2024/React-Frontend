@@ -148,8 +148,18 @@ const Queue: React.FC = () => {
               <ProgressCard
                 label='Training 1'
                 trainings={[
-                  ['10', '20', '30', '40', '50'],
-                  ['Owner Name', 'Owner Name', 'Owner Name', 'Owner Name', 'Owner Name']
+                  {
+                    progress: 50,
+                    label: 'Training 1',
+                  },
+                  {
+                    progress: 70,
+                    label: 'Training 2',
+                  },
+                  {
+                    progress: 90,
+                    label: 'Training 3',
+                  }
                 ]}
                 />
 
