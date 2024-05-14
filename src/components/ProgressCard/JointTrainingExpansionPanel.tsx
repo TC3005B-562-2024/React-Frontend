@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
-import { IJointTrainingExpansionPanel } from './types';
+import { IJointTrainingExpansionPanel, ITraning } from './types';
 import { ProgressBar } from '../ProgressBar';
+import classNames from 'classnames';
+import { Icon } from '../Icon';
 
 /**
  * This component is used to display the training progress of agents in a queue or skill.
@@ -8,55 +10,55 @@ import { ProgressBar } from '../ProgressBar';
  * rendered at the parent component.
  */
 const MyJointTrainingExpansionPanel: React.FC<IJointTrainingExpansionPanel> = (
-    { label, color, trainings }
+  { label, color, trainings }
 ) => {
-    const [isExpanded, setisExpanded] = useState<boolean>(false);
-    const [average, setAverage] = useState<number>(0);
+  const [isExpanded, setisExpanded] = useState<boolean>(false);
+  const [average, setAverage] = useState<number>(0);
 
-    const calculateAverage = () => {
-        const average = trainings[0].reduce((acc, curr) => acc + parseInt(curr), 0) / trainings[0].length;
-        return average;
-    };
+  const calculateAverage = (trainings: ITraning[]) => {
+    return +(trainings.reduce((acc, training) => acc + training.progress, 0) / trainings.length).toFixed(2);
+  };
 
-    useEffect(() => {
-        setAverage(calculateAverage());
-    }, [trainings]);
+  useEffect(() => {
+    setAverage(calculateAverage(trainings));
+  }, [trainings]);
 
-    const rotateText = isExpanded ? 'w-6 h-6 text-black' : 'rotate-180 w-6 h-6 text-black';
+  const rotateText = classNames('w-6 h-6 mx-2 text-black transition-transform duration-300 self-center',
+    { '-rotate-270': isExpanded,
+      '-rotate-90': !isExpanded
+    }
+  );
 
-    return (
-        <div className="w-full shadow-lg rounded-lg border-x-8 border-y-8 border-transparent">
-            <button className="w-full " onClick={() => {
-                setisExpanded(!isExpanded); // Toggle isExpanded state
-            }}>
-                <div className="flex justify-between">
-                    <div className="text-title">
-                        {label} </div>
-                    <div className="flex text-aci-green text-right justify-end ">
-                        {average}%
-                        <svg id="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                            strokeWidth={1.5} stroke="currentColor" className={rotateText}><path strokeLinecap="round"
-                                strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" /></svg>
-                    </div>
-
-
-
-                </div>
-            </button>
-            {
-                isExpanded && Array.from({ length: trainings[0].length }).map((_, i) => (
-                    <ProgressBar
-                        progress={parseInt(trainings[0][i])}
-                        color={color}
-                        label={trainings[1][i]}
-                        hasShadow={false}
-                    />
-                ))
-            }
+  return (
+    <div className="w-full shadow-xl shadow-gray-400 rounded-lg border-x-8 border-y-8 border-transparent">
+      <button className="w-full " onClick={() => {
+        setisExpanded(!isExpanded); // Toggle isExpanded state
+      }}>
+        <div className="flex justify-between items-center">
+          <div className="text-title"> {label} </div>
+          <div className="flex text-aci-green text-text font-bold text-right justify-end ">
+            {average}%
+            <div className={rotateText}>
+              <Icon
+                iconName='arrow_forward'
+                color='black'
+              />
+            </div>
+          </div>
         </div>
-    );
+      </button>
+      {
+        isExpanded && trainings.length !== 0 && trainings.map((training) => (
+          <ProgressBar
+            progress={training.progress}
+            color={color}
+            label={training.label}
+            hasShadow={false}
+          />
+        ))
+      }
+    </div>
+  );
 }
 
-
 export default MyJointTrainingExpansionPanel;
-

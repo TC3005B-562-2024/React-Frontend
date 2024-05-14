@@ -1,11 +1,13 @@
 import { Meta, StoryFn } from '@storybook/react';
 import AlertExpansionPanel from './AlertExpansionPanel';
 import { IAlertCard } from '../AlertCard/types';
+import { withRouter } from 'storybook-addon-react-router-v6';
 
 // Define metadata for Storybook
 const meta: Meta = {
   title: 'Components/AlertExpansionPanel',
   component: AlertExpansionPanel,
+  decorators: [withRouter],
   parameters: {
     layout: 'padded', // Opcional: establece el diseño de las historias
     docs: {
@@ -17,7 +19,6 @@ const meta: Meta = {
   argTypes: {
     alerts: { control: 'array' }, // Ejemplo de definición de propiedades
   },
-  decorators: [], // Opcional: decoradores para envolver el componente
   tags: ["autodocs"], // Opcional: etiquetas adicionales para clasificar el componente
 };
 export default meta;
