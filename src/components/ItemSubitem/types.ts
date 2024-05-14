@@ -1,5 +1,9 @@
 export interface IItemSubitem {
     /**
+     * Additional class names to be added to the button
+     */
+    className?: string;
+    /**
      * The title of the item
      */
     title: string;

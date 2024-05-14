@@ -27,19 +27,19 @@ const AgentInfo: React.FC<IAgentInfo> = ({ agentName, sentiment, skillArray, sta
     <div className='agent-info__content'>
       <div className="agent-info__content__main-info">
         <div className="agent-info__content__main-info__icon">
-          <Icon 
-            iconName={statusIconName as typeof iconNames[number]} 
-            color={statusIconColor as 'green' | 'yellow' | 'blue' | 'black' | 'white' | 'red' | 'gray' | 'orange' | undefined} 
+          <Icon
+            iconName={statusIconName as typeof iconNames[number]}
+            color={statusIconColor as 'green' | 'yellow' | 'blue' | 'black' | 'white' | 'red' | 'gray' | 'orange' | undefined}
           />
         </div>
         <div className='agent-info__content__main-info__text'>
           <span className='agent-info__content__main-info__text__agent-name'>
             {agentName}
           </span>
-          { sentiment !== undefined &&
+          {sentiment !== undefined &&
             <span>
               <span className='agent-info__content__main-info__text__sentiment-placeholder'>
-                Sentiment: 
+                Sentiment:
               </span>
               <span className={sentimentClasses}>
                 {' ' + sentiment.charAt(0) + sentiment.substring(1).toLowerCase()}
@@ -47,19 +47,19 @@ const AgentInfo: React.FC<IAgentInfo> = ({ agentName, sentiment, skillArray, sta
             </span>
           }
         </div>
-        {topPriorityAlert !== undefined && 
+        {topPriorityAlert !== undefined &&
           <div className="agent-info__content__main-info__icon">
-            <Icon 
-              iconName={alertIconName as typeof iconNames[number]} 
-              color={alertIconColor as 'green' | 'yellow' | 'blue' | 'black' | 'white' | 'red' | 'gray' | 'orange' | undefined} 
+            <Icon
+              iconName={alertIconName as typeof iconNames[number]}
+              color={alertIconColor as 'green' | 'yellow' | 'blue' | 'black' | 'white' | 'red' | 'gray' | 'orange' | undefined}
             />
           </div>
         }
       </div>
       <div className="agent-info__content__skills">
         {skillArray.map((skill, index) => (
-          <Pill 
-            text={skill} 
+          <Pill
+            text={skill}
             color={skillColors[index % skillColors.length] as 'green' | 'yellow' | 'blue' | 'red' | 'orange' | 'gray'} // Assign color based on skill
           />
         ))}

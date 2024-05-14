@@ -3,8 +3,11 @@ import { Icon } from '../Icon';
 import './AlertNav.css';
 import { IAlertNav } from './types';
 import classNames from 'classnames';
+import { useNavigate } from 'react-router-dom';
 
 const AlertNav: React.FC<IAlertNav> = ({ instanceId, alertsExists }) => {
+  const navigate = useNavigate();
+
   const iconClasses = classNames({
     'alert-nav__container__icon-container': true,
     'alert-nav__container__icon-container--bounce': alertsExists,
@@ -20,12 +23,18 @@ const AlertNav: React.FC<IAlertNav> = ({ instanceId, alertsExists }) => {
           {instanceId}
         </span>
       </div>
-      <div className={iconClasses}>
-        <Icon 
-          iconName="warning" 
-          color={alertsExists ? "red" : "white"} 
+      <button
+        className={iconClasses}
+        onClick={() => {
+          navigate('/alerts')
+        }}
+      >
+
+        <Icon
+          iconName="warning"
+          color={alertsExists ? "red" : "white"}
         />
-      </div>
+      </button>
     </nav>
   );
 };

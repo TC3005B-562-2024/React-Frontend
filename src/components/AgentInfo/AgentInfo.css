@@ -11,7 +11,7 @@
 }
 
 .agent-info__content__main-info__text {
-  @apply w-full flex flex-col justify-start;  
+  @apply w-full flex flex-col justify-start;
 }
 
 .agent-info__content__main-info__text__agent-name {

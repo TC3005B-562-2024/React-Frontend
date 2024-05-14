@@ -10,8 +10,8 @@ const Multiselect: React.FC<IMultiselect> = ({ options }) => {
   return (
     <div className="multiselect__container">
       {options.map((option) => (
-        <MultiselectOptions 
-          label={option.label} 
+        <MultiselectOptions
+          label={option.label}
           isSelected={option.isSelected}
         />
       ))}

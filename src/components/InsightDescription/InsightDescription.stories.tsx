@@ -11,7 +11,7 @@ const meta = {
     argTypes: {
         priority: {
             options: ['intervene', 'transfer', 'training'],
-            control: { type: 'select'}
+            control: { type: 'select' }
         },
         alertId: {
             control: 'text',

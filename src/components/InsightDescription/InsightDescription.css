@@ -14,9 +14,7 @@
     @apply p-2;
 }
 
-.insight-description__container__card__content {
-
-}
+.insight-description__container__card__content {}
 
 .insight-description__container__card__content__priority {
     @apply text-title capitalize;

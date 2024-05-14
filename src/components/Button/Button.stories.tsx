@@ -14,7 +14,7 @@ const meta = {
             control: 'text',
         },
         size: {
-            options: ['banner', 'section-title' , 'title' , 'text' , 'detail'],
+            options: ['banner', 'section-title', 'title', 'text', 'detail'],
             control: { type: 'select' },
         },
         color: {
@@ -32,13 +32,13 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Orange: Story = {
-  args: {
+    args: {
         onClick: () => alert('Has presionado un botón!'),
         text: 'Click me!',
         size: 'banner',
         color: 'orange',
-        icon: {iconName: 'search'},
+        icon: { iconName: 'search' },
         hasShadow: true,
         isDisabled: false,
-  },
+    },
 };

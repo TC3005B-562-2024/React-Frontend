@@ -41,7 +41,7 @@ const Agent: React.FC = () => {
   const getAlerts = async () => {
     await getAllAlerts()
     .then((res) => {
-      setAlertsReceived(res);
+      if (res !== null) setAlertsReceived(res);
     }) 
     .catch(() => {
       setErrorAlerts(true);

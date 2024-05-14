@@ -9,7 +9,7 @@ const meta = {
         layout: "centered",
     },
     argTypes: {
-        label: {control: 'text'},
+        label: { control: 'text' },
     },
     tags: ["autodocs"],
 } satisfies Meta<typeof TrainingCardToggle>

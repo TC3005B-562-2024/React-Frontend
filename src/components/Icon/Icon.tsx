@@ -33,11 +33,12 @@ import {
     VisibilityOff,
     Warning,
     ExpandLess,
-    ExpandMore
+    ExpandMore,
+    Exercise
 } from "../../assets";
 
 
-const Icon: React.FC<IIcon> = ({ iconName, color}) => {
+const Icon: React.FC<IIcon> = ({ iconName, color }) => {
 
     const svgClasses = classNames({
         'aspect-square w-full h-full': true,
@@ -51,7 +52,7 @@ const Icon: React.FC<IIcon> = ({ iconName, color}) => {
         'fill-aci-orange': color === 'orange',
     });
 
-    
+
     switch (iconName) {
         case 'alarm':
             return <Alarm className={svgClasses} />;
@@ -115,6 +116,8 @@ const Icon: React.FC<IIcon> = ({ iconName, color}) => {
             return <ExpandLess className={svgClasses} />;
         case 'expand_more':
             return <ExpandMore className={svgClasses} />;
+        case 'exercise':
+            return <Exercise className={svgClasses} />;
         default:
             return <span>Icon not found :(</span>;
     }

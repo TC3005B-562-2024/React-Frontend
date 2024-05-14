@@ -18,7 +18,7 @@ export default {
       control: 'boolean',
       defaultValue: true,
     },
-    
+
   },
 } as Meta;
 

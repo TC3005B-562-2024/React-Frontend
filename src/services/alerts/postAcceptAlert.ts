@@ -1,0 +1,16 @@
+import httpInstance from "../httpInstance";
+
+export const postAcceptAlert = async (alertId: number) => {
+    let res: string = "";
+
+    const endpoint = `/alerts/${alertId}/accept`;
+    await httpInstance
+        .post(endpoint)
+        .then((response) => {
+            res = response.data;
+        })
+        .catch((err) => {
+            res = err.response
+        });
+    return res;
+};

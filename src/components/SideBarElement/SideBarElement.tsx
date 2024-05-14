@@ -25,19 +25,19 @@ const SideBarElement: React.FC<ISideBarElement> = ({ label, isSection = false, i
       <div className='side-bar-element__container__content'>
         <div className='side-bar-element__container__icon'>
           <div className='side-bar-element__container__icon'>
-            <Icon 
-              iconName={icon.iconName} 
-              color={isSelected ? 'orange' : 'white'} 
+            <Icon
+              iconName={icon.iconName}
+              color={isSelected ? 'orange' : 'white'}
             />
           </div>
         </div>
-        {isExpanded && 
+        {isExpanded &&
           <span className={contentClasses}>
             {label}
           </span>
         }
       </div>
-      {isSection && 
+      {isSection &&
         <hr />
       }
     </Link>

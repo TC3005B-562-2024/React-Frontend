@@ -1,5 +1,5 @@
 .progress-bar {
-    @apply w-full space-y-2 p-4 rounded-lg bg-white ;
+    @apply w-full space-y-2 p-4 rounded-lg bg-white;
 }
 
 .progress-bar--shadow {

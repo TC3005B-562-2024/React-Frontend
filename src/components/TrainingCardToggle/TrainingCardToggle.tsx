@@ -9,14 +9,14 @@ const TrainingCardToggle: React.FC<ITrainingCardToggle> = ({
             <div className='flex'>
                 <div className='flex-1 grow mx-4 my-4'>
                     {label}
-                    </div>
+                </div>
                 <div className='flex items-center my-4 mr-4'>
                     <CompleteButton
                         isComplete={isComplete}
                         color='green'
                     />
                 </div>
-            </div>  
+            </div>
         </div>
     );
 };

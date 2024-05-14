@@ -7,4 +7,4 @@ export interface IMultiselectOptions {
      * The label to display for the option
      */
     label: string;
-};
+}

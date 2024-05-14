@@ -13,7 +13,7 @@ const meta = {
     }
   },
   tags: ["autodocs"]
-}satisfies Meta<typeof ErrorCard>;
+} satisfies Meta<typeof ErrorCard>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

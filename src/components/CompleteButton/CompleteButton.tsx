@@ -6,7 +6,7 @@ const CompleteButton: React.FC<ICompleteButton> = ({
     color = 'green',
     isComplete = false,
 }) => {
-    
+
     const [completed, setCompleted] = useState(isComplete);
 
     const handleButtonClick = () => {
@@ -20,7 +20,7 @@ const CompleteButton: React.FC<ICompleteButton> = ({
 
     return (
         <button onClick={handleButtonClick} className='flex'>
-            <Icon iconName={completed ? 'check_circle_fill' : 'radio_button_unchecked'} color={color}/>
+            <Icon iconName={completed ? 'check_circle_fill' : 'radio_button_unchecked'} color={color} />
         </button>
     );
 };

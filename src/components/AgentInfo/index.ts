@@ -1,2 +1,1 @@
-export {default as AgentInfo} from './AgentInfo.tsx';
-
+export { default as AgentInfo } from './AgentInfo.tsx';

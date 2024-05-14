@@ -10,9 +10,9 @@ const meta = {
     layout: "centered",
     backgrounds: {
       default: 'aci-orange',
-        values: [
-          { name: 'aci-orange', value: '#FCA311' },
-        ],
+      values: [
+        { name: 'aci-orange', value: '#FCA311' },
+      ],
     },
   },
   tags: ['autodocs'],

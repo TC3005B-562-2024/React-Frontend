@@ -1,2 +1,1 @@
-export {default as TrainingCardToggle} from './TrainingCardToggle.tsx';
-
+export { default as TrainingCardToggle } from './TrainingCardToggle.tsx';

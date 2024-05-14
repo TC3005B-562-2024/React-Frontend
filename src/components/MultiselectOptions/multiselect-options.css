@@ -7,11 +7,11 @@
 }
 
 .multiselect-options__container__checkbox-container {
-  @apply relative aspect-square h-7 bg-neutral-200 border-2 border-solid	border-black rounded;
+  @apply relative aspect-square h-7 bg-neutral-200 border-2 border-solid border-black rounded;
 }
 
 .multiselect-options__container__checkbox-container__checkbox {
-  @apply absolute inset-0	opacity-0	z-10 cursor-pointer;
+  @apply absolute inset-0 opacity-0 z-10 cursor-pointer;
 }
 
 .multiselect-options__container__label {

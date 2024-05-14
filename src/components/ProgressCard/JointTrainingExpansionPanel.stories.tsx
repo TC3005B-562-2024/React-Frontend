@@ -20,11 +20,11 @@ export default {
     },
     parameters:
     {
-        layout : 'centered', 
+      layout: 'centered',
     },
   },
-  tags : ["autodocs"]
-  
+  tags: ["autodocs"]
+
 } as Meta;
 
 const Template: StoryFn<IJointTrainingExpansionPanel> = (args) => <JointTrainingExpansionPanel {...args} />;
@@ -32,6 +32,6 @@ const Template: StoryFn<IJointTrainingExpansionPanel> = (args) => <JointTraining
 export const DefaultView = Template.bind({});
 DefaultView.args = {
   label: 'Trainings of calls',
-  trainings: [["10", "20", "30", "40", "50"], ["Juan", "Pedro", "Maria", "Jose", "Luis"],["calls"]] 
+  trainings: [["10", "20", "30", "40", "50"], ["Juan", "Pedro", "Maria", "Jose", "Luis"], ["calls"]]
 };
 

@@ -30,16 +30,16 @@ const SearchBar: React.FC<SearchBarProps> = ({ placeholder = "Search...", onSear
                     placeholder={placeholder}
                     className="text-text w-full p-2 focus:outline-none rounded-l-lg pr-10"
                 />
-                <button 
+                <button
                     className="relative flex justify-center items-center h-6 w-6 shadow bg-aci-orange rounded mr-2 hover:bg-aci-orange-dark"
                     onClick={() => onSearch(inputValue)}
                 >
                     <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                        <Icon iconName={'search'} color='white'/>
-                </div>
-             </button>
+                        <Icon iconName={'search'} color='white' />
+                    </div>
+                </button>
+            </div>
         </div>
-    </div>
     );
 };
 

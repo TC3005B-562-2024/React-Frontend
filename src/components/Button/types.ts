@@ -16,7 +16,7 @@ export interface IButton {
     /**
      * The size of the button.
      */
-    size?: 'banner'| 'section-title' | 'title' | 'text' | 'detail';
+    size?: 'banner' | 'section-title' | 'title' | 'text' | 'detail';
     /**
      * The color of the button
      */
