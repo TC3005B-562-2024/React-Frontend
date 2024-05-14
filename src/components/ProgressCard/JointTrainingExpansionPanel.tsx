@@ -14,7 +14,8 @@ const MyJointTrainingExpansionPanel: React.FC<IJointTrainingExpansionPanel> = (
     const [average, setAverage] = useState<number>(0);
 
     const calculateAverage = () => {
-        return 0;
+        const average = trainings[0].reduce((acc, curr) => acc + parseInt(curr), 0) / trainings[0].length;
+        return average;
     };
 
     useEffect(() => {
