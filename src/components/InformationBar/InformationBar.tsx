@@ -11,7 +11,7 @@ const InformationBar: React.FC<IInformationBar> = ({
             <div className='text-title bg-aci-orange rounded-t-lg text-left indent-2.5 '>
                 {title}
             </div>
-            <div className='grid grid-cols-5 gap-auto justify-left'>
+            <div className='flex flex-wrap justify-between'>
                 {elements.map((element, index) => {
                     return (
                         <ItemSubitem
