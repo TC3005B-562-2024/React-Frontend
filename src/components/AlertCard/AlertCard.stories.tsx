@@ -2,11 +2,13 @@
 import { Meta, StoryObj } from '@storybook/react';
 import AlertCard from './AlertCard';
 import { IAlertCard } from "./types"
+import { withRouter } from 'storybook-addon-react-router-v6';
 
 // Definición de metadatos y configuración para Storybook
 const meta: Meta<IAlertCard> = {
   title: 'Components/AlertCard',
   component: AlertCard,
+  decorators: [withRouter],
   parameters: {
     layout: 'padded',
     docs: {

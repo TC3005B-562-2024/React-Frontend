@@ -34,7 +34,6 @@ const PrivateRouter = () => {
           <SideBar skills={skillsReceived} />
           <div className='w-full h-lvh overflow-scroll'>
             <AlertNav instanceId={'ID'} alertsExists={true} />
-
             <div className='overflow-y-scroll mx-5 my-5 mr-5'>
               <Outlet />
             </div>

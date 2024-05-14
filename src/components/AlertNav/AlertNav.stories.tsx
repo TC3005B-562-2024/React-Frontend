@@ -1,6 +1,7 @@
 import { Meta, StoryFn } from '@storybook/react';
 import AlertNav from './AlertNav';
 import { IAlertNav } from './types';
+import { withRouter } from 'storybook-addon-react-router-v6';
 
 /**
  * This component displays an alert navigation bar.
@@ -8,6 +9,7 @@ import { IAlertNav } from './types';
 export default {
   title: 'Components/AlertNav',
   component: AlertNav,
+  decorators: [withRouter],
   tags: ["autodocs"],
   argTypes: {
     instanceId: {
