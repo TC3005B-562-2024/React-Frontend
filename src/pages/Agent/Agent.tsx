@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { AlertCard, ErrorCard, IndividualTrainingExpansionPanel, InformationBar } from "../../components";
-import classNames from 'classnames';
 import './Agent.css';
 import { IAlertResponse } from "../../services/alerts/types";
 import { getAllAlerts } from "../../services";
@@ -22,21 +21,6 @@ const Agent: React.FC = () => {
   const fcrColor = 'red';
   const adherenceColor = 'red';
 
-  const topContainer = classNames(
-    'top-container',
-  );
-  const sectionTitle = classNames(
-    'section-title',
-  );
-  const agentId = classNames(
-    'agent-id',
-  );
-  const item = classNames(
-    'item',
-  );
-  const pageLastItem = classNames(
-    'page-last-item',
-  );
 
   const getAlerts = async () => {
     await getAllAlerts()
@@ -56,11 +40,11 @@ const Agent: React.FC = () => {
 
   return (
     <div className="h-lvh">
-      <div className={topContainer}>
-        <h1 className={sectionTitle}>Agent: </h1>
-        <h1 className={agentId}>{id}</h1>
+      <div className="top-container">
+        <h1 className="section-title">Agent: </h1>
+        <h1 className="agent-id">{id}</h1>
     </div>
-    <div className={item}><InformationBar title="Information" elements={[
+    <div className="item"><InformationBar title="Information" elements={[
       {
         title: 'Name',
         content: 'Element',
@@ -78,7 +62,7 @@ const Agent: React.FC = () => {
       }]}/>
     </div>
 
-    <div className={item}><InformationBar title="Contact Information" elements={[
+    <div className="item"><InformationBar title="Contact Information" elements={[
           {
           title: 'ID',
           content: 'Element',
@@ -95,7 +79,7 @@ const Agent: React.FC = () => {
           color: emotionColor
         }]}/></div>
 
-        <div className={item}><InformationBar title="Metrics" elements={[{
+        <div className="item"><InformationBar title="Metrics" elements={[{
           title: 'Service Level',
           content: 'Element',
           color: serviceLevelColor
@@ -121,7 +105,7 @@ const Agent: React.FC = () => {
           color: adherenceColor
         }]} /></div>
 
-        <div className={sectionTitle}>Alerts</div>
+        <div className="section-title">Alerts</div>
 
         {loadingAlerts && 
           <div className="text-text">
@@ -147,8 +131,8 @@ const Agent: React.FC = () => {
         {alertsReceived !== undefined && alertsReceived.high.length !== 0 && alertsReceived.low.map(alert =>
           <AlertCard alertName={alert.insight.category.denomination} alertOwner={alert.resource} alertPriority={"LOW"} individualAlertLink={`${Config.FRONT_URL}alerts/${alert.id}`} alertId={alert.id}/>
         )}
-        <div className={sectionTitle}>Trainings</div>
-        <div className={pageLastItem}><IndividualTrainingExpansionPanel title={"Trainings of Agent..."} trainings={[
+        <div className="section-title">Trainings</div>
+        <div className="page-last-item"><IndividualTrainingExpansionPanel title={"Trainings of Agent..."} trainings={[
           {label: 'Training Description',
           isComplete: true},
           {
