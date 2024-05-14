@@ -16,7 +16,7 @@ const MyJointTrainingExpansionPanel: React.FC<IJointTrainingExpansionPanel> = (
   const [average, setAverage] = useState<number>(0);
 
   const calculateAverage = () => {
-    return 0;
+    return +(trainings.reduce((acc, training) => acc + training.progress, 0) / trainings.length).toFixed(2);
   };
 
   useEffect(() => {
@@ -48,11 +48,11 @@ const MyJointTrainingExpansionPanel: React.FC<IJointTrainingExpansionPanel> = (
         </div>
       </button>
       {
-        isExpanded && Array.from({ length: trainings[0].length }).map((_, i) => (
+        isExpanded && trainings.length !== 0 && trainings.map((training) => (
           <ProgressBar
-            progress={parseInt(trainings[0][i])}
+            progress={training.progress}
             color={color}
-            label={trainings[1][i]}
+            label={training.label}
             hasShadow={false}
           />
         ))
