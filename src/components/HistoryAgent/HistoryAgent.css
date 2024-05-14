@@ -1,0 +1,48 @@
+.history-agent__container {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .history-agent__container:hover {
+    background-color: #f0f0f0;
+  }
+  
+  .history-agent__content {
+    display: flex;
+    align-items: center;
+  }
+  
+  .history-agent__left {
+    flex: 1;
+  }
+  
+  .history-agent__right {
+    display: flex;
+    align-items: center;
+  }
+  
+  .history-agent__date {
+    margin-right: 10px;
+  }
+  
+  .history-agent__icon {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+  
+  .history-agent__icon span {
+    margin-left: 5px;
+  }
+  
+  .history-agent__description {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 4px;
+  }
+  
