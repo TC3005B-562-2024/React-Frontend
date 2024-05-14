@@ -35,5 +35,9 @@
 }
 
 .agent-info__content__skills {
-  @apply w-full flex flex-wrap space-x-3;
+  @apply w-full flex flex-wrap;
+}
+
+.agent-info__content__skills__pill {
+  @apply mr-3 mb-2;
 }

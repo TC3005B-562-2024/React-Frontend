@@ -1,8 +1,8 @@
 .sections-text{
-    @apply text-banner font-bold pb-3
+  @apply text-banner font-bold pb-3
 }
 
 .cards-container {
-    @apply grid lg:grid-cols-2 md:grid-cols-1 mt-5 gap-4 p-1;
-  }
+  @apply grid lg:grid-cols-2 md:grid-cols-1 mt-5 gap-4 p-1;
+}
   

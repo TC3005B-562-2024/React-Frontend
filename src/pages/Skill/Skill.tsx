@@ -92,32 +92,32 @@ const Skill: React.FC = () => {
           ]}
           />
         <div>
-            <span className='sections-text'>
-              Alerts
-            </span>
-            {loading &&
-              <ErrorCard title='Loading...'></ErrorCard>
+          <span className='sections-text'>
+            Alerts
+          </span>
+          {loading &&
+            <ErrorCard title='Loading...'></ErrorCard>
+          }
+          {errorAlerts &&
+            <ErrorCard title='Error fetching alerts'></ErrorCard>
+          }
+          {!loading && !errorAlerts && alertsReceived !== undefined && alertsReceived.high.length === 0 && alertsReceived.medium.length === 0 && alertsReceived.low.length === 0 &&
+            <ErrorCard title='No alerts found'></ErrorCard>
+          }
+          <div className="flex flex-col space-y-4 p-1">
+            {alertsReceived !== undefined && alertsReceived.high.length !== 0 &&
+              <AlertExpansionPanel
+                alerts={alertsReceived.high.map(alert => ({
+                  alertId: alert.id,
+                  alertName: alert.insight.category.denomination,
+                  alertOwner: alert.resource,
+                  alertPriority: 'CRITIC',
+                  individualAlertLink: `${alert.id}`
+                })) as IAlertCard[]}
+              />
             }
-            {errorAlerts &&
-              <ErrorCard title='Error fetching alerts'></ErrorCard>
-            }
-            {!loading && !errorAlerts && alertsReceived !== undefined && alertsReceived.high.length === 0 && alertsReceived.medium.length === 0 && alertsReceived.low.length === 0 &&
-              <ErrorCard title='No alerts found'></ErrorCard>
-            }
-            <div className="flex flex-col space-y-4 p-1">
-              {alertsReceived !== undefined && alertsReceived.high.length !== 0 &&
-                <AlertExpansionPanel
-                  alerts={alertsReceived.high.map(alert => ({
-                    alertId: alert.id,
-                    alertName: alert.insight.category.denomination,
-                    alertOwner: alert.resource,
-                    alertPriority: 'CRITIC',
-                    individualAlertLink: `${alert.id}`
-                  })) as IAlertCard[]}
-                />
-              }
-              {alertsReceived != undefined && alertsReceived?.medium.length !== 0 &&
-                <AlertExpansionPanel
+            {alertsReceived != undefined && alertsReceived?.medium.length !== 0 &&
+              <AlertExpansionPanel
                   alerts={alertsReceived.medium.map(alert => ({
                     alertId: alert.id,
                     alertName: alert.insight.category.denomination,
@@ -154,7 +154,7 @@ const Skill: React.FC = () => {
                 />
 
             </div>
-           </div>
+          </div>
           <div>
             <span className='sections-text'>
               Agents
@@ -168,7 +168,7 @@ const Skill: React.FC = () => {
                 ]}
                 status='ONCALL'
                 topPriorityAlert="LOW"
-                />
+              />
               <AgentInfo
                 agentName='Agent Name'
                 sentiment="POSITIVE"
@@ -177,7 +177,7 @@ const Skill: React.FC = () => {
                 ]}
                 status='AVAILABLE'
                 topPriorityAlert="MEDIUM"
-                />
+              />
               <AgentInfo
                 agentName='Agent Name'
                 sentiment="NEGATIVE"
@@ -186,7 +186,7 @@ const Skill: React.FC = () => {
                 ]}
                 status='ONCALL'
                 topPriorityAlert="CRITICAL"
-                />
+              />
               <AgentInfo
                 agentName='Agent Name'
                 sentiment="POSITIVE"
@@ -195,7 +195,7 @@ const Skill: React.FC = () => {
                 ]}
                 status='DISCONNECTED'
                 topPriorityAlert="MEDIUM"
-                />
+              />
               <AgentInfo
                 agentName='Agent Name'
                 sentiment="POSITIVE"
@@ -204,7 +204,7 @@ const Skill: React.FC = () => {
                 ]}
                 status='AVAILABLE'
                 topPriorityAlert="MEDIUM"
-                />
+              />
               <AgentInfo
                 agentName='Agent Name'
                 sentiment="POSITIVE"
@@ -213,7 +213,7 @@ const Skill: React.FC = () => {
                 ]}
                 status='AVAILABLE'
                 topPriorityAlert="MEDIUM"
-                />
+              />
               <AgentInfo
                 agentName='Agent Name'
                 sentiment="POSITIVE"
@@ -222,7 +222,7 @@ const Skill: React.FC = () => {
                 ]}
                 status='DISCONNECTED'
                 topPriorityAlert="MEDIUM"
-                />
+              />
             </div>
           </div>
         </div>
