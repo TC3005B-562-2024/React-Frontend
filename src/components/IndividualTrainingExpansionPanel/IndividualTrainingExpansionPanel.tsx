@@ -23,7 +23,7 @@ const IndividualTrainingExpansionPanel: React.FC<IIndividualTrainingExpansionPan
   });
 
   const buttonClasses = classNames('transition duration-300', {
-    'transition-transform rotate-180': expanded,
+    'transition-transform -rotate-180': expanded,
   });
 
   const handleButtonClick = () => {

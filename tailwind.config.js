@@ -40,6 +40,9 @@ export default {
         'xl': '1280px',
         '2xl': '1536px',
       },
+      rotate: {
+        '270': '270deg',
+      },
     },
   },
   plugins: [],

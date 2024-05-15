@@ -7,6 +7,7 @@ import { withRouter } from 'storybook-addon-react-router-v6';
 const meta: Meta = {
   title: 'Components/AlertExpansionPanel',
   component: AlertExpansionPanel,
+  decorators: [withRouter],
   parameters: {
     layout: 'padded', // Opcional: establece el diseño de las historias
     docs: {

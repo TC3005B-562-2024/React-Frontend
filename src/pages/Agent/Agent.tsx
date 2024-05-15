@@ -1,9 +1,17 @@
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { AlertCard, IndividualTrainingExpansionPanel, InformationBar } from "../../components";
-import './AgentPage.css';
+import { AlertCard, ErrorCard, IndividualTrainingExpansionPanel, InformationBar } from "../../components";
+import './Agent.css';
+import { IAlertResponse } from "../../services/alerts/types";
+import { getAllAlerts } from "../../services";
+import Config from "../../config";
 
-const Agent = () => {
+const Agent: React.FC = () => {
   const { id } = useParams();
+  const [alertsReceived, setAlertsReceived] = useState<IAlertResponse>();
+  const [loadingAlerts, setLoading] = useState<boolean>(false);
+  const [errorAlerts, setErrorAlerts] = useState<boolean>(false);
+
   const statusColor = 'red';
   const durationColor = 'green';
   const emotionColor = 'yellow';
@@ -13,108 +21,128 @@ const Agent = () => {
   const fcrColor = 'red';
   const adherenceColor = 'red';
 
+
+  const getAlerts = async () => {
+    await getAllAlerts()
+    .then((res) => {
+      if (res !== null) setAlertsReceived(res);
+    }) 
+    .catch(() => {
+      setErrorAlerts(true);
+    });
+    setLoading(false);
+  };
+    
+  useEffect(() => {
+    setLoading(true);
+    getAlerts();
+  }, []);
+
   return (
-    <div className="agent-page__container">
-      <div className="agent-page__container__header">
-        <h1 className="agent-page__container__header__text">Agent: </h1>
-        <h1 className="agent-page__container__header__text--orange">{id}</h1>
-      </div>
-      <div className="agent-page__container__card-container">
-        <InformationBar
-          title="Information"
-          elements={[
-            {
-              title: 'Name',
-              content: 'Element',
-              color: 'black'
-            },
-            {
-              title: 'Skill',
-              content: 'Element',
-              color: 'black'
-            },
-            {
-              title: 'Status',
-              content: 'Element',
-              color: statusColor
-            }
-          ]}
-        />
-        <InformationBar
-          title="Contact Information"
-          elements={[
-            {
-              title: 'ID',
-              content: 'Element',
-              color: 'black'
-            },
-            {
-              title: 'Duration',
-              content: 'Element',
-              color: durationColor
-            },
-            {
-              title: 'Emotion',
-              content: 'Element',
-              color: emotionColor
-            }]}
-        />
-        <InformationBar
-          title="Metrics"
-          elements={[
-            {
-              title: 'Service Level',
-              content: 'Element',
-              color: serviceLevelColor
-            },
-            {
-              title: 'ACR',
-              content: 'Element',
-              color: acrColor
-            },
-            {
-              title: 'ASA',
-              content: 'Element',
-              color: asaColor
-            },
-            {
-              title: 'FCR',
-              content: 'Element',
-              color: fcrColor
-            },
-            {
-              title: 'Adherence',
-              content: 'Element',
-              color: adherenceColor
-            }]}
-        />
-      </div>
-      <div className="agent-page__container__header__text">
-        Alerts
-      </div>
-      <div className="agent-page__container__card-container">
-        <AlertCard alertName={"Alert Name"} alertOwner={"Agent Name"} alertPriority={"CRITIC"} individualAlertLink={""} alertId={0} />
-        <AlertCard alertName={"Alert Name"} alertOwner={"Agent Name"} alertPriority={"MEDIUM"} individualAlertLink={""} alertId={0} />
-      </div>
-      <div className="agent-page__container__header__text">
-        Trainings
-      </div>
-      <div className="agent-page__container__card-container">
-        <IndividualTrainingExpansionPanel
-          title={"Trainings of Agent..."}
-          trainings={[
-            {
-              label: 'Training Description',
-              isComplete: true
-            },
-            {
-              label: 'Training Description',
-              isComplete: false
-            }
-          ]}
-        />
-      </div>
+    <div className="h-lvh">
+      <div className="top-container">
+        <h1 className="section-title">Agent: </h1>
+        <h1 className="agent-id">{id}</h1>
+    </div>
+    <div className="item"><InformationBar title="Information" elements={[
+      {
+        title: 'Name',
+        content: 'Element',
+        color: 'black'
+      },
+      {
+        title:'Skill',
+        content: 'Element',
+        color: 'black'
+      },
+      {
+        title: 'Status',
+        content: 'Element',
+        color: statusColor
+      }]}/>
+    </div>
+
+    <div className="item"><InformationBar title="Contact Information" elements={[
+          {
+          title: 'ID',
+          content: 'Element',
+          color: 'black'
+        },
+        {
+          title: 'Duration',
+          content: 'Element',
+          color: durationColor
+        },
+        {
+          title: 'Emotion',
+          content: 'Element',
+          color: emotionColor
+        }]}/></div>
+
+        <div className="item"><InformationBar title="Metrics" elements={[{
+          title: 'Service Level',
+          content: 'Element',
+          color: serviceLevelColor
+        },
+        {
+          title: 'ACR',
+          content: 'Element',
+          color: acrColor
+        },
+        {
+          title: 'ASA',
+          content: 'Element',
+          color: asaColor
+        },
+        {
+          title: 'FCR',
+          content: 'Element',
+          color: fcrColor
+        },
+        {
+          title: 'Adherence',
+          content: 'Element',
+          color: adherenceColor
+        }]} /></div>
+
+        <div className="section-title">Alerts</div>
+
+        {loadingAlerts && 
+          <div className="text-text">
+            <ErrorCard title={"Loading..."}></ErrorCard>
+          </div>
+        }
+        {errorAlerts && 
+          <div className="text-text">
+            <ErrorCard title={"Error fetching alerts"}></ErrorCard>
+          </div>
+        }
+        {!loadingAlerts && !errorAlerts && 
+          <div className="text-text">
+            <ErrorCard title={"No alerts found"}></ErrorCard>
+          </div>
+        }
+        {alertsReceived !== undefined && alertsReceived.high.length !== 0 && alertsReceived.high.map(alert =>
+          <AlertCard alertName={alert.insight.category.denomination} alertOwner={alert.resource} alertPriority={"CRITIC"} individualAlertLink={`${Config.FRONT_URL}alerts/${alert.id}`} alertId={alert.id}/>
+        )}
+        {alertsReceived !== undefined && alertsReceived.high.length !== 0 && alertsReceived.medium.map(alert =>
+          <AlertCard alertName={alert.insight.category.denomination} alertOwner={alert.resource} alertPriority={"MEDIUM"} individualAlertLink={`${Config.FRONT_URL}alerts/${alert.id}`} alertId={alert.id}/>
+        )}
+        {alertsReceived !== undefined && alertsReceived.high.length !== 0 && alertsReceived.low.map(alert =>
+          <AlertCard alertName={alert.insight.category.denomination} alertOwner={alert.resource} alertPriority={"LOW"} individualAlertLink={`${Config.FRONT_URL}alerts/${alert.id}`} alertId={alert.id}/>
+        )}
+        <div className="section-title">Trainings</div>
+        <div className="page-last-item"><IndividualTrainingExpansionPanel title={"Trainings of Agent..."} trainings={[
+          {label: 'Training Description',
+          isComplete: true},
+          {
+          label: 'Training Description',
+          isComplete: false}
+          ]} /></div>
+
     </div>
   );
 };
-export default Agent;
+  
+  export default Agent;
+  

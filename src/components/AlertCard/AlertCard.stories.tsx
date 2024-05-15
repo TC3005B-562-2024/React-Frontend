@@ -8,6 +8,7 @@ import { withRouter } from 'storybook-addon-react-router-v6';
 const meta: Meta<IAlertCard> = {
   title: 'Components/AlertCard',
   component: AlertCard,
+  decorators: [withRouter],
   parameters: {
     layout: 'padded',
     docs: {

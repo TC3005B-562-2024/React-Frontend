@@ -32,6 +32,19 @@ const Template: StoryFn<IJointTrainingExpansionPanel> = (args) => <JointTraining
 export const DefaultView = Template.bind({});
 DefaultView.args = {
   label: 'Trainings of calls',
-  trainings: [["10", "20", "30", "40", "50"], ["Juan", "Pedro", "Maria", "Jose", "Luis"], ["calls"]]
+  trainings: [
+    {
+      progress: 50,
+      label: 'Training 1',
+    },
+    {
+      progress: 70,
+      label: 'Training 2',
+    },
+    {
+      progress: 90,
+      label: 'Training 3',
+    }
+  ]
 };
 

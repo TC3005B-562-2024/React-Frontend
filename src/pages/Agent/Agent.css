@@ -1,0 +1,15 @@
+.top-container{
+    @apply flex flex-row space-x-3;
+}
+.section-title{
+    @apply text-section-title font-semibold;
+}
+.agent-id{
+    @apply text-section-title font-semibold text-aci-orange;
+}
+.item{
+    @apply my-2;
+}
+.page-last-item{
+    @apply my-2 pb-32;
+}
