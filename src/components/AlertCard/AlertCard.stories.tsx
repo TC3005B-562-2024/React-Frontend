@@ -28,7 +28,6 @@ const meta: Meta<IAlertCard> = {
     individualAlertLink: { control: 'text' },
   },
   tags: ["autodocs"],
-  decorators: [withRouter],
 } satisfies Meta<typeof AlertCard>;
 
 export default meta;

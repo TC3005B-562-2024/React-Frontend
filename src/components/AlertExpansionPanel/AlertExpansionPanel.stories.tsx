@@ -19,7 +19,6 @@ const meta: Meta = {
   argTypes: {
     alerts: { control: 'object' }, // Ejemplo de definición de propiedades
   },
-  decorators: [withRouter], // Opcional: decoradores para envolver el componente
   tags: ["autodocs"], // Opcional: etiquetas adicionales para clasificar el componente
 };
 export default meta;
