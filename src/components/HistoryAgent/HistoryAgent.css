@@ -1,48 +1,83 @@
+/* HistoryAgent.css */
+
 .history-agent__container {
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    margin-bottom: 10px;
-    padding: 10px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .history-agent__container:hover {
-    background-color: #f0f0f0;
-  }
-  
-  .history-agent__content {
-    display: flex;
-    align-items: center;
-  }
-  
-  .history-agent__left {
-    flex: 1;
-  }
-  
-  .history-agent__right {
-    display: flex;
-    align-items: center;
-  }
-  
-  .history-agent__date {
-    margin-right: 10px;
-  }
-  
-  .history-agent__icon {
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-  }
-  
-  .history-agent__icon span {
-    margin-left: 5px;
-  }
-  
-  .history-agent__description {
-    margin-top: 10px;
-    padding: 10px;
-    background-color: #f9f9f9;
-    border-radius: 4px;
-  }
-  
+    @apply border rounded-lg mb-10 px-4 py-2 cursor-pointer transition duration-200;
+}
+
+/* Estilos para el contenedor expandido */
+.history-agent__container.expanded {
+    @apply opacity-100; /* Mantener la opacidad */
+}
+
+/* Estilos para el contenedor expandido con color rojo */
+.history-agent__container.expanded.red {
+    @apply bg-red-500; /* Cambiar al color de fondo rojo cuando está expandido */
+}
+
+/* Estilos para el contenedor expandido con color verde */
+.history-agent__container.expanded.green {
+    @apply bg-green-500; /* Cambiar al color de fondo verde cuando está expandido */
+}
+
+/* Estilos para el contenedor en hover cuando es verde */
+.history-agent__container.green:hover {
+    @apply bg-green-600 opacity-90; /* Cambiar al color de fondo deseado al pasar el cursor */
+}
+
+/* Estilos para el contenedor en hover cuando es rojo */
+.history-agent__container.red:hover {
+    @apply bg-red-600 opacity-90; /* Cambiar al color de fondo deseado al pasar el cursor */
+}
+
+/* Estilos para el contenedor no expandido con color rojo */
+.history-agent__container.red {
+    @apply bg-red-500; /* Cambiar al color de fondo rojo cuando no está expandido */
+}
+
+/* Estilos para el contenedor no expandido con color verde */
+.history-agent__container.green {
+    @apply bg-green-500; /* Cambiar al color de fondo verde cuando no está expandido */
+}
+
+.history-agent__content {
+    @apply flex items-center;
+}
+
+.history-agent__left {
+    @apply flex-1 text-3xl;
+}
+
+.history-agent__right {
+    @apply flex items-center;
+}
+
+.history-agent__date {
+    @apply mr-4; /* Cambiar el espaciado según sea necesario */
+}
+
+/* Estilos para el contenedor del icono y el estado */
+.history-agent__icon-container {
+    @apply opacity-100 rounded-lg px-2 py-1 flex flex-col items-center h-16; /* Aplicar estilos comunes */
+}
+
+/* Estilos para el color rojo */
+.history-agent__icon-container.red {
+    @apply bg-red-500; /* Aplicar color rojo */
+}
+
+/* Estilos para el color verde */
+.history-agent__icon-container.green {
+    @apply bg-green-500; /* Aplicar color verde */
+}
+
+.history-agent__icon-container span {
+    @apply mt-2; /* Espacio entre el icono y el estado */
+}
+
+.history-agent__description {
+    @apply mt-4 px-4 py-2 bg-white rounded-lg; /* Cambiar al color de fondo deseado */
+}
+
+.history-agent__description.expanded {
+    @apply bg-green-300; /* Cambiar al color de fondo deseado cuando está expandido */
+}

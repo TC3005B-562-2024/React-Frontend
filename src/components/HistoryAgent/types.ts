@@ -5,4 +5,5 @@ export interface IHistoryAgentProps {
     date: Date;
     icon: IIconNoColorNoSize;
     description: string;
+    color?: 'red' | 'green';
   }
