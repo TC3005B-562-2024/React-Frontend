@@ -31,4 +31,9 @@ export const ROUTES = {
         path: '/alerts',
         name: 'Alerts'
     },
+    LOGS: {
+        path: '/logs',
+        name: 'Logs'
+    },
+
 };
