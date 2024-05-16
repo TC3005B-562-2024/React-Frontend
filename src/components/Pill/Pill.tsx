@@ -1,9 +1,9 @@
 import { IPill } from "./types";
 import classNames from "classnames";
 
-const Pill: React.FC<IPill> = ({ text, color }) => {
+const Pill: React.FC<IPill> = ({ text, color, className = "" }) => {
 
-  const classes = classNames({
+  const classes = classNames(className, {
     'inline-block rounded-lg px-2': true,
     'bg-aci-red': color === 'red',
     'bg-aci-green': color === 'green',
