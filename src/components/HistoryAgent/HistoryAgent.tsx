@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Icon } from '../Icon';
 import { IIconNoColorNoSize } from "../Icon/types";
 import './HistoryAgent.css';
+import classNames from 'classnames';
 
 interface IHistoryAgentProps {
   log: string;
@@ -18,6 +19,17 @@ const HistoryAgent: React.FC<IHistoryAgentProps> = ({ log, date, icon, descripti
     setExpanded(!expanded);
   };
 
+  const containerClasses = classNames('history-agent__container', {
+    'history-agent__container--expanded': expanded,
+    'history-agent__container--red': color === 'red' && expanded,
+    'history-agent__container--green': color === 'green' && expanded,
+  });
+
+  const iconsClasses = classNames('history-agent__icon-container', {
+    'history-agent__icon-container--red': color === 'red',
+    'history-agent__icon-container--green': color === 'green',
+  });
+
   const formatDate = (date: Date) => {
     const options: Intl.DateTimeFormatOptions = { 
       year: 'numeric', 
@@ -30,7 +42,7 @@ const HistoryAgent: React.FC<IHistoryAgentProps> = ({ log, date, icon, descripti
   };
 
   return (
-    <div className={`history-agent__container ${expanded ? `expanded ${color}` : ''}`} onClick={handlePanelClick}>
+    <div className={containerClasses} onClick={handlePanelClick}>
       <div className="history-agent__content">
         <div className="history-agent__left">
           <div className="history-agent__log">{log}</div>
@@ -40,9 +52,11 @@ const HistoryAgent: React.FC<IHistoryAgentProps> = ({ log, date, icon, descripti
             <div className="history-agent__date">{formatDate(date)}</div>
           )}
           <div className="history-agent__icon-status-container">
-            <div className={`history-agent__icon-container ${color}`}>
+            <div className={iconsClasses}>
               <Icon iconName={icon.iconName} />
-              <span>{color === 'green' ? 'accepted' : 'ignored'}</span>
+              <span className='history-agent__icon-status-container__text'>
+                {color === 'green' ? 'accepted' : 'ignored'}
+              </span>
             </div>
           </div>
         </div>

@@ -1,42 +1,21 @@
 /* HistoryAgent.css */
-
 .history-agent__container {
     @apply border rounded-lg mb-10 px-4 py-2 cursor-pointer transition duration-200;
 }
 
 /* Estilos para el contenedor expandido */
-.history-agent__container.expanded {
+.history-agent__container--expanded {
     @apply opacity-100; /* Mantener la opacidad */
 }
 
 /* Estilos para el contenedor expandido con color rojo */
-.history-agent__container.expanded.red {
-    @apply bg-red-500; /* Cambiar al color de fondo rojo cuando está expandido */
+.history-agent__container--red {
+    @apply bg-red-500 hover:bg-red-600 hover:opacity-90; /* Cambiar al color de fondo rojo cuando está expandido */
 }
 
 /* Estilos para el contenedor expandido con color verde */
-.history-agent__container.expanded.green {
-    @apply bg-green-500; /* Cambiar al color de fondo verde cuando está expandido */
-}
-
-/* Estilos para el contenedor en hover cuando es verde */
-.history-agent__container.green:hover {
-    @apply bg-green-600 opacity-90; /* Cambiar al color de fondo deseado al pasar el cursor */
-}
-
-/* Estilos para el contenedor en hover cuando es rojo */
-.history-agent__container.red:hover {
-    @apply bg-red-600 opacity-90; /* Cambiar al color de fondo deseado al pasar el cursor */
-}
-
-/* Estilos para el contenedor no expandido con color rojo */
-.history-agent__container.red {
-    @apply bg-red-500; /* Cambiar al color de fondo rojo cuando no está expandido */
-}
-
-/* Estilos para el contenedor no expandido con color verde */
-.history-agent__container.green {
-    @apply bg-green-500; /* Cambiar al color de fondo verde cuando no está expandido */
+.history-agent__container--green {
+    @apply bg-green-500 hover:bg-green-600 hover:opacity-90; /* Cambiar al color de fondo verde cuando está expandido */
 }
 
 .history-agent__content {
@@ -61,23 +40,19 @@
 }
 
 /* Estilos para el color rojo */
-.history-agent__icon-container.red {
+.history-agent__icon-container--red {
     @apply bg-red-500; /* Aplicar color rojo */
 }
 
 /* Estilos para el color verde */
-.history-agent__icon-container.green {
+.history-agent__icon-container--green {
     @apply bg-green-500; /* Aplicar color verde */
 }
 
-.history-agent__icon-container span {
+.history-agent__icon-status-container__text {
     @apply mt-2; /* Espacio entre el icono y el estado */
 }
 
 .history-agent__description {
     @apply mt-4 px-4 py-2 bg-white rounded-lg; /* Cambiar al color de fondo deseado */
-}
-
-.history-agent__description.expanded {
-    @apply bg-green-300; /* Cambiar al color de fondo deseado cuando está expandido */
 }
