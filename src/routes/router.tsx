@@ -1,11 +1,9 @@
-import { Agent, Queue, Skill, Landing, Alerts, Agents, Alert, Logs } from "../pages";
+import { Agent, Queue, Skill, Landing, Alerts, Agents, Alert, Logs, Login } from "../pages";
 import { RouteObject, createBrowserRouter } from 'react-router-dom';
 
 import PrivateRouter from './PrivateRouter';
 import PublicRouter from './PublicRouter';
 import { ROUTES } from "./constants";
-
-import Login from "../pages/login/Login";
 
 const routes: RouteObject[] = [
     {
