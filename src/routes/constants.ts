@@ -35,5 +35,4 @@ export const ROUTES = {
         path: '/logs',
         name: 'Logs'
     },
-
 };
