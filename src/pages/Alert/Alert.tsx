@@ -7,8 +7,6 @@ import { PriorityType } from '../../components/InsightDescription/types';
 import { IAlert } from '../../services/alerts/types';
 import './Alert.css';
 
-
-
 const Alert: React.FC = () => {
     const { id } = useParams();
     const numberId = Number(id);
