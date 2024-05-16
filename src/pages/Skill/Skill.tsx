@@ -6,8 +6,6 @@ import { IAlertResponse } from '../../services/alerts/types';
 import { IAlertCard } from '../../components/AlertCard/types';
 import './Skill.css';
 
-
-
 const Skill: React.FC = () => {
   const { id } = useParams();
   const [alertsReceived, setAlertsReceived] = useState<IAlertResponse>();
@@ -148,11 +146,20 @@ const Skill: React.FC = () => {
               <ProgressCard
                 label='Training 1'
                 trainings={[
-                  ['10', '20', '30', '40', '50'],
-                  ['Owner Name', 'Owner Name', 'Owner Name', 'Owner Name', 'Owner Name']
+                  {
+                    progress: 50,
+                    label: 'Training 1',
+                  },
+                  {
+                    progress: 70,
+                    label: 'Training 2',
+                  },
+                  {
+                    progress: 90,
+                    label: 'Training 3',
+                  }
                 ]}
                 />
-
             </div>
           </div>
           <div>

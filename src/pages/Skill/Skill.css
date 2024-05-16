@@ -1,5 +1,5 @@
 .sections-text{
-  @apply text-banner font-bold pb-3
+  @apply text-banner font-bold pb-3;
 }
 
 .cards-container {
