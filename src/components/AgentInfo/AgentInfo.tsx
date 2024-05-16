@@ -59,8 +59,10 @@ const AgentInfo: React.FC<IAgentInfo> = ({ agentName, sentiment, skillArray, sta
       <div className="agent-info__content__skills">
         {skillArray.map((skill, index) => (
           <Pill
+            key={skill}
             text={skill}
             color={skillColors[index % skillColors.length] as 'green' | 'yellow' | 'blue' | 'red' | 'orange' | 'gray'} // Assign color based on skill
+            className="agent-info__content__skills__pill"
           />
         ))}
       </div>
