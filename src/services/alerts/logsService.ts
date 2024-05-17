@@ -1,6 +1,5 @@
 // logsService.ts
 import httpInstance from "../httpInstance";
-import { IHistoryAgentProps } from "../../components/HistoryAgent/types";
 import { IAlertResponse } from "./types";
 
 export const getLogs = async () => {
