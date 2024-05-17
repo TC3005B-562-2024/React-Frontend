@@ -4,7 +4,7 @@ export const ROUTES = {
         name: 'Landing'
     },
     SKILL: {
-        path: '/skill',
+        path: '/skill/:id',
         name: 'Skill'
     },
     QUEUE: {

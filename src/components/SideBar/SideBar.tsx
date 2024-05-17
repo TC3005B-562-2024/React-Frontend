@@ -55,6 +55,7 @@ const SideBar: React.FC<ISideBar> = ({ skills }) => {
 
           {skills != undefined && skills.map((skill: { alias: string; iconName: string; id: string; }) => (
             <SideBarElement
+              key={skill.id}
               label={skill.alias}
               icon={{ iconName: skill.iconName } as IIconNoColorNoSize}
               path={`/skills/${skill.id}`}
