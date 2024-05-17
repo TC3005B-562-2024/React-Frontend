@@ -36,7 +36,8 @@ const HistoryAgent: React.FC<IHistoryAgentProps> = ({ log, date, icon, descripti
       month: 'long', 
       day: 'numeric',
       hour: 'numeric',
-      minute: 'numeric'
+      minute: 'numeric',
+      second: 'numeric',
     };
     return date.toLocaleDateString(undefined, options);
   };
