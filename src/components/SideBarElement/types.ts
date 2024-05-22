@@ -16,7 +16,11 @@ export interface ISideBarElement {
   /**
    * The path of the SideBarElement.
    */
-  path: string;
+  path?: string;
+   /**
+   * The onClick function of the SideBarElement.
+   */
+   onClick?: () => void;
   /**
    * A boolean that defines if the SideBarElement is expanded or not.
    */
