@@ -5,9 +5,11 @@ import './SideBard.css';
 import { ROUTES } from '../../routes/constants';
 import { ISideBar } from './types';
 import { IIconNoColorNoSize } from '../Icon/types';
+import { useAppContext } from '../../app-context/app-context';
 
 const SideBar: React.FC<ISideBar> = ({ skills }) => {
   const [isExpanded, setExpanded] = useState(true);
+  const { logOut } = useAppContext();
 
   const containerClasses = classNames({
     'side-bar__container': true,
@@ -82,7 +84,7 @@ const SideBar: React.FC<ISideBar> = ({ skills }) => {
             label={ROUTES.LOG_OUT.name}
             isSection={true}
             icon={{ iconName: 'logout' }}
-            path={ROUTES.LOG_OUT.path}
+            onClick={logOut}
             isExpanded={isExpanded}
           />
         </div>
