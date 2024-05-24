@@ -1,5 +1,5 @@
 import { Agent, Queue, Skill, Landing, Alerts, Agents, Alert, Logs, Login } from "../pages";
-import { Navigate, RouteObject, createBrowserRouter } from 'react-router-dom':
+import { Navigate, RouteObject, createBrowserRouter } from 'react-router-dom';
 
 import PrivateRouter from './PrivateRouter';
 import PublicRouter from './PublicRouter';
