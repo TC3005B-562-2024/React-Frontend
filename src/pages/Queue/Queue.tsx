@@ -1,4 +1,4 @@
-import React, { useEffect, useState} from 'react';
+import React, { useCallback, useEffect, useState} from 'react';
 import { useParams } from 'react-router-dom';
 import { InformationBar, ProgressCard, ErrorCard, AlertExpansionPanel, AgentInfo } from '../../components';
 import { getAllAlerts } from '../../services';
@@ -14,7 +14,7 @@ const Queue: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [errorAlerts, setErrorAlerts] = useState<boolean>(false);
 
-  const getAlerts = async () => {
+  const getAlerts = useCallback(async () => {
     await getAllAlerts()
       .then((res) => {
         if (res !== null) setAlertsReceived(res);
@@ -27,12 +27,12 @@ const Queue: React.FC = () => {
         setErrorAlerts(true);
       });
     setLoading(false);
-  };
+  }, []);
 
   useEffect(() => {
     setLoading(true);
     getAlerts();
-  }, []);
+  }, [getAlerts]);
 
   return (
     <>
