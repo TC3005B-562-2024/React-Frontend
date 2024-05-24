@@ -17,9 +17,7 @@ const config: StorybookConfig = {
   docs: {
     autodocs: "tag",
   },
-  core: {
-    builder: '@storybook/builder-vite',
-  },
+  core: {},
   async viteFinal(config) {
     // Merge custom configuration into the default config
     const { mergeConfig } = await import('vite');

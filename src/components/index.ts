@@ -23,3 +23,4 @@ export { ProgressBar } from './ProgressBar';
 export { ProgressCard } from './ProgressCard';
 export { AgentInfo } from './AgentInfo';
 export { AgentList } from './AgentList';
+export {HistoryAgent} from './HistoryAgent';

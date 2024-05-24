@@ -12,9 +12,9 @@ const meta = {
     agentName: { control: 'text' },
     sentiment: {
       options: ['POSITIVE', 'NEUTRAL', 'NEGATIVE', undefined],
-      control: { type: 'select' },
+      control: { type: 'select' },  
     },
-    skillArray: { control: 'array' },
+    skillArray: { control: 'object' },
     status: {
       options: ['ONCALL', 'AVAILABLE', 'DISCONNECTED'],
       control: { type: 'select' },

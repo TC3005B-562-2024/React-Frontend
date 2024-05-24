@@ -17,7 +17,7 @@ const meta: Meta = {
     },
   },
   argTypes: {
-    alerts: { control: 'array' }, // Ejemplo de definición de propiedades
+    alerts: { control: 'object' }, // Ejemplo de definición de propiedades
   },
   tags: ["autodocs"], // Opcional: etiquetas adicionales para clasificar el componente
 };

@@ -11,7 +11,7 @@ const meta = {
     },
     argTypes: {
         iconName: {
-            options: iconNames,
+            options: Array.from(iconNames),
             control: { type: 'select' },
         },
         color: {
