@@ -41,6 +41,7 @@ const Queue: React.FC = () => {
       if (res !== null) setQueueInfo(res);
     })
     .catch((err) => {
+      console.error(err);
       setErrorQueueInfo(true);
     });
     setLoading(false);
@@ -64,6 +65,11 @@ const Queue: React.FC = () => {
         <span className='sections-text'>
           Queue: <span className=' text-aci-orange'>{id}</span>
         </span>
+        {errorQueueInfo && 
+          <div>
+            Hubo un error al cargar la información de la cola
+          </div>
+          }
         {queueInfo && 
         <div>
           {queueInfo.map((info: IInformationBar, index: number) => (
