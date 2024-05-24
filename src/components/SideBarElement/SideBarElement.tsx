@@ -8,7 +8,7 @@ import classNames from "classnames";
 /**
  * The SideBarElement component.
  */
-const SideBarElement: React.FC<ISideBarElement> = ({ label, isSection = false, icon, path, isExpanded, ignoreIsSelected = false }) => {
+const SideBarElement: React.FC<ISideBarElement> = ({ label, isSection = false, icon, path, onClick, isExpanded, ignoreIsSelected = false }) => {
   const isSelected = useLocation().pathname === path && !ignoreIsSelected;
   const containerClasses = classNames({
     'side-bar-element__container--unselected': !isSelected,
@@ -20,27 +20,31 @@ const SideBarElement: React.FC<ISideBarElement> = ({ label, isSection = false, i
     'side-bar-element__container__label--selcted': isSelected,
   });
 
-  return (
-    <Link to={path} className={containerClasses}>
-      <div className='side-bar-element__container__content'>
-        <div className='side-bar-element__container__icon'>
-          <div className='side-bar-element__container__icon'>
-            <Icon
-              iconName={icon.iconName}
-              color={isSelected ? 'orange' : 'white'}
-            />
-          </div>
-        </div>
-        {isExpanded &&
-          <span className={contentClasses}>
-            {label}
-          </span>
-        }
+  const handleClick = () => {
+    if (onClick) {
+      onClick();
+    }
+  };
+
+  const renderContent = () => (
+    <div className='side-bar-element__container__content'>
+      <div className='side-bar-element__container__icon'>
+        <Icon iconName={icon.iconName} color={isSelected ? 'orange' : 'white'} />
       </div>
-      {isSection &&
-        <hr />
-      }
+      {isExpanded && <span className={contentClasses}>{label}</span>}
+    </div>
+  );
+
+  return path ? (
+    <Link to={path} className={containerClasses} onClick={handleClick}>
+      {renderContent()}
+      {isSection && <hr />}
     </Link>
+  ) : (
+    <div className={containerClasses} onClick={handleClick}>
+      {renderContent()}
+      {isSection && <hr />}
+    </div>
   );
 };
 

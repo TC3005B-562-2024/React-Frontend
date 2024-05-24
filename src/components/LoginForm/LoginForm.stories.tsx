@@ -23,14 +23,21 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
+const handleSubmit = (email: string, password: string) => {
+  console.log("Submitted email:", email);
+  console.log("Submitted password:", password);
+};
+
 export const Default: Story = {
     args: {
         status: 'default',
+        onSubmit: handleSubmit,
     },
 };
 
 export const Error: Story = {
     args: {
         status: 'error',
+        onSubmit: handleSubmit,
     },
 };
