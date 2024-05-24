@@ -4,11 +4,13 @@ import { Icon } from "../Icon";
 import { iconNames } from "../Icon/types";
 import './AgentInfo.css';
 import classNames from "classnames";
+import { useNavigate } from "react-router-dom";
 
 /**
  * Agent Info component that displays the agent's name, sentiment, skills, status, and top priority alert.
  */
-const AgentInfo: React.FC<IAgentInfo> = ({ agentName, sentiment, skillArray, status, topPriorityAlert }) => {
+const AgentInfo: React.FC<IAgentInfo> = ({ id, name, sentiment, queues, status, topPriorityAlert }) => {
+  const navigate = useNavigate();
   // If ONCALL phone_in_talk green, else if AVAILABLE call_end yellow, else clear_night blue.
   const [statusIconName, statusIconColor] = status === 'ONCALL' ? ['phone_in_talk', 'green'] : status === 'AVAILABLE' ? ['call_end', 'yellow'] : ['clear_night', 'blue'];
 
@@ -23,8 +25,12 @@ const AgentInfo: React.FC<IAgentInfo> = ({ agentName, sentiment, skillArray, sta
   // Define an array of colors for the skills
   const skillColors = ['blue', 'red', 'green', 'yellow', 'orange', 'gray'];
 
+  const handleAgentClick = () => {
+    navigate(`/agents/${id}`);
+  }
+  
   return (
-    <div className='agent-info__content'>
+    <div className='agent-info__content' onClick={handleAgentClick}>
       <div className="agent-info__content__main-info">
         <div className="agent-info__content__main-info__icon">
           <Icon
@@ -34,7 +40,7 @@ const AgentInfo: React.FC<IAgentInfo> = ({ agentName, sentiment, skillArray, sta
         </div>
         <div className='agent-info__content__main-info__text'>
           <span className='agent-info__content__main-info__text__agent-name'>
-            {agentName}
+            {name}
           </span>
           {sentiment !== undefined &&
             <span>
@@ -42,7 +48,9 @@ const AgentInfo: React.FC<IAgentInfo> = ({ agentName, sentiment, skillArray, sta
                 Sentiment:
               </span>
               <span className={sentimentClasses}>
-                {' ' + sentiment.charAt(0) + sentiment.substring(1).toLowerCase()}
+                {sentiment &&
+                  ' ' + sentiment.charAt(0) + sentiment.substring(1).toLowerCase()
+                }
               </span>
             </span>
           }
@@ -57,10 +65,10 @@ const AgentInfo: React.FC<IAgentInfo> = ({ agentName, sentiment, skillArray, sta
         }
       </div>
       <div className="agent-info__content__skills">
-        {skillArray.map((skill, index) => (
+        {queues.map((queue, index) => (
           <Pill
-            key={skill}
-            text={skill}
+            key={queue}
+            text={queue}
             color={skillColors[index % skillColors.length] as 'green' | 'yellow' | 'blue' | 'red' | 'orange' | 'gray'} // Assign color based on skill
             className="agent-info__content__skills__pill"
           />

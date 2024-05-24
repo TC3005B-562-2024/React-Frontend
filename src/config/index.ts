@@ -1,5 +1,5 @@
 const Config = {
-    API_URL: 'https://back-p27ymwll2a-uc.a.run.app/',
+    API_URL: 'http://localhost:8080/',
     FRONT_URL: 'http://localhost:5137/',
 };
 
