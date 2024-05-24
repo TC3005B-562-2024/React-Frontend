@@ -30,7 +30,7 @@ const MyJointTrainingExpansionPanel: React.FC<IJointTrainingExpansionPanel> = (
   );
 
   return (
-    <div className="w-full shadow-xl shadow-gray-400 rounded-lg border-x-8 border-y-8 border-transparent">
+    <div className="w-full shadow-lg rounded-lg border-x-8 border-y-8 border-transparent">
       <button className="w-full " onClick={() => {
         setisExpanded(!isExpanded); // Toggle isExpanded state
       }}>

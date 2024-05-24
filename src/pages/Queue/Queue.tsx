@@ -1,10 +1,12 @@
 import React, { useEffect, useState} from 'react';
 import { useParams } from 'react-router-dom';
 import { InformationBar, ProgressCard, ErrorCard, AlertExpansionPanel, AgentInfo } from '../../components';
-import { getAllAlerts } from '../../services';
+import { getAllAlerts, getQueueInfo } from '../../services';
 import { IAlertResponse } from '../../services/alerts/types';
+import { IQueueInformation } from '../../services/queue/types';
 import { IAlertCard } from '../../components/AlertCard/types';
 import './Queue.css';
+import { IInformationBar } from '../../components/InformationBar/types';
 
 
 
@@ -13,6 +15,10 @@ const Queue: React.FC = () => {
   const [alertsReceived, setAlertsReceived] = useState<IAlertResponse>();
   const [loading, setLoading] = useState<boolean>(false);
   const [errorAlerts, setErrorAlerts] = useState<boolean>(false);
+  
+  const [queueInfo, setQueueInfo] = useState<IQueueInformation | null > (null);
+  const [errorQueueInfo, setErrorQueueInfo] = useState<boolean>(false);
+  
 
   const getAlerts = async () => {
     await getAllAlerts()
@@ -28,6 +34,23 @@ const Queue: React.FC = () => {
       });
     setLoading(false);
   };
+  
+  const getQueueInformation = async () => {
+    await getQueueInfo(id)
+    .then((res) => {
+      if (res !== null) setQueueInfo(res);
+    })
+    .catch((err) => {
+      setErrorQueueInfo(true);
+    });
+    setLoading(false);
+  }
+
+  useEffect(() => {
+    setLoading(true);
+    getQueueInformation();
+  }, []);
+
 
   useEffect(() => {
     setLoading(true);
@@ -41,56 +64,13 @@ const Queue: React.FC = () => {
         <span className='sections-text'>
           Queue: <span className=' text-aci-orange'>{id}</span>
         </span>
-        <InformationBar
-          title='Information'
-          elements={[
-            {
-              title: 'Name',
-              content: 'Element',
-              color: 'black'
-            },
-            {
-              title: 'Status',
-              content: 'Element',
-              color: 'red'
-            },
-            {
-              title: 'Type',
-              content: 'Element',
-              color: 'black'
-            }
-          ]}
-          />
-        <InformationBar
-          title='Metrics'
-          elements={[
-            {
-              title: 'Service Level',
-              content: 'Element',
-              color: 'yellow'
-            },
-            {
-              title: 'ACR',
-              content: 'Element',
-              color: 'red'
-            },
-            {
-              title: 'ASA',
-              content: 'Element',
-              color: 'green'
-            },
-            {
-              title: 'FCR',
-              content: 'Element',
-              color: 'yellow'
-            },
-            {
-              title: 'Adherence',
-              content: 'Element',
-              color: 'red'
-            }
-          ]}
-          />
+        {queueInfo && 
+        <div>
+          {queueInfo.map((info: IInformationBar, index: number) => (
+            <InformationBar key={index} title={info.title} elements={info.elements} />
+          ))}
+        </div>
+          }
         <div>
             <span className='sections-text'>
               Alerts
