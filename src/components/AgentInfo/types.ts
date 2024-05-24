@@ -1,22 +1,26 @@
 export interface IAgentInfo {
   /**
+   * The id of the agent.
+   */
+  id: string;
+  /**
    * The name of the agent.
    */
-  agentName: string;
+  name: string;
   /**
    * The emotion of the agent call.
    */
-  sentiment?: 'POSITIVE' | 'NEUTRAL' | 'NEGATIVE';
+  sentiment?: 'POSITIVE' | 'NEUTRAL' | 'NEGATIVE' | null;
   /**
-   * The skills of the agent.
+   * The queues of the agent.
    */
-  skillArray: Array<string>;
+  queues: Array<string>;
   /**
    * The status of the agent.
    */
-  status: 'ONCALL' | 'AVAILABLE' | 'DISCONNECTED';
+  status: 'ONCALL' | 'AVAILABLE' | 'DISCONNECTED' | null;
   /**
    * The top priority alert of the agent.
    */
-  topPriorityAlert?: 'CRITICAL' | 'MEDIUM' | 'LOW';
+  topPriorityAlert?: 'CRITICAL' | 'MEDIUM' | 'LOW' | null;
 }

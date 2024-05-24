@@ -1,16 +1,19 @@
-import { Agent, Queue, Skill, Landing, Alerts, Agents, Alert } from "../pages";
-import { RouteObject, createBrowserRouter } from 'react-router-dom';
+import { Agent, Queue, Skill, Landing, Alerts, Agents, Alert, Logs, Login } from "../pages";
+import { Navigate, RouteObject, createBrowserRouter } from 'react-router-dom';
 
 import PrivateRouter from './PrivateRouter';
 import PublicRouter from './PublicRouter';
+import { useAppContext } from '../app-context/app-context';
 import { ROUTES } from "./constants";
 
-import Login from "../pages/login/Login";
+export const AppRouter = () => {
+  const { user } = useAppContext();
+  const isLoggedIn = Boolean(user);
 
-const routes: RouteObject[] = [
+  const routes: RouteObject[] = [
     {
         path: '/',
-        element: <PrivateRouter />,
+        element: isLoggedIn ?  <PrivateRouter /> : <Navigate to = "/login" />,
         children: [
             { path: ROUTES.QUEUE.path, element: <Queue /> },
             { path: ROUTES.SKILL.path, element: <Skill /> },
@@ -19,15 +22,17 @@ const routes: RouteObject[] = [
             { path: ROUTES.ALERT.path, element: <Alert /> },
             { path: ROUTES.LANDING.path, element: <Landing /> },
             { path: ROUTES.ALERTS.path, element: <Alerts /> },
+            { path: ROUTES.LOGS.path, element: <Logs /> },
         ],
     },
     {
         path: '/login',
-        element: <PublicRouter />,
+        element: isLoggedIn ? <Navigate to = "/"/> : <PublicRouter />,
         children: [
             { path: '/login', element: <Login /> }
         ],
     }
-]
+  ]
+  return createBrowserRouter(routes);
+};
 
-export const router = createBrowserRouter(routes);

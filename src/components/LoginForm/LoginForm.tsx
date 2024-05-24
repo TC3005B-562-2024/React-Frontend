@@ -6,7 +6,7 @@ import InputField from '../InputField/InputField';
 /**
  * Log in form component, for landing page.
  */
-const LoginForm: React.FC<ILoginForm> = ({ status }) => {
+const LoginForm: React.FC<ILoginForm> = ({ status, onSubmit }) => {
 
   const inputColor = status === 'error' ? 'red' : 'yellow';
 
@@ -23,7 +23,7 @@ const LoginForm: React.FC<ILoginForm> = ({ status }) => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Logging in with:', { email, password });
+    onSubmit(email, password);
   }
 
   return (
@@ -57,7 +57,7 @@ const LoginForm: React.FC<ILoginForm> = ({ status }) => {
             type='secret'
             label='Password'
             labelPosition='center'
-            helperText={status === 'default' ? '' : 'Invalid password or email.'}
+            helperText={status === 'default' ? '' : 'Invalid email or password, please try again.'}
             color={inputColor}
             placeholder='Enter your password'
             onChange={handleInputChange}

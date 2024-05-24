@@ -168,63 +168,70 @@ const Skill: React.FC = () => {
             </span>
             <div className='cards-container'>
               <AgentInfo
-                agentName='Agent Name'
+                id='1'
+                name='Agent Name'
                 sentiment="NEGATIVE"
-                skillArray={[
+                queues={[
                   "Support", "Complaints", "Shoppings", "Thefts"
                 ]}
                 status='ONCALL'
                 topPriorityAlert="LOW"
               />
               <AgentInfo
-                agentName='Agent Name'
+                id='2'
+                name='Agent Name'
                 sentiment="POSITIVE"
-                skillArray={[
+                queues={[
                   "Support", "Complaints", "Shoppings"
                 ]}
                 status='AVAILABLE'
                 topPriorityAlert="MEDIUM"
               />
               <AgentInfo
-                agentName='Agent Name'
+                id='3'
+                name='Agent Name'
                 sentiment="NEGATIVE"
-                skillArray={[
+                queues={[
                   "Support", "Complaints", "Shoppings",
                 ]}
                 status='ONCALL'
                 topPriorityAlert="CRITICAL"
               />
               <AgentInfo
-                agentName='Agent Name'
+                id='4'
+                name='Agent Name'
                 sentiment="POSITIVE"
-                skillArray={[
+                queues={[
                   "Support", "Complaints", "Shoppings", "Thefts"
                 ]}
                 status='DISCONNECTED'
                 topPriorityAlert="MEDIUM"
               />
               <AgentInfo
-                agentName='Agent Name'
+                id='5'
+                name='Agent Name'
                 sentiment="POSITIVE"
-                skillArray={[
+                queues={[
                   "Support", "Complaints", "Shoppings", "Thefts"
                 ]}
                 status='AVAILABLE'
                 topPriorityAlert="MEDIUM"
               />
               <AgentInfo
-                agentName='Agent Name'
+                id='6'
+                name='Agent Name'
                 sentiment="POSITIVE"
-                skillArray={[
+                queues={[
                   "Support", "Complaints", "Shoppings", "Thefts"
                 ]}
                 status='AVAILABLE'
                 topPriorityAlert="MEDIUM"
               />
               <AgentInfo
-                agentName='Agent Name'
+                id='7'
+                name='Agent Name'
                 sentiment="POSITIVE"
-                skillArray={[
+                queues={[
                   "Support", "Complaints", "Shoppings", "Thefts"
                 ]}
                 status='DISCONNECTED'
