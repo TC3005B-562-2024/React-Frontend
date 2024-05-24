@@ -1,0 +1,1 @@
+export {getTrainingsOfAgent} from './getTrainingsOfAgent';

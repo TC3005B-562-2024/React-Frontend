@@ -10,7 +10,7 @@ const ItemSubitem: React.FC<IItemSubitem> = ({
     color,
 }) => {
     const parentClasses = classNames(
-        'text-center text-gray-400 text-text font-bold inline-block',
+        ' box-border text-center text-gray-400 text-text font-bold inline-flex flex-col items-center',
         className
     );
 
