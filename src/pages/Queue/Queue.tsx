@@ -116,7 +116,7 @@ const Queue: React.FC = () => {
                   })) as IAlertCard[]}
                 />
               }
-              {alertsReceived != undefined && alertsReceived?.medium.length !== 0 &&
+              {alertsReceived !== undefined && alertsReceived?.medium.length !== 0 &&
                 <AlertExpansionPanel
                   alerts={alertsReceived.medium.map(alert => ({
                     alertId: alert.id,
@@ -127,7 +127,7 @@ const Queue: React.FC = () => {
                   })) as IAlertCard[]}
                 />
               }
-              {alertsReceived != undefined && alertsReceived.low.length !== 0 &&
+              {alertsReceived !== undefined && alertsReceived.low.length !== 0 &&
                 <AlertExpansionPanel
                   alerts={alertsReceived.low.map(alert => ({
                     alertId: alert.id,

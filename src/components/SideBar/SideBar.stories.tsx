@@ -1,11 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import SideBar from './SideBar';
 import { withRouter } from 'storybook-addon-react-router-v6';
+import { withReactContext } from 'storybook-react-context';
 
 const meta = {
   title: 'Components/SideBar',
   component: SideBar,
-  decorators: [withRouter],
+  decorators: [withRouter, withReactContext],
   parameters: {
     layout: "fullscreen",
   },

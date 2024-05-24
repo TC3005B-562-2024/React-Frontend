@@ -58,7 +58,7 @@ const InputField: React.FC<IInputField & { onChange: (id: string, value: string)
               type='button'
               onClick={togglePasswordVisibility}
               className='input-field__container__input-container__button-container__button'>
-              {showPassword ? <Icon iconName='visibility' color={color} /> : <Icon iconName='visibility_off' color={color} />}
+              {showPassword ? <Icon className='h-5' iconName='visibility' color={color} /> : <Icon className='h-5' iconName='visibility_off' color={color} />}
             </button>
           </div>
         </div>

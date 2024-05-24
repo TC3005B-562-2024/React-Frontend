@@ -11,7 +11,6 @@ const CompleteButton: React.FC<ICompleteButton> = ({
 
     const handleButtonClick = () => {
         setCompleted(!completed);
-        isComplete == !isComplete;
     };
 
     useEffect(() => {
