@@ -9,6 +9,7 @@ const meta = {
     layout: 'centered',
   },
   argTypes: {
+    id: { control: 'text' },
     agentName: { control: 'text' },
     sentiment: {
       options: ['POSITIVE', 'NEUTRAL', 'NEGATIVE', undefined],
@@ -36,9 +37,10 @@ const Template: StoryFn<IAgentInfo> = (args) => <AgentInfo {...args} />;
  */
 export const AgentInfoNegativeOnCallCritical = Template.bind({});
 AgentInfoNegativeOnCallCritical.args = {
-  agentName: 'John Doe',
+  id: '1',
+  name: 'John Doe',
   sentiment: 'NEGATIVE',
-  skillArray: ['skill1', 'skill2', 'skill3', 'skill4', 'skill5', 'skill6'],
+  queues: ['skill1', 'skill2', 'skill3', 'skill4', 'skill5', 'skill6'],
   status: 'ONCALL',
   topPriorityAlert: 'CRITICAL',
 };
@@ -48,9 +50,10 @@ AgentInfoNegativeOnCallCritical.args = {
  */
 export const AgentInfoPositiveAvailableMedium = Template.bind({});
 AgentInfoPositiveAvailableMedium.args = {
-  agentName: 'John Doe',
+  id: '1',
+  name: 'John Doe',
   sentiment: 'POSITIVE',
-  skillArray: ['skill1', 'skill2', 'skill3'],
+  queues: ['skill1', 'skill2', 'skill3'],
   status: 'AVAILABLE',
   topPriorityAlert: 'MEDIUM',
 };
@@ -60,9 +63,10 @@ AgentInfoPositiveAvailableMedium.args = {
  */
 export const AgentInfoNeutralDisconnectedLow = Template.bind({});
 AgentInfoNeutralDisconnectedLow.args = {
-  agentName: 'John Doe',
+  id: '1',
+  name: 'John Doe',
   sentiment: 'NEUTRAL',
-  skillArray: ['skill1'],
+  queues: ['skill1'],
   status: 'DISCONNECTED',
   topPriorityAlert: 'LOW',
 };
