@@ -39,7 +39,7 @@ import {
 
 const Icon: React.FC<IIcon> = ({ iconName, color, className }) => {
 
-    const classes = classNames('aspect-square w-full h-full', className);
+    const classes = classNames('aspect-square w-full', className);
 
     const newColor = classNames({
         'black': color === 'black',
