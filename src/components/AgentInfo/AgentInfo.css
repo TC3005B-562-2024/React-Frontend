@@ -7,7 +7,7 @@
 }
 
 .agent-info__content__main-info__icon {
-  @apply w-12;
+  @apply w-12 self-center;
 }
 
 .agent-info__content__main-info__text {

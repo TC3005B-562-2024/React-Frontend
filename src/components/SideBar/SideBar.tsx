@@ -55,7 +55,7 @@ const SideBar: React.FC<ISideBar> = ({ skills }) => {
             ignoreIsSelected={true}
           />
 
-          {skills != undefined && skills.map((skill: { alias: string; iconName: string; id: string; }) => (
+          {skills !== undefined && skills.map((skill: { alias: string; iconName: string; id: string; }) => (
             <SideBarElement
               key={skill.id}
               label={skill.alias}
@@ -65,7 +65,7 @@ const SideBar: React.FC<ISideBar> = ({ skills }) => {
             />
           ))}
 
-          {skills == undefined &&
+          {skills === undefined &&
             <div className='side-bar__container__elements-container__upper-container__error-alert'>
               No Skills Found.
             </div>

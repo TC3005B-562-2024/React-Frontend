@@ -1,8 +1,9 @@
-import type { StorybookConfig } from "@storybook/react-vite";
+import type { StorybookConfig } from "@storybook/react-webpack5";
 
 const config: StorybookConfig = {
   stories: ["../src/**/*.mdx", "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)"],
   addons: [
+    "@storybook/preset-create-react-app",
     "@storybook/addon-onboarding",
     "@storybook/addon-links",
     "@storybook/addon-essentials",
@@ -11,23 +12,12 @@ const config: StorybookConfig = {
     'storybook-addon-remix-react-router',
   ],
   framework: {
-    name: "@storybook/react-vite",
+    name: "@storybook/react-webpack5",
     options: {},
   },
   docs: {
     autodocs: "tag",
   },
-  core: {},
-  async viteFinal(config) {
-    // Merge custom configuration into the default config
-    const { mergeConfig } = await import('vite');
-
-    return mergeConfig(config, {
-      // Add dependencies to pre-optimization
-      optimizeDeps: {
-        include: ['storybook-dark-mode'],
-      },
-    });
-  },
+  staticDirs: ["../public"],
 };
 export default config;

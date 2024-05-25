@@ -12,7 +12,7 @@ RUN yarn
 COPY . .
 
 # Expose the port the app runs in
-EXPOSE 5173
+EXPOSE 3000
 
 # Serve the app
-CMD ["yarn", "dev", "--debug"]
+CMD ["yarn", "start"]

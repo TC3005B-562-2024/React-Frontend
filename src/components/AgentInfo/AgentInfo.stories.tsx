@@ -1,10 +1,12 @@
 import { Meta, StoryFn } from '@storybook/react';
 import { IAgentInfo } from './types';
 import AgentInfo from './AgentInfo';
+import { withRouter } from 'storybook-addon-react-router-v6';
 
 const meta = {
   title: 'Components/AgentInfo',
   component: AgentInfo,
+  decorators: [withRouter],
   parameters: {
     layout: 'centered',
   },

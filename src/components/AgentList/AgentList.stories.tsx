@@ -1,9 +1,11 @@
 import { Meta, StoryObj } from '@storybook/react';
 import AgentList from './AgentList';
+import { withReactContext } from 'storybook-react-context';
 
 const meta = {
   title: 'Components/AgentList',
   component: AgentList,
+  decorators: [withReactContext],
   parameters: {
     layout: 'fullscreen', // Cambiado a fullscreen
     docs: {

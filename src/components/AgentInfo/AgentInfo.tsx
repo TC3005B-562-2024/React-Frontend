@@ -58,6 +58,7 @@ const AgentInfo: React.FC<IAgentInfo> = ({ id, name, sentiment, queues, status, 
         {topPriorityAlert !== undefined &&
           <div className="agent-info__content__main-info__icon">
             <Icon
+            className="h-20"
               iconName={alertIconName as typeof iconNames[number]}
               color={alertIconColor as 'green' | 'yellow' | 'blue' | 'black' | 'white' | 'red' | 'gray' | 'orange' | undefined}
             />

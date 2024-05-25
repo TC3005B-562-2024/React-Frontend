@@ -1,4 +1,4 @@
-import React, { useEffect, useState} from 'react';
+import React, { useCallback, useEffect, useState} from 'react';
 import { useParams } from 'react-router-dom';
 import { InformationBar, ProgressCard, ErrorCard, AlertExpansionPanel, AgentInfo } from '../../components';
 import { getAllAlerts, getQueueInfo } from '../../services';
@@ -20,7 +20,7 @@ const Queue: React.FC = () => {
   const [errorQueueInfo, setErrorQueueInfo] = useState<boolean>(false);
   
 
-  const getAlerts = async () => {
+  const getAlerts = useCallback(async () => {
     await getAllAlerts()
       .then((res) => {
         if (res !== null) setAlertsReceived(res);
@@ -33,9 +33,9 @@ const Queue: React.FC = () => {
         setErrorAlerts(true);
       });
     setLoading(false);
-  };
+  }, []);
   
-  const getQueueInformation = async () => {
+  const getQueueInformation = useCallback(async () => {
     await getQueueInfo(id)
     .then((res) => {
       if (res !== null) setQueueInfo(res);
@@ -45,18 +45,18 @@ const Queue: React.FC = () => {
       setErrorQueueInfo(true);
     });
     setLoading(false);
-  }
+  }, [id]);
 
   useEffect(() => {
     setLoading(true);
     getQueueInformation();
-  }, []);
+  }, [getQueueInformation]);
 
 
   useEffect(() => {
     setLoading(true);
     getAlerts();
-  }, []);
+  }, [getAlerts]);
 
   return (
     <>
@@ -102,7 +102,7 @@ const Queue: React.FC = () => {
                   })) as IAlertCard[]}
                 />
               }
-              {alertsReceived != undefined && alertsReceived?.medium.length !== 0 &&
+              {alertsReceived !== undefined && alertsReceived?.medium.length !== 0 &&
                 <AlertExpansionPanel
                   alerts={alertsReceived.medium.map(alert => ({
                     alertId: alert.id,
@@ -113,7 +113,7 @@ const Queue: React.FC = () => {
                   })) as IAlertCard[]}
                 />
               }
-              {alertsReceived != undefined && alertsReceived.low.length !== 0 &&
+              {alertsReceived !== undefined && alertsReceived.low.length !== 0 &&
                 <AlertExpansionPanel
                   alerts={alertsReceived.low.map(alert => ({
                     alertId: alert.id,

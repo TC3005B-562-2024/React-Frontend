@@ -8,7 +8,7 @@ import InputField from '../InputField/InputField';
  */
 const LoginForm: React.FC<ILoginForm> = ({ status, onSubmit }) => {
 
-  const inputColor = status === 'error' ? 'red' : 'yellow';
+  const inputColor = status === 'error' ? 'red' : 'orange';
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
