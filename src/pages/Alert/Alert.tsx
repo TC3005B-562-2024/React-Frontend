@@ -14,11 +14,13 @@ const Alert: React.FC = () => {
     const navigate = useNavigate();
     const [alertInfo, setAlertInfo] = useState<IAlert | null>(null);
     const [queue, setQueue] = useState<IQueueInformation | null>(null);
+    //const [agent ] = useState<any | null>(null);
+    //const [skill, ] = useState<any | null>(null);
 
     const goBack = () => {
         navigate(-1);
     };
-
+    
     useEffect(() => {
         const fetchAlertData = async (alertId: number) => {
             try {
@@ -52,44 +54,39 @@ const Alert: React.FC = () => {
                         <span className='text-banner font-bold pb-3'>
                             {alertInfo.resource}
                         </span>
-                        <InformationBar
-                            title='Information'
-                            elements={queue?.information.sections?.map((section) => ({
-                                title: section.sectionTitle,
-                                content: section.sectionValue || '',
-                                color: (['black', 'red', 'green', 'yellow', 'gray'].includes(section.color) ? section.color : 'black') as 'black' | 'red' | 'green' | 'yellow' | 'gray'
-                            })) || []}
-                        />
-                        <InformationBar
-                            title='Metrics'
-                            elements={[
-                                {
-                                    title: 'Service Level',
-                                    content: 'Element',
-                                    color: 'yellow'
-                                },
-                                {
-                                    title: 'ACR',
-                                    content: 'Element',
-                                    color: 'red'
-                                },
-                                {
-                                    title: 'ASA',
-                                    content: 'Element',
-                                    color: 'green'
-                                },
-                                {
-                                    title: 'FCR',
-                                    content: 'Element',
-                                    color: 'yellow'
-                                },
-                                {
-                                    title: 'Adherence',
-                                    content: 'Element',
-                                    color: 'red'
-                                }
-                            ]}
-                        />
+                        {alertInfo.resource === 'queue' && queue && (
+                            <InformationBar
+                                title='Information'
+                                elements={queue?.information.sections?.map((section) => ({
+                                    title: section.sectionTitle,
+                                    content: section.sectionValue || '',
+                                    color: (['black', 'red', 'green', 'yellow', 'gray'].includes(section.color) ? section.color : 'black') as 'black' | 'red' | 'green' | 'yellow' | 'gray'
+                                })) || []}
+                            />
+                        )}
+
+                        {/* {alertInfo.resource === 'agent' && agent && (
+                            <InformationBar
+                                title='Information'
+                                elements={agent?.information.sections?.map((section) => ({
+                                    title: section.sectionTitle,
+                                    content: section.sectionValue || '',
+                                    color: (['black', 'red', 'green', 'yellow', 'gray'].includes(section.color) ? section.color : 'black') as 'black' | 'red' | 'green' | 'yellow' | 'gray'
+                                })) || []}
+                            />
+                        )}
+ */}
+                        {/* {skill?.skillsInformationDTO && (
+                            <InformationBar
+                                title='Information'
+                                elements={skill.skillsInformationDTO.sections.map((section: any) => ({
+                                    title: section.sectionTitle,
+                                    content: section.sectionValue || '',
+                                    color: section.color || 'black'
+                                })) || []}
+                            />
+                        )} */}
+
                         <div className='button_container'>
                             <Button text={'Go Back'} size='title' color='orange' type='button' icon={{ iconName: 'arrow_back' }} onClick={goBack} />
                             <Button text={'Ignore'} size='title' color='red' type='button' icon={{ iconName: 'cancel' }} onClick={() => postIgnoreAlert(numberId)} />
