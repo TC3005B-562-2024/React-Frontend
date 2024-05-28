@@ -5,7 +5,7 @@ const TrainingCardToggle: React.FC<ITrainingCardToggle> = ({
     isComplete,
 }) => {
     return (
-        <div className='bg-white box-content rounded-md'>
+        <div data-testid="training-card-toggle" className='bg-white box-content rounded-md' data-label={label} data-is-complete={isComplete}>
             <div className='flex'>
                 <div className='flex-1 grow mx-4 my-4'>
                     {label}

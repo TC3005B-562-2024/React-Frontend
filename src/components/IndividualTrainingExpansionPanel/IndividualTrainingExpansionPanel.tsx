@@ -41,7 +41,7 @@ const IndividualTrainingExpansionPanel: React.FC<IIndividualTrainingExpansionPan
   }, [trainings]);
 
   return (
-    <div className='bg-white h-10 box-content rounded-md shadow-md'>
+    <div data-testid="expansion-panel" className='bg-white h-10 box-content rounded-md shadow-md' data-porcentage={completionPercentage}>
       <div className='flex'>
         <div className={`flex-1 grow font-bold mx-4 my-2`}><div className={colorClasses}>{title}</div></div>
         <div className={`text-aci-green font-semibold mx-2 mr-2 my-2`}>
