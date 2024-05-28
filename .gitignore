@@ -8,6 +8,7 @@ lerna-debug.log*
 .yarn/
 
 node_modules
+coverage
 dist
 dist-ssr
 build
