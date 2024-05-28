@@ -60,7 +60,7 @@ const SideBar: React.FC<ISideBar> = ({ skills }) => {
               key={skill.id}
               label={skill.alias}
               icon={{ iconName: skill.iconName } as IIconNoColorNoSize}
-              path={`/skills/${skill.id}`}
+              path={`/skill/${skill.id}`}
               isExpanded={isExpanded}
             />
           ))}

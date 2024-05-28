@@ -5,12 +5,16 @@ import { getAllAlerts } from '../../services';
 import { IAlertResponse } from '../../services/alerts/types';
 import { IAlertCard } from '../../components/AlertCard/types';
 import './Skill.css';
+import { ISkillById } from '../../services/skills/types';
+import { getSkillById } from '../../services/skills/getSkillById';
 
 const Skill: React.FC = () => {
   const { id } = useParams();
   const [alertsReceived, setAlertsReceived] = useState<IAlertResponse>();
+  const [skill, setSkill] = useState<ISkillById>();
   const [loading, setLoading] = useState<boolean>(false);
   const [errorAlerts, setErrorAlerts] = useState<boolean>(false);
+  const [errorSkill, setErrorSkill] = useState<boolean>(false);
 
   const getAlerts = async () => {
     await getAllAlerts()
@@ -27,10 +31,27 @@ const Skill: React.FC = () => {
     setLoading(false);
   };
 
+  const getSkill = async () => {
+    const safeId = id || '';
+    await getSkillById(safeId)
+      .then((res) => {
+        if (res !== null) setSkill(res);
+        if (res === undefined) {
+          setErrorSkill(true);
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+        setErrorSkill(true);
+      });
+    setLoading(false);
+  };
+
   useEffect(() => {
     setLoading(true);
+    getSkill();
     getAlerts();
-  }, []);
+  }, [id]);
 
   return (
     <>
@@ -39,25 +60,19 @@ const Skill: React.FC = () => {
         <span className='sections-text'>
           Skill: <span className=' text-aci-orange'>{id}</span>
         </span>
+        {errorSkill &&
+            <ErrorCard title='Error fetching Skill'></ErrorCard>
+          }
+          {!loading && !errorSkill && alertsReceived !== undefined && alertsReceived.high.length === 0 && alertsReceived.medium.length === 0 && alertsReceived.low.length === 0 &&
+            <ErrorCard title='No skills found'></ErrorCard>
+          }
         <InformationBar
           title='Information'
-          elements={[
-            {
-              title: 'Name',
-              content: 'Element',
-              color: 'black'
-            },
-            {
-              title: 'Status',
-              content: 'Element',
-              color: 'red'
-            },
-            {
-              title: 'Type',
-              content: 'Element',
-              color: 'black'
-            }
-          ]}
+          elements={skill?.skillsInformationDTO.sections.map((section) => ({
+            title: section.sectionTitle,
+            content: section.sectionValue || '',
+            color: section.color || 'black'
+          })) || []}
           />
         <InformationBar
           title='Metrics'
@@ -102,6 +117,7 @@ const Skill: React.FC = () => {
           {!loading && !errorAlerts && alertsReceived !== undefined && alertsReceived.high.length === 0 && alertsReceived.medium.length === 0 && alertsReceived.low.length === 0 &&
             <ErrorCard title='No alerts found'></ErrorCard>
           }
+
           <div className="flex flex-col space-y-4 p-1">
             {alertsReceived !== undefined && alertsReceived.high.length !== 0 &&
               <AlertExpansionPanel
@@ -167,76 +183,16 @@ const Skill: React.FC = () => {
               Agents
             </span>
             <div className='cards-container'>
-              <AgentInfo
-                id='1'
-                name='Agent Name'
-                sentiment="NEGATIVE"
-                queues={[
-                  "Support", "Complaints", "Shoppings", "Thefts"
-                ]}
-                status='ONCALL'
-                topPriorityAlert="LOW"
+              {skill?.agents.map((agent) => (
+                <AgentInfo
+                id={agent.id}
+                name={agent.name}
+                sentiment={agent.sentiment}
+                queues={agent.queues}
+                status={agent.status}
+                topPriorityAlert={agent.topPriorityAlert}
               />
-              <AgentInfo
-                id='2'
-                name='Agent Name'
-                sentiment="POSITIVE"
-                queues={[
-                  "Support", "Complaints", "Shoppings"
-                ]}
-                status='AVAILABLE'
-                topPriorityAlert="MEDIUM"
-              />
-              <AgentInfo
-                id='3'
-                name='Agent Name'
-                sentiment="NEGATIVE"
-                queues={[
-                  "Support", "Complaints", "Shoppings",
-                ]}
-                status='ONCALL'
-                topPriorityAlert="CRITICAL"
-              />
-              <AgentInfo
-                id='4'
-                name='Agent Name'
-                sentiment="POSITIVE"
-                queues={[
-                  "Support", "Complaints", "Shoppings", "Thefts"
-                ]}
-                status='DISCONNECTED'
-                topPriorityAlert="MEDIUM"
-              />
-              <AgentInfo
-                id='5'
-                name='Agent Name'
-                sentiment="POSITIVE"
-                queues={[
-                  "Support", "Complaints", "Shoppings", "Thefts"
-                ]}
-                status='AVAILABLE'
-                topPriorityAlert="MEDIUM"
-              />
-              <AgentInfo
-                id='6'
-                name='Agent Name'
-                sentiment="POSITIVE"
-                queues={[
-                  "Support", "Complaints", "Shoppings", "Thefts"
-                ]}
-                status='AVAILABLE'
-                topPriorityAlert="MEDIUM"
-              />
-              <AgentInfo
-                id='7'
-                name='Agent Name'
-                sentiment="POSITIVE"
-                queues={[
-                  "Support", "Complaints", "Shoppings", "Thefts"
-                ]}
-                status='DISCONNECTED'
-                topPriorityAlert="MEDIUM"
-              />
+              ))}
             </div>
           </div>
         </div>
