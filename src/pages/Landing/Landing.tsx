@@ -6,13 +6,18 @@ import { IAgentCardDTO } from "../../services/agents/types";
 
 const Landing: React.FC = () => {
   const [agents, setAgents] = React.useState<IAgentCardDTO[]>([]);
+  
   React.useEffect(() => {
     getAllAgents().then((data) => {
       if (data) {
         setAgents(data);
       } else {
+         // TODO handle error
         console.error('Failed to fetch agents');
       }
+    }).catch(e => {
+      // TODO handle error
+      console.error('Failed to fetch agents', e);
     });
   }, []);
   return (
