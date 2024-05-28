@@ -6,8 +6,6 @@ import { IQueueInformation } from '../../services/queue/types';
 import { IAlertCard } from '../../components/AlertCard/types';
 import './Queue.css';
 
-
-
 const Queue: React.FC = () => {
   const { id } = useParams();
   const [loading, setLoading] = useState<boolean>(false);
@@ -35,11 +33,7 @@ const Queue: React.FC = () => {
     getQueueInformation();
   }, [getQueueInformation]);
   
-
-
-
   return (
-    <>
     <div>
       <div>
         <span className='sections-text'>
@@ -129,31 +123,30 @@ const Queue: React.FC = () => {
             </span>
             <div className=' space-y-4 p-1'>
             {loading &&
-          <ErrorCard title='Loading...'></ErrorCard>
-        }
-              {queueInfo &&
-                <ProgressCard
-                  label='Trainings of Call'
-                  trainings={queueInfo.trainings.map(training => ({
-                    progress: training.resourceTrainingProgress,
-                    label: training.resourceName
-                  }))}
-                />
-              }
+              <ErrorCard title='Loading...'></ErrorCard>
+            }
+            {queueInfo &&
+              <ProgressCard
+                label='Trainings of Call'
+                trainings={queueInfo.trainings.map(training => ({
+                  progress: training.resourceTrainingProgress,
+                  label: training.resourceName
+                }))}
+              />
+            }
             </div>
-           </div>
+          </div>
           <div>
             <span className='sections-text'>
               Agents
             </span>
+            {loading && 
+              <ErrorCard title='Loading...'></ErrorCard>
+            }
+            {errorQueueInfo && 
+              <ErrorCard title='Error fetching agents'></ErrorCard>
+            }
             <div className='cards-container'>
-              {loading && 
-                <ErrorCard title='Loading...'></ErrorCard>}
-              {errorQueueInfo && 
-                <ErrorCard title='Error fetching agents'></ErrorCard>}
-              {!loading && !errorQueueInfo && queueInfo !== null && queueInfo.agents.length === 0 &&
-                <ErrorCard title='No agents found'></ErrorCard>}
-
               {queueInfo && queueInfo.agents.map(agent => (
                 <AgentInfo
                   key={agent.id}
@@ -164,18 +157,13 @@ const Queue: React.FC = () => {
                   status={agent.status as "ONCALL" | "AVAILABLE" | "DISCONNECTED" | null}
                   topPriorityAlert={agent.topPriorityAlert}
                 />
-  
               ))
               }
-              
             </div>
           </div>
         </div>
     </div>
-    </>
   );
 };
-
-
 
 export default Queue;
