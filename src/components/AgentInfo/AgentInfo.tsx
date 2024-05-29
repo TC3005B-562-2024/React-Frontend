@@ -15,7 +15,7 @@ const AgentInfo: React.FC<IAgentInfo> = ({ id, name, sentiment, queues, status, 
   const [statusIconName, statusIconColor] = status === 'ONCALL' ? ['phone_in_talk', 'green'] : status === 'AVAILABLE' ? ['call_end', 'yellow'] : ['clear_night', 'blue'];
 
   // IF CRITICAL warning red, else if MEDIUM warning orange, else warning yellow.
-  const [alertIconName, alertIconColor] = topPriorityAlert === 'CRITICAL' ? ['warning', 'red'] : topPriorityAlert === 'MEDIUM' ? ['warning', 'orange'] : ['warning', 'yellow'];
+  const [alertIconName, alertIconColor] = topPriorityAlert === 'CRITICAL' ? ['warning', 'red'] : topPriorityAlert === 'MEDIUM' ? ['warning', 'orange'] : ['warning', 'yellowA'];
 
   const sentimentClasses = classNames('agent-info__content__main-info__text__sentiment', {
     'agent-info__content__main-info__text__sentiment--positive': sentiment === 'POSITIVE',
@@ -42,7 +42,7 @@ const AgentInfo: React.FC<IAgentInfo> = ({ id, name, sentiment, queues, status, 
           <span className='agent-info__content__main-info__text__agent-name'>
             {name}
           </span>
-          {sentiment !== undefined &&
+          {sentiment !== undefined && sentiment !== null &&
             <span>
               <span className='agent-info__content__main-info__text__sentiment-placeholder'>
                 Sentiment:
@@ -55,12 +55,12 @@ const AgentInfo: React.FC<IAgentInfo> = ({ id, name, sentiment, queues, status, 
             </span>
           }
         </div>
-        {topPriorityAlert !== undefined &&
+        {topPriorityAlert !== undefined && topPriorityAlert !== null &&
           <div className="agent-info__content__main-info__icon">
             <Icon
             className="h-20"
               iconName={alertIconName as typeof iconNames[number]}
-              color={alertIconColor as 'green' | 'yellow' | 'blue' | 'black' | 'white' | 'red' | 'gray' | 'orange' | undefined}
+              color={alertIconColor as 'green' | 'yellowA' | 'blue' | 'black' | 'white' | 'red' | 'gray' | 'orange' | undefined}
             />
           </div>
         }

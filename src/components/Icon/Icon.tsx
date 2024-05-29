@@ -48,8 +48,9 @@ const Icon: React.FC<IIcon> = ({ iconName, color, className }) => {
         '#CC3232': color === 'red',
         '#99C140': color === 'green',
         '#E7B416': color === 'yellow',
+        '#FFC300': color === 'yellowA',  
         '#9CA3AF': color === 'gray',
-        '#FCA311': color === 'orange',
+        '#E99306': color === 'orange',
     });
 
 
