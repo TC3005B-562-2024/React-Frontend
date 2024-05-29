@@ -1,4 +1,4 @@
-import React, { useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { InformationBar, ProgressCard, ErrorCard, AlertExpansionPanel, AgentInfo } from '../../components';
 import { getAllAlerts } from '../../services';
@@ -55,83 +55,63 @@ const Skill: React.FC = () => {
 
   return (
     <>
-    <div>
       <div>
-        <span className='sections-text'>
-          Skill: <span className=' text-aci-orange'>{id}</span>
-        </span>
-        {errorSkill &&
+        <div>
+          <span className='sections-text'>
+            Skill: <span className=' text-aci-orange'>{id}</span>
+          </span>
+          {errorSkill &&
             <ErrorCard title='Error fetching Skill'></ErrorCard>
           }
           {!loading && !errorSkill && alertsReceived !== undefined && alertsReceived.high.length === 0 && alertsReceived.medium.length === 0 && alertsReceived.low.length === 0 &&
             <ErrorCard title='No skills found'></ErrorCard>
           }
-        <InformationBar
-          title='Information'
-          elements={skill?.skillsInformationDTO.sections.map((section) => ({
-            title: section.sectionTitle,
-            content: section.sectionValue || '',
-            color: section.color || 'black'
-          })) || []}
+          <InformationBar
+            title='Information'
+            elements={skill?.skillsInformationDTO.sections.map((section) => ({
+              title: section.sectionTitle,
+              content: section.sectionValue || '',
+              color: section.color || 'black'
+            })) || []}
           />
-        <InformationBar
-          title='Metrics'
-          elements={[
-            {
-              title: 'Service Level',
-              content: 'Element',
-              color: 'yellow'
-            },
-            {
-              title: 'ACR',
-              content: 'Element',
-              color: 'red'
-            },
-            {
-              title: 'ASA',
-              content: 'Element',
-              color: 'green'
-            },
-            {
-              title: 'FCR',
-              content: 'Element',
-              color: 'yellow'
-            },
-            {
-              title: 'Adherence',
-              content: 'Element',
-              color: 'red'
+          <InformationBar
+            title='Metrics'
+            elements={[
+              {
+                title: skill?.metrics.sectionTitle || '',
+                content: skill?.metrics.sections || '',
+                color: 'black'
+              },
+            ]}
+          />
+          <div>
+            <span className='sections-text'>
+              Alerts
+            </span>
+            {loading &&
+              <ErrorCard title='Loading...'></ErrorCard>
             }
-          ]}
-          />
-        <div>
-          <span className='sections-text'>
-            Alerts
-          </span>
-          {loading &&
-            <ErrorCard title='Loading...'></ErrorCard>
-          }
-          {errorAlerts &&
-            <ErrorCard title='Error fetching alerts'></ErrorCard>
-          }
-          {!loading && !errorAlerts && alertsReceived !== undefined && alertsReceived.high.length === 0 && alertsReceived.medium.length === 0 && alertsReceived.low.length === 0 &&
-            <ErrorCard title='No alerts found'></ErrorCard>
-          }
+            {errorAlerts &&
+              <ErrorCard title='Error fetching alerts'></ErrorCard>
+            }
+            {!loading && !errorAlerts && alertsReceived !== undefined && alertsReceived.high.length === 0 && alertsReceived.medium.length === 0 && alertsReceived.low.length === 0 &&
+              <ErrorCard title='No alerts found'></ErrorCard>
+            }
 
-          <div className="flex flex-col space-y-4 p-1">
-            {alertsReceived !== undefined && alertsReceived.high.length !== 0 &&
-              <AlertExpansionPanel
-                alerts={alertsReceived.high.map(alert => ({
-                  alertId: alert.id,
-                  alertName: alert.insight.category.denomination,
-                  alertOwner: alert.resource,
-                  alertPriority: 'CRITIC',
-                  individualAlertLink: `${alert.id}`
-                })) as IAlertCard[]}
-              />
-            }
-            {alertsReceived !== undefined && alertsReceived?.medium.length !== 0 &&
-              <AlertExpansionPanel
+            <div className="flex flex-col space-y-4 p-1">
+              {alertsReceived !== undefined && alertsReceived.high.length !== 0 &&
+                <AlertExpansionPanel
+                  alerts={alertsReceived.high.map(alert => ({
+                    alertId: alert.id,
+                    alertName: alert.insight.category.denomination,
+                    alertOwner: alert.resource,
+                    alertPriority: 'CRITIC',
+                    individualAlertLink: `${alert.id}`
+                  })) as IAlertCard[]}
+                />
+              }
+              {alertsReceived !== undefined && alertsReceived?.medium.length !== 0 &&
+                <AlertExpansionPanel
                   alerts={alertsReceived.medium.map(alert => ({
                     alertId: alert.id,
                     alertName: alert.insight.category.denomination,
@@ -154,30 +134,35 @@ const Skill: React.FC = () => {
               }
             </div>
           </div>
-          <div>
-            <span className='sections-text'>
-              Trainings
-            </span>
-            <div className=' space-y-4 p-1'>
-              <ProgressCard
-                label='Training 1'
-                trainings={[
-                  {
-                    progress: 50,
-                    label: 'Training 1',
-                  },
-                  {
-                    progress: 70,
-                    label: 'Training 2',
-                  },
-                  {
-                    progress: 90,
-                    label: 'Training 3',
-                  }
-                ]}
+          {skill?.trainings && skill.trainings.length > 0 ? (
+            <div>
+              <span className='sections-text'>
+                Trainings
+              </span>
+              <div className=' space-y-4 p-1'>
+
+                <ProgressCard
+                  label='Training 1'
+                  trainings={[
+                    {
+                      progress: 50,
+                      label: 'Training 1',
+                    },
+                    {
+                      progress: 70,
+                      label: 'Training 2',
+                    },
+                    {
+                      progress: 90,
+                      label: 'Training 3',
+                    }
+                  ]}
                 />
+              </div>
             </div>
-          </div>
+          ) : (
+            <div></div>
+          )}
           <div>
             <span className='sections-text'>
               Agents
@@ -185,18 +170,18 @@ const Skill: React.FC = () => {
             <div className='cards-container'>
               {skill?.agents.map((agent) => (
                 <AgentInfo
-                id={agent.id}
-                name={agent.name}
-                sentiment={agent.sentiment}
-                queues={agent.queues}
-                status={agent.status}
-                topPriorityAlert={agent.topPriorityAlert}
-              />
+                  id={agent.id}
+                  name={agent.name}
+                  sentiment={agent.sentiment}
+                  queues={agent.queues}
+                  status={agent.status}
+                  topPriorityAlert={agent.topPriorityAlert}
+                />
               ))}
             </div>
           </div>
         </div>
-    </div>
+      </div>
     </>
   );
 };
