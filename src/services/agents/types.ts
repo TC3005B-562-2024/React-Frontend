@@ -1,8 +1,53 @@
-import { IAgentInfo } from "../../components/AgentInfo/types";
+export interface IAgentCardDTO {
+    id:               string;
+    arn:              string;
+    name:             string;
+    status:          'ONCALL' | 'AVAILABLE' | 'DISCONNECTED' | null;
+    sentiment:        null;
+    queues:           Queue[];
+    topPriorityAlert: 'CRITICAL' | 'MEDIUM' | 'LOW' | null;
+}
 
-export interface IAgentCardDTO extends IAgentInfo {
-    /**
-     * The ARN of the agent.
-     */
-    arn: string;
+export enum Queue {
+    BasicQueue = "BasicQueue",
+    CustomerService = "Customer Service",
+    FAQ = "FAQ",
+    PanoptimizeComplains = "Panoptimize complains",
+    PanoptimizeDoubts = "Panoptimize doubts",
+    S0S = "S0S",
+    StarHorizon = "Star Horizon",
+    Team4MobileSupportEnglish = "Team4-Mobile Support English",
+    Team4MobileSupportSpanish = "Team4-Mobile Support Spanish",
+}
+
+export interface IAgentInformation {
+    id:                    string;
+    resource:              string;
+    agentInformationDTO:   TInformationDto;
+    contactInformationDTO: TInformationDto[];
+    alertPriorityDTO:      AlertPriorityDTO;
+    trainings:             any[];
+    metrics:               Metrics;
+}
+
+export interface TInformationDto {
+    title:    string;
+    sections: Section[];
+}
+
+export interface Section {
+    sectionTitle: string;
+    sectionValue: string;
+    color:        string;
+}
+
+export interface AlertPriorityDTO {
+    high:   any[];
+    medium: any[];
+    low:    any[];
+}
+
+export interface Metrics {
+    sectionTitle: string;
+    sections:     Section[];
 }

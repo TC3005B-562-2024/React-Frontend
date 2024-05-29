@@ -1,10 +1,10 @@
 import httpInstance from "../httpInstance";
-import { IAgentCardDTO } from "./types";
+import { IAgentInformation } from "./types";
 
-export const getAgentById = async (alertId: number) => {
+export const getAgentById = async (agentId: string | undefined) => {
     let res = null;
-    
-    const endpoint = `/alerts/${alertId}`;
+
+    const endpoint = `/agents/${agentId}`;
     await httpInstance
         .get(endpoint)
         .then((response) => {
@@ -12,10 +12,9 @@ export const getAgentById = async (alertId: number) => {
         })
         .catch((err) => {
             console.error(err);
-            throw new Error("Failed to fetch alert.");
+            throw new Error("Failed to fetch queue information.");
         });
 
-    return res as IAgentCardDTO | null;
+    return res as IAgentInformation | null;
 }
 
-export default getAgentById;
