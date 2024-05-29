@@ -8,7 +8,7 @@ export const ROUTES = {
         name: 'Skill'
     },
     QUEUE: {
-        path: '/queue/:id',
+        path: '/queues/:id',
         name: 'Queue'
     },
     AGENTS: {

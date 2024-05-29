@@ -16,6 +16,10 @@ const AlertCard: React.FC<IAlertCard> = ({
   hasShadow = true,
 }) => {
   const navigate = useNavigate();
+  const shortId = (id: string) => {
+    return `${id.substring(0, 3)}...${id.slice(-3)}`;
+  }
+
 
   const handleViewMoreClick = () => {
     navigate(individualAlertLink);
@@ -42,7 +46,7 @@ const AlertCard: React.FC<IAlertCard> = ({
         </span>
         <div className="alert-card__container__contents__lower-contents">
           <span className="alert-card__container__contents__owner-name">
-            {alertOwner}
+            {shortId(alertOwner)}
           </span>
           <div className="alert-card__container__contents__button">
             <Button
