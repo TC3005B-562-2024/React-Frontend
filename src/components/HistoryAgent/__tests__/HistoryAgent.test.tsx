@@ -117,7 +117,7 @@ describe("Tests for HistoryAgent Component", () => {
       <HistoryAgent
         log="Test Log"
         date={new Date('2024-05-28T12:00:00')}
-        icon={{ iconName: 'test-icon' }}
+        icon={{ iconName: 'check_circle' }}
         description="Test Description"
         color="green"
       />
