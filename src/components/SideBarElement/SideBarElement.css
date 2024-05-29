@@ -16,10 +16,13 @@
 
 .side-bar-element__container__icon {
   @apply w-8;
+  flex-shrink: 0;
 }
 
 .side-bar-element__container__label--unselcted {
   @apply filter text-text text-white font-bold;
+  max-width: calc(100% - 2rem); /* Adjust based on your actual icon width */
+  overflow: hidden;
 }
 
 .side-bar-element__container__label--selcted {
