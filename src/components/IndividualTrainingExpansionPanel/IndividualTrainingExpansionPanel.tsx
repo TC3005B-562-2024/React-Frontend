@@ -42,14 +42,14 @@ const IndividualTrainingExpansionPanel: React.FC<IIndividualTrainingExpansionPan
 
   return (
     <div data-testid="expansion-panel" className='bg-white h-10 box-content rounded-md shadow-md' data-porcentage={completionPercentage}>
-      <div className='flex'>
+      <div className='flex h-10'>
         <div className={`flex-1 grow font-bold mx-4 my-2`}><div className={colorClasses}>{title}</div></div>
         <div className={`text-aci-green font-semibold mx-2 mr-2 my-2`}>
           {completionPercentage + '%'}
         </div>
         <div className='mx-2 mr-4 my-2'>
           <button onClick={handleButtonClick} className={buttonClasses}>
-            <Icon iconName='expand_less' color='black' />
+            <Icon className='h-6' iconName='expand_less' color='black' />
           </button>
         </div>
       </div>

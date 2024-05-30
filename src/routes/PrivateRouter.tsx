@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
-import { AlertNav, SideBar } from '../components';
+import { AlertNav, MainLoader, SideBar } from '../components';
 import { ISkillBrief } from '../services/skills/types';
 import { getAllSkills } from '../services/skills/getAllSkills';
 
@@ -27,7 +27,7 @@ const PrivateRouter = () => {
 
   return (
     <>
-      {loading && <div>Loading...</div>}
+      {loading && <MainLoader/>}
       {errorSkills && <div>Error</div>}
       {!loading && !errorSkills &&
         <div className='flex'>
