@@ -23,10 +23,19 @@ const Alert: React.FC = () => {
     const [agent, setAgent] = useState<IAgentInformation>();
     const [isLoading, setIsLoading] = useState<boolean>(true);
     
-
     const goBack = () => {
         navigate(-1);
     };
+
+    const handleIgnore = (numberId: number) => {
+        postIgnoreAlert(numberId)
+        goBack()
+    }
+
+    const handleAccecpt = (numberId: number) => {
+        postAcceptAlert(numberId)
+        goBack()
+    }
 
     useEffect(() => {
         const fetchAlertData = async (alertId: number) => {
@@ -114,8 +123,8 @@ const Alert: React.FC = () => {
                         )}
                         <div className='button_container'>
                             <Button text={'Go Back'} size='title' color='orange' type='button' icon={{ iconName: 'arrow_back' }} onClick={goBack} />
-                            <Button text={'Ignore'} size='title' color='red' type='button' icon={{ iconName: 'cancel' }} onClick={() => postIgnoreAlert(numberId)} />
-                            <Button text={'Accept'} size='title' color='green' type='button' icon={{ iconName: 'check_circle' }} onClick={() => postAcceptAlert(numberId)} />
+                            <Button text={'Ignore'} size='title' color='red' type='button' icon={{ iconName: 'cancel' }} onClick={() => handleIgnore(numberId)} />
+                            <Button text={'Accept'} size='title' color='green' type='button' icon={{ iconName: 'check_circle' }} onClick={() => handleAccecpt(numberId)} />
                         </div>
                     </div>
                 </>
