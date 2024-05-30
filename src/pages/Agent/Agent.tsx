@@ -5,6 +5,7 @@ import { IAgentInformation } from "../../services/agents/types";
 import { getAgentById } from "../../services";
 import './Agent.css';
 import { IAlertCard } from "../../components/AlertCard/types";
+import { shortId } from "../../Utils/utils";
 
 const Agent: React.FC = () => {
   const { id } = useParams();
@@ -14,9 +15,6 @@ const Agent: React.FC = () => {
   const [trainingValues, setTrainingValues] = useState<any[]>([]);
   const [completedTrainings, setCompletedTrainings] = useState<number>(0);
 
-  const shortId = (id: string) => {
-    return `${id.substring(0, 3)}...${id.slice(-3)}`;
-  }
 
   const getAgentInformation = useCallback(async () => {
     try {
