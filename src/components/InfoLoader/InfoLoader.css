@@ -1,28 +1,27 @@
-.loader {
-    display: flex;
-    align-items: center;
-    height: 100%;
-    margin-left: 10px;
-  }
+.info-loader {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  margin-left: 10px;
+}
+
+.info-loader__bubble {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-image: linear-gradient(to right, #ff6b81, #ff9a44);
+  margin: 0 5px;
+  animation: bubbleAnimation 1.5s ease-in-out infinite;
+}
   
-  .bubble {
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    background-image: linear-gradient(to right, #ff6b81, #ff9a44);
-    margin: 0 5px;
-    animation: bubbleAnimation 1.5s ease-in-out infinite;
+@keyframes bubbleAnimation {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
   }
-  
-  @keyframes bubbleAnimation {
-    0%,
-    100% {
-      transform: scale(1);
-      opacity: 1;
-    }
-    50% {
-      transform: scale(2);
-      opacity: 0.5;
-    }
+
+  50% {
+    transform: scale(2);
+    opacity: 0.5;
   }
-  
+}
