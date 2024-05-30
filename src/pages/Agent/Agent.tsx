@@ -5,7 +5,7 @@ import { IAgentInformation } from "../../services/agents/types";
 import { getAgentById } from "../../services";
 import './Agent.css';
 import { IAlertCard } from "../../components/AlertCard/types";
-import { shortId } from "../../Utils/utils";
+import { shortId, noUndersocore } from "../../Utils/utils";
 
 const Agent: React.FC = () => {
   const { id } = useParams();
@@ -107,7 +107,7 @@ const Agent: React.FC = () => {
           <InformationBar
             title="Metrics"
             elements={agentInfo.metrics.sections?.map(section => ({
-              title: section.sectionTitle,
+              title: noUndersocore(section.sectionTitle),
               content: section.sectionValue,
               color: section.color as "black" | "red" | "green" | "yellow" | "gray"
             })) || []}
