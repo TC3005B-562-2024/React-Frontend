@@ -4,6 +4,7 @@ import './AlertCard.css';
 import { Button } from '../Button';
 import { IAlertCard } from './types';
 import { useNavigate } from 'react-router-dom';
+import { shortId } from '../../Utils/utils';
 
 /**
  * Card that shows important information of an alert.
@@ -42,7 +43,7 @@ const AlertCard: React.FC<IAlertCard> = ({
         </span>
         <div className="alert-card__container__contents__lower-contents">
           <span className="alert-card__container__contents__owner-name">
-            {alertOwner}
+            {shortId(alertOwner)}
           </span>
           <div className="alert-card__container__contents__button">
             <Button
