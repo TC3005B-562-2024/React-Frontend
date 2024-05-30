@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { AlertExpansionPanel, ErrorCard, IndividualTrainingExpansionPanel, InformationBar } from "../../components";
+import { AlertExpansionPanel, ErrorCard, IndividualTrainingExpansionPanel, InfoLoader, InformationBar } from "../../components";
 import { IAgentInformation } from "../../services/agents/types";
 import { getAgentById } from "../../services";
 import './Agent.css';
@@ -8,7 +8,7 @@ import { IAlertCard } from "../../components/AlertCard/types";
 
 const Agent: React.FC = () => {
   const { id } = useParams();
-  const [loading, setLoading] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(true);
   const [agentInfo, setAgentInfo] = useState<IAgentInformation | null> (null);
   const [errorAgentInfo, setErrorAgentInfo] = useState<boolean>(false);
 
@@ -17,21 +17,19 @@ const Agent: React.FC = () => {
   }
 
   const getAgentInformation = useCallback(async () => {
-    console.log('Fetching agent information');
     await getAgentById(id)
     .then((res) => {
-      console.log(res);
       if (res !== null) setAgentInfo(res);
+      setLoading(false);
     })
     .catch((err) => {
       console.error(err);
       setErrorAgentInfo(true);
+      setLoading(false);
     });
-    setLoading(false);
   }, [id]);
 
   useEffect(() => {
-    console.log('Use effect');
     setLoading(true);
     getAgentInformation();
   }, [getAgentInformation]);
@@ -46,11 +44,11 @@ const Agent: React.FC = () => {
         }
     </div>
     {loading &&
-      <ErrorCard title='Loading...'></ErrorCard>
-      }
-      {errorAgentInfo &&
-        <ErrorCard title='Error fetching agent data'></ErrorCard>
-      }
+      <div><InfoLoader></InfoLoader></div>
+    }
+    {errorAgentInfo &&
+      <ErrorCard title='Error fetching agent data'></ErrorCard>
+    }
     <div className="item">
       {agentInfo &&
         <InformationBar title={agentInfo?.information.sectionTitle} 
@@ -84,7 +82,7 @@ const Agent: React.FC = () => {
     </div>
     <div className="section-title">Alerts</div>
       {loading &&
-        <ErrorCard title='Loading...'></ErrorCard>
+        <div><InfoLoader></InfoLoader></div>
       }
       {errorAgentInfo &&
         <ErrorCard title='Error fetching alerts'></ErrorCard>
@@ -129,7 +127,7 @@ const Agent: React.FC = () => {
     </div>
     <div className="section-title">Trainings</div>
       {loading &&
-        <ErrorCard title='Loading...'></ErrorCard>
+        <div><InfoLoader></InfoLoader></div>
       }
       {errorAgentInfo &&
         <ErrorCard title='Error fetching trainings'></ErrorCard>
@@ -137,14 +135,14 @@ const Agent: React.FC = () => {
       {!loading && !errorAgentInfo && agentInfo !== undefined && agentInfo?.trainings.length === 0 &&
         <ErrorCard title='No trainings found'></ErrorCard>
       }
-    <div className="page-item">
+    <div className="page-last-item">
       {agentInfo&& agentInfo?.trainings.length !== 0 &&
-        <IndividualTrainingExpansionPanel
-          title={`Trainings of Agent ${shortId(id ?? '')}`}
+        <IndividualTrainingExpansionPanel title={`Trainings of Agent ${shortId(id ?? '')}`} 
           trainings={agentInfo.trainings.map(training => ({
-            label: training.label,
-            isComplete: training.isComplete
-          }))} 
+            label: training.training.description,
+            isComplete: training.trainingCompleted
+            })) || []
+          }
         />
       }
     </div>
