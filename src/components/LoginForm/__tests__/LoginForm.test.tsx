@@ -9,7 +9,7 @@ describe('LoginForm', () => {
     mockOnSubmit.mockClear();
   });
 
-  test('renders LoginForm component', () => {
+  test('Renders LoginForm component', () => {
     render(<LoginForm status="default" onSubmit={mockOnSubmit} />);
     
     expect(screen.getByText('LOGIN')).toBeInTheDocument();
@@ -18,7 +18,7 @@ describe('LoginForm', () => {
     expect(screen.getByRole('button', { name: /login/i })).toBeInTheDocument();
   });
 
-  test('updates input fields on change', () => {
+  test('Updates input fields on change', () => {
     render(<LoginForm status="default" onSubmit={mockOnSubmit} />);
 
     const emailInput = screen.getByPlaceholderText('Enter your email');
@@ -30,7 +30,7 @@ describe('LoginForm', () => {
     expect(passwordInput).toHaveValue('password123');
   });
 
-  test('calls onSubmit with email and password on form submit', () => {
+  test('Calls onSubmit with email and password on form submit', () => {
     render(<LoginForm status="default" onSubmit={mockOnSubmit} />);
 
     const emailInput = screen.getByPlaceholderText('Enter your email');
@@ -44,7 +44,7 @@ describe('LoginForm', () => {
     expect(mockOnSubmit).toHaveBeenCalledWith('test@example.com', 'password123');
   });
 
-  test('changes input field color to red on error status', () => {
+  test('Changes input field color to red on error status', () => {
     render(<LoginForm status="error" onSubmit={mockOnSubmit} />);
 
     const emailInput = screen.getByPlaceholderText('Enter your email');
@@ -53,7 +53,7 @@ describe('LoginForm', () => {
     expect(passwordInput).toHaveClass('input-field__container__input-container__input--red');
   });
 
-  test('shows helper text on error status', () => {
+  test('Shows helper text on error status', () => {
     render(<LoginForm status="error" onSubmit={mockOnSubmit} />);
     expect(screen.getByText('Invalid email or password, please try again.')).toBeInTheDocument();
   });
