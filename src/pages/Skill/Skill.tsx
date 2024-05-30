@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { InformationBar, ProgressCard, ErrorCard, AlertExpansionPanel, AgentInfo, InfoLoader } from '../../components';
-import { getAllAlerts } from '../../services';
-import { IAlertResponse } from '../../services/alerts/types';
 import { IAlertCard } from '../../components/AlertCard/types';
 import './Skill.css';
 import { ISection, ISkillById } from '../../services/skills/types';
@@ -11,25 +9,9 @@ import { noUndersocore } from '../../Utils/utils';
 
 const Skill: React.FC = () => {
   const { id } = useParams();
-  const [alertsReceived, setAlertsReceived] = useState<IAlertResponse>();
   const [skill, setSkill] = useState<ISkillById>();
   const [loading, setLoading] = useState<boolean>(false);
-  const [errorAlerts, setErrorAlerts] = useState<boolean>(false);
   const [errorSkill, setErrorSkill] = useState<boolean>(false);
-
-  const getAlerts = async () => {
-    await getAllAlerts()
-      .then((res) => {
-        if (res !== null) setAlertsReceived(res);
-        if (res === undefined) {
-          setErrorAlerts(true);
-        }
-      })
-      .catch((err) => {
-        console.error(err);
-        setErrorAlerts(true);
-      });
-  };
 
   const getSkill = async (id: string | undefined) => {
     const safeId = id || '';
@@ -50,7 +32,6 @@ const Skill: React.FC = () => {
   useEffect(() => {
     setLoading(true);
     getSkill(id);
-    getAlerts();
   }, [id]);
 
   return (
@@ -66,9 +47,6 @@ const Skill: React.FC = () => {
           </span>
           {errorSkill &&
             <ErrorCard title='Error fetching Skill'></ErrorCard>
-          }
-          {!loading && !errorSkill && alertsReceived !== undefined && alertsReceived.high.length === 0 && alertsReceived.medium.length === 0 && alertsReceived.low.length === 0 &&
-            <ErrorCard title='No skills found'></ErrorCard>
           }
           {!loading && skill?.skillsInformationDTO && skill.skillsInformationDTO.sections.length === 0 ? (
             <InformationBar
@@ -95,7 +73,7 @@ const Skill: React.FC = () => {
           ) : (
             <div></div>
           )}
-          {alertsReceived !== undefined && alertsReceived.high.length !== 0 && alertsReceived.medium.length !== 0 && alertsReceived.low.length !== 0 ? (
+          {!loading && skill?.alerts &&
             <div>
               <span className='sections-text'>
                 Alerts
@@ -103,17 +81,10 @@ const Skill: React.FC = () => {
               {loading &&
                 <ErrorCard title='Loading...'></ErrorCard>
               }
-              {errorAlerts &&
-                <ErrorCard title='Error fetching alerts'></ErrorCard>
-              }
-              {!loading && !errorAlerts && alertsReceived !== undefined && alertsReceived.high.length === 0 && alertsReceived.medium.length === 0 && alertsReceived.low.length === 0 &&
-                <ErrorCard title='No alerts found'></ErrorCard>
-              }
-
               <div className="flex flex-col space-y-4 p-1">
-                {alertsReceived !== undefined && alertsReceived.high.length !== 0 &&
+                {skill?.alerts?.high.length !== 0 &&
                   <AlertExpansionPanel
-                    alerts={alertsReceived.high.map(alert => ({
+                    alerts={skill?.alerts?.high.map(alert => ({
                       alertId: alert.id,
                       alertName: alert.insight.category.denomination,
                       alertOwner: alert.resource,
@@ -122,9 +93,9 @@ const Skill: React.FC = () => {
                     })) as IAlertCard[]}
                   />
                 }
-                {alertsReceived !== undefined && alertsReceived?.medium.length !== 0 &&
+                {skill?.alerts?.medium.length !== 0 &&
                   <AlertExpansionPanel
-                    alerts={alertsReceived.medium.map(alert => ({
+                    alerts={skill?.alerts?.medium.map(alert => ({
                       alertId: alert.id,
                       alertName: alert.insight.category.denomination,
                       alertOwner: alert.resource,
@@ -133,9 +104,9 @@ const Skill: React.FC = () => {
                     })) as IAlertCard[]}
                   />
                 }
-                {alertsReceived !== undefined && alertsReceived.low.length !== 0 &&
+                {skill?.alerts?.low.length !== 0 &&
                   <AlertExpansionPanel
-                    alerts={alertsReceived.low.map(alert => ({
+                    alerts={skill?.alerts?.low.map(alert => ({
                       alertId: alert.id,
                       alertName: alert.insight.category.denomination,
                       alertOwner: alert.resource,
@@ -146,9 +117,7 @@ const Skill: React.FC = () => {
                 }
               </div>
             </div>
-          ) : (
-            <div></div>
-          )}
+          }
           <span className='sections-text'>
             Trainings
           </span>
