@@ -1,12 +1,21 @@
 export interface IQueueInformation {
-    map: any;
-    id:          string | undefined;
+    id:          string;
     arn:         string;
     information: Information;
     metrics:     Information;
     alerts:      Alerts;
     trainings:   Training[];
-    agents:      any[];
+    agents:      Agent[];
+}
+
+export interface Agent {
+    id:               string;
+    arn:              string;
+    name:             string;
+    status:           string;
+    sentiment:        null;
+    queues:           string[];
+    topPriorityAlert: null;
 }
 
 export interface Alerts {

@@ -29,4 +29,5 @@ export interface ISideBarElement {
    * A boolean that defines if the SideBarElement is selected or not.
    */
   ignoreIsSelected?: boolean;
+  className?: string;
 }

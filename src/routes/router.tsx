@@ -10,6 +10,8 @@ export const AppRouter = () => {
   const { user } = useAppContext();
   const isLoggedIn = Boolean(user);
 
+  
+
   const routes: RouteObject[] = [
     {
         path: '/',

@@ -54,22 +54,26 @@ const SideBar: React.FC<ISideBar> = ({ skills }) => {
             isExpanded={isExpanded}
             ignoreIsSelected={true}
           />
+          <div id='skills' className='side-bar__container__elements__skills'>
+            {skills !== undefined && skills.map((skill: { alias: string; iconName: string; id: string; }) => (
+              <div className="side-bar__element">
+                <SideBarElement
+                  key={skill.id}
+                  label={skill.alias}
+                  icon={{ iconName: skill.iconName } as IIconNoColorNoSize}
+                  path={`/skills/${skill.id}`}
+                  isExpanded={isExpanded}
 
-          {skills !== undefined && skills.map((skill: { alias: string; iconName: string; id: string; }) => (
-            <SideBarElement
-              key={skill.id}
-              label={skill.alias}
-              icon={{ iconName: skill.iconName } as IIconNoColorNoSize}
-              path={`/skill/${skill.id}`}
-              isExpanded={isExpanded}
-            />
-          ))}
+                />
+              </div>
+            ))}
 
-          {skills === undefined &&
-            <div className='side-bar__container__elements-container__upper-container__error-alert'>
-              No Skills Found.
-            </div>
-          }
+            {skills === undefined &&
+              <div className='side-bar__container__elements-container__upper-container__error-alert'>
+                No Skills Found.
+              </div>
+            }
+          </div>
 
         </div>
         <div className='side-bar__container__elements-container__lowe-container'>
