@@ -7,6 +7,7 @@ import { IAlertCard } from '../../components/AlertCard/types';
 import './Skill.css';
 import { ISection, ISkillById } from '../../services/skills/types';
 import { getSkillById } from '../../services/skills/getSkillById';
+import { noUndersocore } from '../../Utils/utils';
 
 const Skill: React.FC = () => {
   const { id } = useParams();
@@ -83,7 +84,7 @@ const Skill: React.FC = () => {
             <InformationBar
               title='Metrics'
               elements={skill.metrics.sections.map((section: ISection) => ({
-                title: section.sectionTitle,
+                title: noUndersocore(section.sectionTitle),
                 content: section.sectionValue || '',
                 color: section.color || 'black'
               }))}
