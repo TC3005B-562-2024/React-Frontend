@@ -2,10 +2,9 @@
 import React, { useEffect, useState } from "react";
 import { getLogs } from "../../services/alerts/logsService";
 import { IHistoryAgentProps } from "../../components/HistoryAgent/types";
-import { ErrorCard } from "../../components";
+import { ErrorCard, InfoLoader } from "../../components";
 import HistoryAgent from "../../components/HistoryAgent/HistoryAgent";
 import { IAlertResponse, IAlert } from "../../services/alerts/types";
-import { InfoLoader } from "../../components/InfoLoader";
 
 const Logs: React.FC = () => {
   const [logs, setLogs] = useState<IHistoryAgentProps[] | null>(null);

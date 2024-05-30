@@ -1,11 +1,10 @@
 import React, { useCallback, useEffect, useState} from 'react';
 import { useParams } from 'react-router-dom';
-import { InformationBar, ProgressCard, ErrorCard, AlertExpansionPanel, AgentInfo } from '../../components';
+import { InformationBar, ProgressCard, ErrorCard, AlertExpansionPanel, AgentInfo, InfoLoader } from '../../components';
 import { getQueueInfo } from '../../services';
 import { IQueueInformation } from '../../services/queue/types';
 import { IAlertCard } from '../../components/AlertCard/types';
 import './Queue.css';
-import { InfoLoader } from '../../components/InfoLoader';
 
 const Queue: React.FC = () => {
   const { id } = useParams();

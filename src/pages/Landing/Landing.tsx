@@ -1,9 +1,8 @@
 import React from "react";
-import { AgentInfo, Filters, Pill, SearchBar } from "../../components";
+import { AgentInfo, Filters, Pill, SearchBar, InfoLoader } from "../../components";
 import './Landing.css';
 import { getAllAgents } from "../../services";
 import { IAgentCardDTO } from "../../services/agents/types";
-import { InfoLoader } from "../../components/InfoLoader";
 
 const Landing: React.FC = () => {
   const [agents, setAgents] = React.useState<IAgentCardDTO[]>([]);
