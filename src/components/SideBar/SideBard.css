@@ -3,9 +3,7 @@
 }
 
 .side-bar__element {
-  @apply flex flex-row items-center hover:bg-gray-200;
-  white-space: nowrap; /* Keeps the text on a single line */
-  overflow: hidden; /* Ensures content does not spill out */
+  @apply flex flex-row items-center hover:bg-gray-200 whitespace-nowrap overflow-hidden;
 }
 
 .side-bar__container--expaned {
@@ -40,6 +38,5 @@
 }
 
 .side-bar__container__elements__skills::-webkit-scrollbar {
-    /* Hide scrollbar */
-    display: none; /* for Chrome, Safari, and Opera */
+  @apply hidden;
 }

@@ -15,8 +15,7 @@
 }
 
 .side-bar-element__container__icon {
-  @apply w-8;
-  flex-shrink: 0;
+  @apply w-8 shrink-0;
 }
 
 .side-bar-element__container__label--unselcted {
