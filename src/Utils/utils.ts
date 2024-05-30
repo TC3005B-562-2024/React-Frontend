@@ -1,4 +1,5 @@
-export const shortId = (id: string): string => {
+export const shortId = (id: string | undefined): string => {
+    if (!id) return '';
     return `${id.substring(0, 3)}...${id.slice(-3)}`;
   }
   

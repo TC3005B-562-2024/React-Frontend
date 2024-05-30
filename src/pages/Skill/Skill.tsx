@@ -1,164 +1,197 @@
-import React, { useCallback, useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { InformationBar, ProgressCard, ErrorCard, AlertExpansionPanel, AgentInfo, InfoLoader } from '../../components';
-import { getSkillInfo } from '../../services';
+import { getAllAlerts } from '../../services';
+import { IAlertResponse } from '../../services/alerts/types';
 import { IAlertCard } from '../../components/AlertCard/types';
 import './Skill.css';
-import { ISkillInformation } from '../../services/skillInfo/types';
-import { shortId, noUndersocore, TitleCase } from "../../Utils/utils";
+import { ISection, ISkillById } from '../../services/skills/types';
+import { getSkillById } from '../../services/skills/getSkillById';
+import { noUndersocore } from '../../Utils/utils';
 
 const Skill: React.FC = () => {
   const { id } = useParams();
+  const [alertsReceived, setAlertsReceived] = useState<IAlertResponse>();
+  const [skill, setSkill] = useState<ISkillById>();
   const [loading, setLoading] = useState<boolean>(false);
-  const [errorSkillInfo, setErrorSkillInfo] = useState<boolean>(false);
-  const [skillInfo, setSkillInfo] = useState<ISkillInformation | null>(null);
+  const [errorAlerts, setErrorAlerts] = useState<boolean>(false);
+  const [errorSkill, setErrorSkill] = useState<boolean>(false);
 
-  const getSkillInformation = useCallback(async () => {
-    await getSkillInfo(id)
-    .then((res) =>{
-      if (res !== null) setSkillInfo(res);
-    })
-    .catch((err) => {
-      console.error(err);
-      setErrorSkillInfo(true);
-    })
+  const getAlerts = async () => {
+    await getAllAlerts()
+      .then((res) => {
+        if (res !== null) setAlertsReceived(res);
+        if (res === undefined) {
+          setErrorAlerts(true);
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+        setErrorAlerts(true);
+      });
+  };
+
+  const getSkill = async (id: string | undefined) => {
+    const safeId = id || '';
+    await getSkillById(safeId)
+      .then((res) => {
+        if (res !== null) setSkill(res);
+        if (res === undefined) {
+          setErrorSkill(true);
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+        setErrorSkill(true);
+      });
     setLoading(false);
-  }, [id]);
+  };
 
   useEffect(() => {
     setLoading(true);
-    getSkillInformation();
-  }, [getSkillInformation]);
+    getSkill(id);
+    getAlerts();
+  }, [id]);
 
   return (
     <>
-    <div>
       <div>
-        <span className='sections-text'>
-          Skill: <span className=' text-aci-orange'>{shortId(id ?? '')}</span>
-        </span>
-        {loading &&
-          <InfoLoader></InfoLoader>
-        }
-        {errorSkillInfo &&
-          <ErrorCard title='Error fetching skill'></ErrorCard>
-        }
-        <div>
-          {skillInfo &&
-          <InformationBar
-            title={skillInfo.skillsInformationDTO.title}
-            elements={skillInfo.skillsInformationDTO.sections?.map(section => ({
-              title: section.sectionTitle,
-              content: section.sectionValue,
-              color: section.color as "black" | "red" | "green" | "yellow" | "gray"
-            })) || []}
-          />
-          }
-          {skillInfo && skillInfo?.metrics.sections !== null &&
-          <InformationBar 
-            title={skillInfo.metrics.sectionTitle}
-            elements={skillInfo.metrics.sections?.map(section => ({
-              title: TitleCase(noUndersocore(section.sectionTitle)),
-              content: section.sectionValue,
-              color: section.color as "black" | "red" | "green" | "yellow" | "gray"
-            })) || []}
-          />
-          }
-        </div>
         <div>
           <span className='sections-text'>
-            Alerts
+            Skill: 
+            {loading ? 
+              (<InfoLoader />) : 
+              (<span className=' text-aci-orange'>{` ${skill?.alias}`}</span>)
+            }
           </span>
-          {loading &&
-            <InfoLoader></InfoLoader>
+          {errorSkill &&
+            <ErrorCard title='Error fetching Skill'></ErrorCard>
           }
-          {errorSkillInfo &&
-            <ErrorCard title='Error fetching alerts'></ErrorCard>
+          {!loading && !errorSkill && alertsReceived !== undefined && alertsReceived.high.length === 0 && alertsReceived.medium.length === 0 && alertsReceived.low.length === 0 &&
+            <ErrorCard title='No skills found'></ErrorCard>
           }
-          {!loading && !errorSkillInfo && skillInfo !== undefined && skillInfo?.alerts.high.length === 0 && skillInfo?.alerts.medium.length === 0 && skillInfo?.alerts.low.length === 0 &&
-            <ErrorCard title='No alerts found'></ErrorCard>
-          }
-          <div className="flex flex-col space-y-4 p-1">
-            {skillInfo && skillInfo?.alerts.high.length !== 0 &&
-              <AlertExpansionPanel
-                alerts={skillInfo?.alerts.high.map(alert => ({
-                  alertId: alert.id,
-                  alertName: alert.insight.category.denomination,
-                  alertOwner: alert.resource,
-                  alertPriority: 'CRITIC',
-                  individualAlertLink: `${alert.id}`
-                })) as IAlertCard[]}
-              />
-            }
-            {skillInfo && skillInfo?.alerts.medium.length !== 0 &&
-              <AlertExpansionPanel
-                  alerts={skillInfo?.alerts.medium.map(alert => ({
-                    alertId: alert.id,
-                    alertName: alert.insight.category.denomination,
-                    alertOwner: alert.resource,
-                    alertPriority: 'MEDIUM',
-                    individualAlertLink: `${alert.id}`
-                  })) as IAlertCard[]}
-                />
+          {!loading && skill?.skillsInformationDTO && skill.skillsInformationDTO.sections.length === 0 ? (
+            <InformationBar
+              title='Information'
+              elements={skill?.skillsInformationDTO.sections.map((section) => ({
+                title: section.sectionTitle || '',
+                content: section.sectionValue || '',
+                color: section.color || 'black'
+              })) || []}
+            />
+          ) : (
+            <div></div>
+          )}
+
+          {!loading && skill?.metrics?.sections && skill.metrics.sections.length > 0 ? (
+            <InformationBar
+              title='Metrics'
+              elements={skill.metrics.sections.map((section: ISection) => ({
+                title: noUndersocore(section.sectionTitle),
+                content: section.sectionValue,
+                color: section.color || 'black'
+              }))}
+            />
+          ) : (
+            <div></div>
+          )}
+          {alertsReceived !== undefined && alertsReceived.high.length !== 0 && alertsReceived.medium.length !== 0 && alertsReceived.low.length !== 0 ? (
+            <div>
+              <span className='sections-text'>
+                Alerts
+              </span>
+              {loading &&
+                <ErrorCard title='Loading...'></ErrorCard>
               }
-              {skillInfo && skillInfo?.alerts.low.length !== 0 &&
-                <AlertExpansionPanel
-                  alerts={skillInfo.alerts.low.map(alert => ({
-                    alertId: alert.id,
-                    alertName: alert.insight.category.denomination,
-                    alertOwner: alert.resource,
-                    alertPriority: 'LOW',
-                    individualAlertLink: `${alert.id}`
-                  })) as IAlertCard[]}
-                />
+              {errorAlerts &&
+                <ErrorCard title='Error fetching alerts'></ErrorCard>
               }
+              {!loading && !errorAlerts && alertsReceived !== undefined && alertsReceived.high.length === 0 && alertsReceived.medium.length === 0 && alertsReceived.low.length === 0 &&
+                <ErrorCard title='No alerts found'></ErrorCard>
+              }
+
+              <div className="flex flex-col space-y-4 p-1">
+                {alertsReceived !== undefined && alertsReceived.high.length !== 0 &&
+                  <AlertExpansionPanel
+                    alerts={alertsReceived.high.map(alert => ({
+                      alertId: alert.id,
+                      alertName: alert.insight.category.denomination,
+                      alertOwner: alert.resource,
+                      alertPriority: 'CRITIC',
+                      individualAlertLink: `${alert.id}`
+                    })) as IAlertCard[]}
+                  />
+                }
+                {alertsReceived !== undefined && alertsReceived?.medium.length !== 0 &&
+                  <AlertExpansionPanel
+                    alerts={alertsReceived.medium.map(alert => ({
+                      alertId: alert.id,
+                      alertName: alert.insight.category.denomination,
+                      alertOwner: alert.resource,
+                      alertPriority: 'MEDIUM',
+                      individualAlertLink: `${alert.id}`
+                    })) as IAlertCard[]}
+                  />
+                }
+                {alertsReceived !== undefined && alertsReceived.low.length !== 0 &&
+                  <AlertExpansionPanel
+                    alerts={alertsReceived.low.map(alert => ({
+                      alertId: alert.id,
+                      alertName: alert.insight.category.denomination,
+                      alertOwner: alert.resource,
+                      alertPriority: 'LOW',
+                      individualAlertLink: `${alert.id}`
+                    })) as IAlertCard[]}
+                  />
+                }
+              </div>
             </div>
-          </div>
-          <div>
-            <span className='sections-text'>
-              Trainings
-            </span>
-            <div className=' space-y-4 p-1'>
-            {loading &&
-              <InfoLoader></InfoLoader>
-            }
-            {skillInfo &&
-              <ProgressCard
-                label='Trainings of Call'
-                trainings={skillInfo.trainings.map(training => ({
-                  progress: training.resourceTrainingProgress,
-                  label: training.resourceName
-                }))}
-              />
-            }
+          ) : (
+            <div></div>
+          )}
+          <span className='sections-text'>
+            Trainings
+          </span>
+          {loading && <InfoLoader />}
+          {!loading && skill?.trainings && skill.trainings.length > 0 ? (
+            <div>
+              <div className='space-y-4 p-1'>
+                <ProgressCard
+                  label={`Trainings of ${skill.alias}`}
+                  trainings={skill.trainings.map(training => ({
+                    label: training.resourceName,
+                    progress: training.resourceTrainingProgress * 100
+                  }))}
+                />
+              </div>
             </div>
-          </div>
+          ) : (
+            <div></div>
+          )}
           <div>
             <span className='sections-text'>
               Agents
             </span>
-            {loading &&
-                <InfoLoader></InfoLoader>
+            <div className='cards-container mb-2'>
+              {loading ? 
+                (<InfoLoader />) : 
+                (
+                  skill?.agents.map((agent) => (
+                    <AgentInfo
+                      id={agent.id}
+                      name={agent.name}
+                      sentiment={agent.sentiment}
+                      queues={agent.queues}
+                      status={agent.status}
+                      topPriorityAlert={agent.topPriorityAlert}
+                    />
+                  ))
+                )
               }
-              {errorSkillInfo &&
-                <ErrorCard title='Error fetching agents'></ErrorCard>
-              }
-            <div className='cards-container'>
-              {skillInfo && skillInfo.agents.map(agent => (
-                <AgentInfo 
-                  key={agent.id}
-                  id={agent.id}
-                  name={agent.name}
-                  sentiment={agent.sentiment}
-                  queues={agent.queues}
-                  status={agent.status as "ONCALL" | "AVAILABLE" | "DISCONNECTED" | null}
-                  topPriorityAlert={agent.topPriorityAlert}
-                />
-              ))}
             </div>
           </div>
         </div>
-    </div>
+      </div>
     </>
   );
 };
