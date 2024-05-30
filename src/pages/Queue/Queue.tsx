@@ -4,6 +4,7 @@ import { InformationBar, ProgressCard, ErrorCard, AlertExpansionPanel, AgentInfo
 import { getQueueInfo } from '../../services';
 import { IQueueInformation } from '../../services/queue/types';
 import { IAlertCard } from '../../components/AlertCard/types';
+import { shortId } from '../../Utils/utils';
 import './Queue.css';
 
 const Queue: React.FC = () => {
@@ -12,9 +13,6 @@ const Queue: React.FC = () => {
   const [queueInfo, setQueueInfo] = useState<IQueueInformation | null > (null);
   const [errorQueueInfo, setErrorQueueInfo] = useState<boolean>(false);
 
-  const shortId = (id: string) => {
-    return `${id.substring(0, 3)}...${id.slice(-3)}`;
-  }
 
   const getQueueInformation = useCallback(async () => {
     await getQueueInfo(id)

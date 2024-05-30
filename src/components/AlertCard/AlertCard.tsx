@@ -4,6 +4,7 @@ import './AlertCard.css';
 import { Button } from '../Button';
 import { IAlertCard } from './types';
 import { useNavigate } from 'react-router-dom';
+import { shortId } from '../../Utils/utils';
 
 /**
  * Card that shows important information of an alert.
@@ -16,10 +17,6 @@ const AlertCard: React.FC<IAlertCard> = ({
   hasShadow = true,
 }) => {
   const navigate = useNavigate();
-  const shortId = (id: string) => {
-    return `${id.substring(0, 3)}...${id.slice(-3)}`;
-  }
-
 
   const handleViewMoreClick = () => {
     navigate(individualAlertLink);
