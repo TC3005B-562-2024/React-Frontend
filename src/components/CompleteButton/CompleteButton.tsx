@@ -18,7 +18,7 @@ const CompleteButton: React.FC<ICompleteButton> = ({
     }, [isComplete]);
 
     return (
-        <button data-testid="complete-button" onClick={handleButtonClick} className='flex' data-completed={completed}>
+        <button data-testid="complete-button" onClick={handleButtonClick} className='h-5 w-5' data-completed={completed}>
             <Icon iconName={completed ? 'check_circle_fill' : 'radio_button_unchecked'} color={color} data-icon-name={completed ? 'check_circle_fill' : 'radio_button_unchecked'} />
         </button>
     );

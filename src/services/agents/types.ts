@@ -21,12 +21,14 @@ export enum Queue {
 }
 
 export interface IAgentInformation {
+    [x: string]: any;
+    agentInfo: any;
     id:                    string;
     arn:                   string;
     information:           TInformationDto;
     metrics:               TInformationDto;
     alerts:                AlertPriorityDTO;
-    trainings:             any[];
+    trainings:             Training[];
     queues:                IQueueMin[];
     contactInformationDTO: any[];
 }
@@ -46,6 +48,34 @@ export interface AlertPriorityDTO {
     high:   any[];
     medium: any[];
     low:    any[];
+}
+
+export interface Training {
+    id:                        number;
+    training:                  Insight;
+    interveneContact:          null;
+    interveneAgent:            null;
+    originalRoutingProfile:    null;
+    destinationRoutingProfile: null;
+    transferedAgent:           null;
+    resource:                  string;
+    dateRegistered:            Date;
+    dateUpdated:               Date;
+    solved:                    boolean;
+    dateTrainingCompleted:     Date | null;
+    hasTraining:               boolean;
+    trainingCompleted:         boolean;
+}
+
+export interface Insight {
+    identifier:     number;
+    category?:      Insight;
+    denomination:   string;
+    description:    string;
+    dateRegistered: Date;
+    dateUpdated:    Date;
+    active:         boolean;
+    priority?:      number;
 }
 
 export interface Metrics {
