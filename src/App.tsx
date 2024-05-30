@@ -1,6 +1,7 @@
 import { RouterProvider } from 'react-router-dom';
 import { AppRouter } from './routes/router';
 import { useAppContext } from './app-context/app-context';
+import { MainLoader } from './components';
 
 
 const App = () => {
@@ -9,7 +10,7 @@ const App = () => {
   return (
     <>
     {loadingContext ? (
-      <div>Loading...</div>
+      <MainLoader/>
     ) : (
       <RouterProvider router={AppRouter()} />
     )}
