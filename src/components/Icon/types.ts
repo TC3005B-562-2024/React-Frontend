@@ -23,7 +23,7 @@ export interface IIcon {
     /**
      * The color of the icon
      */
-    color?: 'black' | 'white' | 'red' | 'green' | 'blue' | 'yellow' | 'gray' | 'orange'
+    color?: 'black' | 'white' | 'red' | 'green' | 'blue' | 'yellow' | 'yellowA' | 'gray' | 'orange'
     /**
      * The class name to apply to the icon
      */
