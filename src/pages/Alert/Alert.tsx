@@ -25,16 +25,19 @@ const Alert: React.FC = () => {
         const fetchAlertData = async (alertId: number) => {
             try {
                 const alertData = await getAlertById(alertId);
-                console.log('Alert Data:', alertData); // Inspect the structure of alert data
                 if (alertData !== null) {
                     setAlertInfo(alertData);
-                    const queueArn = alertData.resource; // Use resource field to get queue ARN
-                    if (queueArn) {
-                        const queueId = queueArn.split('/').pop(); // Extract the queue ID from the ARN
-                        if (queueId) {
-                            const queueData = await getQueueInfo(queueId);
-                            setQueue(queueData);
-                        }
+                    const resourceArn = alertData.resource; // Use resource field to get queue ARN
+
+                    if (resourceArn && resourceArn.includes('routing-profile')) {
+                        // const skillData = await getSkillInfo(resourceArn.split('/').pop());
+                        // setSkill(skillData);
+                    } else if (resourceArn && resourceArn.includes('queue')) {
+                        const queueData = await getQueueInfo(resourceArn.split('/').pop());
+                        setQueue(queueData);
+                    } else if (resourceArn && resourceArn.includes('agent')) {
+                        // const agentData = await getAgentInfo(resourceArn.split('/').pop());
+                        // setAgent(agentData);
                     }
                 }
             } catch (err) {
@@ -54,7 +57,7 @@ const Alert: React.FC = () => {
                         <span className='text-banner font-bold pb-3'>
                             {alertInfo.resource}
                         </span>
-                        {alertInfo.resource === 'queue' && queue && (
+                        {queue && (
                             <InformationBar
                                 title='Information'
                                 elements={queue?.information.sections?.map((section) => ({
