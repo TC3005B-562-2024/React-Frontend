@@ -15,11 +15,12 @@
 }
 
 .side-bar-element__container__icon {
-  @apply w-8;
+  @apply w-8 shrink-0;
 }
 
 .side-bar-element__container__label--unselcted {
-  @apply filter text-text text-white font-bold;
+  @apply filter text-text text-white font-bold truncate;
+  max-width: calc(100% - 2rem); /* Adjust based on your actual icon width */
 }
 
 .side-bar-element__container__label--selcted {

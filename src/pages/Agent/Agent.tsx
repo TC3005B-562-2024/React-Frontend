@@ -1,146 +1,154 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { AlertCard, ErrorCard, IndividualTrainingExpansionPanel, InformationBar } from "../../components";
+import { AlertExpansionPanel, ErrorCard, IndividualTrainingExpansionPanel, InformationBar } from "../../components";
+import { IAgentInformation } from "../../services/agents/types";
+import { getAgentById } from "../../services";
 import './Agent.css';
-import { IAlertResponse } from "../../services/alerts/types";
-import { getAllAlerts } from "../../services";
-import Config from "../../config";
+import { IAlertCard } from "../../components/AlertCard/types";
 
 const Agent: React.FC = () => {
   const { id } = useParams();
-  const [alertsReceived, setAlertsReceived] = useState<IAlertResponse>();
-  const [loadingAlerts, setLoading] = useState<boolean>(false);
-  const [errorAlerts, setErrorAlerts] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [agentInfo, setAgentInfo] = useState<IAgentInformation | null> (null);
+  const [errorAgentInfo, setErrorAgentInfo] = useState<boolean>(false);
 
-  const statusColor = 'red';
-  const durationColor = 'green';
-  const emotionColor = 'yellow';
-  const serviceLevelColor = 'yellow';
-  const acrColor = 'green';
-  const asaColor = 'yellow';
-  const fcrColor = 'red';
-  const adherenceColor = 'red';
+  const shortId = (id: string) => {
+    return `${id.substring(0, 3)}...${id.slice(-3)}`;
+  }
 
-
-  const getAlerts = async () => {
-    await getAllAlerts()
+  const getAgentInformation = useCallback(async () => {
+    console.log('Fetching agent information');
+    await getAgentById(id)
     .then((res) => {
-      if (res !== null) setAlertsReceived(res);
-    }) 
-    .catch(() => {
-      setErrorAlerts(true);
+      console.log(res);
+      if (res !== null) setAgentInfo(res);
+    })
+    .catch((err) => {
+      console.error(err);
+      setErrorAgentInfo(true);
     });
     setLoading(false);
-  };
-    
+  }, [id]);
+
   useEffect(() => {
+    console.log('Use effect');
     setLoading(true);
-    getAlerts();
-  }, []);
+    getAgentInformation();
+  }, [getAgentInformation]);
 
   return (
     <div className="h-lvh">
       <div className="top-container">
         <h1 className="section-title">Agent: </h1>
-        <h1 className="agent-id">{id}</h1>
-    </div>
-    <div className="item"><InformationBar title="Information" elements={[
-      {
-        title: 'Name',
-        content: 'Element',
-        color: 'black'
-      },
-      {
-        title:'Skill',
-        content: 'Element',
-        color: 'black'
-      },
-      {
-        title: 'Status',
-        content: 'Element',
-        color: statusColor
-      }]}/>
-    </div>
-
-    <div className="item"><InformationBar title="Contact Information" elements={[
-          {
-          title: 'ID',
-          content: 'Element',
-          color: 'black'
-        },
-        {
-          title: 'Duration',
-          content: 'Element',
-          color: durationColor
-        },
-        {
-          title: 'Emotion',
-          content: 'Element',
-          color: emotionColor
-        }]}/></div>
-
-        <div className="item"><InformationBar title="Metrics" elements={[{
-          title: 'Service Level',
-          content: 'Element',
-          color: serviceLevelColor
-        },
-        {
-          title: 'ACR',
-          content: 'Element',
-          color: acrColor
-        },
-        {
-          title: 'ASA',
-          content: 'Element',
-          color: asaColor
-        },
-        {
-          title: 'FCR',
-          content: 'Element',
-          color: fcrColor
-        },
-        {
-          title: 'Adherence',
-          content: 'Element',
-          color: adherenceColor
-        }]} /></div>
-
-        <div className="section-title">Alerts</div>
-
-        {loadingAlerts && 
-          <div className="text-text">
-            <ErrorCard title={"Loading..."}></ErrorCard>
-          </div>
+        {agentInfo &&
+          <>
+          <h1 className="agent-id">{shortId(id ?? '')}</h1></>
         }
-        {errorAlerts && 
-          <div className="text-text">
-            <ErrorCard title={"Error fetching alerts"}></ErrorCard>
-          </div>
-        }
-        {!loadingAlerts && !errorAlerts && 
-          <div className="text-text">
-            <ErrorCard title={"No alerts found"}></ErrorCard>
-          </div>
-        }
-        {alertsReceived !== undefined && alertsReceived.high.length !== 0 && alertsReceived.high.map(alert =>
-          <AlertCard alertName={alert.insight.category.denomination} alertOwner={alert.resource} alertPriority={"CRITIC"} individualAlertLink={`${Config.FRONT_URL}alerts/${alert.id}`} alertId={alert.id}/>
-        )}
-        {alertsReceived !== undefined && alertsReceived.high.length !== 0 && alertsReceived.medium.map(alert =>
-          <AlertCard alertName={alert.insight.category.denomination} alertOwner={alert.resource} alertPriority={"MEDIUM"} individualAlertLink={`${Config.FRONT_URL}alerts/${alert.id}`} alertId={alert.id}/>
-        )}
-        {alertsReceived !== undefined && alertsReceived.high.length !== 0 && alertsReceived.low.map(alert =>
-          <AlertCard alertName={alert.insight.category.denomination} alertOwner={alert.resource} alertPriority={"LOW"} individualAlertLink={`${Config.FRONT_URL}alerts/${alert.id}`} alertId={alert.id}/>
-        )}
-        <div className="section-title">Trainings</div>
-        <div className="page-last-item"><IndividualTrainingExpansionPanel title={"Trainings of Agent..."} trainings={[
-          {label: 'Training Description',
-          isComplete: true},
-          {
-          label: 'Training Description',
-          isComplete: false}
-          ]} /></div>
-
     </div>
+    {loading &&
+      <ErrorCard title='Loading...'></ErrorCard>
+      }
+      {errorAgentInfo &&
+        <ErrorCard title='Error fetching agent data'></ErrorCard>
+      }
+    <div className="item">
+      {agentInfo &&
+        <InformationBar title={agentInfo?.information.sectionTitle} 
+          elements={agentInfo?.information.sections?.map(section => ({
+            title: section.sectionTitle,
+            content: section.sectionValue,
+            color: section.color as "black" | "red" | "green" | "yellow" | "gray"
+          })) || []}
+        />
+      }
+      {agentInfo?.contactInformationDTO.map(element => ({
+        title: element.title,
+        elements: element.sections?.map((section: { sectionTitle: any; sectionValue: any; color: string; }) => ({
+          title: section.sectionTitle,
+          content: section.sectionValue,
+          color: section.color as "black" | "red" | "green" | "yellow" | "gray"
+        })) || []
+      })).map(info => (
+        <InformationBar title={info.title} elements={info.elements} />
+      ))}
+      {agentInfo?.metrics && 
+        <InformationBar
+          title="Metrics"
+          elements={agentInfo.metrics.sections?.map(section => ({
+            title: section.sectionTitle,
+            content: section.sectionValue,
+            color: section.color as "black" | "red" | "green" | "yellow" | "gray"
+          })) || []}
+        />
+      }
+    </div>
+    <div className="section-title">Alerts</div>
+      {loading &&
+        <ErrorCard title='Loading...'></ErrorCard>
+      }
+      {errorAgentInfo &&
+        <ErrorCard title='Error fetching alerts'></ErrorCard>
+      }
+      {!loading && !errorAgentInfo && agentInfo !== undefined && agentInfo?.alerts.high.length === 0 && agentInfo?.alerts.medium.length === 0 && agentInfo?.alerts.low.length === 0 &&
+        <ErrorCard title='No alerts found'></ErrorCard>
+      }
+    <div className="item">
+      {agentInfo && agentInfo?.alerts.high.length !== 0 &&
+        <AlertExpansionPanel
+          alerts={agentInfo?.alerts.high.map(alert => ({
+            alertId: alert.id,
+            alertName: alert.insight.category.denomination,
+            alertOwner: alert.resource,
+            alertPriority: 'CRITIC',
+            individualAlertLink: `${alert.id}`
+          })) as IAlertCard[]}
+        />
+      }
+      {agentInfo && agentInfo?.alerts.medium.length !== 0 &&
+        <AlertExpansionPanel
+          alerts={agentInfo?.alerts.medium.map(alert => ({
+            alertId: alert.id,
+            alertName: alert.insight.category.denomination,
+            alertOwner: alert.resource,
+            alertPriority: 'MEDIUM',
+            individualAlertLink: `${alert.id}`
+          })) as IAlertCard[]}
+        />
+      }
+      {agentInfo && agentInfo?.alerts.low.length !== 0 &&
+        <AlertExpansionPanel
+          alerts={agentInfo?.alerts.low.map(alert => ({
+            alertId: alert.id,
+            alertName: alert.insight.category.denomination,
+            alertOwner: alert.resource,
+            alertPriority: 'LOW',
+            individualAlertLink: `${alert.id}`
+          })) as IAlertCard[]}
+        />
+      }
+    </div>
+    <div className="section-title">Trainings</div>
+      {loading &&
+        <ErrorCard title='Loading...'></ErrorCard>
+      }
+      {errorAgentInfo &&
+        <ErrorCard title='Error fetching trainings'></ErrorCard>
+      }
+      {!loading && !errorAgentInfo && agentInfo !== undefined && agentInfo?.trainings.length === 0 &&
+        <ErrorCard title='No trainings found'></ErrorCard>
+      }
+    <div className="page-item">
+      {agentInfo&& agentInfo?.trainings.length !== 0 &&
+        <IndividualTrainingExpansionPanel
+          title={`Trainings of Agent ${shortId(id ?? '')}`}
+          trainings={agentInfo.trainings.map(training => ({
+            label: training.label,
+            isComplete: training.isComplete
+          }))} 
+        />
+      }
+    </div>
+  </div>
   );
 };
   

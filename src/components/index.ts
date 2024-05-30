@@ -25,3 +25,4 @@ export { AgentInfo } from './AgentInfo';
 export { AgentList } from './AgentList';
 export { HistoryAgent } from './HistoryAgent';
 export { InfoLoader } from './InfoLoader';
+export { MainLoader } from './MainLoader';
