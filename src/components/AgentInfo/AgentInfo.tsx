@@ -11,8 +11,8 @@ import { useNavigate } from "react-router-dom";
  */
 const AgentInfo: React.FC<IAgentInfo> = ({ id, name, sentiment, queues, status, topPriorityAlert }) => {
   const navigate = useNavigate();
-  // If ONCALL phone_in_talk green, else if AVAILABLE call_end yellow, else clear_night blue.
-  const [statusIconName, statusIconColor] = status === 'ONCALL' ? ['phone_in_talk', 'green'] : status === 'AVAILABLE' ? ['call_end', 'yellow'] : ['clear_night', 'blue'];
+  // If ONCALL phone_in_talk green, else if Available call_end yellow, else clear_night blue.
+  const [statusIconName, statusIconColor] = status === 'ONCALL' ? ['phone_in_talk', 'green'] : status === 'Available' ? ['call_end', 'yellow'] : ['clear_night', 'blue'];
 
   // IF CRITICAL warning red, else if MEDIUM warning orange, else warning yellow.
   const [alertIconName, alertIconColor] = topPriorityAlert === 'CRITICAL' ? ['warning', 'red'] : topPriorityAlert === 'MEDIUM' ? ['warning', 'orange'] : ['warning', 'yellowA'];

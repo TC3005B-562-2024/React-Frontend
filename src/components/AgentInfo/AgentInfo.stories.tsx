@@ -19,7 +19,7 @@ const meta = {
     },
     skillArray: { control: 'object' },
     status: {
-      options: ['ONCALL', 'AVAILABLE', 'DISCONNECTED'],
+      options: ['ONCALL', 'Available', 'DISCONNECTED'],
       control: { type: 'select' },
     },
     topPriorityAlert: {
@@ -56,7 +56,7 @@ AgentInfoPositiveAvailableMedium.args = {
   name: 'John Doe',
   sentiment: 'POSITIVE',
   queues: ['skill1', 'skill2', 'skill3'],
-  status: 'AVAILABLE',
+  status: 'Available',
   topPriorityAlert: 'MEDIUM',
 };
 

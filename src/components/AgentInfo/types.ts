@@ -18,7 +18,7 @@ export interface IAgentInfo {
   /**
    * The status of the agent.
    */
-  status: 'ONCALL' | 'AVAILABLE' | 'DISCONNECTED' | null;
+  status: 'ONCALL' | 'Available' | 'DISCONNECTED' | null;
   /**
    * The top priority alert of the agent.
    */
