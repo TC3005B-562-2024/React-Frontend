@@ -4,7 +4,7 @@ import { InformationBar, ProgressCard, ErrorCard, AlertExpansionPanel, AgentInfo
 import { getQueueInfo } from '../../services';
 import { IQueueInformation } from '../../services/queue/types';
 import { IAlertCard } from '../../components/AlertCard/types';
-import { shortId } from '../../Utils/utils';
+import { shortId, noUndersocore, TitleCase } from '../../Utils/utils';
 import './Queue.css';
 
 const Queue: React.FC = () => {
@@ -58,7 +58,7 @@ const Queue: React.FC = () => {
             <InformationBar 
               title={queueInfo.metrics.sectionTitle}
               elements={queueInfo.metrics.sections?.map(section => ({
-                title: section.sectionTitle,
+                title: TitleCase(noUndersocore(section.sectionTitle)),
                 content: section.sectionValue,
                 color: section.color as "black" | "red" | "green" | "yellow" | "gray"
               })) || []}
