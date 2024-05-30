@@ -17,7 +17,11 @@ const AlertCard: React.FC<IAlertCard> = ({
 }) => {
   const navigate = useNavigate();
   const shortId = (id: string) => {
-    return `${id.substring(0, 3)}...${id.slice(-3)}`;
+    if (id.length <= 12) {
+      return id;
+    } else {
+      return `${id.substring(0, 12)}...${id.slice(-8)}`;
+    }
   }
 
 
