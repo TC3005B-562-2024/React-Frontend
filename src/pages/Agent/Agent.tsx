@@ -17,8 +17,10 @@ const Agent: React.FC = () => {
   }
 
   const getAgentInformation = useCallback(async () => {
+    console.log('Fetching agent information');
     await getAgentById(id)
     .then((res) => {
+      console.log(res);
       if (res !== null) setAgentInfo(res);
     })
     .catch((err) => {
@@ -29,6 +31,7 @@ const Agent: React.FC = () => {
   }, [id]);
 
   useEffect(() => {
+    console.log('Use effect');
     setLoading(true);
     getAgentInformation();
   }, [getAgentInformation]);
@@ -50,8 +53,8 @@ const Agent: React.FC = () => {
       }
     <div className="item">
       {agentInfo &&
-        <InformationBar title={agentInfo.agentInformationDTO.title} 
-          elements={agentInfo.agentInformationDTO.sections?.map(section => ({
+        <InformationBar title={agentInfo?.information.title} 
+          elements={agentInfo?.information.sections?.map(section => ({
             title: section.sectionTitle,
             content: section.sectionValue,
             color: section.color as "black" | "red" | "green" | "yellow" | "gray"
@@ -60,7 +63,7 @@ const Agent: React.FC = () => {
       }
       {agentInfo?.contactInformationDTO.map(element => ({
         title: element.title,
-        elements: element.sections?.map(section => ({
+        elements: element.sections?.map((section: { sectionTitle: any; sectionValue: any; color: string; }) => ({
           title: section.sectionTitle,
           content: section.sectionValue,
           color: section.color as "black" | "red" | "green" | "yellow" | "gray"
@@ -68,9 +71,9 @@ const Agent: React.FC = () => {
       })).map(info => (
         <InformationBar title={info.title} elements={info.elements} />
       ))}
-      {agentInfo && 
+      {agentInfo?.metrics && 
         <InformationBar
-          title={agentInfo.metrics.sectionTitle}
+          title="Metrics"
           elements={agentInfo.metrics.sections?.map(section => ({
             title: section.sectionTitle,
             content: section.sectionValue,
@@ -86,13 +89,13 @@ const Agent: React.FC = () => {
       {errorAgentInfo &&
         <ErrorCard title='Error fetching alerts'></ErrorCard>
       }
-      {!loading && !errorAgentInfo && agentInfo !== undefined && agentInfo?.alertPriorityDTO.high.length === 0 && agentInfo?.alertPriorityDTO.medium.length === 0 && agentInfo?.alertPriorityDTO.low.length === 0 &&
+      {!loading && !errorAgentInfo && agentInfo !== undefined && agentInfo?.alerts.high.length === 0 && agentInfo?.alerts.medium.length === 0 && agentInfo?.alerts.low.length === 0 &&
         <ErrorCard title='No alerts found'></ErrorCard>
       }
     <div className="item">
-      {agentInfo && agentInfo?.alertPriorityDTO.high.length !== 0 &&
+      {agentInfo && agentInfo?.alerts.high.length !== 0 &&
         <AlertExpansionPanel
-          alerts={agentInfo?.alertPriorityDTO.high.map(alert => ({
+          alerts={agentInfo?.alerts.high.map(alert => ({
             alertId: alert.id,
             alertName: alert.insight.category.denomination,
             alertOwner: alert.resource,
@@ -101,9 +104,9 @@ const Agent: React.FC = () => {
           })) as IAlertCard[]}
         />
       }
-      {agentInfo && agentInfo?.alertPriorityDTO.medium.length !== 0 &&
+      {agentInfo && agentInfo?.alerts.medium.length !== 0 &&
         <AlertExpansionPanel
-          alerts={agentInfo?.alertPriorityDTO.medium.map(alert => ({
+          alerts={agentInfo?.alerts.medium.map(alert => ({
             alertId: alert.id,
             alertName: alert.insight.category.denomination,
             alertOwner: alert.resource,
@@ -112,9 +115,9 @@ const Agent: React.FC = () => {
           })) as IAlertCard[]}
         />
       }
-      {agentInfo && agentInfo?.alertPriorityDTO.low.length !== 0 &&
+      {agentInfo && agentInfo?.alerts.low.length !== 0 &&
         <AlertExpansionPanel
-          alerts={agentInfo?.alertPriorityDTO.low.map(alert => ({
+          alerts={agentInfo?.alerts.low.map(alert => ({
             alertId: alert.id,
             alertName: alert.insight.category.denomination,
             alertOwner: alert.resource,

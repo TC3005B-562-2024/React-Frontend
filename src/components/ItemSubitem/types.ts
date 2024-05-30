@@ -10,7 +10,7 @@ export interface IItemSubitem {
     /**
      * The content of the item
      */
-    content: string | undefined;
+    content: string | undefined | null;
     /**
      * The color of the item
      */

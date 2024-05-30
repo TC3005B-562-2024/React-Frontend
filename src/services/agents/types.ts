@@ -22,12 +22,13 @@ export enum Queue {
 
 export interface IAgentInformation {
     id:                    string;
-    resource:              string;
-    agentInformationDTO:   TInformationDto;
-    contactInformationDTO: TInformationDto[];
-    alertPriorityDTO:      AlertPriorityDTO;
+    arn:                   string;
+    information:           TInformationDto;
+    metrics:               TInformationDto;
+    alerts:                AlertPriorityDTO;
     trainings:             any[];
-    metrics:               Metrics;
+    queues:                IQueueMin[];
+    contactInformationDTO: any[];
 }
 
 export interface TInformationDto {
@@ -37,7 +38,7 @@ export interface TInformationDto {
 
 export interface Section {
     sectionTitle: string;
-    sectionValue: string;
+    sectionValue: null | string;
     color:        string;
 }
 
@@ -50,4 +51,9 @@ export interface AlertPriorityDTO {
 export interface Metrics {
     sectionTitle: string;
     sections:     Section[];
+}
+
+export interface IQueueMin {
+    id:   string;
+    name: string;
 }
