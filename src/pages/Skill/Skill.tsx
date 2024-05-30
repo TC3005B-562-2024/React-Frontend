@@ -155,21 +155,11 @@ const Skill: React.FC = () => {
               <div className=' space-y-4 p-1'>
 
                 <ProgressCard
-                  label='Training 1'
-                  trainings={[
-                    {
-                      progress: 50,
-                      label: 'Training 1',
-                    },
-                    {
-                      progress: 70,
-                      label: 'Training 2',
-                    },
-                    {
-                      progress: 90,
-                      label: 'Training 3',
-                    }
-                  ]}
+                  label=''
+                  trainings={skill.trainings.map(training => ({
+                    label: training.label,
+                    progress: training.progress
+                  }))}
                 />
               </div>
             </div>
