@@ -1,20 +1,17 @@
 import React, { useCallback, useEffect, useState} from 'react';
 import { useParams } from 'react-router-dom';
-import { InformationBar, ProgressCard, ErrorCard, AlertExpansionPanel, AgentInfo } from '../../components';
+import { InformationBar, ProgressCard, ErrorCard, AlertExpansionPanel, AgentInfo, InfoLoader } from '../../components';
 import { getSkillInfo } from '../../services';
 import { IAlertCard } from '../../components/AlertCard/types';
 import './Skill.css';
 import { ISkillInformation } from '../../services/skillInfo/types';
+import { shortId, noUndersocore, TitleCase } from "../../Utils/utils";
 
 const Skill: React.FC = () => {
   const { id } = useParams();
   const [loading, setLoading] = useState<boolean>(false);
   const [errorSkillInfo, setErrorSkillInfo] = useState<boolean>(false);
   const [skillInfo, setSkillInfo] = useState<ISkillInformation | null>(null);
-
-  const shortId = (id: string) => {
-    return `${id.substring(0, 3)}...${id.slice(-3)}`;
-  }
 
   const getSkillInformation = useCallback(async () => {
     await getSkillInfo(id)
@@ -41,7 +38,7 @@ const Skill: React.FC = () => {
           Skill: <span className=' text-aci-orange'>{shortId(id ?? '')}</span>
         </span>
         {loading &&
-          <ErrorCard title='Loading...'></ErrorCard>
+          <InfoLoader></InfoLoader>
         }
         {errorSkillInfo &&
           <ErrorCard title='Error fetching skill'></ErrorCard>
@@ -61,7 +58,7 @@ const Skill: React.FC = () => {
           <InformationBar 
             title={skillInfo.metrics.sectionTitle}
             elements={skillInfo.metrics.sections?.map(section => ({
-              title: section.sectionTitle,
+              title: TitleCase(noUndersocore(section.sectionTitle)),
               content: section.sectionValue,
               color: section.color as "black" | "red" | "green" | "yellow" | "gray"
             })) || []}
@@ -73,7 +70,7 @@ const Skill: React.FC = () => {
             Alerts
           </span>
           {loading &&
-            <ErrorCard title='Loading...'></ErrorCard>
+            <InfoLoader></InfoLoader>
           }
           {errorSkillInfo &&
             <ErrorCard title='Error fetching alerts'></ErrorCard>
@@ -123,7 +120,7 @@ const Skill: React.FC = () => {
             </span>
             <div className=' space-y-4 p-1'>
             {loading &&
-              <ErrorCard title='Loading...'></ErrorCard>
+              <InfoLoader></InfoLoader>
             }
             {skillInfo &&
               <ProgressCard
@@ -141,7 +138,7 @@ const Skill: React.FC = () => {
               Agents
             </span>
             {loading &&
-                <ErrorCard title='Loading...'></ErrorCard>
+                <InfoLoader></InfoLoader>
               }
               {errorSkillInfo &&
                 <ErrorCard title='Error fetching agents'></ErrorCard>
