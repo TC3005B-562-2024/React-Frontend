@@ -1,5 +1,5 @@
 import React from 'react';
-import { LoginForm } from '../../components';
+import { LoginForm, MainLoader } from '../../components';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppContext } from '../../app-context/app-context';
@@ -23,7 +23,7 @@ const Login: React.FC = () => {
   }
 
   if (loadingContext) {
-    return <div>Loading...</div>
+    return <MainLoader/>
   }
 
   return (
