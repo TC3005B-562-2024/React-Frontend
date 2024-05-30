@@ -32,7 +32,7 @@ export interface IAgentInformation {
 }
 
 export interface TInformationDto {
-    title:    string;
+    sectionTitle:    string;
     sections: Section[];
 }
 

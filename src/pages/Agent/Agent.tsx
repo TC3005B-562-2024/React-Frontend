@@ -53,7 +53,7 @@ const Agent: React.FC = () => {
       }
     <div className="item">
       {agentInfo &&
-        <InformationBar title={agentInfo?.information.title} 
+        <InformationBar title={agentInfo?.information.sectionTitle} 
           elements={agentInfo?.information.sections?.map(section => ({
             title: section.sectionTitle,
             content: section.sectionValue,
