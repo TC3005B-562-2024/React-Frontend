@@ -5,6 +5,7 @@ import { IAgentInformation } from "../../services/agents/types";
 import { getAgentById } from "../../services";
 import './Agent.css';
 import { IAlertCard } from "../../components/AlertCard/types";
+import { shortId, noUndersocore, TitleCase } from "../../Utils/utils";
 
 const Agent: React.FC = () => {
   const { id } = useParams();
@@ -12,9 +13,6 @@ const Agent: React.FC = () => {
   const [agentInfo, setAgentInfo] = useState<IAgentInformation | null> (null);
   const [errorAgentInfo, setErrorAgentInfo] = useState<boolean>(false);
 
-  const shortId = (id: string) => {
-    return `${id.substring(0, 3)}...${id.slice(-3)}`;
-  }
 
   const getAgentInformation = useCallback(async () => {
     console.log('Fetching agent information');
@@ -75,7 +73,7 @@ const Agent: React.FC = () => {
         <InformationBar
           title="Metrics"
           elements={agentInfo.metrics.sections?.map(section => ({
-            title: section.sectionTitle,
+            title: TitleCase(noUndersocore(section.sectionTitle)),
             content: section.sectionValue,
             color: section.color as "black" | "red" | "green" | "yellow" | "gray"
           })) || []}
