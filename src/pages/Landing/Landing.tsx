@@ -1,25 +1,30 @@
 import React from "react";
-import { AgentInfo, Filters, Pill, SearchBar } from "../../components";
+import { AgentInfo, Filters, Pill, SearchBar, InfoLoader } from "../../components";
 import './Landing.css';
 import { getAllAgents } from "../../services";
 import { IAgentCardDTO } from "../../services/agents/types";
 
 const Landing: React.FC = () => {
   const [agents, setAgents] = React.useState<IAgentCardDTO[]>([]);
+  const [loading, setLoading] = React.useState<boolean>(true);
   
   React.useEffect(() => {
     getAllAgents().then((data) => {
       if (data) {
         setAgents(data);
+        setLoading(false);
       } else {
          // TODO handle error
         console.error('Failed to fetch agents');
+        setLoading(false);
       }
     }).catch(e => {
       // TODO handle error
       console.error('Failed to fetch agents', e);
+      setLoading(false);
     });
   }, []);
+
   return (
     <>
       <div className='search-bar_container'>
@@ -49,6 +54,9 @@ const Landing: React.FC = () => {
         <Pill text='Thefts' color='red' />
         <Pill text='Shoppings' color='green' />
       </div>
+      {loading && 
+        <div className="mt-5 -ml-1"><InfoLoader></InfoLoader></div>
+      }
       <div className='cards-container'>
         {agents && agents.map((agent) => {
           return (

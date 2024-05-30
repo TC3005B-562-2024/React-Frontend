@@ -10,7 +10,7 @@ export interface ISkillBrief {
 
 export interface IMetrics {
   sectionTitle: string;
-  sections:     string;
+  sections:   ISection[];
 }
 
 export interface ISection {
@@ -24,6 +24,11 @@ export interface ISkillsInformationDTO {
   sections: ISection[];
 }
 
+export interface ITrainingProgress {
+  resourceName: string;
+  resourceTrainingProgress: number;
+}
+
 export interface ISkillById {
   id: string;
   arn: string;
@@ -32,7 +37,7 @@ export interface ISkillById {
   queues: string;
   alerts: IAlertResponse;
   skillsInformationDTO: ISkillsInformationDTO;
-  trainings: any[];
+  trainings: ITrainingProgress[];
   metrics: IMetrics;
   agents: IAgentInfo[];
 }
