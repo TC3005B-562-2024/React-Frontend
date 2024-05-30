@@ -5,6 +5,7 @@ import { getQueueInfo } from '../../services';
 import { IQueueInformation } from '../../services/queue/types';
 import { IAlertCard } from '../../components/AlertCard/types';
 import './Queue.css';
+import { InfoLoader } from '../../components/InfoLoader';
 
 const Queue: React.FC = () => {
   const { id } = useParams();
@@ -40,7 +41,7 @@ const Queue: React.FC = () => {
           Queue: <span className=' text-aci-orange'>{shortId(id ?? '')}</span>
         </span>
         {loading &&
-          <ErrorCard title='Loading...'></ErrorCard>
+          <InfoLoader></InfoLoader>
         }
         {errorQueueInfo &&
         <ErrorCard title='Error fetching queue'></ErrorCard>
@@ -73,7 +74,7 @@ const Queue: React.FC = () => {
               Alerts
             </span>
             {loading &&
-              <ErrorCard title='Loading...'></ErrorCard>
+              <InfoLoader></InfoLoader>
             }
             {errorQueueInfo &&
               <ErrorCard title='Error fetching alerts'></ErrorCard>
@@ -123,7 +124,7 @@ const Queue: React.FC = () => {
             </span>
             <div className=' space-y-4 p-1'>
             {loading &&
-              <ErrorCard title='Loading...'></ErrorCard>
+              <InfoLoader></InfoLoader>
             }
             {queueInfo &&
               <ProgressCard
@@ -141,7 +142,7 @@ const Queue: React.FC = () => {
               Agents
             </span>
             {loading && 
-              <ErrorCard title='Loading...'></ErrorCard>
+              <InfoLoader></InfoLoader>
             }
             {errorQueueInfo && 
               <ErrorCard title='Error fetching agents'></ErrorCard>

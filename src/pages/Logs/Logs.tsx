@@ -5,6 +5,7 @@ import { IHistoryAgentProps } from "../../components/HistoryAgent/types";
 import { ErrorCard } from "../../components";
 import HistoryAgent from "../../components/HistoryAgent/HistoryAgent";
 import { IAlertResponse, IAlert } from "../../services/alerts/types";
+import { InfoLoader } from "../../components/InfoLoader";
 
 const Logs: React.FC = () => {
   const [logs, setLogs] = useState<IHistoryAgentProps[] | null>(null);
@@ -59,7 +60,7 @@ const Logs: React.FC = () => {
   return (
     <>
       <div className="text-title font-bold">Logs</div>
-      {loading && <ErrorCard title="Loading..." />}
+      {loading && <InfoLoader></InfoLoader>}
       {error && <ErrorCard title="Error fetching logs" />}
       {!loading && !error && logs && logs.length === 0 && (
         <ErrorCard title="No logs found" />
