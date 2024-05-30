@@ -10,7 +10,7 @@ export interface ISkillBrief {
 
 export interface IMetrics {
   sectionTitle: string;
-  sections:     string;
+  sections:   ISection[];
 }
 
 export interface ISection {

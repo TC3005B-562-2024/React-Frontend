@@ -5,7 +5,7 @@ import { getAllAlerts } from '../../services';
 import { IAlertResponse } from '../../services/alerts/types';
 import { IAlertCard } from '../../components/AlertCard/types';
 import './Skill.css';
-import { ISkillById } from '../../services/skills/types';
+import { ISection, ISkillById } from '../../services/skills/types';
 import { getSkillById } from '../../services/skills/getSkillById';
 
 const Skill: React.FC = () => {
@@ -66,74 +66,86 @@ const Skill: React.FC = () => {
           {!loading && !errorSkill && alertsReceived !== undefined && alertsReceived.high.length === 0 && alertsReceived.medium.length === 0 && alertsReceived.low.length === 0 &&
             <ErrorCard title='No skills found'></ErrorCard>
           }
-          <InformationBar
-            title='Information'
-            elements={skill?.skillsInformationDTO.sections.map((section) => ({
-              title: section.sectionTitle,
-              content: section.sectionValue || '',
-              color: section.color || 'black'
-            })) || []}
-          />
-          <InformationBar
-            title='Metrics'
-            elements={[
-              {
-                title: skill?.metrics.sectionTitle || '',
-                content: skill?.metrics.sections || '',
-                color: 'black'
-              },
-            ]}
-          />
-          <div>
-            <span className='sections-text'>
-              Alerts
-            </span>
-            {loading &&
-              <ErrorCard title='Loading...'></ErrorCard>
-            }
-            {errorAlerts &&
-              <ErrorCard title='Error fetching alerts'></ErrorCard>
-            }
-            {!loading && !errorAlerts && alertsReceived !== undefined && alertsReceived.high.length === 0 && alertsReceived.medium.length === 0 && alertsReceived.low.length === 0 &&
-              <ErrorCard title='No alerts found'></ErrorCard>
-            }
+          {skill?.skillsInformationDTO && skill.skillsInformationDTO.sections.length === 0 ? (
+            <InformationBar
+              title='Information'
+              elements={skill?.skillsInformationDTO.sections.map((section) => ({
+                title: section.sectionTitle || '',
+                content: section.sectionValue || '',
+                color: section.color || 'black'
+              })) || []}
+            />
+          ) : (
+            <div></div>
+          )}
 
-            <div className="flex flex-col space-y-4 p-1">
-              {alertsReceived !== undefined && alertsReceived.high.length !== 0 &&
-                <AlertExpansionPanel
-                  alerts={alertsReceived.high.map(alert => ({
-                    alertId: alert.id,
-                    alertName: alert.insight.category.denomination,
-                    alertOwner: alert.resource,
-                    alertPriority: 'CRITIC',
-                    individualAlertLink: `${alert.id}`
-                  })) as IAlertCard[]}
-                />
+          {skill?.metrics?.sections && skill.metrics.sections.length > 0 ? (
+            <InformationBar
+              title='Metrics'
+              elements={skill.metrics.sections.map((section: ISection) => ({
+                title: section.sectionTitle,
+                content: section.sectionValue || '',
+                color: section.color || 'black'
+              }))}
+            />
+          ) : (
+            <div></div>
+          )}
+          {alertsReceived !== undefined && alertsReceived.high.length !== 0 && alertsReceived.medium.length !== 0 && alertsReceived.low.length !== 0 ? (
+            <div>
+              <span className='sections-text'>
+                Alerts
+              </span>
+              {loading &&
+                <ErrorCard title='Loading...'></ErrorCard>
               }
-              {alertsReceived !== undefined && alertsReceived?.medium.length !== 0 &&
-                <AlertExpansionPanel
-                  alerts={alertsReceived.medium.map(alert => ({
-                    alertId: alert.id,
-                    alertName: alert.insight.category.denomination,
-                    alertOwner: alert.resource,
-                    alertPriority: 'MEDIUM',
-                    individualAlertLink: `${alert.id}`
-                  })) as IAlertCard[]}
-                />
+              {errorAlerts &&
+                <ErrorCard title='Error fetching alerts'></ErrorCard>
               }
-              {alertsReceived !== undefined && alertsReceived.low.length !== 0 &&
-                <AlertExpansionPanel
-                  alerts={alertsReceived.low.map(alert => ({
-                    alertId: alert.id,
-                    alertName: alert.insight.category.denomination,
-                    alertOwner: alert.resource,
-                    alertPriority: 'LOW',
-                    individualAlertLink: `${alert.id}`
-                  })) as IAlertCard[]}
-                />
+              {!loading && !errorAlerts && alertsReceived !== undefined && alertsReceived.high.length === 0 && alertsReceived.medium.length === 0 && alertsReceived.low.length === 0 &&
+                <ErrorCard title='No alerts found'></ErrorCard>
               }
+
+              <div className="flex flex-col space-y-4 p-1">
+                {alertsReceived !== undefined && alertsReceived.high.length !== 0 &&
+                  <AlertExpansionPanel
+                    alerts={alertsReceived.high.map(alert => ({
+                      alertId: alert.id,
+                      alertName: alert.insight.category.denomination,
+                      alertOwner: alert.resource,
+                      alertPriority: 'CRITIC',
+                      individualAlertLink: `${alert.id}`
+                    })) as IAlertCard[]}
+                  />
+                }
+                {alertsReceived !== undefined && alertsReceived?.medium.length !== 0 &&
+                  <AlertExpansionPanel
+                    alerts={alertsReceived.medium.map(alert => ({
+                      alertId: alert.id,
+                      alertName: alert.insight.category.denomination,
+                      alertOwner: alert.resource,
+                      alertPriority: 'MEDIUM',
+                      individualAlertLink: `${alert.id}`
+                    })) as IAlertCard[]}
+                  />
+                }
+                {alertsReceived !== undefined && alertsReceived.low.length !== 0 &&
+                  <AlertExpansionPanel
+                    alerts={alertsReceived.low.map(alert => ({
+                      alertId: alert.id,
+                      alertName: alert.insight.category.denomination,
+                      alertOwner: alert.resource,
+                      alertPriority: 'LOW',
+                      individualAlertLink: `${alert.id}`
+                    })) as IAlertCard[]}
+                  />
+                }
+              </div>
             </div>
-          </div>
+          ) : (
+            <div></div>
+          )}
+
           {skill?.trainings && skill.trainings.length > 0 ? (
             <div>
               <span className='sections-text'>
