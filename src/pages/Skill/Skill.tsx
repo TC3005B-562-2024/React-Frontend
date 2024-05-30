@@ -31,7 +31,7 @@ const Skill: React.FC = () => {
       });
   };
 
-  const getSkill = async () => {
+  const getSkill = async (id: string | undefined) => {
     const safeId = id || '';
     await getSkillById(safeId)
       .then((res) => {
@@ -49,7 +49,7 @@ const Skill: React.FC = () => {
 
   useEffect(() => {
     setLoading(true);
-    getSkill();
+    getSkill(id);
     getAlerts();
   }, [id]);
 
