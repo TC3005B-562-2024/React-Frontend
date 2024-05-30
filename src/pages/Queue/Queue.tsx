@@ -152,7 +152,7 @@ const Queue: React.FC = () => {
                   name={agent.name}
                   sentiment={agent.sentiment}
                   queues={agent.queues}
-                  status={agent.status as "ONCALL" | "AVAILABLE" | "DISCONNECTED" | null}
+                  status={agent.status as "ONCALL" | "Available" | "DISCONNECTED" | null}
                   topPriorityAlert={agent.topPriorityAlert}
                 />
               ))

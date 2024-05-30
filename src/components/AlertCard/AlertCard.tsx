@@ -19,7 +19,7 @@ const AlertCard: React.FC<IAlertCard> = ({
   const navigate = useNavigate();
 
   const handleViewMoreClick = () => {
-    navigate(individualAlertLink);
+    navigate('/alerts/' + individualAlertLink);
   };
 
   // Determinar la clase de prioridad dinámicamente usando classNames

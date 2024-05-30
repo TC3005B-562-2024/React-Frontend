@@ -3,6 +3,7 @@ import { IIndividualTrainingExpansionPanel } from './types';
 import { Icon } from '../Icon';
 import { TrainingCardToggle } from '../TrainingCardToggle';
 import classNames from 'classnames';
+import { roundToOneDecimal } from '../../Utils/utils';
 
 /**
  * An individual training expansion panel component to display actions that include a check mark in case of being completed or incompleted.
@@ -41,7 +42,7 @@ const IndividualTrainingExpansionPanel: React.FC<IIndividualTrainingExpansionPan
   }, [trainings]);
 
   return (
-    <div data-testid="expansion-panel" className='bg-white h-10 box-content rounded-md shadow-md' data-porcentage={completionPercentage}>
+    <div data-testid="expansion-panel" className='bg-white h-10 box-content rounded-md shadow-md' data-porcentage={roundToOneDecimal(completionPercentage)}>
       <div className='flex h-10'>
         <div className={`flex-1 grow font-bold mx-4 my-2`}><div className={colorClasses}>{title}</div></div>
         <div className={`text-aci-green font-semibold mx-2 mr-2 my-2`}>

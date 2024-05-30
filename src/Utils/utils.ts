@@ -10,3 +10,8 @@ export const noUndersocore= (response:string):string => {
 export const TitleCase = (str: string): string => {
     return str.toLowerCase().split(' ').map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
 }
+
+// Function that rounds a decimal to one decimal place without using Math.round
+export const roundToOneDecimal = (num: number): number => {
+    return Math.floor(num * 10) / 10;
+}

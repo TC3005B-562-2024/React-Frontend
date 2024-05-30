@@ -5,9 +5,9 @@ import classNames from "classnames";
 
 const ItemSubitem: React.FC<IItemSubitem> = ({
     className,
-    title,
-    content,
-    color,
+    title = 'Item',
+    content = 'Subitem',
+    color = 'black',
 }) => {
     const parentClasses = classNames(
         ' box-border text-center text-gray-400 text-text font-bold inline-flex flex-col items-center',
@@ -30,12 +30,6 @@ const ItemSubitem: React.FC<IItemSubitem> = ({
             </div>
         </div>
     )
-}
-
-ItemSubitem.defaultProps = {
-    title: 'Item',
-    content: 'Subitem',
-    color: 'black',
 }
 
 export default ItemSubitem;
