@@ -1,9 +1,10 @@
 import React, { useCallback, useEffect, useState} from 'react';
 import { useParams } from 'react-router-dom';
-import { InformationBar, ProgressCard, ErrorCard, AlertExpansionPanel, AgentInfo } from '../../components';
+import { InformationBar, ProgressCard, ErrorCard, AlertExpansionPanel, AgentInfo, InfoLoader } from '../../components';
 import { getQueueInfo } from '../../services';
 import { IQueueInformation } from '../../services/queue/types';
 import { IAlertCard } from '../../components/AlertCard/types';
+import { shortId, noUndersocore, TitleCase } from '../../Utils/utils';
 import './Queue.css';
 
 const Queue: React.FC = () => {
@@ -12,9 +13,6 @@ const Queue: React.FC = () => {
   const [queueInfo, setQueueInfo] = useState<IQueueInformation | null > (null);
   const [errorQueueInfo, setErrorQueueInfo] = useState<boolean>(false);
 
-  const shortId = (id: string) => {
-    return `${id.substring(0, 3)}...${id.slice(-3)}`;
-  }
 
   const getQueueInformation = useCallback(async () => {
     await getQueueInfo(id)
@@ -40,7 +38,7 @@ const Queue: React.FC = () => {
           Queue: <span className=' text-aci-orange'>{shortId(id ?? '')}</span>
         </span>
         {loading &&
-          <ErrorCard title='Loading...'></ErrorCard>
+          <InfoLoader></InfoLoader>
         }
         {errorQueueInfo &&
         <ErrorCard title='Error fetching queue'></ErrorCard>
@@ -60,7 +58,7 @@ const Queue: React.FC = () => {
             <InformationBar 
               title={queueInfo.metrics.sectionTitle}
               elements={queueInfo.metrics.sections?.map(section => ({
-                title: section.sectionTitle,
+                title: TitleCase(noUndersocore(section.sectionTitle)),
                 content: section.sectionValue,
                 color: section.color as "black" | "red" | "green" | "yellow" | "gray"
               })) || []}
@@ -73,7 +71,7 @@ const Queue: React.FC = () => {
               Alerts
             </span>
             {loading &&
-              <ErrorCard title='Loading...'></ErrorCard>
+              <InfoLoader></InfoLoader>
             }
             {errorQueueInfo &&
               <ErrorCard title='Error fetching alerts'></ErrorCard>
@@ -123,7 +121,7 @@ const Queue: React.FC = () => {
             </span>
             <div className=' space-y-4 p-1'>
             {loading &&
-              <ErrorCard title='Loading...'></ErrorCard>
+              <InfoLoader></InfoLoader>
             }
             {queueInfo &&
               <ProgressCard
@@ -141,7 +139,7 @@ const Queue: React.FC = () => {
               Agents
             </span>
             {loading && 
-              <ErrorCard title='Loading...'></ErrorCard>
+              <InfoLoader></InfoLoader>
             }
             {errorQueueInfo && 
               <ErrorCard title='Error fetching agents'></ErrorCard>
@@ -154,7 +152,7 @@ const Queue: React.FC = () => {
                   name={agent.name}
                   sentiment={agent.sentiment}
                   queues={agent.queues}
-                  status={agent.status as "ONCALL" | "AVAILABLE" | "DISCONNECTED" | null}
+                  status={agent.status as "ONCALL" | "Available" | "DISCONNECTED" | null}
                   topPriorityAlert={agent.topPriorityAlert}
                 />
               ))

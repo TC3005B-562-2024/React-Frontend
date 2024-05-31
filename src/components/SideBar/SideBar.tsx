@@ -26,6 +26,7 @@ const SideBar: React.FC<ISideBar> = ({ skills }) => {
     <div className={containerClasses}>
       <div className={buttonClasses}>
         <Button
+          key={'expand-button'}
           onClick={() => setExpanded(!isExpanded)}
           type='button'
           size='text'
@@ -39,6 +40,7 @@ const SideBar: React.FC<ISideBar> = ({ skills }) => {
       <div className='side-bar__container__elements-container'>
         <div className='side-bar__container__elements-container__upper-container'>
           <SideBarElement
+            key={'Dashboard'}
             label='Dashboard'
             icon={{ iconName: 'logo' }}
             path='/'
@@ -47,6 +49,7 @@ const SideBar: React.FC<ISideBar> = ({ skills }) => {
           />
 
           <SideBarElement
+            key={'Skills'}
             label='Skills'
             icon={{ iconName: 'phone_in_talk' }}
             path='/'
@@ -56,13 +59,16 @@ const SideBar: React.FC<ISideBar> = ({ skills }) => {
           />
 
           {skills !== undefined && skills.map((skill: { alias: string; iconName: string; id: string; }) => (
+            <div className="side-bar__element">
             <SideBarElement
               key={skill.id}
               label={skill.alias}
               icon={{ iconName: skill.iconName } as IIconNoColorNoSize}
               path={`/skills/${skill.id}`}
               isExpanded={isExpanded}
+
             />
+            </div>
           ))}
 
           {skills === undefined &&
@@ -74,6 +80,7 @@ const SideBar: React.FC<ISideBar> = ({ skills }) => {
         </div>
         <div className='side-bar__container__elements-container__lowe-container'>
           <SideBarElement
+            key={ROUTES.AGENTS.name}
             label={ROUTES.AGENTS.name}
             isSection={true}
             icon={{ iconName: 'support_agent' }}
@@ -81,6 +88,7 @@ const SideBar: React.FC<ISideBar> = ({ skills }) => {
             isExpanded={isExpanded}
           />
           <SideBarElement
+            key={ROUTES.LOG_OUT.name}
             label={ROUTES.LOG_OUT.name}
             isSection={true}
             icon={{ iconName: 'logout' }}

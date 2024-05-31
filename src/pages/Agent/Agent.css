@@ -2,10 +2,10 @@
     @apply flex flex-row space-x-3;
 }
 .section-title{
-    @apply text-section-title font-semibold;
+    @apply text-banner font-bold pb-3;
 }
 .agent-id{
-    @apply text-section-title font-semibold text-aci-orange;
+    @apply text-banner font-semibold text-aci-orange;
 }
 .item{
     @apply my-2;

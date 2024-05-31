@@ -1,5 +1,9 @@
 .side-bar__container {
-  @apply z-20 transition-all transform duration-700 relative h-screen bg-aci-orange;
+  @apply z-20 transition-all transform duration-700 relative h-screen bg-aci-orange max-h-lvh;
+}
+
+.side-bar__element {
+  @apply flex flex-row items-center hover:bg-gray-200 whitespace-nowrap overflow-hidden;
 }
 
 .side-bar__container--expaned {
@@ -24,4 +28,15 @@
 
 .side-bar__container__elements-container__upper-container__error-alert {
   @apply w-full h-10 text-text text-white px-4 py-2;
+}
+
+.side-bar__container__elements__skills {
+  @apply overflow-y-auto max-h-80;
+  /* Hide scrollbar */
+  -ms-overflow-style: none; /* for Internet Explorer, Edge */
+  scrollbar-width: none; /* for Firefox */
+}
+
+.side-bar__container__elements__skills::-webkit-scrollbar {
+  @apply hidden;
 }

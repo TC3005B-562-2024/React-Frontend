@@ -7,11 +7,11 @@ const InformationBar: React.FC<IInformationBar> = ({
     elements,
 }) => {
     return (
-        <div className='text-center text-white text-text font-bold inline-block rounded-lg bg-white drop-shadow-lg w-full mb-4'>
-            <div className='text-title bg-aci-orange rounded-t-lg text-left indent-2.5 '>
+        <div data-testid="informtion-bar" className='text-center text-white text-text font-bold inline-block rounded-lg bg-white drop-shadow-lg w-full mb-4'>
+            <div data-testid="information-bat-title" className='text-title bg-aci-orange rounded-t-lg text-left indent-2.5 '>
                 {title}
             </div>
-            <div className='grid grid-cols-1 md:grid-cols-5 gap-4 '>
+            <div data-testid="information-bar-grid" className='grid grid-cols-1 md:grid-cols-5 gap-4 '>
                 {elements.map((element, index) => {
                     return (
                         <ItemSubitem
