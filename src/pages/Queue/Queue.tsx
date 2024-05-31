@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState} from 'react';
+import React, { useEffect, useState} from 'react';
 import { useParams } from 'react-router-dom';
 import { InformationBar, ProgressCard, ErrorCard, AlertExpansionPanel, AgentInfo, InfoLoader } from '../../components';
 import { getQueueInfo } from '../../services';
@@ -9,12 +9,12 @@ import './Queue.css';
 
 const Queue: React.FC = () => {
   const { id } = useParams();
-  const [loading, setLoading] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(true);
   const [queueInfo, setQueueInfo] = useState<IQueueInformation | null > (null);
   const [errorQueueInfo, setErrorQueueInfo] = useState<boolean>(false);
 
 
-  const getQueueInformation = useCallback(async () => {
+  const getQueueInformation = async (id: string | undefined) => {
     await getQueueInfo(id)
     .then((res) => {
       if (res !== null) setQueueInfo(res);
@@ -24,61 +24,55 @@ const Queue: React.FC = () => {
       setErrorQueueInfo(true);
     });
     setLoading(false);
-  }, [id]);
+  };
 
   useEffect(() => {
-    setLoading(true);
-    getQueueInformation();
-  }, [getQueueInformation]);
+    getQueueInformation(id);
+  }, [id]);
   
   return (
-    <div>
-      <div>
-        <span data-testid="queue-title" className='sections-text'>
-          Queue: <span className=' text-aci-orange'>{shortId(id ?? '')}</span>
-        </span>
-        {loading &&
-          <InfoLoader></InfoLoader>
-        }
-        {errorQueueInfo &&
-        <ErrorCard title='Error fetching queue'></ErrorCard>
-        }
-        <div>
-          {queueInfo &&
-            <InformationBar
-              title={queueInfo.information.sectionTitle}
-              elements={queueInfo.information.sections?.map(section => ({
-                title: section.sectionTitle,
-                content: section.sectionValue,
-                color: section.color as "black" | "red" | "green" | "yellow" | "gray"
-              })) || []}
-            />
-            }
-          {queueInfo && queueInfo?.metrics.sections !== null &&
-            <InformationBar 
-              title={queueInfo.metrics.sectionTitle}
-              elements={queueInfo.metrics.sections?.map(section => ({
-                title: TitleCase(noUndersocore(section.sectionTitle)),
-                content: section.sectionValue,
-                color: section.color as "black" | "red" | "green" | "yellow" | "gray"
-              })) || []}
+    <div className='px-2 mb-3'>
+      <span data-testid="queue-title" className='queue__sections-text'>
+        Queue: <span className=' text-aci-orange'>{shortId(id ?? '')}</span>
+      </span>
+      {loading ?
+        (<InfoLoader/>) :
+        (
+          !loading && queueInfo && !errorQueueInfo ? (
+            <>
+              <InformationBar
+                title={queueInfo.information.sectionTitle}
+                elements={queueInfo.information.sections?.map(section => ({
+                  title: section.sectionTitle,
+                  content: section.sectionValue,
+                  color: section.color as "black" | "red" | "green" | "yellow" | "gray"
+                })) || []}
+              />
+              {queueInfo && queueInfo?.metrics.sections !== null && queueInfo?.metrics.sections.length !== 0 &&
+                <InformationBar 
+                  title={queueInfo.metrics.sectionTitle}
+                  elements={queueInfo.metrics.sections?.map(section => ({
+                    title: TitleCase(noUndersocore(section.sectionTitle)),
+                    content: section.sectionValue,
+                    color: section.color as "black" | "red" | "green" | "yellow" | "gray"
+                  })) || []}
+                />
+              }
+            </>
+          ) : 
+          (
+            <ErrorCard title='Error fetching queue'></ErrorCard>
+          )
+        )
+      }
 
-            />
-            }
-        </div>
-        <div>
-            <span data-testid="alert-section" className='sections-text'>
-              Alerts
-            </span>
-            {loading &&
-              <InfoLoader></InfoLoader>
-            }
-            {errorQueueInfo &&
-              <ErrorCard title='Error fetching alerts'></ErrorCard>
-            }
-            {!loading && !errorQueueInfo && queueInfo !== undefined && queueInfo?.alerts.high.length === 0 && queueInfo?.alerts.medium.length === 0 && queueInfo?.alerts.low.length === 0 &&
-              <ErrorCard title='No alerts found'></ErrorCard>
-            }
+      <span data-testid="alert-section" className='queue__sections-text'>
+        Alerts
+      </span>
+      {loading ? 
+        (<InfoLoader/>) :
+        (
+          !loading && queueInfo && !errorQueueInfo ? (
             <div className="flex flex-col space-y-4 p-1">
               {queueInfo && queueInfo?.alerts.high.length !== 0 &&
                 <AlertExpansionPanel
@@ -113,38 +107,54 @@ const Queue: React.FC = () => {
                   })) as IAlertCard[]}
                 />
               }
+              {queueInfo && queueInfo?.alerts.high.length === 0 && queueInfo?.alerts.medium.length === 0 && queueInfo?.alerts.low.length === 0 &&
+                <ErrorCard title='No alerts found'></ErrorCard>
+              }
             </div>
-          </div>
-          <div>
-            <span data-testid="trainings-section" className='sections-text'>
-              Trainings
-            </span>
-            <div className=' space-y-4 p-1'>
-            {loading &&
-              <InfoLoader></InfoLoader>
-            }
-            {queueInfo &&
-              <ProgressCard
-                label='Trainings of Call'
-                trainings={queueInfo.trainings.map(training => ({
-                  progress: training.resourceTrainingProgress,
-                  label: training.resourceName
-                }))}
-              />
-            }
-            </div>
-          </div>
-          <div>
-            <span className='sections-text'>
-              Agents
-            </span>
-            {loading && 
-              <InfoLoader></InfoLoader>
-            }
-            {errorQueueInfo && 
-              <ErrorCard title='Error fetching agents'></ErrorCard>
-            }
-            <div className='cards-container'>
+          ) : (
+            <ErrorCard title='Error fetching alerts'></ErrorCard>
+          )
+        )
+      }
+      <span data-testid="trainings-section" className='queue__sections-text'>
+        Trainings
+      </span>
+      {loading ? 
+        (<InfoLoader/>) :
+        (
+          !loading && queueInfo && !errorQueueInfo ? (
+            <>
+              {queueInfo && queueInfo.trainings && queueInfo.trainings.map(training => (
+                <ProgressCard
+                  key={training.resourceName}
+                  label={training.resourceName}
+                  trainings={[
+                    {
+                      progress: training.resourceTrainingProgress,
+                      label: training.resourceName
+                    }
+                  ]}
+                />
+              ))}
+              {
+                queueInfo.trainings.length === 0 && (
+                  <ErrorCard title='No trainings found.'></ErrorCard>
+                )
+              }
+            </>
+          ) : (
+            <ErrorCard title='Error fetching trainings'></ErrorCard>
+          )
+        )
+      }
+      <span className='queue__sections-text'>
+        Agents
+      </span>
+      {loading ? 
+        (<InfoLoader/>) : 
+        (
+          !loading && queueInfo && !errorQueueInfo ? (
+            <div className='queue__cards-container'>
               {queueInfo && queueInfo.agents.map(agent => (
                 <AgentInfo
                   key={agent.id}
@@ -158,8 +168,11 @@ const Queue: React.FC = () => {
               ))
               }
             </div>
-          </div>
-        </div>
+          ) : (
+            <ErrorCard title='Error fetching agents'></ErrorCard>
+          )
+        )
+      }
     </div>
   );
 };
