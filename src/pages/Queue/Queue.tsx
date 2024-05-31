@@ -34,7 +34,7 @@ const Queue: React.FC = () => {
   return (
     <div>
       <div>
-        <span className='sections-text'>
+        <span data-testid="queue-title" className='sections-text'>
           Queue: <span className=' text-aci-orange'>{shortId(id ?? '')}</span>
         </span>
         {loading &&
@@ -67,7 +67,7 @@ const Queue: React.FC = () => {
             }
         </div>
         <div>
-            <span className='sections-text'>
+            <span data-testid="alert-section" className='sections-text'>
               Alerts
             </span>
             {loading &&
@@ -116,7 +116,7 @@ const Queue: React.FC = () => {
             </div>
           </div>
           <div>
-            <span className='sections-text'>
+            <span data-testid="trainings-section" className='sections-text'>
               Trainings
             </span>
             <div className=' space-y-4 p-1'>
