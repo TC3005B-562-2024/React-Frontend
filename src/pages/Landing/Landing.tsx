@@ -64,7 +64,7 @@ const Landing: React.FC = () => {
               key={agent.id}
               id={agent.id}
               name={agent.name}
-              sentiment={agent.sentiment}
+              sentiment={agent.sentiment as "POSITIVE" | "NEUTRAL" | "NEGATIVE" | null | undefined}
               queues={agent.queues}
               status={agent.status}
               topPriorityAlert={agent.topPriorityAlert}
