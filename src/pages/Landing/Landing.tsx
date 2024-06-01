@@ -7,11 +7,14 @@ import { IAgentCardDTO } from "../../services/agents/types";
 const Landing: React.FC = () => {
   const [agents, setAgents] = React.useState<IAgentCardDTO[]>([]);
   const [loading, setLoading] = React.useState<boolean>(true);
+  const [displayedData, setDisplayedData] = React.useState<IAgentCardDTO[]>(agents); // Start by showing all data
+
   
   React.useEffect(() => {
     getAllAgents().then((data) => {
       if (data) {
         setAgents(data);
+        setDisplayedData(data);
         setLoading(false);
       } else {
          // TODO handle error
@@ -24,13 +27,17 @@ const Landing: React.FC = () => {
       setLoading(false);
     });
   }, []);
+  const handleSearch = (searchRegex: RegExp) => {
+    const filteredData = agents.filter(item => {
+      return searchRegex.test(item.name); // Adjust properties as needed
+    });
+    setDisplayedData(filteredData); // Update the displayed data
+  };
 
   return (
     <>
       <div className='search-bar_container'>
-        <SearchBar onSearch={function (value: string): void {
-          console.log('The seach value is: ', value);
-        }}
+        <SearchBar onSearch={(value) => handleSearch(new RegExp(value, 'i'))}
         />
         <Filters options={
           [{
@@ -58,7 +65,8 @@ const Landing: React.FC = () => {
         <div className="mt-5 -ml-1"><InfoLoader></InfoLoader></div>
       }
       <div className='cards-container'>
-        {agents && agents.map((agent) => {
+    
+        {displayedData && displayedData.map((agent) => {
           return (
             <AgentInfo
               key={agent.id}
