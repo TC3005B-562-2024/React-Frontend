@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { SearchBarProps } from './types';
 import { Icon } from '../Icon';
+import { IconNames } from '../Icon/types';
 
 /**
  * SearchBar component for searching through data like a Google search bar.
@@ -35,7 +36,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ placeholder = "Search...", onSear
                     onClick={() => onSearch(inputValue)}
                 >
                     <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                        <Icon iconName={'search'} color='white' />
+                        <Icon iconName={IconNames.Search} color='white' />
                     </div>
                 </button>
             </div>

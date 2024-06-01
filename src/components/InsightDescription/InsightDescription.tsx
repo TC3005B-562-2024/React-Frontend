@@ -3,6 +3,7 @@ import { IInsightDescription } from "./types";
 import { Icon } from "../Icon";
 import classNames from 'classnames';
 import './InsightDescription.css';
+import { IconNames } from "../Icon/types";
 
 /**
  * Component that shows the description of an Insight
@@ -11,13 +12,13 @@ const InsightDescription: React.FC<IInsightDescription> = ({ priority, alertId, 
     const renderIcon = (priority: "intervene" | "transfer" | "training") => {
         switch (priority) {
             case "intervene":
-                return <Icon iconName="sentiment_dissatisfied" color="red" />;
+                return <Icon iconName={IconNames.SentimentDissatisfied} color="red" />;
             case "transfer":
-                return <Icon iconName="move_down" color="orange" />;
+                return <Icon iconName={IconNames.MoveDown} color="orange" />;
             case "training":
-                return <Icon iconName="exercise" color="yellow" />;
+                return <Icon iconName={IconNames.MoveDown} color="yellow" />;
             default:
-                return <Icon iconName="warning" color="orange" />
+                return <Icon iconName={IconNames.Warning} color="orange" />
         }
     }
 
