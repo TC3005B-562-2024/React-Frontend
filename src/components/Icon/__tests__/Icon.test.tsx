@@ -6,7 +6,7 @@ afterEach(() => {
   cleanup();
 });
 
-describe("Tests for Button Component", () => {
+describe("Tests for Icon Component", () => {
   test("Should render all the valid values for the iconNames", () => {
     // Loop through all the valid values for the iconName
     Object.values(IconNames).forEach((iconName) => {
