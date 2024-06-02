@@ -22,7 +22,7 @@ const Landing: React.FC = () => {
         setLoading(false);
       }
     }).catch(e => {
-      // TODO handle error
+      // TODO handle error.
       console.error('Failed to fetch agents', e);
       setLoading(false);
     });

@@ -42,7 +42,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ placeholder = "Search...", onSear
     };
     const performSearch = () => {
         try {
-          const regex = new RegExp(inputValue, 'i'); // Case-insensitive search
+          const regex = new RegExp(inputValue, 'i'); // Case-insensitive search.
           onSearch(regex.source); 
         } catch (error) {
           // Handle invalid regular expressions (e.g., notify the user)
