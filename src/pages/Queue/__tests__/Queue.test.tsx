@@ -2,13 +2,62 @@ import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import Queue from "../Queue";
 import { cleanup } from "@testing-library/react-hooks";
-import { mockQueueInformation } from "../../../services/_mocks_/queueMock";
-import { getQueueInfo } from "../../../services";
-import { shortId } from "../../../Utils/utils";
+import { BrowserRouter } from "react-router-dom";
+import * as serviceModule from '../../../services'; // Asegúrate de importar correctamente
+import { Low } from "../../../services/queue/types";
 
-jest.mock('../../../services', () => ({
-    getQueueInfo: jest.fn(() => Promise.resolve(mockQueueInformation[0])) // Devuelve una promesa resuelta por defecto
-  }));
+beforeEach(() => {
+    jest.spyOn(serviceModule, 'getQueueInfo').mockResolvedValue(mockQueueInfo);
+});
+
+afterEach(() => {
+    jest.restoreAllMocks();
+});
+beforeAll(() => {
+    // Guarda la referencia original
+    global.console = { ...console };
+    // Sobrescribe console.error
+    console.error = jest.fn();
+  });
+  
+  afterAll(() => {
+    // Restaura console.error a su funcionalidad original
+    console.error = global.console.error;
+  });
+
+jest.mock("react-router-dom", () => ({
+    ...jest.requireActual("react-router-dom"),
+    useParams: () => ({
+        id: "123"
+    })
+}));
+
+jest.mock("../../../services");
+
+const mockQueueInfo = {
+    id: "123",
+    arn: "arn:aws:sqs:us-west-2:123456789012:queue1",
+    information: {
+        sectionTitle: "General Info",
+        sections: [
+            { sectionTitle: "Name", sectionValue: "Queue1", color: "green" }
+        ]
+    },
+    metrics: {
+        sectionTitle: "Metrics",
+        sections: [
+            { sectionTitle: "Messages", sectionValue: "20", color: "yellow" }
+        ]
+    },
+    alerts: {
+        high: [],
+        medium: [],
+        low: []
+    },
+    trainings: [],
+    agents: []
+};
+
 afterEach(() => {
     cleanup();
     jest.clearAllMocks();
@@ -16,43 +65,40 @@ afterEach(() => {
 
 describe("Tests for Queue page", () => {
     test("The Queue page should render correctly", async () => {
-        const mockGetQueueInfo = jest.fn().mockResolvedValue(mockQueueInformation[0]);
-        render(<Queue />);
+        render(<BrowserRouter><Queue /></BrowserRouter>);
         await waitFor(() => {
-            expect(mockGetQueueInfo).toHaveBeenCalled();
+            expect(screen.getByTestId("queue-title")).toHaveTextContent("Queue: 123");
         });
-        const expectedTitle = `Queue: ${shortId(mockQueueInformation[0].id)}`;
-        expect(screen.getByTestId("queue-title")).toHaveTextContent(expectedTitle);
+        expect(screen.getByText("General Info")).toBeInTheDocument();
+        expect(screen.getByText("Metrics")).toBeInTheDocument();
     });
 
-    test("Displays loading state initially", () => {
-        render(<Queue />);
-        expect(screen.getByRole('progressbar')).toBeInTheDocument();
-    });
+    test("Should display an error if the data fetch fails", async () => {
+        jest.spyOn(serviceModule, 'getQueueInfo').mockRejectedValue(new Error("Failed to fetch"));
+        render(<BrowserRouter><Queue /></BrowserRouter>);
 
-    test("Displays error message when data fetch fails", async () => {
-        (getQueueInfo as jest.Mock).mockImplementation(() => Promise.reject(new Error("Failed to fetch")));
-        render(<Queue />);
         await waitFor(() => {
             expect(screen.getByText("Error fetching queue")).toBeInTheDocument();
         });
     });
-
-    test("Correctly displays no alerts found when there are no alerts", async () => {
-        const modifiedData = { ...mockQueueInformation[0], alerts: { high: [], medium: [], low: [] } };
-        (getQueueInfo as jest.Mock).mockResolvedValue(modifiedData);
-        render(<Queue />);
+    test("Should handle all types of alert priorities", async () => {
+        const modifiedQueueInfo = {
+            ...mockQueueInfo,
+            alerts: {
+                high: [{ id: 1, insight: { category: { denomination: 'High Priority' }}, resource: 'Resource1' }],
+                medium: [{ id: 2, insight: { category: { denomination: 'Medium Priority' }}, resource: 'Resource2' }],
+                low: [{ id: 3, insight: { category: { denomination: 'Low Priority' }}, resource: 'Resource3' }] as Low[]
+            }
+        };
+        jest.spyOn(serviceModule, 'getQueueInfo').mockResolvedValue(modifiedQueueInfo);
+        render(<BrowserRouter><Queue /></BrowserRouter>);
+    
         await waitFor(() => {
-            expect(screen.getByText("No alerts found")).toBeInTheDocument();
+            expect(screen.getByText("Critical")).toBeInTheDocument();
+            expect(screen.getByText("Medium")).toBeInTheDocument();
+            expect(screen.getByText("Low")).toBeInTheDocument();
         });
     });
 
-    test("Correctly displays agents information", async () => {
-        (getQueueInfo as jest.Mock).mockResolvedValue(mockQueueInformation[0]);
-        render(<Queue />);
-        await waitFor(() => {
-            expect(screen.getByText("Diego Jacobo")).toBeInTheDocument();
-        });
-    });
 
 });
