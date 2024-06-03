@@ -2,6 +2,7 @@
 import { Meta, StoryFn } from '@storybook/react';
 import HistoryAgent from './HistoryAgent';
 import { IHistoryAgentProps } from './types';
+import { IconNames } from '../Icon/types';
 
 // Define metadata for Storybook
 const meta: Meta = {
@@ -28,7 +29,7 @@ export const AcceptedHistory: StoryFn<IHistoryAgentProps> = Template.bind({});
 AcceptedHistory.args = {
   log: 'Log Entry 1',
   date: new Date(),
-  icon: { iconName: 'check_circle' },
+  icon: { iconName: IconNames.CheckCircle },
   description: 'This entry was accepted.',
   color: 'green', // Color verde para "accepted"
 };
@@ -37,7 +38,7 @@ export const IgnoredHistory: StoryFn<IHistoryAgentProps> = Template.bind({});
 IgnoredHistory.args = {
   log: 'Log Entry 2',
   date: new Date(),
-  icon: { iconName: 'cancel' },
+  icon: { iconName: IconNames.Cancel },
   description: 'This entry was ignored.',
   color: 'red', // Color rojo para "ignored"
 };
