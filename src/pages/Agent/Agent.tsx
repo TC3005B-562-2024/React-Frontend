@@ -72,7 +72,7 @@ const Agent: React.FC = () => {
   };
 
   return (
-    <div className="h-lvh">
+    <div data-testid="Main container" className="h-lvh">
       <div className="top-container">
         <h1 className="section-title">Agent: </h1>
         {agentInfo &&
