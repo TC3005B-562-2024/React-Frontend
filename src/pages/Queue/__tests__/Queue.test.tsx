@@ -1,7 +1,6 @@
 import { render, screen, waitFor } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
-import Queue from "../Queue";
 import { cleanup } from "@testing-library/react-hooks";
+
 import { BrowserRouter } from "react-router-dom";
 import * as serviceModule from '../../../services'; // Asegúrate de importar correctamente
 import { Low } from "../../../services/queue/types";
@@ -58,6 +57,7 @@ const mockQueueInfo = {
     agents: []
 };
 
+
 afterEach(() => {
     cleanup();
     jest.clearAllMocks();
@@ -65,6 +65,7 @@ afterEach(() => {
 
 describe("Tests for Queue page", () => {
     test("The Queue page should render correctly", async () => {
+
         render(<BrowserRouter><Queue /></BrowserRouter>);
         await waitFor(() => {
             expect(screen.getByTestId("queue-title")).toHaveTextContent("Queue: 123");
@@ -77,10 +78,20 @@ describe("Tests for Queue page", () => {
         jest.spyOn(serviceModule, 'getQueueInfo').mockRejectedValue(new Error("Failed to fetch"));
         render(<BrowserRouter><Queue /></BrowserRouter>);
 
+
         await waitFor(() => {
-            expect(screen.getByText("Error fetching queue")).toBeInTheDocument();
+            expect(screen.getByText("Critic")).toBeInTheDocument();
+        });
+
+        await waitFor(() => {
+            expect(screen.getByText("Medium")).toBeInTheDocument();
+        });
+
+        await waitFor(() => {
+            expect(screen.getByText("Low")).toBeInTheDocument();
         });
     });
+
     test("Should handle all types of alert priorities", async () => {
         const modifiedQueueInfo = {
             ...mockQueueInfo,

@@ -4,6 +4,7 @@ import { Icon } from '../Icon';
 import { TrainingCardToggle } from '../TrainingCardToggle';
 import classNames from 'classnames';
 import { roundToOneDecimal } from '../../Utils/utils';
+import { IconNames } from '../Icon/types';
 
 /**
  * An individual training expansion panel component to display actions that include a check mark in case of being completed or incompleted.
@@ -50,7 +51,7 @@ const IndividualTrainingExpansionPanel: React.FC<IIndividualTrainingExpansionPan
         </div>
         <div className='mx-2 mr-4 my-2'>
           <button onClick={handleButtonClick} className={buttonClasses}>
-            <Icon className='h-6' iconName='expand_less' color='black' />
+            <Icon className='h-6' iconName={IconNames.ExpandLess} color='black' />
           </button>
         </div>
       </div>

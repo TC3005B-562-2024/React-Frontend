@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Button } from '../Button';
 import { Multiselect } from '../Multiselect';
 import { IFilters } from './types';
+import { IconNames } from '../Icon/types';
 
 /**
  * A default Filters component that deploys Multiselect component.
@@ -22,7 +23,7 @@ const Filters: React.FC<IFilters> = ({ options }) => {
         text="Filter"
         color={isMultiselectVisible ? 'orange' : 'orange'}
         size="text"
-        icon={{ iconName: 'instant_mix' }}
+        icon={{ iconName: IconNames.InstantMix }}
       />
       {isMultiselectVisible &&
         <div className='absolute right-0 mt-3'>

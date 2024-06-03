@@ -1,7 +1,6 @@
-import React from 'react';
-import { render, cleanup, screen } from '@testing-library/react';
-import InformationBar from '../InformationBar';
+import { cleanup, render, screen } from '@testing-library/react';
 import { IItemSubitem } from '../../ItemSubitem/types';
+import InformationBar from '../InformationBar';
 
 afterEach(() => {
     cleanup();
