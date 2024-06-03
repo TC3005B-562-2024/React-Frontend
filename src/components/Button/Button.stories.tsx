@@ -1,6 +1,7 @@
 import { Meta, StoryObj } from '@storybook/react';
 import { fn } from '@storybook/test';
 import Button from './Button';
+import { IconNames } from '../Icon/types';
 
 const meta = {
     title: 'Components/Button',
@@ -37,7 +38,7 @@ export const Orange: Story = {
         text: 'Click me!',
         size: 'banner',
         color: 'orange',
-        icon: { iconName: 'search' },
+        icon: { iconName: IconNames.Search },
         hasShadow: true,
         isDisabled: false,
     },
