@@ -8,6 +8,11 @@ export interface IQueueInformation {
     agents:      Agent[];
 }
 
+export interface IQueueMin {
+    name:               string;
+    id:                 string;
+}
+
 export interface Agent {
     id:               string;
     arn:              string;
