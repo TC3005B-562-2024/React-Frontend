@@ -12,6 +12,7 @@ import { getSkillById } from '../../services/skills/getSkillById';
 import {getAgentById} from '../../services/agents/getAgentById';
 import './Alert.css';
 import { IAgentInformation } from '../../services/agents/types';
+import { IconNames } from '../../components/Icon/types';
 
 const Alert: React.FC = () => {
     const { id } = useParams();
@@ -122,9 +123,9 @@ const Alert: React.FC = () => {
                             />
                         )}
                         <div className='button_container'>
-                            <Button text={'Go Back'} size='title' color='orange' type='button' icon={{ iconName: 'arrow_back' }} onClick={goBack} />
-                            <Button text={'Ignore'} size='title' color='red' type='button' icon={{ iconName: 'cancel' }} onClick={() => handleIgnore(numberId)} />
-                            <Button text={'Accept'} size='title' color='green' type='button' icon={{ iconName: 'check_circle' }} onClick={() => handleAccecpt(numberId)} />
+                            <Button text={'Go Back'} size='title' color='orange' type='button' icon={{ iconName: IconNames.ArrowBack }} onClick={goBack} />
+                            <Button text={'Ignore'} size='title' color='red' type='button' icon={{ iconName: IconNames.Cancel }} onClick={() => handleIgnore(numberId)} />
+                            <Button text={'Accept'} size='title' color='green' type='button' icon={{ iconName: IconNames.CheckCircle }} onClick={() => handleAccecpt(numberId)} />
                         </div>
                     </div>
                 </>

@@ -3,6 +3,7 @@ import { IJointTrainingExpansionPanel, ITraning } from './types';
 import { ProgressBar } from '../ProgressBar';
 import classNames from 'classnames';
 import { Icon } from '../Icon';
+import { IconNames } from '../Icon/types';
 
 /**
  * This component is used to display the training progress of agents in a queue or skill.
@@ -40,7 +41,7 @@ const MyJointTrainingExpansionPanel: React.FC<IJointTrainingExpansionPanel> = (
             {average}%
             <div className={rotateText}>
               <Icon
-                iconName='arrow_forward'
+                iconName={IconNames.ArrowForward}
                 color='black'
               />
             </div>
