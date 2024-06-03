@@ -36,7 +36,7 @@ const Queue: React.FC = () => {
         Queue: <span data-testid="queue-title-id" className=' text-aci-orange'>{shortId(id ?? '')}</span>
       </span>
       {loading ?
-        (<InfoLoader/>) :
+        (<InfoLoader testId='infoloader'/>) :
         (
           !loading && queueInfo && !errorQueueInfo ? (
             <div data-testid="queue-information-metrics-section">

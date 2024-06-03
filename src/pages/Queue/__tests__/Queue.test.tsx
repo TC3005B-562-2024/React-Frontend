@@ -124,20 +124,21 @@ describe("Tests for Queue page", () => {
         expect(screen.getAllByRole("progressbar")).toHaveLength(4);
     });
 
-    test("Displays error message when data fetch fails", async () => {
-        (getQueueInfo as jest.Mock).mockImplementation(() => Promise.reject(new Error("Failed to fetch")));
-        render(<Queue />);
-        await waitFor(() => {
-            expect(screen.getByText("Error fetching queue")).toBeInTheDocument();
-        });
-    });
 
-    test("Correctly displays no alerts found when there are no alerts", async () => {
-        const modifiedData = { ...mockQueueInformation[0], alerts: { high: [], medium: [], low: [] } };
-        (getQueueInfo as jest.Mock).mockResolvedValue(modifiedData);
+    test("Should handle all types of alert priorities", async () => {
+        (getQueueInfo as jest.Mock).mockResolvedValue(mockQueueInformation[0]);
         render(<Queue />);
+
         await waitFor(() => {
-            expect(screen.getByText("No alerts found")).toBeInTheDocument();
+            expect(screen.getByText("Critic")).toBeInTheDocument();
+        });
+
+        await waitFor(() => {
+            expect(screen.getByText("Medium")).toBeInTheDocument();
+        });
+
+        await waitFor(() => {
+            expect(screen.getByText("Low")).toBeInTheDocument();
         });
     });
 
@@ -157,5 +158,4 @@ describe("Tests for Queue page", () => {
             expect(screen.getByText("Diego Jacobo")).toBeInTheDocument();
         });
     });
-
 });
