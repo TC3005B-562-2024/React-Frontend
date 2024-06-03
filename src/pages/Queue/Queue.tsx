@@ -78,7 +78,7 @@ const Queue: React.FC = () => {
                 <AlertExpansionPanel
                   alerts={queueInfo?.alerts.high.map(alert => ({
                     alertId: alert.id,
-                    alertName: alert.insight.category.denomination,
+                    alertName: alert.insight.category?.denomination,
                     alertOwner: alert.resource,
                     alertPriority: 'CRITIC',
                     individualAlertLink: `${alert.id}`
@@ -89,7 +89,7 @@ const Queue: React.FC = () => {
                 <AlertExpansionPanel
                   alerts={queueInfo?.alerts.medium.map(alert => ({
                     alertId: alert.id,
-                    alertName: alert.insight.category.denomination,
+                    alertName: alert.insight.category?.denomination,
                     alertOwner: alert.resource,
                     alertPriority: 'MEDIUM',
                     individualAlertLink: `${alert.id}`
