@@ -19,12 +19,12 @@ export interface Agent {
 }
 
 export interface Alerts {
-    high:   any[];
-    medium: any[];
-    low:    Low[];
+    high:   Alert[];
+    medium: Alert[];
+    low:    Alert[];
 }
 
-export interface Low {
+export interface Alert {
     id:                    number;
     connection:            Connection;
     insight:               Insight;

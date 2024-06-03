@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import SideBarElement from './SideBarElement';
 import { withRouter } from 'storybook-addon-react-router-v6';
+import { IconNames } from '../Icon/types';
 
 const meta = {
   title: 'Components/SideBarElement',
@@ -35,7 +36,7 @@ type Story = StoryObj<typeof meta>;
 export const SectionExpanded: Story = {
   args: {
     label: 'Skills',
-    icon: { iconName: 'phone_in_talk' },
+    icon: { iconName: IconNames.PhoneInTalk },
     path: '/skills',
     isExpanded: true,
     isSection: true,
@@ -48,7 +49,7 @@ export const SectionExpanded: Story = {
 export const SectionUnexpanded: Story = {
   args: {
     label: 'Skills',
-    icon: { iconName: 'phone_in_talk' },
+    icon: { iconName: IconNames.PhoneInTalk },
     path: '/skills',
     isExpanded: false,
     isSection: true,
@@ -61,7 +62,7 @@ export const SectionUnexpanded: Story = {
 export const SectionExpandedSelection: Story = {
   args: {
     label: 'Skills',
-    icon: { iconName: 'phone_in_talk' },
+    icon: { iconName: IconNames.PhoneInTalk },
     path: '/',
     isExpanded: true,
     isSection: true,
@@ -74,7 +75,7 @@ export const SectionExpandedSelection: Story = {
 export const NotSectionExpanded: Story = {
   args: {
     label: 'Skills',
-    icon: { iconName: 'phone_in_talk' },
+    icon: { iconName: IconNames.PhoneInTalk },
     path: '/skills',
     isExpanded: true,
     isSection: false,
@@ -87,7 +88,7 @@ export const NotSectionExpanded: Story = {
 export const NotSectionUnexpanded: Story = {
   args: {
     label: 'Skills',
-    icon: { iconName: 'phone_in_talk' },
+    icon: { iconName: IconNames.PhoneInTalk },
     path: '/skills',
     isExpanded: false,
     isSection: false,
@@ -100,7 +101,7 @@ export const NotSectionUnexpanded: Story = {
 export const NotSectionExpandedSelection: Story = {
   args: {
     label: 'Skills',
-    icon: { iconName: 'phone_in_talk' },
+    icon: { iconName: IconNames.PhoneInTalk },
     path: '/',
     isExpanded: true,
     isSection: false,

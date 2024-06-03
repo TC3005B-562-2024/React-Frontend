@@ -6,6 +6,7 @@ import { getAgentById } from "../../services";
 import './Agent.css';
 import { IAlertCard } from "../../components/AlertCard/types";
 import { shortId, noUndersocore } from "../../Utils/utils";
+import { IconNames } from "../../components/Icon/types";
 
 const Agent: React.FC = () => {
   const { id } = useParams();
@@ -177,7 +178,7 @@ const Agent: React.FC = () => {
             </div>
             <div className='flex items-center my-4 mr-4'>
               <button className='h-5 w-5' onClick={() => handleOnClick(index)}>
-                <Icon iconName={training.isComplete ? 'check_circle_fill' : 'radio_button_unchecked'} color='green' />
+                <Icon iconName={training.isComplete ? IconNames.CheckCircleFill : IconNames.RadioButtonUnchecked} color='green' />
               </button>
             </div>
           </div>

@@ -4,6 +4,7 @@ import './AlertNav.css';
 import { IAlertNav } from './types';
 import classNames from 'classnames';
 import { useNavigate } from 'react-router-dom';
+import { IconNames } from '../Icon/types';
 
 const AlertNav: React.FC<IAlertNav> = ({ instanceId, alertsExists }) => {
   const navigate = useNavigate();
@@ -31,7 +32,7 @@ const AlertNav: React.FC<IAlertNav> = ({ instanceId, alertsExists }) => {
       >
 
         <Icon
-          iconName="warning"
+          iconName={IconNames.Warning}
           color={alertsExists ? "red" : "white"}
         />
       </button>
