@@ -32,7 +32,7 @@ const Landing: React.FC = () => {
         setLoading(false);
       }
     }).catch(e => {
-      // TODO handle error
+      // TODO handle error.
       console.error('Failed to fetch agents', e);
       setLoading(false);
     });
@@ -76,8 +76,7 @@ const Landing: React.FC = () => {
   return (
     <>
       <div className='search-bar_container'>
-        <SearchBar onSearch={(value) => handleSearch(new RegExp(value, 'i'))}
-        />
+        <SearchBar onSearch={(value) => handleSearch(new RegExp(value, 'i'))} />
         <Filters options={filterOptions} onFilterChange={handleFilterChange} />
       </div>
       <div className="selected-filters-container"> 
@@ -89,7 +88,7 @@ const Landing: React.FC = () => {
         <div className="mt-5 -ml-1"><InfoLoader></InfoLoader></div>
       }
       <div className='cards-container'>
-
+    
         {displayedData && displayedData.map((agent) => {
           return (
             <AgentInfo

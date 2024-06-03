@@ -12,7 +12,7 @@ export const getAgentById = async (agentId: string | undefined) => {
         })
         .catch((err) => {
             console.error(err);
-            throw new Error("Failed to fetch queue information.");
+            throw new Error("Failed to fetch agent information.");
         });
 
     return res as IAgentInformation | null;

@@ -1,9 +1,13 @@
 import React from "react";
 import './InfoLoader.css';
 
-const InfoLoader: React.FC = () => {
+interface IInfoLoader {
+  testId?: string;
+}
+const InfoLoader: React.FC<IInfoLoader> = () => {
+
   return (
-    <div className="info-loader">
+    <div role="progressbar" className="info-loader">
       <div className="info-loader__bubble"></div>
       <div className="info-loader__bubble"></div>
       <div className="info-loader__bubble"></div>

@@ -1,7 +1,7 @@
 import { Meta, StoryFn } from '@storybook/react';
 import { IIcon } from './types';
 import Icon from './Icon';
-import { iconNames } from './types';
+import { IconNames } from './types';
 
 const meta = {
     title: 'Components/Icon',
@@ -11,7 +11,7 @@ const meta = {
     },
     argTypes: {
         iconName: {
-            options: Array.from(iconNames),
+            options: Object.values(IconNames),
             control: { type: 'select' },
         },
         color: {
@@ -31,6 +31,6 @@ const Template: StoryFn<IIcon> = (args) => <Icon {...args} />;
  */
 export const IconExample = Template.bind({});
 IconExample.args = {
-    iconName: 'support_agent',
+    iconName: IconNames.SupportAgent,
     color: 'black',
 };
