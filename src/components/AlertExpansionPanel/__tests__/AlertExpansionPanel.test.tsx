@@ -73,10 +73,28 @@ describe("Tests for AlertExpansionPanel Component", () => {
             });
         }
     });
+
+    test("Handle unknown priority correctly", () => {
+        const { container} = render(
+            <MemoryRouter>
+                <AlertExpansionPanel alerts={[
+                    { alertId: 1, alertName: 'Test Alert', alertOwner: 'Owner1', alertPriority: 'MEDIUM', individualAlertLink: '#' },
+                ]} />
+            </MemoryRouter>
+        );
     
+        const header = container.querySelector('.alert-expansion-panel__container__header');
+        expect(header).not.toBeNull();
+        if (header) {
+            fireEvent.click(header);
     
+            const cardsContainer = container.querySelector('.alert-expansion-panel__container__cards-container');
+            expect(cardsContainer).toBeInTheDocument();
     
+            const alertCards = container.querySelectorAll('.alert-card__priority-contents');
+            expect(alertCards.length).toBe(2);
     
-    
-    
+            expect(alertCards[1]).toHaveTextContent('Unknown Category');
+        }
+    });
 });

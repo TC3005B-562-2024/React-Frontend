@@ -13,16 +13,7 @@ import { IconNames } from '../Icon/types';
 const AlertExpansionPanel: React.FC<IAlertExpansionPanel> = ({ alerts }) => {
 
   const getAlertText = (alertPriority: string) => {
-    switch (alertPriority) {
-      case 'CRITIC':
-        return 'Critical';
-      case 'MEDIUM':
-        return 'Medium';
-      case 'LOW':
-        return 'Low';
-      default:
-        return 'Unknown';
-    }
+    return alertPriority.charAt(0).toUpperCase() + alertPriority.slice(1).toLowerCase();
   };
 
   const [expanded, setExpanded] = useState(false);
