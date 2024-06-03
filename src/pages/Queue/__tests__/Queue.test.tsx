@@ -116,9 +116,6 @@ describe("Tests for Queue page", () => {
         expect(screen.getByTestId("alerts-section")).toBeInTheDocument();
         expect(screen.getByTestId("trainings-section")).toBeInTheDocument();
         expect(screen.getByTestId("agents-section")).toBeInTheDocument();
-
-        // Add failing test
-        expect(1).toBe(2);
     });
 
     test("Displays loading state initially", () => {
