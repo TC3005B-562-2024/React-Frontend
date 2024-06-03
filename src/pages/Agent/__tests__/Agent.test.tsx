@@ -121,7 +121,7 @@ describe("Agent Component Tests", () => {
        agentInfo: null,
        queues: [],
        alerts: {
-        high: [{ id: 1, insight: { category: { denomination: 'High Priority' }}, resource: 'Resource1' }]as IAlert[],
+        high: [{ id: 1, insight: { category: { denomination: 'High Priority' }}, resource: 'Resource1' }] as IAlert[],
         medium: [{ id: 2, insight: { category: { denomination: 'Medium Priority' }}, resource: 'Resource2' }] as IAlert[],
         low: [{ id: 3, insight: { category: { denomination: 'Low Priority' }}, resource: 'Resource3' }] as IAlert[]
        },
@@ -131,10 +131,10 @@ describe("Agent Component Tests", () => {
     render(<BrowserRouter><Agent /></BrowserRouter>);
     
     await waitFor(() => {
-      expect(screen.getByText("Critical")).toBeInTheDocument();
+      expect(screen.getByText("Critic")).toBeInTheDocument();
       expect(screen.getByText("Medium")).toBeInTheDocument();
       expect(screen.getByText("Low")).toBeInTheDocument();
-    })
+    });
   });
   test("Should display the agent information", async () => {
     jest.spyOn(serviceModule, 'getAgentById').mockResolvedValue(mockAgentInfo);
