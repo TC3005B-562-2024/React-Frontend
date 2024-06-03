@@ -75,7 +75,7 @@ const Skill: React.FC = () => {
           )}
           {!loading && skill?.alerts &&
             <div>
-              <span ata-testid="alert-section" className='sections-text'>
+              <span data-testid="alert-section" className='sections-text'>
                 Alerts
               </span>
               {loading &&

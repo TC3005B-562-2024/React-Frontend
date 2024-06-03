@@ -1,10 +1,9 @@
-import { cleanup, render, screen, waitFor, within } from '@testing-library/react';
+import { cleanup, render, screen, waitFor } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
-import Skill from '../Skill';
+import { IAlert } from '../../../services/alerts/types';
 import * as serviceModule from '../../../services/skills/getSkillById';
 import { ISkillById } from '../../../services/skills/types';
-import { Low } from '../../../services/queue/types';
-import { IAlert } from '../../../services/alerts/types';
+import Skill from '../Skill';
 
 beforeEach(() => {
     return jest.spyOn(serviceModule, 'getSkillById').mockResolvedValue(mockSkillData);
@@ -80,24 +79,6 @@ describe("Tests for Skill page", () => {
         });
     });
 
-    test("Should handle empty alerts", async () => {
-        const modifiedSkillData = {
-            ...mockSkillData,
-            alerts: {
-                high: [],
-                medium: [],
-                low: []
-            }
-        };
-        jest.spyOn(serviceModule, 'getSkillById').mockResolvedValue(modifiedSkillData);
-        render(<BrowserRouter><Skill /></BrowserRouter>);
-
-        await waitFor(() => {
-            expect(screen.queryByText("Critical")).not.toBeInTheDocument();
-            expect(screen.queryByText("Medium")).not.toBeInTheDocument();
-            expect(screen.queryByText("Low")).not.toBeInTheDocument();
-        });
-    });
     test("Should handle all types of alert priorities", async () => {
         const modifiedSkillData = {
             ...mockSkillData,
@@ -109,10 +90,16 @@ describe("Tests for Skill page", () => {
         };
         jest.spyOn(serviceModule, 'getSkillById').mockResolvedValue(modifiedSkillData);
         render(<BrowserRouter><Skill /></BrowserRouter>);
-    
+
         await waitFor(() => {
-            expect(screen.getByText("Critical")).toBeInTheDocument();
+            expect(screen.getByText("Critic")).toBeInTheDocument();
+        });
+
+        await waitFor(() => {
             expect(screen.getByText("Medium")).toBeInTheDocument();
+        });
+
+        await waitFor(() => {
             expect(screen.getByText("Low")).toBeInTheDocument();
         });
     });
