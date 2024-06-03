@@ -35,3 +35,8 @@ jobs:
           echo "Error: Build failed, build directory not found"
           exit 1
         fi
+
+    - name: Run tests
+      run: yarn test --watchAll=false
+      env:
+        CI: true
