@@ -40,7 +40,7 @@ export const AgentListExample: Story = {
         name: 'Jane Smith',
         sentiment: 'POSITIVE',
         queues: ['skill1', 'skill2', 'skill3'],
-        status: 'AVAILABLE',
+        status: 'Available',
         topPriorityAlert: 'MEDIUM',
       },
       {

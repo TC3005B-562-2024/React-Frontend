@@ -1,21 +1,21 @@
 import { IAgentInfo } from "./types";
 import { Pill } from "../Pill";
 import { Icon } from "../Icon";
-import { iconNames } from "../Icon/types";
 import './AgentInfo.css';
 import classNames from "classnames";
 import { useNavigate } from "react-router-dom";
+import { IconNames } from "../Icon/types";
 
 /**
  * Agent Info component that displays the agent's name, sentiment, skills, status, and top priority alert.
  */
 const AgentInfo: React.FC<IAgentInfo> = ({ id, name, sentiment, queues, status, topPriorityAlert }) => {
   const navigate = useNavigate();
-  // If ONCALL phone_in_talk green, else if AVAILABLE call_end yellow, else clear_night blue.
-  const [statusIconName, statusIconColor] = status === 'ONCALL' ? ['phone_in_talk', 'green'] : status === 'AVAILABLE' ? ['call_end', 'yellow'] : ['clear_night', 'blue'];
+  // If ONCALL phone_in_talk green, else if Available call_end yellow, else clear_night blue.
+  const [statusIconName, statusIconColor] = status === 'ONCALL' ? ['phone_in_talk', 'green'] : status === 'Available' ? ['call_end', 'yellow'] : ['clear_night', 'blue'];
 
   // IF CRITICAL warning red, else if MEDIUM warning orange, else warning yellow.
-  const [alertIconName, alertIconColor] = topPriorityAlert === 'CRITICAL' ? ['warning', 'red'] : topPriorityAlert === 'MEDIUM' ? ['warning', 'orange'] : ['warning', 'yellow'];
+  const [alertIconName, alertIconColor] = topPriorityAlert === 'CRITICAL' ? ['warning', 'red'] : topPriorityAlert === 'MEDIUM' ? ['warning', 'orange'] : ['warning', 'yellowA'];
 
   const sentimentClasses = classNames('agent-info__content__main-info__text__sentiment', {
     'agent-info__content__main-info__text__sentiment--positive': sentiment === 'POSITIVE',
@@ -34,7 +34,7 @@ const AgentInfo: React.FC<IAgentInfo> = ({ id, name, sentiment, queues, status, 
       <div className="agent-info__content__main-info">
         <div className="agent-info__content__main-info__icon">
           <Icon
-            iconName={statusIconName as typeof iconNames[number]}
+            iconName={statusIconName as IconNames}
             color={statusIconColor as 'green' | 'yellow' | 'blue' | 'black' | 'white' | 'red' | 'gray' | 'orange' | undefined}
           />
         </div>
@@ -42,7 +42,7 @@ const AgentInfo: React.FC<IAgentInfo> = ({ id, name, sentiment, queues, status, 
           <span className='agent-info__content__main-info__text__agent-name'>
             {name}
           </span>
-          {sentiment !== undefined &&
+          {sentiment !== undefined && sentiment !== null &&
             <span>
               <span className='agent-info__content__main-info__text__sentiment-placeholder'>
                 Sentiment:
@@ -55,12 +55,12 @@ const AgentInfo: React.FC<IAgentInfo> = ({ id, name, sentiment, queues, status, 
             </span>
           }
         </div>
-        {topPriorityAlert !== undefined &&
+        {topPriorityAlert !== undefined && topPriorityAlert !== null &&
           <div className="agent-info__content__main-info__icon">
             <Icon
             className="h-20"
-              iconName={alertIconName as typeof iconNames[number]}
-              color={alertIconColor as 'green' | 'yellow' | 'blue' | 'black' | 'white' | 'red' | 'gray' | 'orange' | undefined}
+              iconName={alertIconName as IconNames}
+              color={alertIconColor as 'green' | 'yellowA' | 'blue' | 'black' | 'white' | 'red' | 'gray' | 'orange' | undefined}
             />
           </div>
         }

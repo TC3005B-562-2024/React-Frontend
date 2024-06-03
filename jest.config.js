@@ -17,4 +17,8 @@ module.export = {
             statements: 70
         }
     },
+    coveragePathIgnorePatterns: [
+        '/node_modules/',
+        '<rootDir>/**/*.types.ts',
+    ],
 }

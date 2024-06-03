@@ -4,6 +4,8 @@ import AlertCard from '../AlertCard/AlertCard';
 import { IAlertExpansionPanel } from './types';
 import './AlertExpansionPanel.css';
 import { Icon } from '../Icon';
+import { IconNames } from '../Icon/types';
+
 
 /**
  * AlertExpansionPanel component displays a list of alerts in an expansion panel.
@@ -55,7 +57,7 @@ const AlertExpansionPanel: React.FC<IAlertExpansionPanel> = ({ alerts }) => {
         </div>
         <div className={arrowIconClasses}>
           <Icon
-            iconName='arrow_forward'
+            iconName={IconNames.ArrowForward}
             color='black'
           />
         </div>

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { ICompleteButton } from './types';
 import { Icon } from '../Icon';
+import { IconNames } from '../Icon/types';
 
 const CompleteButton: React.FC<ICompleteButton> = ({
     color = 'green',
@@ -18,8 +19,8 @@ const CompleteButton: React.FC<ICompleteButton> = ({
     }, [isComplete]);
 
     return (
-        <button data-testid="complete-button" onClick={handleButtonClick} className='flex' data-completed={completed}>
-            <Icon iconName={completed ? 'check_circle_fill' : 'radio_button_unchecked'} color={color} data-icon-name={completed ? 'check_circle_fill' : 'radio_button_unchecked'} />
+        <button data-testid="complete-button" onClick={handleButtonClick} className='h-5 w-5' data-completed={completed}>
+            <Icon iconName={completed ? IconNames.CheckCircleFill : IconNames.RadioButtonUnchecked} color={color} data-icon-name={completed ? 'check_circle_fill' : 'radio_button_unchecked'} />
         </button>
     );
 };

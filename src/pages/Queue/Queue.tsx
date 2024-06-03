@@ -1,41 +1,20 @@
-import React, { useCallback, useEffect, useState} from 'react';
+import React, { useEffect, useState} from 'react';
 import { useParams } from 'react-router-dom';
-import { InformationBar, ProgressCard, ErrorCard, AlertExpansionPanel, AgentInfo } from '../../components';
-import { getAllAlerts, getQueueInfo } from '../../services';
-import { IAlertResponse } from '../../services/alerts/types';
+import { InformationBar, ProgressCard, ErrorCard, AlertExpansionPanel, AgentInfo, InfoLoader } from '../../components';
+import { getQueueInfo } from '../../services';
 import { IQueueInformation } from '../../services/queue/types';
 import { IAlertCard } from '../../components/AlertCard/types';
+import { shortId, noUndersocore, TitleCase } from '../../Utils/utils';
 import './Queue.css';
-import { IInformationBar } from '../../components/InformationBar/types';
-
-
 
 const Queue: React.FC = () => {
   const { id } = useParams();
-  const [alertsReceived, setAlertsReceived] = useState<IAlertResponse>();
-  const [loading, setLoading] = useState<boolean>(false);
-  const [errorAlerts, setErrorAlerts] = useState<boolean>(false);
-  
+  const [loading, setLoading] = useState<boolean>(true);
   const [queueInfo, setQueueInfo] = useState<IQueueInformation | null > (null);
   const [errorQueueInfo, setErrorQueueInfo] = useState<boolean>(false);
-  
 
-  const getAlerts = useCallback(async () => {
-    await getAllAlerts()
-      .then((res) => {
-        if (res !== null) setAlertsReceived(res);
-        if (res === undefined) {
-          setErrorAlerts(true);
-        }
-      })
-      .catch((err) => {
-        console.error(err);
-        setErrorAlerts(true);
-      });
-    setLoading(false);
-  }, []);
-  
-  const getQueueInformation = useCallback(async () => {
+
+  const getQueueInformation = async (id: string | undefined) => {
     await getQueueInfo(id)
     .then((res) => {
       if (res !== null) setQueueInfo(res);
@@ -45,55 +24,59 @@ const Queue: React.FC = () => {
       setErrorQueueInfo(true);
     });
     setLoading(false);
+  };
+
+  useEffect(() => {
+    getQueueInformation(id);
   }, [id]);
-
-  useEffect(() => {
-    setLoading(true);
-    getQueueInformation();
-  }, [getQueueInformation]);
-
-
-  useEffect(() => {
-    setLoading(true);
-    getAlerts();
-  }, [getAlerts]);
-
+  
   return (
-    <>
-    <div>
-      <div>
-        <span className='sections-text'>
-          Queue: <span className=' text-aci-orange'>{id}</span>
-        </span>
-        {errorQueueInfo && 
-          <div>
-            Hubo un error al cargar la información de la cola
-          </div>
-          }
-        {queueInfo && 
-        <div>
-          {queueInfo.map((info: IInformationBar, index: number) => (
-            <InformationBar key={index} title={info.title} elements={info.elements} />
-          ))}
-        </div>
-          }
-        <div>
-            <span className='sections-text'>
-              Alerts
-            </span>
-            {loading &&
-              <ErrorCard title='Loading...'></ErrorCard>
-            }
-            {errorAlerts &&
-              <ErrorCard title='Error fetching alerts'></ErrorCard>
-            }
-            {!loading && !errorAlerts && alertsReceived !== undefined && alertsReceived.high.length === 0 && alertsReceived.medium.length === 0 && alertsReceived.low.length === 0 &&
-              <ErrorCard title='No alerts found'></ErrorCard>
-            }
+    <div className='px-2 mb-3'>
+      <span data-testid="queue-title" className='queue__sections-text'>
+        Queue: <span className=' text-aci-orange'>{shortId(id ?? '')}</span>
+      </span>
+      {loading ?
+        (<InfoLoader/>) :
+        (
+          !loading && queueInfo && !errorQueueInfo ? (
+            <>
+              <InformationBar
+                title={queueInfo.information.sectionTitle}
+                elements={queueInfo.information.sections?.map(section => ({
+                  title: section.sectionTitle,
+                  content: section.sectionValue,
+                  color: section.color as "black" | "red" | "green" | "yellow" | "gray"
+                })) || []}
+              />
+              {queueInfo && queueInfo?.metrics.sections !== null && queueInfo?.metrics.sections.length !== 0 &&
+                <InformationBar 
+                  title={queueInfo.metrics.sectionTitle}
+                  elements={queueInfo.metrics.sections?.map(section => ({
+                    title: TitleCase(noUndersocore(section.sectionTitle)),
+                    content: section.sectionValue,
+                    color: section.color as "black" | "red" | "green" | "yellow" | "gray"
+                  })) || []}
+                />
+              }
+            </>
+          ) : 
+          (
+            <ErrorCard title='Error fetching queue'></ErrorCard>
+          )
+        )
+      }
+
+      <span data-testid="alert-section" className='queue__sections-text'>
+        Alerts
+      </span>
+      {loading ? 
+        (<InfoLoader/>) :
+        (
+          !loading && queueInfo && !errorQueueInfo ? (
             <div className="flex flex-col space-y-4 p-1">
-              {alertsReceived !== undefined && alertsReceived.high.length !== 0 &&
+              {queueInfo && queueInfo?.alerts.high.length !== 0 &&
                 <AlertExpansionPanel
-                  alerts={alertsReceived.high.map(alert => ({
+                  alerts={queueInfo?.alerts.high.map(alert => ({
                     alertId: alert.id,
                     alertName: alert.insight.category.denomination,
                     alertOwner: alert.resource,
@@ -102,9 +85,9 @@ const Queue: React.FC = () => {
                   })) as IAlertCard[]}
                 />
               }
-              {alertsReceived !== undefined && alertsReceived?.medium.length !== 0 &&
+              {queueInfo && queueInfo?.alerts.medium.length !== 0 &&
                 <AlertExpansionPanel
-                  alerts={alertsReceived.medium.map(alert => ({
+                  alerts={queueInfo?.alerts.medium.map(alert => ({
                     alertId: alert.id,
                     alertName: alert.insight.category.denomination,
                     alertOwner: alert.resource,
@@ -113,127 +96,85 @@ const Queue: React.FC = () => {
                   })) as IAlertCard[]}
                 />
               }
-              {alertsReceived !== undefined && alertsReceived.low.length !== 0 &&
+              {queueInfo && queueInfo?.alerts.low.length !== 0 &&
                 <AlertExpansionPanel
-                  alerts={alertsReceived.low.map(alert => ({
+                  alerts={queueInfo?.alerts.low.map(alert => ({
                     alertId: alert.id,
-                    alertName: alert.insight.category.denomination,
+                    alertName: alert.insight.category?.denomination ?? 'Unknown Category',
                     alertOwner: alert.resource,
                     alertPriority: 'LOW',
                     individualAlertLink: `${alert.id}`
                   })) as IAlertCard[]}
                 />
               }
+              {queueInfo && queueInfo?.alerts.high.length === 0 && queueInfo?.alerts.medium.length === 0 && queueInfo?.alerts.low.length === 0 &&
+                <ErrorCard title='No alerts found'></ErrorCard>
+              }
             </div>
-          </div>
-          <div>
-            <span className='sections-text'>
-              Trainings
-            </span>
-            <div className=' space-y-4 p-1'>
-              <ProgressCard
-                label='Training 1'
-                trainings={[
-                  {
-                    progress: 50,
-                    label: 'Training 1',
-                  },
-                  {
-                    progress: 70,
-                    label: 'Training 2',
-                  },
-                  {
-                    progress: 90,
-                    label: 'Training 3',
-                  }
-                ]}
+          ) : (
+            <ErrorCard title='Error fetching alerts'></ErrorCard>
+          )
+        )
+      }
+      <span data-testid="trainings-section" className='queue__sections-text'>
+        Trainings
+      </span>
+      {loading ? 
+        (<InfoLoader/>) :
+        (
+          !loading && queueInfo && !errorQueueInfo ? (
+            <>
+              {queueInfo && queueInfo.trainings && queueInfo.trainings.map(training => (
+                <ProgressCard
+                  key={training.resourceName}
+                  label={training.resourceName}
+                  trainings={[
+                    {
+                      progress: training.resourceTrainingProgress,
+                      label: training.resourceName
+                    }
+                  ]}
                 />
-
+              ))}
+              {
+                queueInfo.trainings.length === 0 && (
+                  <ErrorCard title='No trainings found.'></ErrorCard>
+                )
+              }
+            </>
+          ) : (
+            <ErrorCard title='Error fetching trainings'></ErrorCard>
+          )
+        )
+      }
+      <span className='queue__sections-text'>
+        Agents
+      </span>
+      {loading ? 
+        (<InfoLoader/>) : 
+        (
+          !loading && queueInfo && !errorQueueInfo ? (
+            <div className='queue__cards-container'>
+              {queueInfo && queueInfo.agents.map(agent => (
+                <AgentInfo
+                  key={agent.id}
+                  id={agent.id}
+                  name={agent.name}
+                  sentiment={agent.sentiment}
+                  queues={agent.queues}
+                  status={agent.status as "ONCALL" | "Available" | "DISCONNECTED" | null}
+                  topPriorityAlert={agent.topPriorityAlert}
+                />
+              ))
+              }
             </div>
-           </div>
-          <div>
-            <span className='sections-text'>
-              Agents
-            </span>
-            <div className='cards-container'>
-              <AgentInfo
-                id='1'
-                name='Agent Name'
-                sentiment="NEGATIVE"
-                queues={[
-                  "Support", "Complaints", "Shoppings", "Thefts"
-                ]}
-                status='ONCALL'
-                topPriorityAlert="LOW"
-                />
-              <AgentInfo
-                id='2'
-                name='Agent Name'
-                sentiment="POSITIVE"
-                queues={[
-                  "Support", "Complaints", "Shoppings"
-                ]}
-                status='AVAILABLE'
-                topPriorityAlert="MEDIUM"
-                />
-              <AgentInfo
-                id='3'
-                name='Agent Name'
-                sentiment="NEGATIVE"
-                queues={[
-                  "Support", "Complaints", "Shoppings",
-                ]}
-                status='ONCALL'
-                topPriorityAlert="CRITICAL"
-                />
-              <AgentInfo
-                id='4'
-                name='Agent Name'
-                sentiment="POSITIVE"
-                queues={[
-                  "Support", "Complaints", "Shoppings", "Thefts"
-                ]}
-                status='DISCONNECTED'
-                topPriorityAlert="MEDIUM"
-                />
-              <AgentInfo
-                id='5'
-                name='Agent Name'
-                sentiment="POSITIVE"
-                queues={[
-                  "Support", "Complaints", "Shoppings", "Thefts"
-                ]}
-                status='AVAILABLE'
-                topPriorityAlert="MEDIUM"
-                />
-              <AgentInfo
-                id='6'
-                name='Agent Name'
-                sentiment="POSITIVE"
-                queues={[
-                  "Support", "Complaints", "Shoppings", "Thefts"
-                ]}
-                status='AVAILABLE'
-                topPriorityAlert="MEDIUM"
-                />
-              <AgentInfo
-                id='7'
-                name='Agent Name'
-                sentiment="POSITIVE"
-                queues={[
-                  "Support", "Complaints", "Shoppings", "Thefts"
-                ]}
-                status='DISCONNECTED'
-                topPriorityAlert="MEDIUM"
-                />
-            </div>
-          </div>
-        </div>
+          ) : (
+            <ErrorCard title='Error fetching agents'></ErrorCard>
+          )
+        )
+      }
     </div>
-    </>
   );
 };
-
-
 
 export default Queue;
