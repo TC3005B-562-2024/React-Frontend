@@ -25,6 +25,7 @@ export const MultiselectOptionsUnchecked: Story = {
   args: {
     isSelected: false,
     label: 'Option 1',
+    onChange: (_label: string, _isSelected: boolean) => {} // Add the missing onChange property
   },
 };
 
@@ -35,5 +36,6 @@ export const MultiselectOptionsChecked: Story = {
   args: {
     isSelected: true,
     label: 'Option 2',
+    onChange: (_label: string, _isSelected: boolean) => {}, // Add the missing onChange property
   },
 };

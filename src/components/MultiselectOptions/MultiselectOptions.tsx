@@ -6,12 +6,12 @@ import { IMultiselectOptions } from './types';
 /**
  * Component that stores the state of a given option.
  */
-const MultiselectOptions: React.FC<IMultiselectOptions> = ({ label, isSelected }) => {
+const MultiselectOptions: React.FC<IMultiselectOptions> = ({ label, isSelected,onChange }) => {
   const [isChecked, setIsChecked] = useState(isSelected);
 
   const handleOnChange = () => {
-    setIsChecked(!isChecked);
-  };
+    onChange(label, !isSelected); // Pass label and new isSelected state
+  };
 
   useEffect(() => {
     setIsChecked(isSelected);

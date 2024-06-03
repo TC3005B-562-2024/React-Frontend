@@ -24,18 +24,30 @@ FiltersExample.args = {
     {
       label: 'Option 1',
       isSelected: false,
+      onChange: function (_label: string, _isSelected: boolean): void {
+        throw new Error('Function not implemented.');
+      }
     },
     {
       label: 'Option 2',
       isSelected: false,
+      onChange: function (_label: string, _isSelected: boolean): void {
+        throw new Error('Function not implemented.');
+      }
     },
     {
       label: 'Option 3',
       isSelected: false,
+      onChange: function (_label: string, _isSelected: boolean): void {
+        throw new Error('Function not implemented.');
+      }
     },
     {
       label: 'Option 4',
       isSelected: false,
+      onChange: function (_label: string, _isSelected: boolean): void {
+        throw new Error('Function not implemented.');
+      }
     },
   ]
 };

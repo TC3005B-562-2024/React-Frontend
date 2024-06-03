@@ -27,10 +27,16 @@ MultiselectExample.args = {
     {
       label: 'Option 1',
       isSelected: false,
+      onChange: function (_label: string, _isSelected: boolean): void {
+        throw new Error('Function not implemented.');
+      }
     },
     {
       label: 'Option 2',
       isSelected: true,
+      onChange: function (_label: string, _isSelected: boolean): void {
+        throw new Error('Function not implemented.');
+      }
     }
   ]
 }
@@ -44,14 +50,23 @@ MultiselectExampleLargeOption.args = {
     {
       label: 'Option 1',
       isSelected: false,
+      onChange: function (_label: string, _isSelected: boolean): void {
+        throw new Error('Function not implemented.');
+      }
     },
     {
       label: 'Option 2',
       isSelected: true,
+      onChange: function (_label: string, _isSelected: boolean): void {
+        throw new Error('Function not implemented.');
+      }
     },
     {
       label: 'Very Large Option 3',
       isSelected: true,
+      onChange: function (_label: string, _isSelected): void {
+        throw new Error('Function not implemented.');
+      }
     }
   ]
 }
