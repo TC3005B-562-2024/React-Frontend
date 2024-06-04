@@ -22,7 +22,7 @@ const Landing: React.FC = () => {
         setAgents(data);
         setDisplayedData(data);
         const newUniqueQueues = Array.from(
-          new Set(data.flatMap((agent) => agent.queues))
+          new Set(data.flatMap((agent) => agent.queues.map(queue => queue.name)))
         );
         setUniqueQueues(newUniqueQueues);
         setLoading(false);
@@ -59,7 +59,7 @@ const Landing: React.FC = () => {
       setDisplayedData(agents);
     } else {
       const filteredData = agents.filter(agent =>
-        agent.queues.some(queue => queueFilters.includes(queue))
+        agent.queues.some(queue => queueFilters.includes(queue.name))
       );
       setDisplayedData(filteredData);
     }
@@ -96,7 +96,7 @@ const Landing: React.FC = () => {
               id={agent.id}
               name={agent.name}
               sentiment={agent.sentiment}
-              queues={agent.queues}
+              queues={agent.queues.map(queue => queue.name)}
               status={agent.status}
               topPriorityAlert={agent.topPriorityAlert}
             />
