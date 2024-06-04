@@ -4,6 +4,8 @@ import AlertCard from '../AlertCard/AlertCard';
 import { IAlertExpansionPanel } from './types';
 import './AlertExpansionPanel.css';
 import { Icon } from '../Icon';
+import { IconNames } from '../Icon/types';
+
 
 /**
  * AlertExpansionPanel component displays a list of alerts in an expansion panel.
@@ -11,16 +13,7 @@ import { Icon } from '../Icon';
 const AlertExpansionPanel: React.FC<IAlertExpansionPanel> = ({ alerts }) => {
 
   const getAlertText = (alertPriority: string) => {
-    switch (alertPriority) {
-      case 'CRITIC':
-        return 'Critical';
-      case 'MEDIUM':
-        return 'Medium';
-      case 'LOW':
-        return 'Low';
-      default:
-        return 'Unknown';
-    }
+    return alertPriority.charAt(0).toUpperCase() + alertPriority.slice(1).toLowerCase();
   };
 
   const [expanded, setExpanded] = useState(false);
@@ -55,7 +48,7 @@ const AlertExpansionPanel: React.FC<IAlertExpansionPanel> = ({ alerts }) => {
         </div>
         <div className={arrowIconClasses}>
           <Icon
-            iconName='arrow_forward'
+            iconName={IconNames.ArrowForward}
             color='black'
           />
         </div>

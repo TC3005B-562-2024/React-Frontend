@@ -7,4 +7,5 @@ export interface IMultiselectOptions {
      * The label to display for the option
      */
     label: string;
+    onChange: (label: string, isSelected: boolean) => void;
 }

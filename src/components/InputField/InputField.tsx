@@ -3,6 +3,7 @@ import { Icon } from '../Icon';
 import classNames from "classnames";
 import { IInputField } from './types';
 import './InputField.css';
+import { IconNames } from '../Icon/types';
 
 /**
  * Input Field component.
@@ -58,7 +59,7 @@ const InputField: React.FC<IInputField & { onChange: (id: string, value: string)
               type='button'
               onClick={togglePasswordVisibility}
               className='input-field__container__input-container__button-container__button'>
-              {showPassword ? <Icon className='h-5' iconName='visibility' color={color} /> : <Icon className='h-5' iconName='visibility_off' color={color} />}
+              {showPassword ? <Icon className='h-5' iconName={IconNames.Visibility} color={color} /> : <Icon className='h-5' iconName={IconNames.VisibilityOff} color={color} />}
             </button>
           </div>
         </div>

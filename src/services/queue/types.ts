@@ -8,6 +8,11 @@ export interface IQueueInformation {
     agents:      Agent[];
 }
 
+export interface IQueueMin {
+    name:               string;
+    id:                 string;
+}
+
 export interface Agent {
     id:               string;
     arn:              string;
@@ -19,12 +24,12 @@ export interface Agent {
 }
 
 export interface Alerts {
-    high:   any[];
-    medium: any[];
-    low:    Low[];
+    high:   Alert[];
+    medium: Alert[];
+    low:    Alert[];
 }
 
-export interface Low {
+export interface Alert {
     id:                    number;
     connection:            Connection;
     insight:               Insight;

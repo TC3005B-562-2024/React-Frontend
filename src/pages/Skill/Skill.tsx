@@ -38,10 +38,10 @@ const Skill: React.FC = () => {
     <>
       <div>
         <div>
-          <span className='sections-text'>
+          <span data-testid="skill-title" className='sections-text'>
             Skill: 
             {loading ? 
-              (<InfoLoader />) : 
+              (<InfoLoader testId='infoloader'/>) : 
               (<span className=' text-aci-orange'>{` ${skill?.alias}`}</span>)
             }
           </span>
@@ -75,7 +75,7 @@ const Skill: React.FC = () => {
           )}
           {!loading && skill?.alerts &&
             <div>
-              <span className='sections-text'>
+              <span data-testid="alert-section" className='sections-text'>
                 Alerts
               </span>
               {loading &&
