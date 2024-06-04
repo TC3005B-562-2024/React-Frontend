@@ -1,7 +1,7 @@
 export const ROUTES = {
     LANDING: {
         path: '/',
-        name: 'Landing'
+        name: 'Agents'
     },
     SKILL: {
         path: '/skills/:id',
@@ -10,10 +10,6 @@ export const ROUTES = {
     QUEUE: {
         path: '/queues/:id',
         name: 'Queue'
-    },
-    AGENTS: {
-        path: '/agents',
-        name: 'Agents'
     },
     LOG_OUT: {
         path: '/logout',

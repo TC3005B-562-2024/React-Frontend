@@ -30,7 +30,8 @@ export enum IconNames {
     VisibilityOff = 'visibility_off',
     Warning = 'warning',
     ExpandLess = 'expand_less',
-    ExpandMore = 'expand_more'
+    ExpandMore = 'expand_more',
+    History = 'history'
 }
 
 export interface IIconNoColorNoSize {
