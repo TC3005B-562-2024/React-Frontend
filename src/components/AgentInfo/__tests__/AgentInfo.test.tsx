@@ -124,4 +124,29 @@ describe('Tests for AgentInfo Component', () => {
     expect(getByTestId('alert-icon')).toHaveAttribute('data-icon-name', 'warning');
     expect(getByTestId('alert-icon')).toHaveAttribute('data-icon-color', 'yellowA');
   });
+
+  test('should render sentiment when undefined', () => {
+    const { queryByText } = renderComponent({ sentiment: undefined });
+
+    expect(queryByText('Sentiment:')).not.toBeInTheDocument();
+  });
+
+  test('should render topPriorityAlert when undefined', () => {
+    const { queryByTestId } = renderComponent({ topPriorityAlert: undefined });
+
+    expect(queryByTestId('alert-icon')).not.toBeInTheDocument();
+  });
+
+  test('should render status icon for null status', () => {
+    const { getByTestId } = renderComponent({ status: null });
+
+    expect(getByTestId('status-icon')).toHaveAttribute('data-icon-name', 'clear_night');
+    expect(getByTestId('status-icon')).toHaveAttribute('data-icon-color', 'blue');
+  });
+
+  test('should render alert icon for null topPriorityAlert', () => {
+    const { queryByTestId } = renderComponent({ topPriorityAlert: null });
+
+    expect(queryByTestId('alert-icon')).not.toBeInTheDocument();
+  });
 });
