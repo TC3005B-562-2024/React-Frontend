@@ -21,7 +21,6 @@ const Filters: React.FC<IFilters> = ({ options, onFilterChange }) => {
     onFilterChange(newOptions);
   };
 
-
   return (
     <div className='relative inline-block'>
       <Button
