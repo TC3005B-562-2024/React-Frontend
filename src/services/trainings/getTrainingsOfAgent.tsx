@@ -15,19 +15,3 @@ export const getTrainingsOfAgent = async (id: number) => {
         });
     return res as ITrainingsForAResponse | null;
 }
-
-/* Ejemplo de la estructura contemplada
-{
-    "id":0,
-    "results": [
-        {
-            "label": "Training Description",
-            "isComplete":false
-        },
-        {
-            "label": "Training Description",
-            "isComplete":true
-        }
-        ]
-    
-}*/

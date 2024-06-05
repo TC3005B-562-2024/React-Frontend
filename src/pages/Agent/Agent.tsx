@@ -7,27 +7,31 @@ import './Agent.css';
 import { IAlertCard } from "../../components/AlertCard/types";
 import { shortId, noUndersocore } from "../../Utils/utils";
 import { IconNames } from "../../components/Icon/types";
+import { putTrainingForAnAgent } from "../../services/trainings/putTrainingsOfAgent";
 
 const Agent: React.FC = () => {
   const { id } = useParams();
   const [loading, setLoading] = useState<boolean>(true);
+  const [loadingTU, setLoadingTU] = useState<boolean>(false);
   const [agentInfo, setAgentInfo] = useState<IAgentInformation | null>(null);
   const [errorAgentInfo, setErrorAgentInfo] = useState<boolean>(false);
   const [trainingValues, setTrainingValues] = useState<any[]>([]);
   const [completedTrainings, setCompletedTrainings] = useState<number>(0);
 
-
   const getAgentInformation = useCallback(async () => {
     try {
       const res = await getAgentById(id);
       if (res !== null) {
+        console.log(`Agent data fetched successfully for agent ${id}`);
         setAgentInfo(res);
       }
       setLoading(false);
+      setLoadingTU(false);
     } catch (err) {
       console.error(err);
       setErrorAgentInfo(true);
       setLoading(false);
+      setLoadingTU(false);
     }
   }, [id]);
 
@@ -37,11 +41,9 @@ const Agent: React.FC = () => {
   }, [getAgentInformation]);
 
   useEffect(() => {
-    const storedTrainingValues = JSON.parse(localStorage.getItem(`trainingValues-${id}`) || '[]');
-    if (storedTrainingValues.length > 0) {
-      setTrainingValues(storedTrainingValues);
-    } else if (agentInfo) {
+    if (agentInfo) {
       const newTrainingValues = agentInfo.trainings?.map(training => ({
+        id: training.id,
         label: training.training.description,
         isComplete: training.trainingCompleted
       })) || [];
@@ -50,8 +52,7 @@ const Agent: React.FC = () => {
   }, [agentInfo, id]);
 
   useEffect(() => {
-    if (trainingValues.length > 0) {
-      localStorage.setItem(`trainingValues-${id}`, JSON.stringify(trainingValues));
+    if (trainingValues) {
       const totalTrainings = trainingValues.length;
       const completed = trainingValues.filter(training => training.isComplete).length;
       const percentage = totalTrainings > 0 ? (completed / totalTrainings) * 100 : 0;
@@ -59,17 +60,15 @@ const Agent: React.FC = () => {
     }
   }, [trainingValues, id]);
 
-  useEffect(() => {
-    return () => {
-      localStorage.removeItem(`trainingValues-${id}`);
-    };
-  }, [id]);
-
-  const handleOnClick = (index: number) => {
-    const updatedTrainingValues = trainingValues.map((training, i) => 
-      i === index ? { ...training, isComplete: !training.isComplete } : training
-    );
-    setTrainingValues(updatedTrainingValues);
+  const handleOnClick = async (index: number) => {
+    try {
+      setLoadingTU(true);
+      await putTrainingForAnAgent(trainingValues[index].id, !trainingValues[index].isComplete);
+      await getAgentInformation();
+    } catch (err) {
+      console.error(err);
+      setLoadingTU(false);
+    }
   };
 
   return (
@@ -157,10 +156,10 @@ const Agent: React.FC = () => {
         }
       </div>
       <div className="section-title">Trainings</div>
-      {loading && <div><InfoLoader /></div>}
+      {(loading)&& <div><InfoLoader /></div>}
       {errorAgentInfo && <ErrorCard title='Error fetching trainings' />}
       {agentInfo && trainingValues.length === 0 &&  <div className="page-last-item"><ErrorCard title='No trainings found' /></div>}
-      {trainingValues.length > 0 && 
+      {trainingValues.length > 0 &&
       <div className="page-last-item">
       <div className='flex border-solid rounded-md border-2 border-gray-100'>
         <div className='flex-1 mx-4 my-4'>
@@ -177,9 +176,9 @@ const Agent: React.FC = () => {
               {training.label}
             </div>
             <div className='flex items-center my-4 mr-4'>
-              <button className='h-5 w-5' onClick={() => handleOnClick(index)}>
-                <Icon iconName={training.isComplete ? IconNames.CheckCircleFill : IconNames.RadioButtonUnchecked} color='green' />
-              </button>
+            <button className='h-5 w-5' onClick={() => handleOnClick(index)} disabled={loadingTU}>
+              <Icon iconName={training.isComplete ? IconNames.CheckCircleFill : IconNames.RadioButtonUnchecked} color='green' />
+            </button>
             </div>
           </div>
         </div>
