@@ -3,7 +3,7 @@
 }
 
 .pill-container {
-  @apply  space-x-2 mt-3;
+  @apply  mt-3;
 }
 
 .cards-container {
