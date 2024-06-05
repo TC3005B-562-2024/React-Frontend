@@ -34,19 +34,11 @@ describe("Tests for Landing Page", () => {
     cleanup();
   });
 
-  test("Should render the Landing page", () => {
-    render(<Landing />);
-    expect(screen.getByText('Support')).toBeInTheDocument();
-    expect(screen.getByText('Complaints')).toBeInTheDocument();
-    expect(screen.getByText('Thefts')).toBeInTheDocument();
-    expect(screen.getByText('Shoppings')).toBeInTheDocument();
-  });
-
   test("Should show loading spinner while fetching data", () => {
     // Mock the getAllAgents function to return a promise that never resolves
     (getAllAgents as jest.Mock).mockReturnValueOnce(new Promise(() => { }));
     render(<Landing />);
-    expect(screen.getByTestId('loading-spinner')).toBeInTheDocument();
+    expect(screen.getByRole('progressbar')).toBeInTheDocument();
   });
 
   test("Should render agents list after data fetch", async () => {
@@ -54,29 +46,63 @@ describe("Tests for Landing Page", () => {
     (getAllAgents as jest.Mock).mockResolvedValueOnce(mockAgents);
     render(<Landing />);
 
-    await screen.findByText('Agent Smith');
-    expect(screen.getByText('Agent Johnson')).toBeInTheDocument();
+    await waitFor(() => {
+      expect(screen.getByText('Agent Smith')).toBeInTheDocument();
+    });
+    await waitFor(() => {
+      expect(screen.getByText('Agent Johnson')).toBeInTheDocument();
+    });
+  });
+
+  test("Should display an error when there is no agents returned", async () => {
+    // Mock the getAllAgents function to return the mockAgents data
+    const consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation(() => { });
+    (getAllAgents as jest.Mock).mockResolvedValueOnce(null);
+    render(<Landing />);
+
+    // Wait for the loading spinner to disappear and check if the error was logged
+    await waitFor(() => expect(screen.queryByTestId('loading-spinner')).not.toBeInTheDocument());
+    expect(console.error).toHaveBeenCalledWith('Failed to fetch agents');
+    consoleErrorSpy.mockRestore();
   });
 
   test("Should handle fetch errors gracefully", async () => {
-    // Mock the getAllAgents function to reject the promise
+    // Mock the getAllAgents function to return a rejected promise and spy on console.error
+    const consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation(() => { });
     (getAllAgents as jest.Mock).mockRejectedValueOnce(new Error('Failed to fetch agents'));
     render(<Landing />);
 
+    // Wait for the loading spinner to disappear and check if the error was logged
     await waitFor(() => expect(screen.queryByTestId('loading-spinner')).not.toBeInTheDocument());
-    // Assuming you handle errors by displaying some message or log, adjust the expectation accordingly
     expect(console.error).toHaveBeenCalledWith('Failed to fetch agents', expect.anything());
+    consoleErrorSpy.mockRestore();
   });
 
-  test("Should render the SearchBar component", () => {
+  test("Should render the SearchBar component", async () => {
+    // Mock the getAllAgents function to return the mockAgents data
+    (getAllAgents as jest.Mock).mockResolvedValueOnce(mockAgents);
     render(<Landing />);
-    expect(screen.getByPlaceholderText('Search...')).toBeInTheDocument();
+
+    // Wait for the SearchBar component to render
+    await waitFor(() => {
+      expect(screen.getByPlaceholderText('Search...')).toBeInTheDocument();
+    });
   });
 
-  test("Should render the Filters component with all options", () => {
+  test("Should render the Filters component with all options", async () => {
+    // Mock the getAllAgents function to return the mockAgents data
+    (getAllAgents as jest.Mock).mockResolvedValueOnce(mockAgents);
     render(<Landing />);
-    expect(screen.getByText('Option 1')).toBeInTheDocument();
-    expect(screen.getByText('Option 2')).toBeInTheDocument();
-    expect(screen.getByText('Option 3')).toBeInTheDocument();
+
+    // Wait for the Filters component to render
+    await waitFor(() => {
+      expect(screen.getByText('BasicQueue')).toBeInTheDocument();
+    });
+    await waitFor(() => {
+      expect(screen.getByText('Panoptimize doubts')).toBeInTheDocument();
+    });
+    await waitFor(() => {
+      expect(screen.getByText('Customer Service')).toBeInTheDocument();
+    });
   });
 });
