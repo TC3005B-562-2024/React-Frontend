@@ -30,8 +30,8 @@ const AgentInfo: React.FC<IAgentInfo> = ({ id, name, sentiment, queues, status, 
   }
   
   return (
-    <div className='agent-info__content' onClick={handleAgentClick}>
-      <div className="agent-info__content__main-info">
+    <div className='agent-info__content'>
+      <div className="agent-info__content__main-info"onClick={handleAgentClick}>
         <div className="agent-info__content__main-info__icon">
           <Icon
             iconName={statusIconName as IconNames}
@@ -72,6 +72,7 @@ const AgentInfo: React.FC<IAgentInfo> = ({ id, name, sentiment, queues, status, 
             text={queue}
             color={skillColors[index % skillColors.length] as 'green' | 'yellow' | 'blue' | 'red' | 'orange' | 'gray'} // Assign color based on skill
             className="agent-info__content__skills__pill"
+            id={queue}
           />
         ))}
       </div>

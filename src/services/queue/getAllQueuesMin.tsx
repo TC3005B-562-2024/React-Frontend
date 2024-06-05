@@ -2,7 +2,7 @@ import httpInstance from "../httpInstance";
 import { IQueueMin } from "./types";
 
 // Update the function's parameters
-export const getQueueInfo = async (
+export const getAllQueuesMin = async (
   resourceId: string | undefined, // Existing parameter (optional)
 ) => {
   let res = null;

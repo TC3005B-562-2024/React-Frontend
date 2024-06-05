@@ -3,7 +3,7 @@
 }
 
 .pill-container {
-  @apply flex flex-row space-x-2 mt-3;
+  @apply  space-x-2 mt-3;
 }
 
 .cards-container {
@@ -12,4 +12,8 @@
 
 .selected-filters-container {
   @apply flex flex-row space-x-2 mt-3;
+}
+
+.agent-info__content__skills__pill {
+  @apply mr-3 mb-2 ;
 }
