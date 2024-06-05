@@ -3,6 +3,6 @@ export interface IMultiselect {
   /**
    * The options to be displayed in the multiselect.
    */
-  options: Array<IMultiselectOptions>
+  options: IMultiselectOptions[];
   onOptionChange: (newOptions: IMultiselectOptions[]) => void;
 }
