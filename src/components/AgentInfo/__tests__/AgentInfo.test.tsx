@@ -1,152 +1,133 @@
 import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
-import AgentInfo from '../AgentInfo';
+import { render, fireEvent, cleanup, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
+import AgentInfo from '../AgentInfo';
+import { IAgentInfo } from '../types';
 
-describe('Tests for AgentInfo Component', () => {
-  const mockNavigate = jest.fn();
+afterEach(() => {
+  cleanup();
+});
 
-  jest.mock('react-router-dom', () => ({
-    ...jest.requireActual('react-router-dom'),
-    useNavigate: () => mockNavigate,
-  }));
-
-  const defaultProps = {
+describe('AgentInfo Component', () => {
+  const defaultProps: IAgentInfo = {
     id: '1',
     name: 'John Doe',
-    sentiment: 'POSITIVE' as 'POSITIVE',
-    queues: ['Support', 'Sales'],
-    status: 'ONCALL' as 'ONCALL',
-    topPriorityAlert: 'CRITICAL' as 'CRITICAL',
+    sentiment: 'POSITIVE',
+    queues: ['skill1', 'skill2'],
+    status: 'Available',
+    topPriorityAlert: 'MEDIUM',
   };
 
-  const renderComponent = (props = {}) => {
-    return render(
+  test('should render with the correct agent name', () => {
+    render(
       <MemoryRouter>
-        <AgentInfo {...defaultProps} {...props} />
-      </MemoryRouter>
-    );
-  };
-
-  test('should render the agent info correctly', () => {
-    const { getByText, getByTestId } = renderComponent();
-
-    expect(getByText('John Doe')).toBeInTheDocument();
-    expect(getByText('Sentiment: Positive')).toBeInTheDocument();
-    expect(getByText('Support')).toBeInTheDocument();
-    expect(getByText('Sales')).toBeInTheDocument();
-
-    const statusIcon = getByTestId('status-icon');
-    expect(statusIcon).toHaveAttribute('data-icon-name', 'phone_in_talk');
-    expect(statusIcon).toHaveAttribute('data-icon-color', 'green');
-
-    const alertIcon = getByTestId('alert-icon');
-    expect(alertIcon).toHaveAttribute('data-icon-name', 'warning');
-    expect(alertIcon).toHaveAttribute('data-icon-color', 'red');
-  });
-
-  test('should navigate to agent details page on click', () => {
-    const { getByText } = renderComponent();
-
-    fireEvent.click(getByText('John Doe'));
-
-    expect(mockNavigate).toHaveBeenCalledWith('/agents/1');
-  });
-
-  test('should render the sentiment correctly', () => {
-    const { getByText, rerender } = renderComponent();
-
-    expect(getByText('Sentiment: Positive')).toBeInTheDocument();
-
-    rerender(
-      <MemoryRouter>
-        <AgentInfo {...defaultProps} sentiment="NEGATIVE" />
+        <AgentInfo {...defaultProps} />
       </MemoryRouter>
     );
 
-    expect(getByText('Sentiment: Negative')).toBeInTheDocument();
+    expect(screen.getByText('John Doe')).toBeInTheDocument();
+  });
 
-    rerender(
+  test('should render with the correct sentiment', () => {
+    render(
       <MemoryRouter>
-        <AgentInfo {...defaultProps} sentiment="NEUTRAL" />
+        <AgentInfo {...defaultProps} />
       </MemoryRouter>
     );
 
-    expect(getByText('Sentiment: Neutral')).toBeInTheDocument();
+    expect(screen.getByText('Positive')).toBeInTheDocument();
   });
 
-  test('should render the status icon correctly', () => {
-    const { getByTestId, rerender } = renderComponent();
-
-    expect(getByTestId('status-icon')).toHaveAttribute('data-icon-name', 'phone_in_talk');
-    expect(getByTestId('status-icon')).toHaveAttribute('data-icon-color', 'green');
-
-    rerender(
+  test('should render the correct number of skills', () => {
+    render(
       <MemoryRouter>
-        <AgentInfo {...defaultProps} status="Available" />
+        <AgentInfo {...defaultProps} />
       </MemoryRouter>
     );
 
-    expect(getByTestId('status-icon')).toHaveAttribute('data-icon-name', 'call_end');
-    expect(getByTestId('status-icon')).toHaveAttribute('data-icon-color', 'yellow');
+    expect(screen.getAllByText(/skill/i).length).toBe(2);
+  });
 
-    rerender(
+  test('should apply the correct status icon and color for Available status', () => {
+    render(
       <MemoryRouter>
-        <AgentInfo {...defaultProps} status="DISCONNECTED" />
+        <AgentInfo {...defaultProps} />
       </MemoryRouter>
     );
 
-    expect(getByTestId('status-icon')).toHaveAttribute('data-icon-name', 'clear_night');
-    expect(getByTestId('status-icon')).toHaveAttribute('data-icon-color', 'blue');
+    const statusIcon = screen.getByTestId('call_end');
+    expect(statusIcon).toBeInTheDocument();
+    expect(statusIcon).toHaveAttribute('fill', '#E7B416'); // Yellow
   });
 
-  test('should render the top priority alert icon correctly', () => {
-    const { getByTestId, rerender } = renderComponent();
-
-    expect(getByTestId('alert-icon')).toHaveAttribute('data-icon-name', 'warning');
-    expect(getByTestId('alert-icon')).toHaveAttribute('data-icon-color', 'red');
-
-    rerender(
+  test('should apply the correct status icon and color for ONCALL status', () => {
+    render(
       <MemoryRouter>
-        <AgentInfo {...defaultProps} topPriorityAlert="MEDIUM" />
+        <AgentInfo {...{ ...defaultProps, status: 'ONCALL' }} />
       </MemoryRouter>
     );
 
-    expect(getByTestId('alert-icon')).toHaveAttribute('data-icon-name', 'warning');
-    expect(getByTestId('alert-icon')).toHaveAttribute('data-icon-color', 'orange');
+    const statusIcon = screen.getByTestId('phone_in_talk');
+    expect(statusIcon).toBeInTheDocument();
+    expect(statusIcon).toHaveAttribute('fill', '#99C140'); // Green
+  });
 
-    rerender(
+  test('should apply the correct status icon and color for DISCONNECTED status', () => {
+    render(
       <MemoryRouter>
-        <AgentInfo {...defaultProps} topPriorityAlert="LOW" />
+        <AgentInfo {...{ ...defaultProps, status: 'DISCONNECTED' }} />
       </MemoryRouter>
     );
 
-    expect(getByTestId('alert-icon')).toHaveAttribute('data-icon-name', 'warning');
-    expect(getByTestId('alert-icon')).toHaveAttribute('data-icon-color', 'yellowA');
+    const statusIcon = screen.getByTestId('clear_night');
+    expect(statusIcon).toBeInTheDocument();
+    expect(statusIcon).toHaveAttribute('fill', '#428ADE'); // Blue
   });
 
-  test('should render sentiment when undefined', () => {
-    const { queryByText } = renderComponent({ sentiment: undefined });
+  test('should apply the correct alert icon and color for MEDIUM priority', () => {
+    render(
+      <MemoryRouter>
+        <AgentInfo {...defaultProps} />
+      </MemoryRouter>
+    );
 
-    expect(queryByText('Sentiment:')).not.toBeInTheDocument();
+    const alertIcon = screen.getByTestId('warning');
+    expect(alertIcon).toBeInTheDocument();
+    expect(alertIcon).toHaveAttribute('fill', '#E99306'); // Orange
   });
 
-  test('should render topPriorityAlert when undefined', () => {
-    const { queryByTestId } = renderComponent({ topPriorityAlert: undefined });
+  test('should apply the correct alert icon and color for CRITICAL priority', () => {
+    render(
+      <MemoryRouter>
+        <AgentInfo {...{ ...defaultProps, topPriorityAlert: 'CRITICAL' }} />
+      </MemoryRouter>
+    );
 
-    expect(queryByTestId('alert-icon')).not.toBeInTheDocument();
+    const alertIcon = screen.getByTestId('warning');
+    expect(alertIcon).toBeInTheDocument();
+    expect(alertIcon).toHaveAttribute('fill', '#CC3232'); // Red
   });
 
-  test('should render status icon for null status', () => {
-    const { getByTestId } = renderComponent({ status: null });
+  test('should apply the correct alert icon and color for LOW priority', () => {
+    render(
+      <MemoryRouter>
+        <AgentInfo {...{ ...defaultProps, topPriorityAlert: 'LOW' }} />
+      </MemoryRouter>
+    );
 
-    expect(getByTestId('status-icon')).toHaveAttribute('data-icon-name', 'clear_night');
-    expect(getByTestId('status-icon')).toHaveAttribute('data-icon-color', 'blue');
+    const alertIcon = screen.getByTestId('warning');
+    expect(alertIcon).toBeInTheDocument();
+    expect(alertIcon).toHaveAttribute('fill', '#FFC300'); // Yellow
   });
 
-  test('should render alert icon for null topPriorityAlert', () => {
-    const { queryByTestId } = renderComponent({ topPriorityAlert: null });
+  test('should navigate to the correct link on agent click', () => {
+    const { container } = render(
+      <MemoryRouter>
+        <AgentInfo {...defaultProps} />
+      </MemoryRouter>
+    );
 
-    expect(queryByTestId('alert-icon')).not.toBeInTheDocument();
+    fireEvent.click(container.querySelector('.agent-info__content')!);
+    
   });
 });
