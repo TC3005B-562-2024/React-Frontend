@@ -19,7 +19,7 @@ export interface Agent {
     name:             string;
     status:           string;
     sentiment:        null;
-    queues:           string[];
+    queues:           IQueueMin[];
     topPriorityAlert: null;
 }
 

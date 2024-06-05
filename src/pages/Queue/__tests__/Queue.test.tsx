@@ -87,8 +87,14 @@ const mockQueueInformation: IQueueInformation[] = [
                 status: "Available",
                 sentiment: null,
                 queues: [
-                    "Team4-Mobile Support English",
-                    "Team4-Mobile Support Spanish"
+                    {
+                        name: "Team4-Mobile Support English",
+                        id: "1"
+                    },
+                    {
+                        name: "Team4-Mobile Support Spanish",
+                        id: "2"
+                    }
                 ],
                 topPriorityAlert: null
             }
