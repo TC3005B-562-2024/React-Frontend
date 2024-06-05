@@ -1,5 +1,5 @@
 import { render, screen, cleanup } from "@testing-library/react";
-import Multiselect from "../Multiselect"; // Adjust the path if needed
+import Multiselect from "../Multiselect"; 
 import userEvent from '@testing-library/user-event';
 import { IMultiselectOptions } from '../..//MultiselectOptions/types';
 
@@ -10,24 +10,9 @@ afterEach(() => {
 describe("Tests for Multiselect Component", () => {
   // Sample test data
   const mockOptions: IMultiselectOptions[] = [
-    {
-        label: "Option 1", isSelected: false,
-        onChange: function (_label: string, _isSelected: boolean): void {
-            throw new Error("Function not implemented.");
-        }
-    },
-    {
-        label: "Option 2", isSelected: true,
-        onChange: function (_label: string, _isSelected: boolean): void {
-            throw new Error("Function not implemented.");
-        }
-    },
-    {
-        label: "Option 3", isSelected: false,
-        onChange: function (_label: string, _isSelected: boolean): void {
-            throw new Error("Function not implemented.");
-        }
-    },
+      { label: "Option 1", isSelected: false, onChange: jest.fn() },
+      { label: "Option 2", isSelected: true, onChange: jest.fn() },
+      { label: "Option 3", isSelected: false, onChange: jest.fn() },
   ];
   
   const mockOnOptionChange = jest.fn();
@@ -64,13 +49,12 @@ describe("Tests for Multiselect Component", () => {
     await user.click(checkboxes[0]);
 
     // Verify that onOptionChange was called with the correct updated options
-    const expectedOptions = [
-      { label: "Option 1", isSelected: true },
-      { label: "Option 2", isSelected: true },
-      { label: "Option 3", isSelected: false },
-    ];
-    expect(mockOnOptionChange).toHaveBeenCalledWith(expectedOptions);
-  });
+    expect(mockOnOptionChange).toHaveBeenCalledWith([
+      { label: "Option 1", isSelected: true, onChange: mockOptions[0].onChange }, // Updated isSelected
+      { label: "Option 2", isSelected: true, onChange: mockOptions[1].onChange },
+      { label: "Option 3", isSelected: false, onChange: mockOptions[2].onChange },
+  ]);
+});
 
   test("updates the selected state correctly", async () => {
     const { rerender } = render(
@@ -87,12 +71,10 @@ describe("Tests for Multiselect Component", () => {
     await user.click(checkboxes[0]);
 
     // Rerender with updated options
-    const updatedOptions: IMultiselectOptions[] = [
-        { label: "Option 1", isSelected: true, onChange: jest.fn() },
-        { label: "Option 2", isSelected: true, onChange: jest.fn() },
-        { label: "Option 3", isSelected: false, onChange: jest.fn() },
-    ];
-    rerender(<Multiselect options={updatedOptions} onOptionChange={mockOnOptionChange} />);
+    mockOptions[0].isSelected = true; // Update isSelected in the original mockOptions
+        rerender( // Rerender with the original (but updated) mockOptions
+            <Multiselect options={mockOptions} onOptionChange={mockOnOptionChange} />
+        );
 
     // Check the updated state
     expect(checkboxes[0]).toBeChecked();

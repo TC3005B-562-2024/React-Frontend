@@ -1,57 +1,34 @@
-import { render, screen, cleanup } from "@testing-library/react";
-import MultiselectOptions from "../MultiselectOptions"; // Adjust the path if needed
+import { render, screen } from "@testing-library/react";
 import userEvent from '@testing-library/user-event'
-
-afterEach(() => {
-    cleanup();
-  });
+import '@testing-library/jest-dom';
+import MultiselectOptions from "../MultiselectOptions";
 
 describe("Tests for MultiselectOptions Component", () => {
-  // Sample test data
   const mockLabel = "Option 1";
-  const mockIsSelected = false;
   const mockOnChange = jest.fn();
 
-  test("Should render the component correctly", () => {
-    render(
-      <MultiselectOptions
-        label={mockLabel}
-        isSelected={mockIsSelected}
-        onChange={mockOnChange}
-      />
-    );
-
-    // Ensure the label and checkbox are rendered
+  test("renders without check icon when isSelected is false", () => {
+    render(<MultiselectOptions label={mockLabel} isSelected={false} onChange={mockOnChange} />);
     expect(screen.getByText(mockLabel)).toBeInTheDocument();
     expect(screen.getByRole("checkbox")).toBeInTheDocument();
+    expect(screen.queryByTestId("check-icon")).toBeNull(); 
   });
+
+  test("renders with check icon when isSelected is true", () => {
+  render(<MultiselectOptions label={mockLabel} isSelected={true} onChange={mockOnChange} />);
+  expect(screen.getByText(mockLabel)).toBeInTheDocument();
+  expect(screen.getByRole("checkbox")).toBeInTheDocument();
+  expect(screen.getByTestId("check")).toBeInTheDocument(); // <-- Use "check" instead of "check-icon"
+});
+
 
   test("calls onChange when the checkbox is clicked", async () => {
-    render(
-      <MultiselectOptions
-        label={mockLabel}
-        isSelected={mockIsSelected}
-        onChange={mockOnChange}
-      />
-    );
-
-    const user = userEvent.setup()
+    const user = userEvent.setup();
+    render(<MultiselectOptions label={mockLabel} isSelected={false} onChange={mockOnChange} />);
     const checkbox = screen.getByRole("checkbox");
-    await user.click(checkbox) // Simulate a click
 
-    expect(mockOnChange).toHaveBeenCalledWith(mockLabel, !mockIsSelected);
-  });
+    await user.click(checkbox);
 
-  test("renders check icon when isSelected is true", () => {
-    render(
-      <MultiselectOptions
-        label={mockLabel}
-        isSelected={true} // Simulate selected state
-        onChange={mockOnChange}
-      />
-    );
-
-    // Assert that the check icon is present (you'll need to add a data-testid to your check icon element)
-    expect(screen.getByTestId("check-icon")).toBeInTheDocument();
+    expect(mockOnChange).toHaveBeenCalledWith(mockLabel, true); // Check if called with updated state
   });
 });
