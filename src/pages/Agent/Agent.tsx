@@ -15,6 +15,7 @@ const Agent: React.FC = () => {
   const [loadingTU, setLoadingTU] = useState<boolean>(false);
   const [agentInfo, setAgentInfo] = useState<IAgentInformation | null>(null);
   const [errorAgentInfo, setErrorAgentInfo] = useState<boolean>(false);
+  const [errorAgentTraining, setErrorAgentTrainingUpdate] = useState<boolean>(false);
   const [trainingValues, setTrainingValues] = useState<any[]>([]);
   const [completedTrainings, setCompletedTrainings] = useState<number>(0);
 
@@ -24,9 +25,9 @@ const Agent: React.FC = () => {
       if (res !== null) {
         console.log(`Agent data fetched successfully for agent ${id}`);
         setAgentInfo(res);
+        setLoading(false);
+        setLoadingTU(false);
       }
-      setLoading(false);
-      setLoadingTU(false);
     } catch (err) {
       console.error(err);
       setErrorAgentInfo(true);
@@ -67,6 +68,7 @@ const Agent: React.FC = () => {
       await getAgentInformation();
     } catch (err) {
       console.error(err);
+      setErrorAgentTrainingUpdate(true);
       setLoadingTU(false);
     }
   };
@@ -156,10 +158,10 @@ const Agent: React.FC = () => {
         }
       </div>
       <div className="section-title">Trainings</div>
-      {(loading)&& <div><InfoLoader /></div>}
+      {(loading || loadingTU)&& <div><InfoLoader /></div>}
       {errorAgentInfo && <ErrorCard title='Error fetching trainings' />}
       {agentInfo && trainingValues.length === 0 &&  <div className="page-last-item"><ErrorCard title='No trainings found' /></div>}
-      {trainingValues.length > 0 &&
+      {trainingValues.length > 0 && loadingTU === false &&
       <div className="page-last-item">
       <div className='flex border-solid rounded-md border-2 border-gray-100'>
         <div className='flex-1 mx-4 my-4'>
@@ -169,6 +171,7 @@ const Agent: React.FC = () => {
           <span className="text-aci-green font-semibold mx-2 mr-2 my-2">{completedTrainings}% </span>
         </div>
       </div>
+      {errorAgentTraining && <ErrorCard title='Error updating training' />}
       {trainingValues.map((training, index) => (
         <div key={index} className='bg-white box-content rounded-md shadow-md'>
           <div className='flex'>
