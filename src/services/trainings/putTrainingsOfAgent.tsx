@@ -1,6 +1,6 @@
 import httpInstance from "../httpInstance";
 
-export const putTrainingForAnAgent = async (id: number, trainingValue:boolean) => {
+export const putTrainingsOfAgent = async (id: number, trainingValue:boolean) => {
     let body = {
         "connectionId": null,
         "insightId": null,
@@ -19,10 +19,9 @@ export const putTrainingForAnAgent = async (id: number, trainingValue:boolean) =
     await httpInstance
         .put(endpoint, body)
         .then((res) => {
-            console.log("Training data sent successfully.", res);
+            console.log(res);
         })
         .catch((err) => {
             console.error(err);
-            console.log("Traiining data failed to send.")
         });
 }

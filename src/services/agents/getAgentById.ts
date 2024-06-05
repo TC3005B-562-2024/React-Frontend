@@ -8,7 +8,6 @@ export const getAgentById = async (agentId: string | undefined) => {
     await httpInstance
         .get(endpoint)
         .then((response) => {
-            console.log("Data Received", response);
             res = response.data;
         })
         .catch((err) => {

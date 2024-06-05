@@ -7,7 +7,7 @@ import './Agent.css';
 import { IAlertCard } from "../../components/AlertCard/types";
 import { shortId, noUndersocore } from "../../Utils/utils";
 import { IconNames } from "../../components/Icon/types";
-import { putTrainingForAnAgent } from "../../services/trainings/putTrainingsOfAgent";
+import { putTrainingsOfAgent } from "../../services"
 
 const Agent: React.FC = () => {
   const { id } = useParams();
@@ -23,13 +23,11 @@ const Agent: React.FC = () => {
     try {
       const res = await getAgentById(id);
       if (res !== null) {
-        console.log(`Agent data fetched successfully for agent ${id}`);
         setAgentInfo(res);
         setLoading(false);
         setLoadingTU(false);
       }
     } catch (err) {
-      console.error(err);
       setErrorAgentInfo(true);
       setLoading(false);
       setLoadingTU(false);
@@ -64,10 +62,9 @@ const Agent: React.FC = () => {
   const handleOnClick = async (index: number) => {
     try {
       setLoadingTU(true);
-      await putTrainingForAnAgent(trainingValues[index].id, !trainingValues[index].isComplete);
+      await putTrainingsOfAgent(trainingValues[index].id, !trainingValues[index].isComplete);
       await getAgentInformation();
     } catch (err) {
-      console.error(err);
       setErrorAgentTrainingUpdate(true);
       setLoadingTU(false);
     }
@@ -158,10 +155,10 @@ const Agent: React.FC = () => {
         }
       </div>
       <div className="section-title">Trainings</div>
-      {(loading || loadingTU)&& <div><InfoLoader /></div>}
+      {loading&& <div><InfoLoader /></div>}
       {errorAgentInfo && <ErrorCard title='Error fetching trainings' />}
       {agentInfo && trainingValues.length === 0 &&  <div className="page-last-item"><ErrorCard title='No trainings found' /></div>}
-      {trainingValues.length > 0 && loadingTU === false &&
+      {trainingValues.length > 0 &&
       <div className="page-last-item">
       <div className='flex border-solid rounded-md border-2 border-gray-100'>
         <div className='flex-1 mx-4 my-4'>
