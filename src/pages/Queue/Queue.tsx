@@ -33,13 +33,13 @@ const Queue: React.FC = () => {
   return (
     <div className='px-2 mb-3'>
       <span data-testid="queue-title" className='queue__sections-text'>
-        Queue: <span className=' text-aci-orange'>{shortId(id ?? '')}</span>
+        Queue: <span data-testid="queue-title-id" className=' text-aci-orange'>{shortId(id ?? '')}</span>
       </span>
       {loading ?
-        (<InfoLoader/>) :
+        (<InfoLoader testId='infoloader'/>) :
         (
           !loading && queueInfo && !errorQueueInfo ? (
-            <>
+            <div data-testid="queue-information-metrics-section">
               <InformationBar
                 title={queueInfo.information.sectionTitle}
                 elements={queueInfo.information.sections?.map(section => ({
@@ -58,7 +58,7 @@ const Queue: React.FC = () => {
                   })) || []}
                 />
               }
-            </>
+            </div>
           ) : 
           (
             <ErrorCard title='Error fetching queue'></ErrorCard>
@@ -73,12 +73,12 @@ const Queue: React.FC = () => {
         (<InfoLoader/>) :
         (
           !loading && queueInfo && !errorQueueInfo ? (
-            <div className="flex flex-col space-y-4 p-1">
+            <div className="flex flex-col space-y-4 p-1" data-testid="alerts-section">
               {queueInfo && queueInfo?.alerts.high.length !== 0 &&
                 <AlertExpansionPanel
                   alerts={queueInfo?.alerts.high.map(alert => ({
                     alertId: alert.id,
-                    alertName: alert.insight.category.denomination,
+                    alertName: alert.insight.category?.denomination,
                     alertOwner: alert.resource,
                     alertPriority: 'CRITIC',
                     individualAlertLink: `${alert.id}`
@@ -89,7 +89,7 @@ const Queue: React.FC = () => {
                 <AlertExpansionPanel
                   alerts={queueInfo?.alerts.medium.map(alert => ({
                     alertId: alert.id,
-                    alertName: alert.insight.category.denomination,
+                    alertName: alert.insight.category?.denomination,
                     alertOwner: alert.resource,
                     alertPriority: 'MEDIUM',
                     individualAlertLink: `${alert.id}`
@@ -116,14 +116,14 @@ const Queue: React.FC = () => {
           )
         )
       }
-      <span data-testid="trainings-section" className='queue__sections-text'>
+      <span className='queue__sections-text'>
         Trainings
       </span>
       {loading ? 
         (<InfoLoader/>) :
         (
           !loading && queueInfo && !errorQueueInfo ? (
-            <>
+            <div data-testid="trainings-section">
               {queueInfo && queueInfo.trainings && queueInfo.trainings.map(training => (
                 <ProgressCard
                   key={training.resourceName}
@@ -141,7 +141,7 @@ const Queue: React.FC = () => {
                   <ErrorCard title='No trainings found.'></ErrorCard>
                 )
               }
-            </>
+            </div>
           ) : (
             <ErrorCard title='Error fetching trainings'></ErrorCard>
           )
@@ -154,7 +154,7 @@ const Queue: React.FC = () => {
         (<InfoLoader/>) : 
         (
           !loading && queueInfo && !errorQueueInfo ? (
-            <div className='queue__cards-container'>
+            <div className='queue__cards-container' data-testid="agents-section">
               {queueInfo && queueInfo.agents.map(agent => (
                 <AgentInfo
                   key={agent.id}

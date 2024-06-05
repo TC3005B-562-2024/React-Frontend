@@ -4,7 +4,7 @@ import classNames from "classnames";
 import './SideBard.css';
 import { ROUTES } from '../../routes/constants';
 import { ISideBar } from './types';
-import { IIconNoColorNoSize } from '../Icon/types';
+import { IIconNoColorNoSize, IconNames } from '../Icon/types';
 import { useAppContext } from '../../app-context/app-context';
 
 const SideBar: React.FC<ISideBar> = ({ skills }) => {
@@ -31,7 +31,7 @@ const SideBar: React.FC<ISideBar> = ({ skills }) => {
           type='button'
           size='text'
           color='orange'
-          icon={{ iconName: 'arrow_forward' }}
+          icon={{ iconName: IconNames.ArrowForward }}
           hasShadow={false}
           isDisabled={false}
         />
@@ -42,7 +42,7 @@ const SideBar: React.FC<ISideBar> = ({ skills }) => {
           <SideBarElement
             key={'Dashboard'}
             label='Dashboard'
-            icon={{ iconName: 'logo' }}
+            icon={{ iconName: IconNames.Logo }}
             path='/'
             isExpanded={isExpanded}
             ignoreIsSelected={true}
@@ -51,25 +51,26 @@ const SideBar: React.FC<ISideBar> = ({ skills }) => {
           <SideBarElement
             key={'Skills'}
             label='Skills'
-            icon={{ iconName: 'phone_in_talk' }}
+            icon={{ iconName: IconNames.PhoneInTalk }}
             path='/'
             isSection={true}
             isExpanded={isExpanded}
             ignoreIsSelected={true}
           />
 
-          {skills !== undefined && skills.map((skill: { alias: string; iconName: string; id: string; }) => (
-            <div className="side-bar__element">
-            <SideBarElement
-              key={skill.id}
-              label={skill.alias}
-              icon={{ iconName: skill.iconName } as IIconNoColorNoSize}
-              path={`/skills/${skill.id}`}
-              isExpanded={isExpanded}
-
-            />
-            </div>
-          ))}
+          <div className="side-bar__container__elements__skills">
+            {skills !== undefined && skills.map((skill: { alias: string; iconName: string; id: string; }) => (
+              <div className="side-bar__element">
+                <SideBarElement
+                  key={skill.id}
+                  label={skill.alias}
+                  icon={{ iconName: skill.iconName } as IIconNoColorNoSize}
+                  path={`/skills/${skill.id}`}
+                  isExpanded={isExpanded}
+                />
+              </div>
+            ))}
+          </div>
 
           {skills === undefined &&
             <div className='side-bar__container__elements-container__upper-container__error-alert'>
@@ -83,7 +84,7 @@ const SideBar: React.FC<ISideBar> = ({ skills }) => {
             key={ROUTES.AGENTS.name}
             label={ROUTES.AGENTS.name}
             isSection={true}
-            icon={{ iconName: 'support_agent' }}
+            icon={{ iconName: IconNames.SupportAgent }}
             path={ROUTES.AGENTS.path}
             isExpanded={isExpanded}
           />
@@ -91,7 +92,7 @@ const SideBar: React.FC<ISideBar> = ({ skills }) => {
             key={ROUTES.LOG_OUT.name}
             label={ROUTES.LOG_OUT.name}
             isSection={true}
-            icon={{ iconName: 'logout' }}
+            icon={{ iconName: IconNames.Logout }}
             onClick={logOut}
             isExpanded={isExpanded}
           />

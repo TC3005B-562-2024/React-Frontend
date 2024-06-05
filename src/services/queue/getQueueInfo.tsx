@@ -17,3 +17,4 @@ export const getQueueInfo = async (queueId: string | undefined) => {
 
     return res as IQueueInformation | null;
 }
+

@@ -9,3 +9,7 @@
 .cards-container {
   @apply grid lg:grid-cols-2 md:grid-cols-1 mt-5 gap-4 p-1;
 }
+
+.selected-filters-container {
+  @apply flex flex-row space-x-2 mt-3;
+}
