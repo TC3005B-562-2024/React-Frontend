@@ -1,0 +1,84 @@
+export const mockSkillById = {
+  id: "123",
+  arn: "arn:aws:sqs:us-west-2:123456789012:skill1",
+  alias: "Advanced Negotiation",
+  totalAgents: 15,
+  queues: "Advanced Support",
+  alerts: {
+    high: [{
+      id: 1,
+      insight: {
+        category: {
+          denomination: "Urgent Issue"
+        }
+      },
+      resource: "Agent John Doe",
+      alertPriority: 'CRITIC',
+      individualAlertLink: "link-to-alert-1"
+    }],
+    medium: [{
+      id: 2,
+      insight: {
+        category: {
+          denomination: "Moderate Issue"
+        }
+      },
+      resource: "Agent Jane Smith",
+      alertPriority: 'MEDIUM',
+      individualAlertLink: "link-to-alert-2"
+    }],
+    low: [{
+      id: 3,
+      insight: {
+        category: {
+          denomination: "Minor Issue"
+        }
+      },
+      resource: "Agent Bob Johnson",
+      alertPriority: 'LOW',
+      individualAlertLink: "link-to-alert-3"
+    }]
+  },
+  skillsInformationDTO: {
+    title: "Skill Details",
+    sections: [
+      { sectionTitle: "Skill Description", sectionValue: "This skill focuses on advanced negotiation techniques.", color: "green" },
+      { sectionTitle: "Skill Importance", sectionValue: "Critical for high-stakes negotiations.", color: "red" }
+    ]
+  },
+  trainings: [
+    {
+      resourceName: "Negotiation Basics",
+      resourceTrainingProgress: 0.5
+    },
+    {
+      resourceName: "Advanced Negotiation Techniques",
+      resourceTrainingProgress: 0.75
+    }
+  ],
+  metrics: {
+    sectionTitle: "Performance Metrics",
+    sections: [
+      { sectionTitle: "Success Rate", sectionValue: "95%", color: "green" },
+      { sectionTitle: "Improvement Over Time", sectionValue: "20% increase per quarter", color: "yellow" }
+    ]
+  },
+  agents: [
+    {
+      id: "agent1",
+      name: "Agent John Doe",
+      sentiment: "positive",
+      queues: "Advanced Support",
+      status: "active",
+      topPriorityAlert: "Urgent Issue"
+    },
+    {
+      id: "agent2",
+      name: "Agent Jane Smith",
+      sentiment: "neutral",
+      queues: "Basic Support",
+      status: "training",
+      topPriorityAlert: "Moderate Issue"
+    }
+  ]
+};

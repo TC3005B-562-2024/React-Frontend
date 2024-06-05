@@ -1,10 +1,10 @@
 import { IAgentInfo } from "./types";
 import { Pill } from "../Pill";
 import { Icon } from "../Icon";
-import { iconNames } from "../Icon/types";
 import './AgentInfo.css';
 import classNames from "classnames";
 import { useNavigate } from "react-router-dom";
+import { IconNames } from "../Icon/types";
 
 /**
  * Agent Info component that displays the agent's name, sentiment, skills, status, and top priority alert.
@@ -34,7 +34,7 @@ const AgentInfo: React.FC<IAgentInfo> = ({ id, name, sentiment, queues, status, 
       <div className="agent-info__content__main-info">
         <div className="agent-info__content__main-info__icon">
           <Icon
-            iconName={statusIconName as typeof iconNames[number]}
+            iconName={statusIconName as IconNames}
             color={statusIconColor as 'green' | 'yellow' | 'blue' | 'black' | 'white' | 'red' | 'gray' | 'orange' | undefined}
           />
         </div>
@@ -59,7 +59,7 @@ const AgentInfo: React.FC<IAgentInfo> = ({ id, name, sentiment, queues, status, 
           <div className="agent-info__content__main-info__icon">
             <Icon
             className="h-20"
-              iconName={alertIconName as typeof iconNames[number]}
+              iconName={alertIconName as IconNames}
               color={alertIconColor as 'green' | 'yellowA' | 'blue' | 'black' | 'white' | 'red' | 'gray' | 'orange' | undefined}
             />
           </div>

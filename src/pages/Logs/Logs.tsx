@@ -5,6 +5,7 @@ import { IHistoryAgentProps } from "../../components/HistoryAgent/types";
 import { ErrorCard, InfoLoader } from "../../components";
 import HistoryAgent from "../../components/HistoryAgent/HistoryAgent";
 import { IAlertResponse, IAlert } from "../../services/alerts/types";
+import { IconNames } from "../../components/Icon/types";
 
 const Logs: React.FC = () => {
   const [logs, setLogs] = useState<IHistoryAgentProps[] | null>(null);
@@ -44,7 +45,7 @@ const Logs: React.FC = () => {
         //
         //
         //
-      icon: { iconName: alert.solved ? 'check_circle' : 'cancel' }, 
+      icon: { iconName: alert.solved ? IconNames.CheckCircle : IconNames.Cancel }, 
       description: alert.insight.description,
       color: alert.solved ? 'green' : 'red', 
     });

@@ -4,6 +4,7 @@ import './AlertCard.css';
 import { Button } from '../Button';
 import { IAlertCard } from './types';
 import { useNavigate } from 'react-router-dom';
+import { IconNames } from '../Icon/types';
 
 /**
  * Card that shows important information of an alert.
@@ -58,7 +59,7 @@ const AlertCard: React.FC<IAlertCard> = ({
               text="View More"
               color="orange"
               size="text"
-              icon={{ iconName: 'arrow_forward' }}
+              icon={{ iconName: IconNames.ArrowForward }}
             />
           </div>
         </div>
