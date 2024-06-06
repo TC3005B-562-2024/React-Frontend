@@ -22,6 +22,7 @@ import './Multiselect.css';
           label={option.label}
           isSelected={option.isSelected}
           onChange={() => handleOptionChange(index)}
+          key={option.label}
         />
       ))}
     </div>

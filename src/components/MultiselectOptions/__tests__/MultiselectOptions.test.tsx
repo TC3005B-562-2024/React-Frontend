@@ -1,6 +1,4 @@
-import { render, screen } from "@testing-library/react";
-import userEvent from '@testing-library/user-event'
-import '@testing-library/jest-dom';
+import { fireEvent, render, screen } from "@testing-library/react";
 import MultiselectOptions from "../MultiselectOptions";
 
 describe("Tests for MultiselectOptions Component", () => {
@@ -22,12 +20,11 @@ describe("Tests for MultiselectOptions Component", () => {
 });
 
 
-  test("calls onChange when the checkbox is clicked", async () => {
-    const user = userEvent.setup();
+  test("calls onChange when the checkbox is clicked", () => {
     render(<MultiselectOptions label={mockLabel} isSelected={false} onChange={mockOnChange} />);
     const checkbox = screen.getByRole("checkbox");
 
-    await user.click(checkbox);
+    fireEvent.click(checkbox);
 
     expect(mockOnChange).toHaveBeenCalledWith(mockLabel, true); // Check if called with updated state
   });
