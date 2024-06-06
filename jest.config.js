@@ -21,4 +21,7 @@ module.export = {
         '/node_modules/',
         '<rootDir>/**/*.types.ts',
     ],
+    collectCoverageFrom: [
+        'src/{components,pages,Utils}/*/.{ts,tsx}',
+    ],
 }
