@@ -21,8 +21,8 @@ const Pill: React.FC<IPill> = ({ text, color, className = "", id }) => {
   });
 
   return (
-    <div className={classes} onClick={handleQueueClick}>
-      <span className='text-datail text-white'>
+    <div className={classes} onClick={handleQueueClick} data-testid="pill-wrapper">
+      <span className='text-datail text-white' data-testid='pill-wrapper__span-txt'>
         {text}
       </span>
     </div>

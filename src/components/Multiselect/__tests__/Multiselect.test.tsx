@@ -1,6 +1,6 @@
-import { render, screen, cleanup } from "@testing-library/react";
+import React from 'react';
+import { render, screen, cleanup, fireEvent } from "@testing-library/react";
 import Multiselect from "../Multiselect"; 
-import userEvent from '@testing-library/user-event';
 import { IMultiselectOptions } from '../..//MultiselectOptions/types';
 
 afterEach(() => {
@@ -31,10 +31,10 @@ describe("Tests for Multiselect Component", () => {
     });
 
     // Ensure checkboxes are rendered
-    expect(screen.getAllByRole("checkbox")).toHaveLength(mockOptions.length);
+    expect(screen.getAllByTestId('filter-wrapper__multiselect__options')).toHaveLength(mockOptions.length);
   });
 
-  test("calls onOptionChange with correct data when an option is clicked", async () => {
+  test("calls onOptionChange with correct data when an option is clicked", () => {
     render(
       <Multiselect
         options={mockOptions}
@@ -42,11 +42,10 @@ describe("Tests for Multiselect Component", () => {
       />
     );
 
-    const user = userEvent.setup();
     const checkboxes = screen.getAllByRole("checkbox");
 
     // Click the first checkbox
-    await user.click(checkboxes[0]);
+    fireEvent.click(checkboxes[0]);
 
     // Verify that onOptionChange was called with the correct updated options
     expect(mockOnOptionChange).toHaveBeenCalledWith([
@@ -56,7 +55,7 @@ describe("Tests for Multiselect Component", () => {
   ]);
 });
 
-  test("updates the selected state correctly", async () => {
+  test("updates the selected state correctly", () => {
     const { rerender } = render(
       <Multiselect
         options={mockOptions}
@@ -64,11 +63,10 @@ describe("Tests for Multiselect Component", () => {
       />
     );
 
-    const user = userEvent.setup();
     const checkboxes = screen.getAllByRole("checkbox");
 
     // Click the first checkbox
-    await user.click(checkboxes[0]);
+    fireEvent.click(checkboxes[0]);
 
     // Rerender with updated options
     mockOptions[0].isSelected = true; // Update isSelected in the original mockOptions

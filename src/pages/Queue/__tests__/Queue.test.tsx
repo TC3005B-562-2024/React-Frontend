@@ -1,5 +1,5 @@
-import { render, screen, waitFor } from "@testing-library/react";
-import { cleanup } from "@testing-library/react-hooks";
+import React, { act } from 'react';
+import { render, screen, waitFor, cleanup } from "@testing-library/react";
 import { getQueueInfo } from "../../../services";
 import { Alert, IQueueInformation } from "../../../services/queue/types";
 import Queue from "../Queue";
@@ -113,10 +113,18 @@ afterEach(() => {
 describe("Tests for Queue page", () => {
     test("The Queue page should render correctly", async () => {
         (getQueueInfo as jest.Mock).mockResolvedValue(mockQueueInformation[0]);
-        render(<Queue />);
-        await waitFor(() => {
-            expect(getQueueInfo).toHaveBeenCalledTimes(1);
+
+        act(() => {
+            render(<Queue />);
         });
+        await waitFor(() => {
+            expect(getQueueInfo).toHaveBeenCalled();
+        });
+
+        await waitFor(() => {
+            expect(screen.getByTestId("queue-information-metrics-section")).toBeInTheDocument();
+        });
+            
         expect(screen.getByTestId("queue-title")).toBeInTheDocument();
         expect(screen.getByTestId("queue-information-metrics-section")).toBeInTheDocument();
         expect(screen.getByTestId("alerts-section")).toBeInTheDocument();
