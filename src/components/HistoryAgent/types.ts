@@ -6,4 +6,5 @@ export interface IHistoryAgentProps {
     icon: IIconNoColorNoSize;
     description: string;
     color?: 'red' | 'green';
+    status?:'accepted' | 'ignored';
   }

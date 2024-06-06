@@ -1,4 +1,3 @@
-// Logs.tsx
 import React, { useEffect, useState } from "react";
 import { getLogs } from "../../services/alerts/logsService";
 import { IHistoryAgentProps } from "../../components/HistoryAgent/types";
@@ -14,8 +13,9 @@ const Logs: React.FC = () => {
 
   useEffect(() => {
     const fetchLogs = async () => {
+      setLoading(true);
+      setError(false);
       try {
-        setLoading(true);
         const logsData: IAlertResponse | null = await getLogs();
         if (logsData) {
           const transformedLogs = transformLogs(logsData);
@@ -30,37 +30,34 @@ const Logs: React.FC = () => {
         setLoading(false);
       }
     };
+
     fetchLogs();
   }, []);
 
   const transformLogs = (data: IAlertResponse): IHistoryAgentProps[] => {
     const mapAlertToHistoryAgent = (alert: IAlert): IHistoryAgentProps => ({
       log: (alert.insight.category.denomination + " action").toUpperCase(),
-      date: new Date(alert.dateUpdated), 
-        //
-        //Hay un tema con la fecha pues en la base de datos se ve algo a si 2024-05-17T06:33:40.000+00:00 ej.
-        // y al usar el new Date el formato es algo a si Thu May 16 2024 20:10:10 GMT-0600 (hora estándar central)
-        // entonces en la page de logs la fecha no sale como deberia salir
-        //mas que nada el problema es con la hora y aveces con el dia
-        //
-        //
-        //
-      icon: { iconName: alert.solved ? IconNames.CheckCircle : IconNames.Cancel }, 
+      date: new Date(alert.dateUpdated),
+      icon: { iconName: alert.solved ? IconNames.CheckCircle : IconNames.Cancel },
       description: alert.insight.description,
-      color: alert.solved ? 'green' : 'red', 
+      color: alert.solved ? 'green' : 'red',
     });
 
-    return [
+    const allLogs = [
       ...data.high.map(alert => mapAlertToHistoryAgent(alert)),
       ...data.medium.map(alert => mapAlertToHistoryAgent(alert)),
       ...data.low.map(alert => mapAlertToHistoryAgent(alert)),
     ];
+
+    allLogs.sort((a, b) => b.date.getTime() - a.date.getTime());
+
+    return allLogs;
   };
 
   return (
-    <>
+    <div className="min-h-[200px]">
       <div className="text-title font-bold">Logs</div>
-      {loading && <InfoLoader></InfoLoader>}
+      {loading && <InfoLoader />}
       {error && <ErrorCard title="Error fetching logs" />}
       {!loading && !error && logs && logs.length === 0 && (
         <ErrorCard title="No logs found" />
@@ -69,7 +66,7 @@ const Logs: React.FC = () => {
         <div className="logs-container">
           {logs.map((log, index) => (
             <HistoryAgent
-              key={index} // Si tienes un id único, usa log.id
+              key={index}
               log={log.log}
               date={log.date}
               icon={log.icon}
@@ -79,7 +76,7 @@ const Logs: React.FC = () => {
           ))}
         </div>
       )}
-    </>
+    </div>
   );
 };
 

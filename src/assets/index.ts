@@ -30,5 +30,6 @@ export {
     Warning,
     ExpandLess,
     ExpandMore,
-    Exercise
+    Exercise,
+    History
 } from './icons';
