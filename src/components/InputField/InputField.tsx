@@ -40,57 +40,39 @@ const InputField: React.FC<IInputField & { onChange: (id: string, value: string)
     onChange(id, value);
   };
 
-  if (type === 'secret') {
-    return (
-      <div className="input-field__container">
-        <div className={labelPositionClass}>
-          {label}
-        </div>
-        <div className='input-field__container__input-container'>
-          <input
-            className={inputClasses}
-            type={showPassword ? "text" : "password"}
-            value={value} onChange={handleChange}
-            placeholder={placeholder}
-            required
-          />
+  return (
+    <div className="input-field__container">
+      <div className={labelPositionClass}>
+        {label}
+      </div>
+      <div className='input-field__container__input-container'>
+        <input
+          className={inputClasses}
+          type={type === 'secret' ? (showPassword ? 'text' : 'password') : type}
+          value={value}
+          onChange={handleChange}
+          placeholder={placeholder}
+          required
+          data-testid={`input-${id}`}
+        />
+        {type === 'secret' && (
           <div className='input-field__container__input-container__button-container'>
             <button
               type='button'
               onClick={togglePasswordVisibility}
               className='input-field__container__input-container__button-container__button'>
-              {showPassword ? <Icon className='h-5' iconName={IconNames.Visibility} color={color} /> : <Icon className='h-5' iconName={IconNames.VisibilityOff} color={color} />}
+              {showPassword ?  <Icon className='h-5' iconName={IconNames.Visibility} color={color} /> : <Icon className='h-5' iconName={IconNames.VisibilityOff} color={color} />}
             </button>
           </div>
-        </div>
-        {helperText !== '' && (
-          <span className='input-field__container__helper-text'>
-            {helperText}
-          </span>
         )}
       </div>
-    );
-  } else {
-    return (
-      <div className='input-field__container'>
-        <div className={labelPositionClass}>
-          {label}
-        </div>
-        <input
-          className={inputClasses}
-          type={type} value={value}
-          onChange={handleChange}
-          placeholder={placeholder}
-          required
-        />
-        {helperText !== '' && (
-          <span className='input-field__container__helper-text'>
-            {helperText}
-          </span>
-        )}
-      </div>
-    );
-  }
+      {helperText && (
+        <span className='input-field__container__helper-text' data-testid="txt-error">
+          {helperText}
+        </span>
+      )}
+    </div>
+  );
 }
 
 export default InputField;
