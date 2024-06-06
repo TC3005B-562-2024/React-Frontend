@@ -32,7 +32,7 @@ const InsightDescription: React.FC<IInsightDescription> = ({ priority, alertId, 
         <div className="insight-description__container">
             {alertId && (
                 <div>
-                    <span className="insight-description__container__alert-id">
+                    <span className="insight-description__container__alert-id" data-testid="alert-id">
                         Alert: <span className="text-aci-orange">{alertId}</span>
                     </span>
                 </div>

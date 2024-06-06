@@ -1,9 +1,9 @@
 .agent-info__content {
-  @apply w-full px-6 py-2 rounded-lg bg-white shadow-md space-y-2 cursor-pointer;
+  @apply w-full px-6 py-2 rounded-lg bg-white shadow-md space-y-2 ;
 }
 
 .agent-info__content__main-info {
-  @apply w-full flex space-x-5;
+  @apply w-full flex space-x-5 hover:cursor-pointer;
 }
 
 .agent-info__content__main-info__icon {
@@ -39,5 +39,5 @@
 }
 
 .agent-info__content__skills__pill {
-  @apply mr-3 mb-2;
+  @apply mr-3 mb-2 ;
 }
