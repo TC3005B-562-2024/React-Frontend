@@ -78,18 +78,18 @@ describe('Logs Page', () => {
   test('should display error message when fetch fails', async () => {
     (getLogs as jest.Mock).mockRejectedValueOnce(new Error('Error fetching logs'));
     render(<Logs />);
-    await waitFor(() => expect(screen.getByText('Error fetching logs')).toBeInTheDocument());
+    expect(await screen.findByText('Error fetching logs')).toBeInTheDocument();
   });
 
   test('should display no logs message when there are no logs', async () => {
     (getLogs as jest.Mock).mockResolvedValueOnce({ high: [], medium: [], low: [] });
     render(<Logs />);
-    await waitFor(() => expect(screen.getByText('No logs found')).toBeInTheDocument());
+    expect(await screen.findByText('No logs found')).toBeInTheDocument();
   });
 
   test('should display no logs message when logs is null', async () => {
     (getLogs as jest.Mock).mockResolvedValueOnce(null);
     render(<Logs />);
-    await waitFor(() => expect(screen.getByText('No logs found')).toBeInTheDocument());
+    expect(await screen.findByText('No logs found')).toBeInTheDocument();
   });
 });
