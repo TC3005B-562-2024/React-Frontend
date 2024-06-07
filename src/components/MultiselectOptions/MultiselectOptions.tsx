@@ -7,12 +7,12 @@ import { IconNames } from '../Icon/types';
 /**
  * Component that stores the state of a given option.
  */
-const MultiselectOptions: React.FC<IMultiselectOptions> = ({ label, isSelected,onChange }) => {
+const MultiselectOptions: React.FC<IMultiselectOptions> = ({ label, isSelected, onChange }) => {
   const [isChecked, setIsChecked] = useState(isSelected);
 
   const handleOnChange = () => {
     onChange(label, !isSelected); // Pass label and new isSelected state
-  };
+  };
 
   useEffect(() => {
     setIsChecked(isSelected);
@@ -21,18 +21,20 @@ const MultiselectOptions: React.FC<IMultiselectOptions> = ({ label, isSelected,o
   return (
     <div className='multiselect-options__container' key={label} >
       <div className='multiselect-options__container__checkbox-container'>
-        <input
-          type="checkbox"
-          className='multiselect-options__container__checkbox-container__checkbox'
-          checked={isSelected}
-          onChange={handleOnChange}
-          data-testid='filter-wrapper__multiselect__options'
-        />
+          <input
+            key={label}
+            type="checkbox"
+            aria-label={label}
+            className='multiselect-options__container__checkbox-container__checkbox'
+            checked={isSelected}
+            onChange={handleOnChange}
+            data-testid='filter-wrapper__multiselect__options'
+          />
         {isChecked && <Icon iconName={IconNames.Check} color='black' />}
       </div>
-      <span className='multiselect-options__container__label'>
+      <label htmlFor={label} className='multiselect-options__container__label'>
         {label}
-      </span>
+      </label>
     </div>
   );
 };
