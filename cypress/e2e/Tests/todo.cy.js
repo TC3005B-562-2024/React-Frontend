@@ -29,3 +29,29 @@ describe('Login Page', () => {
     cy.url().should('not.include', '/login');
   });
 });
+
+describe('Main functionalities', () => {
+
+  beforeEach(() => {
+    indexedDB.deleteDatabase('firebaseLocalStorageDb');
+    cy.viewport('macbook-16');
+    cy.visit('/login');
+    cy.get('[data-testid="input-email"]').type('test@g.com');
+    cy.get('[data-testid="input-password"]').type('123456');
+    cy.get('button[type="submit"]').click();
+  });
+
+  it('should render home page', () => {
+    cy.url().should('include', '');
+  });
+
+  it('should filter using searchbar and filters', () => {
+    cy.url().should('include', '');
+    cy.wait(15000);
+    cy.get('[data-testid="search-bar"]').type('Diego J');
+    cy.get('.agent-info__content__main-info__text__agent-name').contains('Diego Jacobo');
+    cy.get('[data-testid="search-bar"]').clear();
+    cy.get('[data-testid="aci-button"]').click();
+    
+  });
+});
