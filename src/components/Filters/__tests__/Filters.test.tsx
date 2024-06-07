@@ -1,7 +1,6 @@
-import React from 'react';
-import { render, screen, cleanup, fireEvent } from "@testing-library/react";
-import Filters from '../Filters'; // Adjust the path if needed
+import { cleanup, fireEvent, render, screen } from "@testing-library/react";
 import { IMultiselectOptions } from '../../MultiselectOptions/types';
+import Filters from '../Filters'; // Adjust the path if needed
 
 afterEach(() => {
   cleanup();

@@ -3,7 +3,7 @@ export interface IAgentCardDTO {
     arn:              string;
     name:             string;
     status:          'ONCALL' | 'Available' | 'DISCONNECTED' | null;
-    sentiment:        null;
+    sentiment:        null | string;
     queues:           IQueueMin[];
     topPriorityAlert: 'CRITICAL' | 'MEDIUM' | 'LOW' | null;
 }

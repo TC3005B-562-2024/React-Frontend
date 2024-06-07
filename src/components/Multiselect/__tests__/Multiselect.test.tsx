@@ -1,7 +1,6 @@
-import React from 'react';
-import { render, screen, cleanup, fireEvent } from "@testing-library/react";
-import Multiselect from "../Multiselect"; 
+import { cleanup, fireEvent, render, screen } from "@testing-library/react";
 import { IMultiselectOptions } from '../..//MultiselectOptions/types';
+import Multiselect from "../Multiselect";
 
 afterEach(() => {
     cleanup();
