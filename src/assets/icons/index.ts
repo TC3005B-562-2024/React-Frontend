@@ -30,3 +30,4 @@ export { default as VisibilityOff } from './VisibilityOff.tsx';
 export { default as Warning } from './Warning.tsx';
 export {default as ExpandLess} from './ExpandLess.tsx';
 export {default as ExpandMore} from './ExpandMore.tsx';
+export {default as History} from './History.tsx';

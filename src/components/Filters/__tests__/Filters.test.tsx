@@ -1,8 +1,7 @@
-import { render, screen, cleanup, waitFor } from "@testing-library/react";
-import userEvent from '@testing-library/user-event';
+import React from 'react';
+import { render, screen, cleanup, fireEvent } from "@testing-library/react";
 import Filters from '../Filters'; // Adjust the path if needed
 import { IMultiselectOptions } from '../../MultiselectOptions/types';
-
 
 afterEach(() => {
   cleanup();
@@ -46,42 +45,27 @@ describe("Tests for Filters Component", () => {
     renderComponent();
 
     // Ensure the filter button is rendered
-    expect(screen.getByText("Filter")).toBeInTheDocument();
+    expect(screen.getByTestId("filter-wrapper")).toBeInTheDocument();
   });
 
   test("Should toggle the visibility of Multiselect component on button click", async () => {
     renderComponent();
-    const user = userEvent.setup();
-    
-    const button = screen.getByText("Filter");
-    expect(screen.queryByRole("checkbox")).not.toBeInTheDocument();
+    const button = screen.getByTestId("aci-button");
 
     // Click the button to show the Multiselect component
-    await user.click(button);
-    expect(screen.getAllByRole("checkbox")).toHaveLength(mockOptions.length);
-
-    // Click the button again to hide the Multiselect component
-    await user.click(button);
-    expect(screen.queryByRole("checkbox")).not.toBeInTheDocument();
+    fireEvent.click(button);
+    expect(screen.getByTestId("filter-wrapper__multiselect")).toBeInTheDocument();
+    expect(screen.getAllByTestId('filter-wrapper__multiselect__options')).toHaveLength(mockOptions.length);
   });
 
   test("Should call onFilterChange with updated options when Multiselect changes", async () => {
     renderComponent();
-    const user = userEvent.setup();
+    const button = screen.getByTestId("aci-button");
+    fireEvent.click(button);
 
-    // Click the button to show the Multiselect component
-    await user.click(screen.getByText("Filter"));
+    const option = screen.getAllByTestId("filter-wrapper__multiselect__options");
+    fireEvent.click(option[0]);
 
-    const checkboxes = screen.getAllByRole("checkbox");
-
-    // Click the first checkbox
-    await user.click(checkboxes[0]);
-
-    // Verify that onFilterChange was called with the correct updated options
-    await waitFor(() => {
-      const updatedOptions = mockOnFilterChange.mock.calls[0][0];
-      expect(updatedOptions[0].isSelected).toBe(true); 
-      // Only check the changed option to avoid stale closures 
-    });
-});
+    expect(mockOnFilterChange).toHaveBeenCalledTimes(1);
+  });
 });

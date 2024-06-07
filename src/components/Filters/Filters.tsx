@@ -22,7 +22,7 @@ const Filters: React.FC<IFilters> = ({ options, onFilterChange }) => {
   };
   
   return (
-    <div data-testid="filters-component"className='relative inline-block'>
+    <div className='relative inline-block' data-testid='filter-wrapper'>
       <Button
         onClick={handleButtonClick}
         text="Filter"
@@ -31,7 +31,7 @@ const Filters: React.FC<IFilters> = ({ options, onFilterChange }) => {
         icon={{ iconName: IconNames.InstantMix }}
       />
       {isMultiselectVisible &&
-        <div className='absolute right-0 mt-3'>
+        <div className='absolute right-0 mt-3' data-testid='filter-wrapper__multiselect'>
           <Multiselect options={options} onOptionChange={handleMultiselectChange} />
         </div>
       }

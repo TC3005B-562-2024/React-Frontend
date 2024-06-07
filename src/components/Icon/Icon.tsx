@@ -33,7 +33,8 @@ import {
     Warning,
     ExpandLess,
     ExpandMore,
-    Exercise
+    Exercise,
+    History
 } from "../../assets";
 
 
@@ -119,6 +120,8 @@ const Icon: React.FC<IIcon> = ({ iconName, color, className }) => {
             return <ExpandMore className={classes} fill={newColor} data-testid='expand_more' />;
         case 'exercise':
             return <Exercise className={classes} fill={newColor} data-testid='exercise' />;
+        case 'history':
+            return <History className={classes} fill={newColor} data-testid='history' />;
         default:
             return <span data-testid="default" >Icon not found :(</span>;
     }

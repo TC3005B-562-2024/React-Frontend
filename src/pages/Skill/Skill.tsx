@@ -145,13 +145,13 @@ const Skill: React.FC = () => {
               {loading ? 
                 (<InfoLoader />) : 
                 (
-                  skill?.agents.map((agent) => (
+                  skill && skill.agents.map(agent => (
                     <AgentInfo
                       id={agent.id}
                       name={agent.name}
                       sentiment={agent.sentiment}
-                      queues={agent.queues}
-                      status={agent.status}
+                      queues={agent.queues.map(queue => queue.name)}
+                      status={agent.status as "ONCALL" | "Available" | "DISCONNECTED" | null}
                       topPriorityAlert={agent.topPriorityAlert}
                     />
                   ))

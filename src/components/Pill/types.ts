@@ -11,4 +11,8 @@ export interface IPill {
    * The class name to apply to the pill.
    */
   className?: string;
+  /**
+   * The id of the pill.
+   */
+  id: string;
 }

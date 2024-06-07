@@ -19,7 +19,7 @@ const MultiselectOptions: React.FC<IMultiselectOptions> = ({ label, isSelected, 
   }, [isSelected]);
 
   return (
-    <div className='multiselect-options__container'>
+    <div className='multiselect-options__container' key={label} >
       <div className='multiselect-options__container__checkbox-container'>
           <input
             key={label}
