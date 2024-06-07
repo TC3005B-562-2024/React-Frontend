@@ -5,7 +5,7 @@ import InputField from '../InputField';
 describe('InputField component', () => {
   const mockOnChange = jest.fn();
 
-  it('Should render input with the correct type and placeholder', () => {
+  it('ID: IF.1 - Should render input with the correct type and placeholder', () => {
     render(
       <InputField
         id="test"
@@ -24,7 +24,7 @@ describe('InputField component', () => {
     expect(inputElement).toHaveAttribute('type', 'text');
   });
 
-  it('Should call onChange when the input value changes', () => {
+  it('ID: IF.2 - Should call onChange when the input value changes', () => {
     render(
       <InputField
         id="test"
@@ -44,7 +44,7 @@ describe('InputField component', () => {
     expect(mockOnChange).toHaveBeenCalledWith('test', 'new value');
   });
 
-  it('Should toggle password visibility', () => {
+  it('ID: IF.3 - Should toggle password visibility', () => {
     render(
       <InputField
         id="test"
@@ -67,7 +67,7 @@ describe('InputField component', () => {
     expect(inputElement).toHaveAttribute('type', 'text');
   });
 
-  it('Should render label and helper text', () => {
+  it('ID: IF.4 - Should render label and helper text', () => {
     render(
       <InputField
         id="test"
@@ -85,7 +85,7 @@ describe('InputField component', () => {
     expect(screen.getByText('Helper text')).toBeInTheDocument();
   });
 
-  it('Should apply the correct class based on color prop', () => {
+  it('ID: IF.5 - Should apply the correct class based on color prop', () => {
     render(
       <InputField
         id="test"

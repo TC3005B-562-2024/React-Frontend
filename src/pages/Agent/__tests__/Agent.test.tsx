@@ -99,14 +99,14 @@ afterEach(() => {
 });
 
 describe("Agent Component Tests", () => {
-  test("The Agent page should render correctly", async () => {
+  test("ID: Agent.1 The Agent page should render correctly", async () => {
     render(<BrowserRouter><Agent /></BrowserRouter>);
     await waitFor(() => {
       expect(screen.getByTestId("Main container")).toBeInTheDocument();
     });
   });
 
-  test("should display an error message if the data fetch fails", async () => {
+  test("ID: Agent.2 Should display an error message if the data fetch fails", async () => {
     jest.spyOn(serviceModule, 'getAgentById').mockRejectedValue(new Error("Failed to fetch"));
     render(<BrowserRouter><Agent /></BrowserRouter>);
 
@@ -115,7 +115,7 @@ describe("Agent Component Tests", () => {
     });
   });
 
-  test("Should handle all types of alert priorities", async () => {
+  test("ID: Agent.3 Should handle all types of alert priorities", async () => {
     const modifiedAgentInfo: IAgentInformation = {
        ...mockAgentInfo,
        agentInfo: null,
@@ -136,7 +136,7 @@ describe("Agent Component Tests", () => {
       expect(screen.getByText("Low")).toBeInTheDocument();
     });
   });
-  test("Should display the agent information", async () => {
+  test("ID: Agent.4 Should display the agent information", async () => {
     jest.spyOn(serviceModule, 'getAgentById').mockResolvedValue(mockAgentInfo);
     render(<BrowserRouter><Agent /></BrowserRouter>);
   
