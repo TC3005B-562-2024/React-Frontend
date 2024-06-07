@@ -20,9 +20,9 @@ const Filters: React.FC<IFilters> = ({ options, onFilterChange }) => {
   const handleMultiselectChange = (newOptions: IMultiselectOptions[]) => {
     onFilterChange(newOptions);
   };
-
+  
   return (
-    <div className='relative inline-block'>
+    <div data-testid="filters-component"className='relative inline-block'>
       <Button
         onClick={handleButtonClick}
         text="Filter"

@@ -37,7 +37,7 @@ const Button: React.FC<IButton> = ({ onClick: task, type = 'button', text, size 
 
   return (
     <>
-      <button data-testid="aci-button" className={mainClasses} onClick={task} disabled={isDisabled} type={type}>
+      <button data-testid="aci-button" className={mainClasses} onClick={task} disabled={isDisabled} type={type} role='button'>
         {text && <span>{text}</span>}
         {icon &&
           <div className={iconClasses}>

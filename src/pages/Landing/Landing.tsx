@@ -37,6 +37,7 @@ const Landing: React.FC = () => {
       setLoading(false);
     });
   }, []);
+  
   const handleSearch = (searchRegex: RegExp) => {
     const filteredData = agents.filter(item => {
       return searchRegex.test(item.name); // Adjust properties as needed
@@ -48,22 +49,22 @@ const Landing: React.FC = () => {
     const newSelectedFilters = newOptions
       .filter(option => option.isSelected)
       .map(option => option.label);
-
-    setSelectedFilters(newSelectedFilters); // Update selected filters state
-    filterDisplayedData(newSelectedFilters); 
+  
+    setSelectedFilters(newSelectedFilters);
+    filterDisplayedData(newSelectedFilters);
   };
 
   const filterDisplayedData = (queueFilters: string[]) => {
-    if (queueFilters.length === 0) {
-      // No filters, show all agents
-      setDisplayedData(agents);
-    } else {
-      const filteredData = agents.filter(agent =>
-        agent.queues.some(queue => queueFilters.includes(queue))
-      );
-      setDisplayedData(filteredData);
-    }
-  };
+  if (queueFilters.length === 0) {
+    setDisplayedData(agents);
+  } else {
+    // Correctly filter the data by selected queue filters
+    const filteredData = agents.filter(agent =>
+      agent.queues.some(queue => queueFilters.includes(queue))
+    );
+    setDisplayedData(filteredData);
+  }
+};
 
   const filterOptions: IMultiselectOptions[] = uniqueQueues.map((queue) => ({
     label: queue,

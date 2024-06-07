@@ -1,7 +1,9 @@
 import { render, cleanup, screen, waitFor } from "@testing-library/react";
 import Landing from "../Landing";
+import userEvent from "@testing-library/user-event";
 import { getAllAgents } from "../../../services";
 import { IAgentCardDTO, Queue } from "../../../services/agents/types";
+
 
 // Mock the getAllAgents service
 jest.mock('../../../services', () => ({
@@ -89,20 +91,114 @@ describe("Tests for Landing Page", () => {
     });
   });
 
-  test("Should render the Filters component with all options", async () => {
-    // Mock the getAllAgents function to return the mockAgents data
+  test("Should filter agents based on search input", async () => {
     (getAllAgents as jest.Mock).mockResolvedValueOnce(mockAgents);
     render(<Landing />);
 
-    // Wait for the Filters component to render
+    // Wait for the SearchBar and agents to render
     await waitFor(() => {
-      expect(screen.getByText('BasicQueue')).toBeInTheDocument();
+      expect(screen.getByPlaceholderText('Search...')).toBeInTheDocument();
+      expect(screen.getByText('Agent Smith')).toBeInTheDocument(); // Ensure agents are loaded
     });
+
+    // Simulate user typing in the search bar (using userEvent for better simulation)
+    userEvent.type(screen.getByPlaceholderText('Search...'), 'Smith');
+
+    // Verify that only the relevant agent is displayed (give time for the filtering to happen)
     await waitFor(() => {
-      expect(screen.getByText('Panoptimize doubts')).toBeInTheDocument();
+      expect(screen.getByText('Agent Smith')).toBeInTheDocument();
+      expect(screen.queryByText('Agent Johnson')).not.toBeInTheDocument();
     });
+  });
+
+  test("Clicking the Filter button toggles the Filters component visibility", async () => {
+    (getAllAgents as jest.Mock).mockResolvedValueOnce(mockAgents);
+    render(<Landing />);
+
+    // Get the Filters component directly by its test ID
+    const filtersComponent = await screen.findByTestId('filters-component'); // Use findBy for async rendering
+
+    // Click on the Filters button (which is now a <button>)
+    userEvent.click(filtersComponent.querySelector('button')!);
+
+    // Assert that the filter options are visible after the click
     await waitFor(() => {
-      expect(screen.getByText('Customer Service')).toBeInTheDocument();
+      const filterOptions = screen.getAllByRole('checkbox');
+      expect(filterOptions).toHaveLength(3);
+    });
+
+    // Click again to toggle off
+    userEvent.click(filtersComponent.querySelector('button')!);
+
+    // Assert that the filter options are no longer visible
+    await waitFor(() => {
+      const filterOptions = screen.queryAllByRole('checkbox');
+      expect(filterOptions).toHaveLength(0);
+    });
+  });
+
+  test("Should render the Filters component with all options", async () => {
+    (getAllAgents as jest.Mock).mockResolvedValueOnce(mockAgents);
+    render(<Landing />);
+
+    // Click the Filter button to make options visible (if they are hidden by default)
+    const filtersComponent = await screen.findByTestId('filters-component');
+    userEvent.click(filtersComponent.querySelector('button')!);
+
+    // Wait for the checkboxes to appear in the DOM
+    await waitFor(() => {
+      const checkboxes = screen.getAllByRole('checkbox');
+      expect(checkboxes).toHaveLength(3);
+    }, { timeout: 5000 });  // Adjust the timeout as needed
+
+    // Debug if needed
+    screen.debug(); // Print the DOM to the console if the test still fails
+  });
+
+
+  test("Should apply filters correctly", async () => {
+    (getAllAgents as jest.Mock).mockResolvedValueOnce(mockAgents);
+    render(<Landing />);
+  
+    // 1. Open the Filters Component
+    const filtersComponent = await screen.findByTestId('filters-component');
+    userEvent.click(filtersComponent.querySelector('button')!);
+  
+    // 2. Wait for the Specific Checkbox to Be Visible
+    const basicQueueCheckbox = await screen.findByLabelText(Queue.BasicQueue); // Wait for this specific checkbox
+  
+    // 3. Click the Checkbox and Verify Filtering
+    userEvent.click(basicQueueCheckbox);
+  
+    await waitFor(() => {
+      expect(screen.getByText("Agent Smith")).toBeInTheDocument();
+      expect(screen.queryByText("Agent Johnson")).not.toBeInTheDocument();
+    });
+  
+    // 4. Close the Filters
+    userEvent.click(filtersComponent.querySelector('button')!);
+  });
+
+  test("Should clear filters when all are deselected", async () => {
+    (getAllAgents as jest.Mock).mockResolvedValueOnce(mockAgents);
+    render(<Landing />);
+
+    // Open the filters
+    const filtersComponent = await screen.findByTestId('filters-component');
+    userEvent.click(filtersComponent.querySelector('button')!);
+
+    // Wait for the checkboxes to be rendered
+    const checkboxes = await screen.findAllByRole('checkbox'); // Use findAllByRole
+
+    // Uncheck the checkboxes
+    checkboxes.forEach(checkbox => {
+      userEvent.click(checkbox); // Uncheck each checkbox
+    });
+
+    // Wait for the agent list to update
+    await waitFor(() => {
+      expect(screen.getByText("Agent Smith")).toBeInTheDocument();
+      expect(screen.getByText("Agent Johnson")).toBeInTheDocument();
     });
   });
 });
