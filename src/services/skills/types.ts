@@ -1,4 +1,3 @@
-import { IAgentInfo } from "../../components/AgentInfo/types";
 import { IAlertResponse } from "../alerts/types";
 
 export interface ISkillBrief {
@@ -39,5 +38,20 @@ export interface ISkillById {
   skillsInformationDTO: ISkillsInformationDTO;
   trainings: ITrainingProgress[];
   metrics: IMetrics;
-  agents: IAgentInfo[];
+  agents: Agent[];
+}
+export interface Agent {
+  id:               string;
+  arn:              string;
+  name:             string;
+  status:           string;
+  sentiment:        null;
+  queues:           IQueueMin[];
+  topPriorityAlert: null;
+}
+
+
+export interface IQueueMin {
+  id:   string;
+  name: string;
 }

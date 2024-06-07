@@ -23,7 +23,7 @@ const SideBar: React.FC<ISideBar> = ({ skills }) => {
   });
 
   return (
-    <div className={containerClasses}>
+    <div className={containerClasses} data-testid='side-bar__container'>
       <div className={buttonClasses}>
         <Button
           key={'expand-button'}
@@ -73,7 +73,10 @@ const SideBar: React.FC<ISideBar> = ({ skills }) => {
           </div>
 
           {skills === undefined &&
-            <div className='side-bar__container__elements-container__upper-container__error-alert'>
+            <div 
+              className='side-bar__container__elements-container__upper-container__error-alert'
+              data-testid='side-bar__container__error-alert'
+            >
               No Skills Found.
             </div>
           }
@@ -81,11 +84,19 @@ const SideBar: React.FC<ISideBar> = ({ skills }) => {
         </div>
         <div className='side-bar__container__elements-container__lowe-container'>
           <SideBarElement
-            key={ROUTES.AGENTS.name}
-            label={ROUTES.AGENTS.name}
+            key={ROUTES.LOGS.name}
+            label={ROUTES.LOGS.name}
+            isSection={true}
+            icon={{ iconName: IconNames.History }}
+            path={ROUTES.LOGS.path}
+            isExpanded={isExpanded}
+          />
+          <SideBarElement
+            key={ROUTES.LANDING.name}
+            label={ROUTES.LANDING.name}
             isSection={true}
             icon={{ iconName: IconNames.SupportAgent }}
-            path={ROUTES.AGENTS.path}
+            path={ROUTES.LANDING.path}
             isExpanded={isExpanded}
           />
           <SideBarElement

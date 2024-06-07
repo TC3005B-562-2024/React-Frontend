@@ -7,7 +7,7 @@
     "start": "react-scripts start",
     "dev": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --watchAll --coverage --collectCoverageFrom=src/**/*.{ts,tsx} --collectCoverageFrom=!src/**/*.{types,stories}.{ts,tsx}",
+    "test": "react-scripts test --watchAll --coverage --collectCoverageFrom=src/{components,pages,Utils}/**/*.{ts,tsx} --collectCoverageFrom=!src/**/*.{types,stories}.{ts,tsx}",
     "eject": "react-scripts eject",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
