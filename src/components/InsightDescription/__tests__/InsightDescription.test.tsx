@@ -9,12 +9,12 @@ jest.mock('../../Icon', () => ({
 jest.mock('classnames');
 
 describe('InsightDescription', () => {
-    it('renders without crashing', () => {
+    it('ID: ID.1 - renders without crashing', () => {
         render(<InsightDescription description="Sample description" priority="intervene" alertId={123} />);
         expect(screen.getByText(/Sample description/)).toBeInTheDocument();
     });
 
-    it('displays the correct icon based on priority', () => {
+    it('ID: ID.2 - displays the correct icon based on priority', () => {
         const priority = 'intervene';
         render(<InsightDescription description='Check priority Icon' priority={priority} alertId={124} />);
         expect(Icon).toHaveBeenCalledWith({
@@ -23,7 +23,7 @@ describe('InsightDescription', () => {
         }, {});
     });
 
-    it('renders the correct icon when priority doesnt match', () => {
+    it('ID: ID.3 - renders the correct icon when priority doesnt match', () => {
         const priority = 'undefinedPriority' as any;
         render(<InsightDescription description='Test default priority' priority={priority} alertId={1} />);
         expect(Icon).toHaveBeenCalledWith({
@@ -32,7 +32,7 @@ describe('InsightDescription', () => {
         }, {});
     });
 
-    it('applies correct classes based on priority', () => {
+    it('ID: ID.4 - applies correct classes based on priority', () => {
         const priority = 'transfer';
         render(<InsightDescription description='Check class name' priority={priority} alertId={125} />);
         expect(classNames).toHaveBeenCalledWith({
@@ -42,7 +42,7 @@ describe('InsightDescription', () => {
         });
     });
 
-    it('displays alert specific ID when provided', () => {
+    it('ID: ID.5 - displays alert specific ID when provided', () => {
         render(<InsightDescription description="Check alert ID" priority="training" alertId={126} />);
         expect(screen.getByTestId("alert-id")).toHaveTextContent("Alert: 126");
     });

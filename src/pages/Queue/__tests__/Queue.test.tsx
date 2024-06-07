@@ -110,7 +110,7 @@ afterEach(() => {
     jest.clearAllMocks();
 });
 
-describe("Tests for Queue page", () => {
+describe("ID: Queue.1 Tests for Queue page", () => {
     test("The Queue page should render correctly", async () => {
         (getQueueInfo as jest.Mock).mockResolvedValue(mockQueueInformation[0]);
 
@@ -132,14 +132,14 @@ describe("Tests for Queue page", () => {
         expect(screen.getByTestId("agents-section")).toBeInTheDocument();
     });
 
-    test("Displays loading state initially", () => {
+    test("ID: Queue.2 Displays loading state initially", () => {
         (getQueueInfo as jest.Mock).mockReturnValueOnce(new Promise(() => { }));
         render(<Queue />);
         expect(screen.getAllByRole("progressbar")).toHaveLength(4);
     });
 
 
-    test("Should handle all types of alert priorities", async () => {
+    test("ID: Queue.3 Should handle all types of alert priorities", async () => {
         (getQueueInfo as jest.Mock).mockResolvedValue(mockQueueInformation[0]);
         render(<Queue />);
 
@@ -156,7 +156,7 @@ describe("Tests for Queue page", () => {
         });
     });
 
-    test("Correctly displays no trainings found when there are no trainings", async () => {
+    test("ID: Queue.4 Correctly displays no trainings found when there are no trainings", async () => {
         const modifiedData = { ...mockQueueInformation[0], trainings: [] };
         (getQueueInfo as jest.Mock).mockResolvedValue(modifiedData);
         render(<Queue />);
@@ -165,7 +165,7 @@ describe("Tests for Queue page", () => {
         });
     });
 
-    test("Correctly displays agents information", async () => {
+    test("ID: Queue.5 Correctly displays agents information", async () => {
         (getQueueInfo as jest.Mock).mockResolvedValue(mockQueueInformation[0]);
         render(<Queue />);
         await waitFor(() => {

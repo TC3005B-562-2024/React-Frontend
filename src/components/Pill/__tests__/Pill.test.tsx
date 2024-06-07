@@ -14,35 +14,37 @@ jest.mock('react-router-dom', () => ({
 }));
 
 describe('Tests for Pill Component', () => {
-	test('ID: F.Pill.1 - The Pill component renders correctly', () => {
-		const pillText = 'sample text';
-		const pillColor = 'green';
+  test('ID: Pill.Render - Renders with text, color, and correct classes', () => {
+    const pillText = 'sample text';
+    const pillColor = 'green';
+    const pillId = ''; // No ID provided for this test
 
-		render(
-			<Pill text={pillText} color={pillColor} id=""/>
-		);
-		expect(screen.getByTestId('pill-wrapper')).toBeTruthy();
-		expect(screen.getByTestId('pill-wrapper__span-txt')).toHaveTextContent(pillText);
-		expect(screen.getByTestId('pill-wrapper')).toHaveClass('bg-aci-' + pillColor);
-	});
+    render(
+      <Pill text={pillText} color={pillColor} id={pillId}/>
+    );
 
-	test('ID: F.Pill.2 - The Pill component navigates to the correct URL when clicked', () => {
-		const mockNavigate = jest.fn();
+    expect(screen.getByTestId('pill-wrapper')).toBeTruthy();
+    expect(screen.getByTestId('pill-wrapper__span-txt')).toHaveTextContent(pillText);
+    expect(screen.getByTestId('pill-wrapper')).toHaveClass('bg-aci-' + pillColor);
+  });
+
+  test('ID: Pill.Navigation - Navigates to correct URL when clicked', () => {
+    const mockNavigate = jest.fn();
     const useNavigate = require('react-router-dom').useNavigate;
     useNavigate.mockReturnValue(mockNavigate);
 
-		const pillText = 'sample text';
-		const pillColor = 'green';
-		const pillId = '1234';
+    const pillText = 'sample text';
+    const pillColor = 'green';
+    const pillId = '1234'; 
 
-		render(
-			<MemoryRouter>
-				<Pill text={pillText} color={pillColor} id={pillId}/>
-			</MemoryRouter>
-		);
+    render(
+      <MemoryRouter>
+        <Pill text={pillText} color={pillColor} id={pillId}/>
+      </MemoryRouter>
+    );
 
-		const pillWrapper = screen.getByTestId('pill-wrapper');
-		fireEvent.click(pillWrapper);
+    const pillWrapper = screen.getByTestId('pill-wrapper');
+    fireEvent.click(pillWrapper);
     expect(mockNavigate).toHaveBeenCalledWith(`/queues/${pillId}`);
-	});
+  });
 });
