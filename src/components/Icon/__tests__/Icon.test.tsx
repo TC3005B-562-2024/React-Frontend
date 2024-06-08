@@ -7,7 +7,7 @@ afterEach(() => {
 });
 
 describe("Tests for Icon Component", () => {
-  test("ID: IC.1 - Should render all the valid values for the iconNames", () => {
+  test("ID: F.IC.1 - Should render all the valid values for the iconNames", () => {
     // Loop through all the valid values for the iconName
     Object.values(IconNames).forEach((iconName) => {
       render(<Icon iconName={iconName} />);
@@ -16,7 +16,7 @@ describe("Tests for Icon Component", () => {
     });
   });
 
-  test('ID: IC.2 - Renders an invalid value for the iconName', () => {
+  test('ID: F.IC.2 - Renders an invalid value for the iconName', () => {
     render(<Icon iconName={"invalid-value" as IconNames} />);
 
     const icon = screen.getByTestId('default');

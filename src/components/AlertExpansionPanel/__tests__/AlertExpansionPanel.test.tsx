@@ -7,7 +7,7 @@ afterEach(() => {
 });
 
 describe("Tests for AlertExpansionPanel Component", () => {
-    test("Should render with the correct priority text", () => {
+    test("ID: F.AlertExpansionPanel.01 Should render with the correct priority text", () => {
         const { container } = render(
             <MemoryRouter>
                 <AlertExpansionPanel alerts={[
@@ -23,7 +23,7 @@ describe("Tests for AlertExpansionPanel Component", () => {
         }
     });
 
-    test("Should toggle expanded state on click", () => {
+    test("ID: F.AlertExpansionPanel.02 Should toggle expanded state on click", () => {
         const { container } = render(
             <MemoryRouter>
                 <AlertExpansionPanel alerts={[
@@ -45,7 +45,7 @@ describe("Tests for AlertExpansionPanel Component", () => {
         }
     });
 
-    test("Should display correct alert cards when expanded", () => {
+    test("ID: F.AlertExpansionPanel.03 Should display correct alert cards when expanded", () => {
         const alerts = [
             { alertId: 1, alertName: 'Test Alert 1', alertOwner: 'Owner1', alertPriority: 'LOW' as 'LOW', individualAlertLink: '#' },
             { alertId: 2, alertName: 'Test Alert 2', alertOwner: 'Owner2', alertPriority: 'MEDIUM' as 'MEDIUM', individualAlertLink: '#' },

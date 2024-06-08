@@ -15,7 +15,7 @@ describe("Tests for Multiselect Component", () => {
 
     const mockOnOptionChange = jest.fn();
 
-    test("ID: MS.1 - Should render the component correctly with all options and checkboxes", () => {
+    test("ID: F.MS.1 - Should render the component correctly with all options and checkboxes", () => {
         render(
             <Multiselect
                 options={mockOptions}
@@ -32,7 +32,7 @@ describe("Tests for Multiselect Component", () => {
         expect(screen.getAllByTestId('filter-wrapper__multiselect__options')).toHaveLength(mockOptions.length);
     });
 
-    test("ID: MS.2 - Should call onOptionChange with correct data when an option is clicked", () => {
+    test("ID: F.MS.2 - Should call onOptionChange with correct data when an option is clicked", () => {
         render(
             <Multiselect
                 options={mockOptions}
@@ -53,7 +53,7 @@ describe("Tests for Multiselect Component", () => {
         ]);
     });
 
-    test("ID: MS.3 - Should update the selected state correctly when re-rendered", () => {
+    test("ID: F.MS.3 - Should update the selected state correctly when re-rendered", () => {
         const { rerender } = render(
             <Multiselect
                 options={mockOptions}

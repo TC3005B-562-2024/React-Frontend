@@ -7,7 +7,7 @@ afterEach(() => {
 });
 
 describe("Tests for TrainingCardToggle Component", () => {
-  test("ID: TCT.CompletionToggle - Changes completed state on button click", async () => {
+  test("ID: F.TCT.CompletionToggle - Changes completed state on button click", async () => {
     const { getByTestId } = render(<TrainingCardToggle label={'Test'} isComplete={false} />);
     const button = getByTestId('complete-button');
 
@@ -20,14 +20,14 @@ describe("Tests for TrainingCardToggle Component", () => {
     });
   });
 
-  test("ID: TCT.LabelDisplay - Displays correct label data", async () => {
+  test("ID: F.TCT.LabelDisplay - Displays correct label data", async () => {
     const { getByTestId } = render(<TrainingCardToggle label={'Test'} isComplete={false} />);
     const component = getByTestId('training-card-toggle');
 
     expect(component.getAttribute('data-label')).toBe('Test');
   });
 
-  test("ID: TCT.InitialState - Correctly sets initial state based on props", async () => {
+  test("ID: F.TCT.InitialState - Correctly sets initial state based on props", async () => {
     const { getByTestId } = render(<TrainingCardToggle label={'Test'} isComplete={true} />);
     const component = getByTestId('training-card-toggle');
     const button = getByTestId('complete-button');

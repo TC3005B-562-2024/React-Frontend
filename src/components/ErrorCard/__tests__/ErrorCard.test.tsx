@@ -6,7 +6,7 @@ import ErrorCard from '../ErrorCard';
 afterEach(cleanup);
 
 describe("ErrorCard Component Tests", () => {
-    test("Displays the error title correctly", () => {
+    test("ID: F.ErrorCard.01 Displays the error title correctly", () => {
         // Define the title for the ErrorCard
         const errorTitle = "Network Error";
 

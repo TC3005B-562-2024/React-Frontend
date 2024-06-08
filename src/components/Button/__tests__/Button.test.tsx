@@ -6,7 +6,7 @@ afterEach(() => {
 });
 
 describe("Tests for Button Component", () => {
-  test("Should render the default Button component correctly and handle the click event", () => {
+  test("ID: F.Button.01 Should render the default Button component correctly and handle the click event", () => {
     const handleClick = jest.fn();
     render(<Button onClick={handleClick} text="text" />);
     
@@ -30,7 +30,7 @@ describe("Tests for Button Component", () => {
     expect(handleClick).toHaveBeenCalled();
   });
 
-  test('Renders with provided text', () => {
+  test('ID: F.Button.02 Renders with provided text', () => {
     render(<Button onClick={() => {}} text="Click me" />);
     
     const button = screen.getByTestId('aci-button');
@@ -39,7 +39,7 @@ describe("Tests for Button Component", () => {
     expect(button).toHaveTextContent('Click me');
   });
 
-  test('Renders with provided color', () => {
+  test('ID: F.Button.03 Renders with provided color', () => {
     render(<Button onClick={() => {}} color="red" />);
     
     const button = screen.getByTestId('aci-button');
@@ -49,7 +49,7 @@ describe("Tests for Button Component", () => {
     expect(button).not.toHaveClass('aci-button--orange');
   });
 
-  test('Renders disabled button', () => {
+  test('ID: F.Button.04 Renders disabled button', () => {
     render(<Button onClick={() => {}} isDisabled />);
     
     const button = screen.getByTestId('aci-button');

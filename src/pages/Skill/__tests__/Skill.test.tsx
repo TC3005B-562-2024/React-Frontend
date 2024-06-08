@@ -63,14 +63,14 @@ afterEach(() => {
 });
 
 describe("Tests for Skill page", () => {
-    test("ID: Skill.1 The Skill page should render correctly", async () => {
+    test("ID: F.Skill.1 The Skill page should render correctly", async () => {
         render(<BrowserRouter><Skill /></BrowserRouter>);
         await waitFor(() => {
             expect(screen.getByTestId("skill-title")).toHaveTextContent(`Skill: ${mockSkillData.alias}`);
         });
         expect(screen.getByText("Efficiency")).toBeInTheDocument();
     });
-    test("ID: Skill.2 Should display an error if the skill data fetch fails", async () => {
+    test("ID: F.Skill.2 Should display an error if the skill data fetch fails", async () => {
         jest.spyOn(serviceModule, 'getSkillById').mockRejectedValue(new Error("Failed to fetch skill"));
         render(<BrowserRouter><Skill /></BrowserRouter>);
 
@@ -79,7 +79,7 @@ describe("Tests for Skill page", () => {
         });
     });
 
-    test("ID: Skill.3 Should handle all types of alert priorities", async () => {
+    test("ID: F.Skill.3 Should handle all types of alert priorities", async () => {
         const modifiedSkillData = {
             ...mockSkillData,
             alerts: {
@@ -103,7 +103,7 @@ describe("Tests for Skill page", () => {
             expect(screen.getByText("Low")).toBeInTheDocument();
         });
     });
-    test("ID: Skill.4 Should handle empty metrics", async () => {
+    test("ID: F.Skill.4 Should handle empty metrics", async () => {
         const modifiedSkillData = {
             ...mockSkillData,
             metrics: {
@@ -118,7 +118,7 @@ describe("Tests for Skill page", () => {
             expect(screen.queryByText("Efficiency")).not.toBeInTheDocument();
         });
     });
-    test("ID: Skill.5 Should handle empty skillsInformationDTO", async () => {
+    test("ID: F.Skill.5 Should handle empty skillsInformationDTO", async () => {
         const modifiedSkillData = {
             ...mockSkillData,
             skillsInformationDTO: {

@@ -62,32 +62,32 @@ beforeEach(() => {
 });
 
 describe('Logs Page', () => {
-    test('ID: Logs.1 should render loading indicator while fetching logs', async () => {
+    test('ID: F.Logs.1 should render loading indicator while fetching logs', async () => {
         render(<Logs />);
         expect(screen.getByRole('progressbar')).toBeInTheDocument();
         await waitFor(() => expect(screen.queryByRole('progressbar')).not.toBeInTheDocument());
       });
       
-      test('ID: Logs.2 should render category when fetch is successful', async () => {
+      test('ID: F.Logs.2 should render category when fetch is successful', async () => {
         render(<Logs />);
         await screen.findByText(/Logs/i);
         const category = await screen.findByText(/CATEGORY 1 ACTION/i);
         expect(category).toBeInTheDocument();
       });
       
-  test('ID: Logs.3 should display error message when fetch fails', async () => {
+  test('ID: F.Logs.3 should display error message when fetch fails', async () => {
     (getLogs as jest.Mock).mockRejectedValueOnce(new Error('Error fetching logs'));
     render(<Logs />);
     expect(await screen.findByText('Error fetching logs')).toBeInTheDocument();
   });
 
-  test('ID: Logs.4 should display no logs message when there are no logs', async () => {
+  test('ID: F.Logs.4 should display no logs message when there are no logs', async () => {
     (getLogs as jest.Mock).mockResolvedValueOnce({ high: [], medium: [], low: [] });
     render(<Logs />);
     expect(await screen.findByText('No logs found')).toBeInTheDocument();
   });
 
-  test('ID: Logs.5 should display no logs message when logs is null', async () => {
+  test('ID: F.Logs.5 should display no logs message when logs is null', async () => {
     (getLogs as jest.Mock).mockResolvedValueOnce(null);
     render(<Logs />);
     expect(await screen.findByText('No logs found')).toBeInTheDocument();

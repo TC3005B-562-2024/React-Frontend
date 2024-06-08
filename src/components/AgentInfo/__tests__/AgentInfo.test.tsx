@@ -18,7 +18,7 @@ describe('AgentInfo Component', () => {
     topPriorityAlert: 'MEDIUM',
   };
 
-  test('should render with the correct agent name', () => {
+  test('ID: F.AgentInfo.01 should render with the correct agent name', () => {
     render(
       <MemoryRouter>
         <AgentInfo {...defaultProps} />
@@ -28,7 +28,7 @@ describe('AgentInfo Component', () => {
     expect(screen.getByText('John Doe')).toBeInTheDocument();
   });
 
-  test('should render with the correct sentiment', () => {
+  test('ID: F.AgentInfo.02 should render with the correct sentiment', () => {
     render(
       <MemoryRouter>
         <AgentInfo {...defaultProps} />
@@ -38,7 +38,7 @@ describe('AgentInfo Component', () => {
     expect(screen.getByText('Positive')).toBeInTheDocument();
   });
 
-  test('should render the correct number of skills', () => {
+  test('ID: F.AgentInfo.03 should render the correct number of skills', () => {
     render(
       <MemoryRouter>
         <AgentInfo {...defaultProps} />
@@ -48,7 +48,7 @@ describe('AgentInfo Component', () => {
     expect(screen.getAllByText(/skill/i).length).toBe(2);
   });
 
-  test('should apply the correct status icon and color for Available status', () => {
+  test('ID: F.AgentInfo.04 should apply the correct status icon and color for Available status', () => {
     render(
       <MemoryRouter>
         <AgentInfo {...defaultProps} />
@@ -60,7 +60,7 @@ describe('AgentInfo Component', () => {
     expect(statusIcon).toHaveAttribute('fill', '#E7B416'); // Yellow
   });
 
-  test('should apply the correct status icon and color for ONCALL status', () => {
+  test('ID: F.AgentInfo.05 should apply the correct status icon and color for ONCALL status', () => {
     render(
       <MemoryRouter>
         <AgentInfo {...{ ...defaultProps, status: 'ONCALL' }} />
@@ -72,7 +72,7 @@ describe('AgentInfo Component', () => {
     expect(statusIcon).toHaveAttribute('fill', '#99C140'); // Green
   });
 
-  test('should apply the correct status icon and color for DISCONNECTED status', () => {
+  test('ID: F.AgentInfo.06 should apply the correct status icon and color for DISCONNECTED status', () => {
     render(
       <MemoryRouter>
         <AgentInfo {...{ ...defaultProps, status: 'DISCONNECTED' }} />
@@ -84,7 +84,7 @@ describe('AgentInfo Component', () => {
     expect(statusIcon).toHaveAttribute('fill', '#428ADE'); // Blue
   });
 
-  test('should apply the correct alert icon and color for MEDIUM priority', () => {
+  test('ID: F.AgentInfo.07 should apply the correct alert icon and color for MEDIUM priority', () => {
     render(
       <MemoryRouter>
         <AgentInfo {...defaultProps} />
@@ -96,7 +96,7 @@ describe('AgentInfo Component', () => {
     expect(alertIcon).toHaveAttribute('fill', '#E99306'); // Orange
   });
 
-  test('should apply the correct alert icon and color for CRITICAL priority', () => {
+  test('ID: F.AgentInfo.08 should apply the correct alert icon and color for CRITICAL priority', () => {
     render(
       <MemoryRouter>
         <AgentInfo {...{ ...defaultProps, topPriorityAlert: 'CRITICAL' }} />
@@ -108,7 +108,7 @@ describe('AgentInfo Component', () => {
     expect(alertIcon).toHaveAttribute('fill', '#CC3232'); // Red
   });
 
-  test('should apply the correct alert icon and color for LOW priority', () => {
+  test('ID: F.AgentInfo.09 should apply the correct alert icon and color for LOW priority', () => {
     render(
       <MemoryRouter>
         <AgentInfo {...{ ...defaultProps, topPriorityAlert: 'LOW' }} />
@@ -120,7 +120,7 @@ describe('AgentInfo Component', () => {
     expect(alertIcon).toHaveAttribute('fill', '#FFC300'); // Yellow
   });
 
-  test('should navigate to the correct link on agent click', () => {
+  test('ID: F.AgentInfo.10 should navigate to the correct link on agent click', () => {
     const { container } = render(
       <MemoryRouter>
         <AgentInfo {...defaultProps} />

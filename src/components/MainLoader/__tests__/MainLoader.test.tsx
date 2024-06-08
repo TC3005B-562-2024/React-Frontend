@@ -7,7 +7,7 @@ afterEach(() => {
 });
 
 describe("Tests for Main loader ", () => {
-  test("ID: ML.1 - MainLoader component renders correctly", () => { // Added test ID
+  test("ID: F.ML.1 - MainLoader component renders correctly", () => { // Added test ID
     render(<MainLoader />);
     expect(screen.getByTestId("Loader")).toBeTruthy();
   });

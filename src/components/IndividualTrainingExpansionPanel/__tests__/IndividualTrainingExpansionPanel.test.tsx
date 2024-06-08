@@ -8,7 +8,7 @@ afterEach(() => {
 });
 
 describe("Tests for IndividualTrainingExpansionPanel Component", () => {
-  test("ID: ITEP.1 - Should change its completion percentage value correctly on click to finish a task", async () => {
+  test("ID: F.ITEP.1 - Should change its completion percentage value correctly on click to finish a task", async () => {
     const { getByTestId } = render(<IndividualTrainingExpansionPanel title={'Tests'} trainings={[
       { label: 'Test', isComplete: false },
     ]} />);
@@ -17,7 +17,7 @@ describe("Tests for IndividualTrainingExpansionPanel Component", () => {
     expect(expansionPanel.getAttribute('data-porcentage')).toBe('0');
   });
 
-  test("ID: ITEP.2 - Should change its completion percentage value correctly with a mixed completion state", async () => {
+  test("ID: F.ITEP.2 - Should change its completion percentage value correctly with a mixed completion state", async () => {
     const { getByTestId } = render(<IndividualTrainingExpansionPanel title={'Tests'} trainings={[
       { label: 'Test', isComplete: false },
       { label: 'Test', isComplete: true },
@@ -27,7 +27,7 @@ describe("Tests for IndividualTrainingExpansionPanel Component", () => {
     expect(expansionPanel.getAttribute('data-porcentage')).toBe('50');
   });
 
-  test("ID: ITEP.3 - Should change its completion percentage value correctly when all tasks are complete", async () => {
+  test("ID: F.ITEP.3 - Should change its completion percentage value correctly when all tasks are complete", async () => {
     const { getByTestId } = render(<IndividualTrainingExpansionPanel title={'Tests'} trainings={[
       { label: 'Test', isComplete: true },
       { label: 'Test', isComplete: true },

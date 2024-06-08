@@ -56,7 +56,7 @@ describe("Tests for Landing Page", () => {
     cleanup();
   });
 
-  test("ID: LP.1 Should show loading spinner while fetching data", () => {
+  test("ID: F.LP.1 Should show loading spinner while fetching data", () => {
     // Mock the getAllAgents function to return a promise that never resolves
     (getAllAgents as jest.Mock).mockReturnValueOnce(new Promise(() => { }));
     (getAllQueuesMin as jest.Mock).mockReturnValueOnce(new Promise(() => { }));
@@ -64,7 +64,7 @@ describe("Tests for Landing Page", () => {
     expect(screen.getAllByRole('progressbar')).toHaveLength(2);
   });
 
-  test("ID: LP.2 Should render agents list after data fetch", async () => {
+  test("ID: F.LP.2 Should render agents list after data fetch", async () => {
     // Mock the getAllAgents function to return the mockAgents data
     (getAllAgents as jest.Mock).mockResolvedValueOnce(mockAgents);
     (getAllQueuesMin as jest.Mock).mockResolvedValueOnce(mockQueues);
@@ -78,7 +78,7 @@ describe("Tests for Landing Page", () => {
     });
   });
 
-  test("ID: LP.3 Should display an error when there is no agents returned", async () => {
+  test("ID: F.LP.3 Should display an error when there is no agents returned", async () => {
     // Mock the getAllAgents function to return the mockAgents data
     const consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation(() => { });
     (getAllAgents as jest.Mock).mockResolvedValueOnce(null);
@@ -91,7 +91,7 @@ describe("Tests for Landing Page", () => {
     consoleErrorSpy.mockRestore();
   });
 
-  test("ID: LP.4 Should handle fetch errors gracefully", async () => {
+  test("ID: F.LP.4 Should handle fetch errors gracefully", async () => {
     // Mock the getAllAgents function to return a rejected promise and spy on console.error
     const consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation(() => { });
     (getAllAgents as jest.Mock).mockRejectedValueOnce(new Error('Failed to fetch agents'));
@@ -104,7 +104,7 @@ describe("Tests for Landing Page", () => {
     consoleErrorSpy.mockRestore();
   });
 
-  test("ID: LP.5 Should render the SearchBar component", async () => {
+  test("ID: F.LP.5 Should render the SearchBar component", async () => {
     // Mock the getAllAgents function to return the mockAgents data
     (getAllAgents as jest.Mock).mockResolvedValueOnce(mockAgents);
     (getAllQueuesMin as jest.Mock).mockResolvedValueOnce(mockQueues);
@@ -116,7 +116,7 @@ describe("Tests for Landing Page", () => {
     });
   });
 
-  test("ID: LP.6 Should filter agents based on search input", async () => {
+  test("ID: F.LP.6 Should filter agents based on search input", async () => {
     (getAllAgents as jest.Mock).mockResolvedValueOnce(mockAgents);
     (getAllQueuesMin as jest.Mock).mockResolvedValueOnce(mockQueues);
     render(<Landing />);
@@ -141,7 +141,7 @@ describe("Tests for Landing Page", () => {
     });
   });
 
-  test("ID: LP.7 Clicking the Filter button toggles the Filters component visibility", async () => {
+  test("ID: F.LP.7 Clicking the Filter button toggles the Filters component visibility", async () => {
     (getAllAgents as jest.Mock).mockResolvedValueOnce(mockAgents);
     (getAllQueuesMin as jest.Mock).mockResolvedValueOnce(mockQueues);
     render(<Landing />);
@@ -168,7 +168,7 @@ describe("Tests for Landing Page", () => {
     });
   });
 
-  test("ID: LP.8 Should render the Filters component with all options", async () => {
+  test("ID: F.LP.8 Should render the Filters component with all options", async () => {
     (getAllAgents as jest.Mock).mockResolvedValueOnce(mockAgents);
     (getAllQueuesMin as jest.Mock).mockResolvedValueOnce(mockQueues);
     render(<Landing />);
@@ -185,7 +185,7 @@ describe("Tests for Landing Page", () => {
   });
 
 
-  test("ID: LP.9 Should apply filters correctly", async () => {
+  test("ID: F.LP.9 Should apply filters correctly", async () => {
     (getAllAgents as jest.Mock).mockResolvedValueOnce(mockAgents);
     (getAllQueuesMin as jest.Mock).mockResolvedValueOnce(mockQueues);
     render(<Landing />);
@@ -211,7 +211,7 @@ describe("Tests for Landing Page", () => {
     userEvent.click(filtersComponent.querySelector('button')!);
   });
 
-  test("ID: LP.10 Should clear filters when all are deselected", async () => {
+  test("ID: F.LP.10 Should clear filters when all are deselected", async () => {
     (getAllAgents as jest.Mock).mockResolvedValueOnce(mockAgents);
     (getAllQueuesMin as jest.Mock).mockResolvedValueOnce(mockQueues);
     render(<Landing />);

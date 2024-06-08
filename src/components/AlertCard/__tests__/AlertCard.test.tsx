@@ -8,7 +8,7 @@ afterEach(() => {
 });
 
 describe("Tests for AlertCard Component", () => {
-  test("Should render with the correct alert name", () => {
+  test("ID: F.AlertCard.01 Should render with the correct alert name", () => {
     const { getByText } = render(
       <MemoryRouter>
         <AlertCard
@@ -24,7 +24,7 @@ describe("Tests for AlertCard Component", () => {
     expect(getByText('Test Alert')).toBeInTheDocument();
   });
 
-  test("Should render with the correct alert owner", () => {
+  test("ID: F.AlertCard.02 Should render with the correct alert owner", () => {
     const { getByText } = render(
       <MemoryRouter>
         <AlertCard
@@ -40,7 +40,7 @@ describe("Tests for AlertCard Component", () => {
     expect(getByText('Owner1')).toBeInTheDocument();
   });
 
-  test("Should apply the correct priority class for CRITIC priority", () => {
+  test("ID: F.AlertCard.03 Should apply the correct priority class for CRITIC priority", () => {
     const { container } = render(
       <MemoryRouter>
         <AlertCard
@@ -56,7 +56,7 @@ describe("Tests for AlertCard Component", () => {
     expect(container.querySelector('.alert-card__container__color-box--high-priority')).toBeInTheDocument();
   });
 
-  test("Should apply the correct priority class for MEDIUM priority", () => {
+  test("ID: F.AlertCard.04 Should apply the correct priority class for MEDIUM priority", () => {
     const { container } = render(
       <MemoryRouter>
         <AlertCard
@@ -72,7 +72,7 @@ describe("Tests for AlertCard Component", () => {
     expect(container.querySelector('.alert-card__container__color-box--medium-priority')).toBeInTheDocument();
   });
 
-  test("Should apply the correct priority class for LOW priority", () => {
+  test("ID: F.AlertCard.05 Should apply the correct priority class for LOW priority", () => {
     const { container } = render(
       <MemoryRouter>
         <AlertCard
@@ -88,7 +88,7 @@ describe("Tests for AlertCard Component", () => {
     expect(container.querySelector('.alert-card__container__color-box--low-priority')).toBeInTheDocument();
   });
 
-  test("Should navigate to the correct link on 'View More' button click", () => {
+  test("ID: F.AlertCard.06 Should navigate to the correct link on 'View More' button click", () => {
     render(
       <MemoryRouter>
         <AlertCard

@@ -14,7 +14,7 @@ jest.mock('react-router-dom', () => ({
 }));
 
 describe('Tests for Pill Component', () => {
-  test('ID: Pill.Render - Renders with text, color, and correct classes', () => {
+  test('ID: F.Pill.01 - Renders with text, color, and correct classes', () => {
     const pillText = 'sample text';
     const pillColor = 'green';
     const pillId = ''; // No ID provided for this test
@@ -28,7 +28,7 @@ describe('Tests for Pill Component', () => {
     expect(screen.getByTestId('pill-wrapper')).toHaveClass('bg-aci-' + pillColor);
   });
 
-  test('ID: Pill.Navigation - Navigates to correct URL when clicked', () => {
+  test('ID: F.Pill.02 - Navigates to correct URL when clicked', () => {
     const mockNavigate = jest.fn();
     const useNavigate = require('react-router-dom').useNavigate;
     useNavigate.mockReturnValue(mockNavigate);

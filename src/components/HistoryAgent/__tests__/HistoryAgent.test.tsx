@@ -14,7 +14,7 @@ afterEach(() => {
 });
 
 describe("Tests for HistoryAgent Component", () => {
-  test("ID: HA.1 - Should display the log and description correctly", () => {
+  test("ID: F.HA.1 - Should display the log and description correctly", () => {
     const { getByText } = render(
       <HistoryAgent
         log="Test Log"
@@ -28,7 +28,7 @@ describe("Tests for HistoryAgent Component", () => {
     expect(getByText('Test Log')).toBeInTheDocument();
   });
 
-  test("ID: HA.2 - Should expand and show the description on click", () => {
+  test("ID: F.HA.2 - Should expand and show the description on click", () => {
     const { getByText, getByTestId } = render(
       <HistoryAgent
         log="Test Log"
@@ -45,7 +45,7 @@ describe("Tests for HistoryAgent Component", () => {
     expect(getByText('Test Description')).toBeVisible();
   });
 
-  test("ID: HA.3 - Should display the correct date format", () => {
+  test("ID: F.HA.3 - Should display the correct date format", () => {
     const date = new Date('2024-05-28T12:00:00');
     const { getByText } = render(
       <HistoryAgent
@@ -69,7 +69,7 @@ describe("Tests for HistoryAgent Component", () => {
     expect(getByText(formattedDate)).toBeInTheDocument();
   });
 
-  test("ID: HA.4 - Should apply the correct styles based on color prop", () => {
+  test("ID: F.HA.4 - Should apply the correct styles based on color prop", () => {
     const { getByTestId, rerender } = render(
       <HistoryAgent
         log="Test Log"
@@ -97,7 +97,7 @@ describe("Tests for HistoryAgent Component", () => {
     expect(iconContainer).toHaveClass('history-agent__icon-container--red');
   });
 
-  test("ID: HA.5 - Should expand and show the description on click", () => {
+  test("ID: F.HA.5 - Should expand and show the description on click", () => {
     const { getByText } = render(
       <HistoryAgent
         log="Test Log"
@@ -114,7 +114,7 @@ describe("Tests for HistoryAgent Component", () => {
     expect(getByText('Test Description')).toBeInTheDocument();
   });
   
-  test("ID: HA.6 - Should apply the correct styles based on color prop", () => {
+  test("ID: F.HA.6 - Should apply the correct styles based on color prop", () => {
     const { getByTestId, rerender } = render(
       <HistoryAgent
         log="Test Log"

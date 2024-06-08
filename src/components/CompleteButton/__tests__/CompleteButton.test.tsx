@@ -7,7 +7,7 @@ afterEach(() => {
 });
 
 describe("Tests for CompleteButton Component", () => {
-    test("Should change its boolean value correctly on click", async () => {
+    test("ID: F.CompleteButton.01 Should change its boolean value correctly on click", async () => {
         render(<CompleteButton isComplete={false} />);
         const button = screen.getByTestId('complete-button');
 
@@ -23,7 +23,7 @@ describe("Tests for CompleteButton Component", () => {
         });
     });
 
-    test("Should change its icon object correctly on click", async () => {
+    test("ID: F.CompleteButton.02 Should change its icon object correctly on click", async () => {
         render(<CompleteButton isComplete={false} />);
         const button = screen.getByTestId('complete-button');
         const icon = screen.getByTestId(IconNames.RadioButtonUnchecked);
