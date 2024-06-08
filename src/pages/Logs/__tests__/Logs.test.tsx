@@ -78,7 +78,8 @@ describe('Logs Page', () => {
   test('ID: Logs.3 should display error message when fetch fails', async () => {
     (getLogs as jest.Mock).mockRejectedValueOnce(new Error('Error fetching logs'));
     render(<Logs />);
-    expect(await screen.findByText('Error fetching logs')).toBeInTheDocument();
+    await waitFor(() => expect(screen.queryByRole('progressbar')).not.toBeInTheDocument());
+    await screen.findByText('Error fetching logs');
   });
 
   test('ID: Logs.4 should display no logs message when there are no logs', async () => {
