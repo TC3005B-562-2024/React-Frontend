@@ -29,6 +29,7 @@ const AlertNav: React.FC<IAlertNav> = ({ instanceId, alertsExists }) => {
         onClick={() => {
           navigate('/alerts')
         }}
+        data-testid='alert-nav-alerts-button'
       >
 
         <Icon

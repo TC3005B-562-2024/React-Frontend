@@ -21,15 +21,14 @@ const MultiselectOptions: React.FC<IMultiselectOptions> = ({ label, isSelected, 
   return (
     <div className='multiselect-options__container' key={label} >
       <div className='multiselect-options__container__checkbox-container'>
-          <input
-            key={label}
-            type="checkbox"
-            aria-label={label}
-            className='multiselect-options__container__checkbox-container__checkbox'
-            checked={isSelected}
-            onChange={handleOnChange}
-            data-testid='filter-wrapper__multiselect__options'
-          />
+        <input
+          data-testid={`multiselect-option-checkbox-${label}`}
+          key={label}
+          type="checkbox"
+          className='multiselect-options__container__checkbox-container__checkbox'
+          checked={isSelected}
+          onChange={handleOnChange}
+        />
         {isChecked && <Icon iconName={IconNames.Check} color='black' />}
       </div>
       <label htmlFor={label} className='multiselect-options__container__label'>

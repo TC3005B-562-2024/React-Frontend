@@ -29,7 +29,7 @@ describe("Tests for Multiselect Component", () => {
         });
 
         // Ensure checkboxes are rendered
-        expect(screen.getAllByTestId('filter-wrapper__multiselect__options')).toHaveLength(mockOptions.length);
+        expect(screen.getAllByRole('checkbox')).toHaveLength(mockOptions.length);
     });
 
     test("ID: MS.2 - Should call onOptionChange with correct data when an option is clicked", () => {

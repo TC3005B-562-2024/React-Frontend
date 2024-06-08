@@ -33,7 +33,7 @@ describe('Tests for SideBarElement Component', () => {
 
   test('ID: F.SideBarElement.3 - The SideBarElement component navigates to the correct URL when clicked', () => {
     renderComponent(false, false, true, false);
-    const sideBarElement = screen.getByTestId('side-bar-element__link');
+    const sideBarElement = screen.getByTestId('side-bar-element-sample text');
     expect(sideBarElement).toBeInTheDocument();
     expect(sideBarElement).toHaveAttribute('href', '/path');
   });
@@ -47,7 +47,7 @@ describe('Tests for SideBarElement Component', () => {
 
   test('ID: F.SideBarElement.5 - The SideBarElement component has the correct color when in its path', async () => {
     renderComponent(true, true, true, true);
-    const coloredElement = screen.getByTestId('side-bar-element__link');
+    const coloredElement = screen.getByTestId('side-bar-element-sample text');
     expect(coloredElement).toBeInTheDocument();
     fireEvent.click(coloredElement);
     expect(mockOnClick).toHaveBeenCalled();
@@ -55,7 +55,7 @@ describe('Tests for SideBarElement Component', () => {
 
   test('ID: F.SideBarElement.6 - The SideBarElement component has the correct color when not in its path', async () => {
     renderComponent(true, true, true, false);
-    const coloredElement = screen.getByTestId('side-bar-element__link');
+    const coloredElement = screen.getByTestId('side-bar-element-sample text');
     expect(coloredElement).toBeInTheDocument();
     fireEvent.click(coloredElement);
     expect(mockOnClick).toHaveBeenCalled();

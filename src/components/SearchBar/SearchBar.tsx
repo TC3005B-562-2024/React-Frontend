@@ -56,6 +56,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ placeholder = "Search...", onSear
         <div className="w-full" data-testid="search-bar">
             <div className='flex items-center border border-gray-300 rounded-lg focus-within:border-aci-orange'>
                 <input
+                    data-testid="search-bar-input"
                     type="text"
                     value={inputValue}
                     onChange={handleInputChange}
