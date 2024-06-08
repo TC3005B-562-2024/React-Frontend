@@ -14,7 +14,7 @@ afterEach(() => {
 });
 
 describe("Tests for HistoryAgent Component", () => {
-  test("Should display the log and description correctly", () => {
+  test("ID: HA.1 - Should display the log and description correctly", () => {
     const { getByText } = render(
       <HistoryAgent
         log="Test Log"
@@ -28,7 +28,7 @@ describe("Tests for HistoryAgent Component", () => {
     expect(getByText('Test Log')).toBeInTheDocument();
   });
 
-  test("Should expand and show the description on click", () => {
+  test("ID: HA.2 - Should expand and show the description on click", () => {
     const { getByText, getByTestId } = render(
       <HistoryAgent
         log="Test Log"
@@ -42,10 +42,10 @@ describe("Tests for HistoryAgent Component", () => {
     const container = getByText('Test Log').closest('.history-agent__container');
     fireEvent.click(container!);
 
-    expect(getByText('Test Description')).toBeVisible(); // Description should be visible after click
+    expect(getByText('Test Description')).toBeVisible();
   });
 
-  test("Should display the correct date format", () => {
+  test("ID: HA.3 - Should display the correct date format", () => {
     const date = new Date('2024-05-28T12:00:00');
     const { getByText } = render(
       <HistoryAgent
@@ -69,7 +69,7 @@ describe("Tests for HistoryAgent Component", () => {
     expect(getByText(formattedDate)).toBeInTheDocument();
   });
 
-  test("Should apply the correct styles based on color prop", () => {
+  test("ID: HA.4 - Should apply the correct styles based on color prop", () => {
     const { getByTestId, rerender } = render(
       <HistoryAgent
         log="Test Log"
@@ -96,7 +96,8 @@ describe("Tests for HistoryAgent Component", () => {
     iconContainer = getByTestId('icon').closest('.history-agent__icon-container');
     expect(iconContainer).toHaveClass('history-agent__icon-container--red');
   });
-  test("Should expand and show the description on click", () => {
+
+  test("ID: HA.5 - Should expand and show the description on click", () => {
     const { getByText } = render(
       <HistoryAgent
         log="Test Log"
@@ -112,7 +113,8 @@ describe("Tests for HistoryAgent Component", () => {
   
     expect(getByText('Test Description')).toBeInTheDocument();
   });
-  test("Should apply the correct styles based on color prop", () => {
+  
+  test("ID: HA.6 - Should apply the correct styles based on color prop", () => {
     const { getByTestId, rerender } = render(
       <HistoryAgent
         log="Test Log"
@@ -139,6 +141,4 @@ describe("Tests for HistoryAgent Component", () => {
     iconContainer = getByTestId('icon').closest('.history-agent__icon-container');
     expect(iconContainer).toHaveClass('history-agent__icon-container--red');
   });
-  
-  
 });

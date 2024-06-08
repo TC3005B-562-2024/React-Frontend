@@ -7,7 +7,7 @@ afterEach(() => {
 });
 
 describe("Tests for ItemSubitem Component", () => {
-        test("The ItemSubitem component renders correctly", () => {
+        test("ID: ISI.1 The ItemSubitem component renders correctly", () => {
                 render(<ItemSubitem title="cocjoc" content="jfijfeijfiej" color={"green"}/>);
                 expect(screen.getByTestId("ItemSubitem")).toBeTruthy();
         });

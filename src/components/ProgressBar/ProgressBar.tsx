@@ -1,59 +1,45 @@
 import React from 'react';
 import { IProgressBar } from './types';
-import './ProgressBar.css';
+import './ProgressBar.css'; // Make sure this file exists with your styles
 import classNames from 'classnames';
 
-/**
- * A progress bar component that displays a progress bar with a label and a percentage value.
- * @param progress - The progress value of the progress bar.
- * @param color - The color of the progress bar. Can be 'green', 'yellow', or 'red'.
- * @param label - The label of the progress bar.
- * 
- * @example
- * <ProgressBar progress={50} color='green' label='Agent Name' />
- */
-const ProgressBar: React.FC<IProgressBar> = ({ progress, color, label, hasShadow = true }) => {
-    if (progress < 0 || progress > 100) throw new Error('Progress value must be between 0 and 100');
-    if (!color) {
-        if (progress < 40) color = 'red';
-        else if (progress < 80) color = 'yellow';
-        else color = 'green';
+const ProgressBar: React.FC<IProgressBar> = ({
+    progress,
+    color,
+    label = "Progress", 
+    hasShadow = true,
+}) => {
+    // Check for valid progress and return null if not valid
+    if (typeof progress !== 'number' || isNaN(progress) || progress < 0 || progress > 100) {
+        return null; 
     }
 
-    const textColorClass = classNames({
-        'text-aci-green': color === 'green',
-        'text-aci-yellow': color === 'yellow',
-        'text-aci-red': color === 'red',
-    });
+    const validColors = ['green', 'yellow', 'red'];
+    if (!color || !validColors.includes(color)) {
+        color = progress < 40 ? 'red' : progress < 80 ? 'yellow' : 'green';
+    }
 
-    const bgColorClass = classNames({
-        'bg-aci-green': color === 'green',
-        'bg-aci-yellow': color === 'yellow',
-        'bg-aci-red': color === 'red',
-    });
-
-    const mainCardClasses = classNames({
-        'progress-bar': true,
+    const mainCardClasses = classNames('progress-bar', {
         'progress-bar--shadow': hasShadow,
     });
 
-    const valueClasses = classNames(textColorClass, 'progress-bar__info__value');
-    const progressClass = classNames(bgColorClass, 'progress-bar__bar--progress');
-
-
     return (
-        <div className={mainCardClasses}>
-
+        <div data-testid="progress-bar-container" className={mainCardClasses}>
             <div className="progress-bar__info">
-                <span className="progress-bar__info__label" >{label}</span>
-                <span className={valueClasses} >{progress}%</span>
-            </div>
-            <div className="progress-bar__bar">
-                <div
-                    className={progressClass}
-                    style={{ width: `${progress}%` }}
+                {label && <span data-testid="progress-bar-label" className="progress-bar__info__label">{label}</span>}
+                <span 
+                    className={classNames('progress-bar__info__value', `text-aci-${color}`)}
+                    data-testid="progress-bar-value"
                 >
-                </div>
+                    {progress}%
+                </span>
+            </div>
+            <div className="progress-bar__bar" data-testid="progress-bar">
+                <div
+                    className={classNames('progress-bar__bar--progress', `bg-aci-${color}`)}
+                    style={{ width: `${progress}%` }}
+                    data-testid="progress-bar-fill" 
+                />
             </div>
         </div>
     );

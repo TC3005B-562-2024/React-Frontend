@@ -51,6 +51,7 @@ const Landing: React.FC = () => {
       setLoading(false);
     });
   }, []);
+  
   const handleSearch = (searchRegex: RegExp) => {
     const filteredData = agents.filter(item => {
       return searchRegex.test(item.name); // Adjust properties as needed
@@ -62,9 +63,9 @@ const Landing: React.FC = () => {
     const newSelectedFilters = newOptions
       .filter(option => option.isSelected)
       .map(option => option.label);
-
-    setSelectedFilters(newSelectedFilters); // Update selected filters state
-    filterDisplayedData(newSelectedFilters); 
+  
+    setSelectedFilters(newSelectedFilters);
+    filterDisplayedData(newSelectedFilters);
   };
 
   const filterDisplayedData = (queueFilters: string[]) => {
@@ -121,7 +122,7 @@ const Landing: React.FC = () => {
               key={agent.id}
               id={agent.id}
               name={agent.name}
-              sentiment={agent.sentiment}
+              sentiment={agent.sentiment as "POSITIVE" | "NEUTRAL" | "NEGATIVE" | null | undefined}
               queues={agent.queues.map(queue => queue.name)}
               status={agent.status}
               topPriorityAlert={agent.topPriorityAlert}
