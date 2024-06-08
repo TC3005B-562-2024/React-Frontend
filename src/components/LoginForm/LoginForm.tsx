@@ -27,7 +27,7 @@ const LoginForm: React.FC<ILoginForm> = ({ status, onSubmit }) => {
   }
 
   return (
-    <div className='login-form__conatiner'>
+    <div data-testid="Login-Form" className='login-form__conatiner'>
       <div className='login-form__conatiner__header'>
         <p className='login-form__conatiner__header__title'>
           LOGIN
