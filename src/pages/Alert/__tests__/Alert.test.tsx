@@ -1,155 +1,239 @@
-import { render, screen, waitFor, cleanup, fireEvent } from '@testing-library/react';
+import React from 'react';
+import { render, screen, waitFor, fireEvent, act } from '@testing-library/react';
+import { BrowserRouter as Router } from 'react-router-dom';
 import Alert from '../Alert';
-import { BrowserRouter } from 'react-router-dom';
-import * as serviceModule from '../../../services';
-import { IAlert } from '../../../services/alerts/types';
-import { IAgentInformation } from '../../../services/agents/types';
+import { getAlertById, postIgnoreAlert, postAcceptAlert } from '../../../services';
+import { getQueueInfo } from '../../../services/queue/getQueueInfo';
+import { getSkillById } from '../../../services/skills/getSkillById';
+import { getAgentById } from '../../../services/agents/getAgentById';
 
-afterEach(() => {
-  jest.restoreAllMocks();
-  cleanup();
-});
-
-beforeAll(() => {
-  global.console = { ...console };
-  console.error = jest.fn();
-});
-
-afterAll(() => {
-  console.error = global.console.error;
-});
-
+// Mock react-router-dom hooks
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
-  useParams: () => ({ id: '123' }),
   useNavigate: jest.fn(),
+  useParams: jest.fn(),
 }));
 
-jest.mock('../../../services');
+// Mock service functions
+jest.mock('../../../services', () => ({
+  getAlertById: jest.fn(),
+  postIgnoreAlert: jest.fn(),
+  postAcceptAlert: jest.fn(),
+}));
 
-const mockAlert: IAlert = {
-  id: 123,
-  connection: {
-    identifier: 1,
-    denomination: 'Connection Denomination',
-    description: 'Connection Description',
-    dateJoined: new Date(),
-    dateUpdated: new Date(),
-    active: true,
-  },
-  insight: {
-    identifier: 1,
-    category: {
-      identifier: 1,
-      denomination: 'High Priority',
-      description: 'High Priority Description',
-      dateRegistered: new Date(),
-      dateUpdated: new Date(),
-      active: true,
-      priority: 1,
-    },
-    denomination: 'High Risk',
-    description: 'Risk of attrition',
-    dateRegistered: new Date(),
-    dateUpdated: new Date(),
-    active: true,
-    priority: 1,
-  },
-  resource: 'arn:aws:connect:us-east-1:123456789012:instance/instanceId/agent/agentId',
-  dateRegistered: new Date(),
-  dateUpdated: new Date(),
-  solved: false,
-  hasTraining: false,
-  trainingCompleted: false,
-};
+jest.mock('../../../services/queue/getQueueInfo', () => ({
+  getQueueInfo: jest.fn(),
+}));
 
-const mockAgent: IAgentInformation = {
-  id: 'agentId',
-  arn: 'arn:aws:connect:us-east-1:123456789012:instance/instanceId/agent/agentId',
-  information: {
-    sectionTitle: 'General Information',
-    sections: [{ sectionTitle: 'Name', sectionValue: 'Agent123', color: 'green' }],
-  },
-  metrics: {
-    sectionTitle: 'Performance Metrics',
-    sections: [{ sectionTitle: 'Calls Handled', sectionValue: '100', color: 'red' }],
-  },
-  alerts: { high: [], medium: [], low: [] },
-  trainings: [],
-  contactInformationDTO: [],
-  agentInfo: undefined,
-  queues: [],
-};
+jest.mock('../../../services/skills/getSkillById', () => ({
+  getSkillById: jest.fn(),
+}));
 
-describe('Alert Page Tests', () => {
+jest.mock('../../../services/agents/getAgentById', () => ({
+  getAgentById: jest.fn(),
+}));
+
+describe('Alert Component', () => {
+  const mockNavigate = jest.fn();
+  const mockParams = { id: '1' };
+
   beforeEach(() => {
-    (serviceModule.getAlertById as jest.Mock).mockResolvedValue(mockAlert);
-    (serviceModule.getAgentById as jest.Mock).mockResolvedValue(mockAgent);
+    jest.resetAllMocks();
+    (require('react-router-dom').useNavigate as jest.Mock).mockReturnValue(mockNavigate);
+    (require('react-router-dom').useParams as jest.Mock).mockReturnValue(mockParams);
   });
 
-  test('should render the Alert page correctly', async () => {
-    render(
-      <BrowserRouter>
-        <Alert />
-      </BrowserRouter>
-    );
+  test('renders loading state initially', async () => {
+    (getAlertById as jest.Mock).mockImplementation(() => new Promise(() => {}));
 
-    await waitFor(() => {
-      expect(screen.getByText('High Priority')).toBeInTheDocument();
-      expect(screen.getByText('Risk of attrition')).toBeInTheDocument();
+    await act(async () => {
+      render(
+        <Router>
+          <Alert />
+        </Router>
+      );
     });
+
+    expect(screen.getByTestId('loading-spinner')).toBeInTheDocument();
   });
 
-  test('should handle data fetch error', async () => {
-    (serviceModule.getAlertById as jest.Mock).mockRejectedValueOnce(new Error('Failed to fetch'));
+  test('renders alert data', async () => {
+    const mockAlertData = {
+      id: 1,
+      insight: {
+        category: {
+          denomination: 'High'
+        },
+        description: 'Test Alert Description'
+      },
+      resource: 'queue/12345'
+    };
 
-    render(
-      <BrowserRouter>
-        <Alert />
-      </BrowserRouter>
-    );
+    (getAlertById as jest.Mock).mockResolvedValue(mockAlertData);
+    (getQueueInfo as jest.Mock).mockResolvedValue({ information: { sections: [] } });
 
-    await waitFor(() => {
-      expect(console.error).toHaveBeenCalledWith('Error fetching data:', new Error('Failed to fetch'));
+    await act(async () => {
+      render(
+        <Router>
+          <Alert />
+        </Router>
+      );
     });
+
+    await waitFor(() => expect(getAlertById).toHaveBeenCalledWith(1));
+
+    expect(screen.getByText('Test Alert Description')).toBeInTheDocument();
   });
 
-  test('should call ignore and accept handlers', async () => {
-    (serviceModule.postIgnoreAlert as jest.Mock).mockResolvedValue("Success");
-    (serviceModule.postAcceptAlert as jest.Mock).mockResolvedValue("Success");
+  test('handles ignore alert', async () => {
+    const mockAlertData = {
+      id: 1,
+      insight: {
+        category: {
+          denomination: 'High'
+        },
+        description: 'Test Alert Description'
+      },
+      resource: 'queue/12345'
+    };
 
-    const mockNavigate = jest.fn();
-    (require('react-router-dom') as any).useNavigate = () => mockNavigate;
+    (getAlertById as jest.Mock).mockResolvedValue(mockAlertData);
+    (getQueueInfo as jest.Mock).mockResolvedValue({ information: { sections: [] } });
 
-    render(
-      <BrowserRouter>
-        <Alert />
-      </BrowserRouter>
-    );
-
-    await waitFor(() => {
-      expect(screen.getByText('Ignore')).toBeInTheDocument();
+    await act(async () => {
+      render(
+        <Router>
+          <Alert />
+        </Router>
+      );
     });
+
+    await waitFor(() => expect(getAlertById).toHaveBeenCalledWith(1));
 
     fireEvent.click(screen.getByText('Ignore'));
-    expect(serviceModule.postIgnoreAlert).toHaveBeenCalledWith(123);
-    expect(mockNavigate).toHaveBeenCalledWith(-1);
 
-    fireEvent.click(screen.getByText('Accept'));
-    expect(serviceModule.postAcceptAlert).toHaveBeenCalledWith(123);
+    await waitFor(() => expect(postIgnoreAlert).toHaveBeenCalledWith(1));
     expect(mockNavigate).toHaveBeenCalledWith(-1);
   });
 
-  test('should display the agent information', async () => {
-    render(
-      <BrowserRouter>
-        <Alert />
-      </BrowserRouter>
-    );
+  test('handles accept alert', async () => {
+    const mockAlertData = {
+      id: 1,
+      insight: {
+        category: {
+          denomination: 'High'
+        },
+        description: 'Test Alert Description'
+      },
+      resource: 'queue/12345'
+    };
 
-    await waitFor(() => {
-      expect(screen.getByText('Agent123')).toBeInTheDocument();
-      expect(screen.getByText('Name')).toBeInTheDocument();
+    (getAlertById as jest.Mock).mockResolvedValue(mockAlertData);
+    (getQueueInfo as jest.Mock).mockResolvedValue({ information: { sections: [] } });
+
+    await act(async () => {
+      render(
+        <Router>
+          <Alert />
+        </Router>
+      );
     });
+
+    await waitFor(() => expect(getAlertById).toHaveBeenCalledWith(1));
+
+    fireEvent.click(screen.getByText('Accept'));
+
+    await waitFor(() => expect(postAcceptAlert).toHaveBeenCalledWith(1));
+    expect(mockNavigate).toHaveBeenCalledWith(-1);
+  });
+
+  test('handles error state', async () => {
+    const consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
+    (getAlertById as jest.Mock).mockRejectedValue(new Error('Failed to fetch alert'));
+
+    await act(async () => {
+      render(
+        <Router>
+          <Alert />
+        </Router>
+      );
+    });
+
+    await waitFor(() => expect(getAlertById).toHaveBeenCalledWith(1));
+
+    expect(screen.getByText('Error fetching data')).toBeInTheDocument();
+    consoleErrorSpy.mockRestore();
+  });
+
+  test('handles routing-profile resourceArn', async () => {
+    const mockAlertData = {
+      id: 1,
+      insight: {
+        category: {
+          denomination: 'High'
+        },
+        description: 'Test Alert Description'
+      },
+      resource: 'routing-profile/12345'
+    };
+    const mockSkillData = {
+      skillsInformationDTO: {
+        sections: [
+          { sectionTitle: 'Skill Section', sectionValue: 'Skill Value', color: 'black' }
+        ]
+      }
+    };
+
+    (getAlertById as jest.Mock).mockResolvedValue(mockAlertData);
+    (getSkillById as jest.Mock).mockResolvedValue(mockSkillData);
+
+    await act(async () => {
+      render(
+        <Router>
+          <Alert />
+        </Router>
+      );
+    });
+
+    await waitFor(() => expect(getAlertById).toHaveBeenCalledWith(1));
+
+    expect(screen.getByText('Test Alert Description')).toBeInTheDocument();
+    expect(screen.getByText('Skill Section')).toBeInTheDocument();
+  });
+
+  test('handles agent resourceArn', async () => {
+    const mockAlertData = {
+      id: 1,
+      insight: {
+        category: {
+          denomination: 'High'
+        },
+        description: 'Test Alert Description'
+      },
+      resource: 'agent/12345'
+    };
+    const mockAgentData = {
+      information: {
+        sections: [
+          { sectionTitle: 'Agent Section', sectionValue: 'Agent Value', color: 'black' }
+        ]
+      }
+    };
+
+    (getAlertById as jest.Mock).mockResolvedValue(mockAlertData);
+    (getAgentById as jest.Mock).mockResolvedValue(mockAgentData);
+
+    await act(async () => {
+      render(
+        <Router>
+          <Alert />
+        </Router>
+      );
+    });
+
+    await waitFor(() => expect(getAlertById).toHaveBeenCalledWith(1));
+
+    expect(screen.getByText('Test Alert Description')).toBeInTheDocument();
+    expect(screen.getByText('Agent Section')).toBeInTheDocument();
   });
 });
