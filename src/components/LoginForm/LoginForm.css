@@ -1,32 +1,37 @@
-.login-form__conatiner {
+.login-form__container {
   @apply flex flex-col space-y-10 p-4 w-full max-w-md mb-0 m-auto justify-center;
   height: 90vh;
 }
 
-.login-form__conatiner__header {
+.login-form__container__header {
   @apply flex flex-col items-center;
 }
 
-.login-form__conatiner__header__title {
+.login-form__container__header__title {
   @apply text-2xl lg:text-3xl font-bold;
 }
 
-.login-form__conatiner__header__subtitle {
+.login-form__container__header__subtitle {
   @apply flex text-base lg:text-lg gap-1 whitespace-nowrap;
 }
 
-.login-form__conatiner__header__subtitle--yellow {
+.login-form__container__header__subtitle--yellow {
   @apply text-base lg:text-lg text-yellow-500;
 }
 
-.login-form__conatiner__form-container {
+.login-form__container__form-container {
   @apply px-6;
 }
 
-.login-form__conatiner__form-container-form {
+.login-form__container__form-container-form {
   @apply flex flex-col space-y-5;
 }
 
-.login-form__conatiner__form-container-form__button {
+.login-form__container__form-container-form__button {
   @apply bg-yellow-500 hover:bg-yellow-600 w-full text-white font-bold py-1 lg:py-2 px-4 rounded-md focus:outline-none
 }
+
+.login-form__container__form-container-attempts-error{
+  @apply bg-red-400 rounded-xl text-white text-base p-2 w-full flex justify-center items-center;
+}
+
