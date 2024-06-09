@@ -16,6 +16,9 @@ const meta = {
             options: ['default', 'error'],
             control: { type: 'select' },
         },
+        attemptsError: {
+            control: { type: 'boolean' },
+        },
     },
     tags: ["autodocs"]
 } satisfies Meta<typeof LoginForm>;
@@ -37,6 +40,7 @@ export const Default: Story = {
         status: 'default',
         onSubmit: handleSubmit,
         onInputChange: handleInputChange,
+        attemptsError: false,
     },
 };
 
@@ -45,5 +49,15 @@ export const Error: Story = {
         status: 'error',
         onSubmit: handleSubmit,
         onInputChange: handleInputChange,
+        attemptsError: false,
+    },
+};
+
+export const AttemptsError: Story = {
+    args: {
+        status: 'error',
+        onSubmit: handleSubmit,
+        onInputChange: handleInputChange,
+        attemptsError: true,
     },
 };

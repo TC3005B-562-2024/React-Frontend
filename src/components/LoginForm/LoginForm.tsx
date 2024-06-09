@@ -6,7 +6,7 @@ import InputField from '../InputField/InputField';
 /**
  * Log in form component, for landing page.
  */
-const LoginForm: React.FC<ILoginForm> = ({ status, onSubmit, onInputChange }) => {
+const LoginForm: React.FC<ILoginForm> = ({ status, onSubmit, onInputChange, attemptsError }) => {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -59,20 +59,20 @@ const LoginForm: React.FC<ILoginForm> = ({ status, onSubmit, onInputChange }) =>
   };
 
   return (
-    <div data-testid="Login-Form" className='login-form__conatiner'>
-      <div className='login-form__conatiner__header'>
-        <p className='login-form__conatiner__header__title'>
+    <div data-testid="Login-Form" className='login-form__container'>
+      <div className='login-form__container__header'>
+        <p className='login-form__container__header__title'>
           LOGIN
         </p>
-        <span className='login-form__conatiner__header__subtitle'>
+        <span className='login-form__container__header__subtitle'>
           Sign in with your
-          <span className='login-form__conatiner__header__subtitle--yellow'> Amazon Connect </span>
+          <span className='login-form__container__header__subtitle--yellow'> Amazon Connect </span>
           credentials
         </span>
       </div>
-      <div className='login-form__conatiner__form-container'>
+      <div className='login-form__container__form-container'>
         <form
-          className="login-form__conatiner__form-container-form"
+          className="login-form__container__form-container-form"
           onSubmit={handleSubmit}>
           <InputField
             id='email'
@@ -98,10 +98,15 @@ const LoginForm: React.FC<ILoginForm> = ({ status, onSubmit, onInputChange }) =>
           />
           <button
             type="submit"
-            className='login-form__conatiner__form-container-form__button'
+            className='login-form__container__form-container-form__button'
           >
             Login
           </button>
+          {attemptsError === true && (
+            <div className="login-form__container__form-container-attempts-error">
+              Too many attempts, please try again later.
+            </div>
+          )}
         </form>
       </div>
     </div>

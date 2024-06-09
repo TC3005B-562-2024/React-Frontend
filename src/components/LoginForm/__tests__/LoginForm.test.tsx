@@ -12,7 +12,7 @@ describe('LoginForm', () => {
   });
 
   test('ID: LF.1 - Renders LoginForm component with all elements', () => {
-    render(<LoginForm status="default" onSubmit={mockOnSubmit} onInputChange={mockOnInputChange} />);
+    render(<LoginForm status="default" onSubmit={mockOnSubmit} onInputChange={mockOnInputChange} attemptsError={false} />);
 
     expect(screen.getByText('LOGIN')).toBeInTheDocument();
     expect(screen.getByPlaceholderText('Enter your email')).toBeInTheDocument();
@@ -21,7 +21,7 @@ describe('LoginForm', () => {
   });
 
   test('ID: LF.2 - Updates input fields on change', () => {
-    render(<LoginForm status="default" onSubmit={mockOnSubmit} onInputChange={mockOnInputChange} />);
+    render(<LoginForm status="default" onSubmit={mockOnSubmit} onInputChange={mockOnInputChange} attemptsError={false} />);
 
     const emailInput = screen.getByPlaceholderText('Enter your email');
     const passwordInput = screen.getByPlaceholderText('Enter your password');
@@ -35,7 +35,7 @@ describe('LoginForm', () => {
   });
 
   test('ID: LF.3 - Calls onSubmit with email and password on form submit', () => {
-    render(<LoginForm status="default" onSubmit={mockOnSubmit} onInputChange={mockOnInputChange} />);
+    render(<LoginForm status="default" onSubmit={mockOnSubmit} onInputChange={mockOnInputChange} attemptsError={false} />);
 
     const emailInput = screen.getByPlaceholderText('Enter your email');
     const passwordInput = screen.getByPlaceholderText('Enter your password');
@@ -49,7 +49,7 @@ describe('LoginForm', () => {
   });
 
   test('ID: LF.4 - Changes input field color to red on error status', () => {
-    render(<LoginForm status="error" onSubmit={mockOnSubmit} onInputChange={mockOnInputChange} />);
+    render(<LoginForm status="error" onSubmit={mockOnSubmit} onInputChange={mockOnInputChange} attemptsError={false} />);
 
     const emailInput = screen.getByPlaceholderText('Enter your email');
     const passwordInput = screen.getByPlaceholderText('Enter your password');
@@ -58,12 +58,12 @@ describe('LoginForm', () => {
   });
 
   test('ID: LF.5 - Shows helper text on error status', () => {
-    render(<LoginForm status="error" onSubmit={mockOnSubmit} onInputChange={mockOnInputChange} />);
+    render(<LoginForm status="error" onSubmit={mockOnSubmit} onInputChange={mockOnInputChange} attemptsError={false} />);
     expect(screen.getByText('Invalid email or password, please try again.')).toBeInTheDocument();
   });
 
   test('ID: LF.6 - Shows empty field helper text', () => {
-    render(<LoginForm status="default" onSubmit={mockOnSubmit} onInputChange={mockOnInputChange} />);
+    render(<LoginForm status="default" onSubmit={mockOnSubmit} onInputChange={mockOnInputChange} attemptsError={false} />);
    
     const emailInput = screen.getByPlaceholderText('Enter your email');
     const passwordInput = screen.getByPlaceholderText('Enter your password');
@@ -78,7 +78,7 @@ describe('LoginForm', () => {
   });
 
   test('ID: LF.7 - Shows email error helper text', () => {
-    render(<LoginForm status="default" onSubmit={mockOnSubmit} onInputChange={mockOnInputChange} />);
+    render(<LoginForm status="default" onSubmit={mockOnSubmit} onInputChange={mockOnInputChange} attemptsError={false} />);
 
     const emailInput = screen.getByPlaceholderText('Enter your email');
     const submitButton = screen.getByText('Login');

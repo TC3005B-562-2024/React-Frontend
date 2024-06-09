@@ -11,4 +11,8 @@ export interface ILoginForm {
    * Function to be called when any input value changes.
    */
   onInputChange: () => void;
+  /**
+   * If the user has made too many attempts to log in.
+   */
+  attemptsError: boolean;
 }
