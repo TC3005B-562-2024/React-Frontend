@@ -23,7 +23,8 @@ const Alert: React.FC = () => {
     const [skill, setSkill] = useState<ISkillById>();
     const [agent, setAgent] = useState<IAgentInformation>();
     const [isLoading, setIsLoading] = useState<boolean>(true);
-    
+    const [error, setError] = useState<string | null>(null);
+
     const goBack = () => {
         navigate(-1);
     };
@@ -45,10 +46,10 @@ const Alert: React.FC = () => {
                 if (alertData !== null) {
                     setAlertInfo(alertData);
                     const resourceArn = alertData.resource; // Use resource field to get queue ARN
-    
+
                     if (resourceArn) {
                         const resourceId = resourceArn.split('/').pop();
-    
+
                         if (resourceId) {
                             if (resourceArn.includes('routing-profile')) {
                                 const skillData = await getSkillById(resourceId);
@@ -61,7 +62,7 @@ const Alert: React.FC = () => {
                                     setQueue(queueData);
                                 }
                             } else if (resourceArn.includes('agent')) {
-                                
+
                                 const agentData = await getAgentById(resourceId);
                                 if (agentData !== null) {
                                      setAgent(agentData);
@@ -74,24 +75,32 @@ const Alert: React.FC = () => {
                 }
             } catch (err) {
                 console.error('Error fetching data:', err);
+                setError('Error fetching data');
+                setIsLoading(false);
             }
         };
-    
+
         fetchAlertData(numberId);
     }, [numberId]);
-    
-    
+
+    if (isLoading) {
+        return <div data-testid="loading-spinner">Loading...</div>;
+    }
+
+    if (error) {
+        return <div>{error}</div>;
+    }
 
     return (
         <div>
             {alertInfo && (
                 <>
                     <InsightDescription priority={alertInfo.insight.category.denomination as PriorityType} alertId={numberId} description={alertInfo.insight.description} />
-                    
+
                     <div className='mt-5'>
 
                         {isLoading && <InfoLoader />}
-                        
+
                         {queue && (
                             <InformationBar
                                 title='Information'

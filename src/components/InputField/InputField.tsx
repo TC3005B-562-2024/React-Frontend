@@ -8,7 +8,7 @@ import { IconNames } from '../Icon/types';
 /**
  * Input Field component.
  */
-const InputField: React.FC<IInputField & { onChange: (id: string, value: string) => void }> = ({ id, type, label, labelPosition, helperText, placeholder, color, onChange }) => {
+const InputField: React.FC<IInputField & { onChange: (id: string, value: string) => void }> = ({ id, type, label, labelPosition, helperText, placeholder, required, color, onChange }) => {
   const inputClasses = classNames({
     'input-field__container__input-container__input': true,
     'input-field__container__input-container__input--black': color === 'black',
@@ -52,7 +52,7 @@ const InputField: React.FC<IInputField & { onChange: (id: string, value: string)
           value={value}
           onChange={handleChange}
           placeholder={placeholder}
-          required
+          required = {required}
           data-testid={`input-${id}`}
         />
         {type === 'secret' && (
