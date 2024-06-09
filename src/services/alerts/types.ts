@@ -57,3 +57,7 @@ export interface Training {
   dateUpdated: Date;
   active: boolean;
 }
+
+export interface IHighPriorityAlert {
+  highestPriorityAlert: string | null;
+}
