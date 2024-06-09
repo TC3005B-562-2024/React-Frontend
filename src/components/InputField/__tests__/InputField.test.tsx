@@ -14,6 +14,7 @@ describe('InputField component', () => {
         labelPosition="left"
         helperText="Helper text"
         placeholder="Enter text"
+        required={false}
         color="black"
         onChange={mockOnChange}
       />
@@ -33,6 +34,7 @@ describe('InputField component', () => {
         labelPosition="left"
         helperText="Helper text"
         placeholder="Enter text"
+        required={false}
         color="black"
         onChange={mockOnChange}
       />
@@ -53,6 +55,7 @@ describe('InputField component', () => {
         labelPosition="left"
         helperText="Helper text"
         placeholder="Enter password"
+        required={false}
         color="black"
         onChange={mockOnChange}
       />
@@ -76,6 +79,7 @@ describe('InputField component', () => {
         labelPosition="left"
         helperText="Helper text"
         placeholder="Enter text"
+        required={false}
         color="black"
         onChange={mockOnChange}
       />
@@ -94,6 +98,7 @@ describe('InputField component', () => {
         labelPosition="left"
         helperText="Helper text"
         placeholder="Enter text"
+        required={false}
         color="red"
         onChange={mockOnChange}
       />

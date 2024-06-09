@@ -12,6 +12,8 @@ const Login: React.FC = () => {
   const navigate = useNavigate();
   const { login, loadingContext } = useAppContext();
 
+  const resetFormStatus = () => setFormStatus('default');
+
   const handleSignIn = async (email: string, password: string) => {
     try {
       await login(email, password);
@@ -28,7 +30,7 @@ const Login: React.FC = () => {
 
   return (
     <div className='MainLoginComponent'>
-      <LoginForm onSubmit={handleSignIn} status={formStatus} />
+      <LoginForm onSubmit={handleSignIn} status={formStatus} onInputChange={resetFormStatus} />
     </div>
   );
 };

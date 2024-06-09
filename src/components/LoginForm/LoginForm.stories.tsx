@@ -28,10 +28,15 @@ const handleSubmit = (email: string, password: string) => {
   console.log("Submitted password:", password);
 };
 
+const handleInputChange = () => {
+  console.log('Input changed, resetting status to default...');
+};
+
 export const Default: Story = {
     args: {
         status: 'default',
         onSubmit: handleSubmit,
+        onInputChange: handleInputChange,
     },
 };
 
@@ -39,5 +44,6 @@ export const Error: Story = {
     args: {
         status: 'error',
         onSubmit: handleSubmit,
+        onInputChange: handleInputChange,
     },
 };
