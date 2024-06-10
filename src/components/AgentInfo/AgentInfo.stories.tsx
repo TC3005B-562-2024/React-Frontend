@@ -42,7 +42,8 @@ AgentInfoNegativeOnCallCritical.args = {
   id: '1',
   name: 'John Doe',
   sentiment: 'NEGATIVE',
-  queues: ['skill1', 'skill2', 'skill3', 'skill4', 'skill5', 'skill6'],
+  queues: [{ name: 'skill1', id:'1' }, { name: 'skill2', id:'2' }, { name: 'skill3', id:'3' },
+  { name: 'skill4', id:'4' }, { name: 'skill5', id:'5' }, { name: 'skill6', id:'6' }],
   status: 'ONCALL',
   topPriorityAlert: 'CRITICAL',
 };
@@ -55,7 +56,7 @@ AgentInfoPositiveAvailableMedium.args = {
   id: '1',
   name: 'John Doe',
   sentiment: 'POSITIVE',
-  queues: ['skill1', 'skill2', 'skill3'],
+  queues: [{ name: 'skill1', id:'1' }, { name: 'skill2', id:'2' }, { name: 'skill3', id:'3' }],
   status: 'Available',
   topPriorityAlert: 'MEDIUM',
 };
@@ -68,7 +69,7 @@ AgentInfoNeutralDisconnectedLow.args = {
   id: '1',
   name: 'John Doe',
   sentiment: 'NEUTRAL',
-  queues: ['skill1'],
+  queues: [{ name: 'skill1', id:'1' }],
   status: 'DISCONNECTED',
   topPriorityAlert: 'LOW',
 };

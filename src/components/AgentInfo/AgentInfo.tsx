@@ -68,11 +68,11 @@ const AgentInfo: React.FC<IAgentInfo> = ({ id, name, sentiment, queues, status, 
       <div className="agent-info__content__skills">
         {queues.map((queue, index) => (
           <Pill
-            key={queue}
-            text={queue}
+            key={queue.id}
+            text={queue.name}
             color={skillColors[index % skillColors.length] as 'green' | 'yellow' | 'blue' | 'red' | 'orange' | 'gray'} // Assign color based on skill
             className="agent-info__content__skills__pill"
-            id={queue}
+            id={queue.id}
           />
         ))}
       </div>
