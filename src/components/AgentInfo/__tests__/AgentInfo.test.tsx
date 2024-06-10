@@ -1,5 +1,4 @@
-import React from 'react';
-import { render, fireEvent, cleanup, screen } from '@testing-library/react';
+import { cleanup, fireEvent, render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import AgentInfo from '../AgentInfo';
 import { IAgentInfo } from '../types';
@@ -13,7 +12,7 @@ describe('AgentInfo Component', () => {
     id: '1',
     name: 'John Doe',
     sentiment: 'POSITIVE',
-    queues: ['skill1', 'skill2'],
+    queues: [{ name: 'skill1', id:'1' }, { name: 'skill2', id:'2' }],
     status: 'Available',
     topPriorityAlert: 'MEDIUM',
   };
