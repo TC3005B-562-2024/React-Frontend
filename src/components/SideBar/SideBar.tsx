@@ -83,6 +83,14 @@ const SideBar: React.FC<ISideBar> = ({ skills }) => {
 
         </div>
         <div className='side-bar__container__elements-container__lowe-container'>
+        <SideBarElement
+            key={ROUTES.PLOTS.name}
+            label={ROUTES.PLOTS.name}
+            isSection={true}
+            icon={{ iconName: IconNames.BarChart }}
+            path={ROUTES.PLOTS.path}
+            isExpanded={isExpanded}
+          />
           <SideBarElement
             key={ROUTES.LOGS.name}
             label={ROUTES.LOGS.name}

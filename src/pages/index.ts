@@ -6,3 +6,4 @@ export { Alerts } from './Alerts';
 export { Alert } from './Alert';
 export { Logs } from './Logs';
 export { Login } from './login';
+export { Plots } from './Plots';
