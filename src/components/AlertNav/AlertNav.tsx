@@ -93,6 +93,7 @@ const AlertNav: React.FC<IAlertNav> = ({ instanceId }) => {
         onClick={() => {
           navigate('/alerts')
         }}
+        data-testid='alert-nav-alerts-button'
       >
 
         {alertPriority !== null && (

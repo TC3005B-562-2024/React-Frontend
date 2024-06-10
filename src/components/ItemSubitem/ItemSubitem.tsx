@@ -25,7 +25,7 @@ const ItemSubitem: React.FC<IItemSubitem> = ({
     return (
         <div data-testid="ItemSubitem" className={parentClasses}>
             {title}
-            <div className={classes}>
+            <div className={classes} data-testid="ItemSubitem-content">
                 {content}
             </div>
         </div>

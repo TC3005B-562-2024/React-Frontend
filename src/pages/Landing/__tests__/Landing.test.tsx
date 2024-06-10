@@ -195,7 +195,7 @@ describe("Tests for Landing Page", () => {
     userEvent.click(filtersComponent.querySelector('button')!);
 
     // 2. Wait for the Specific Checkbox to Be Visible
-    const basicQueueCheckbox = await screen.findByLabelText(Queue.BasicQueue); // Wait for this specific checkbox
+    const basicQueueCheckbox = await screen.findByTestId('multiselect-option-checkbox-BasicQueue');
 
     // 3. Click the Checkbox and Verify Filtering
     userEvent.click(basicQueueCheckbox);

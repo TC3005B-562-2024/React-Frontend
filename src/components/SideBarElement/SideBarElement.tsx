@@ -40,7 +40,7 @@ const SideBarElement: React.FC<ISideBarElement> = ({ label, isSection = false, i
   );
 
   return path ? (
-    <Link to={path} className={containerClasses} onClick={handleClick} data-testid='side-bar-element__link'>
+    <Link to={path} className={containerClasses} onClick={handleClick} data-testid={`side-bar-element-${label}`}>
       {renderContent()}
       {isSection && <hr />}
     </Link>

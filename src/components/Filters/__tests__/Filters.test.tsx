@@ -54,7 +54,7 @@ describe("Tests for Filters Component", () => {
         // Click the button to show the Multiselect component
         fireEvent.click(button);
         expect(screen.getByTestId("filter-wrapper__multiselect")).toBeInTheDocument();
-        expect(screen.getAllByTestId('filter-wrapper__multiselect__options')).toHaveLength(mockOptions.length);
+        expect(screen.getAllByRole('checkbox')).toHaveLength(mockOptions.length);
     });
 
     test("ID: F.Filters.3 - Should call onFilterChange with updated options when Multiselect changes", async () => {
@@ -62,8 +62,8 @@ describe("Tests for Filters Component", () => {
         const button = screen.getByTestId("aci-button");
         fireEvent.click(button);
 
-        const option = screen.getAllByTestId("filter-wrapper__multiselect__options");
-        fireEvent.click(option[0]);
+        const option = screen.getByTestId("multiselect-option-checkbox-Option 1");
+        fireEvent.click(option);
 
         expect(mockOnFilterChange).toHaveBeenCalledTimes(1);
     });

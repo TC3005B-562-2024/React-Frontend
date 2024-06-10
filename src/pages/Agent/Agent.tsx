@@ -176,7 +176,7 @@ const Agent: React.FC = () => {
               {training.label}
             </div>
             <div className='flex items-center my-4 mr-4'>
-            <button className='h-5 w-5' onClick={() => handleOnClick(index)} disabled={loadingTU}>
+            <button className='h-5 w-5' onClick={() => handleOnClick(index)} disabled={loadingTU} data-testid='training-button'>
               <Icon iconName={training.isComplete ? IconNames.CheckCircleFill : IconNames.RadioButtonUnchecked} color='green' />
             </button>
             </div>
