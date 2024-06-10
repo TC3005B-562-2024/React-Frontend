@@ -123,7 +123,7 @@ const Landing: React.FC = () => {
               id={agent.id}
               name={agent.name}
               sentiment={agent.sentiment as "POSITIVE" | "NEUTRAL" | "NEGATIVE" | null | undefined}
-              queues={agent.queues.map(queue => queue.name)}
+              queues={agent.queues}
               status={agent.status}
               topPriorityAlert={agent.topPriorityAlert}
             />

@@ -1,3 +1,5 @@
+import { IQueueMin } from "../../services/skills/types";
+
 export interface IAgentInfo {
   /**
    * The id of the agent.
@@ -14,7 +16,7 @@ export interface IAgentInfo {
   /**
    * The queues of the agent.
    */
-  queues: Array<string>;
+  queues: IQueueMin[];
   /**
    * The status of the agent.
    */

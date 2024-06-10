@@ -5,3 +5,5 @@ export { getQueueInfo, getAllQueuesMin } from './queue';
 export { getAllAgents, getAgentById } from './agents';
 export { getSkillInfo } from './skillInfo/getSkillInfo';
 export { putTrainingsOfAgent } from './trainings/putTrainingsOfAgent';
+export { getInsightCategoryCount } from './alerts/getInsightCategoryCount';
+export { getTrainingCount } from './alerts/getTrainingCount';

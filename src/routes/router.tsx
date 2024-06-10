@@ -1,4 +1,4 @@
-import { Agent, Queue, Skill, Landing, Alerts, Alert, Logs, Login } from "../pages";
+import { Agent, Queue, Skill, Landing, Alerts, Alert, Logs, Login, Plots } from "../pages";
 import { Navigate, RouteObject, createBrowserRouter } from 'react-router-dom';
 
 import PrivateRouter from './PrivateRouter';
@@ -24,6 +24,7 @@ export const AppRouter = () => {
             { path: ROUTES.LANDING.path, element: <Landing /> },
             { path: ROUTES.ALERTS.path, element: <Alerts /> },
             { path: ROUTES.LOGS.path, element: <Logs /> },
+            { path: ROUTES.PLOTS.path, element: <Plots /> },
         ],
     },
     {

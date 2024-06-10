@@ -150,7 +150,7 @@ const Skill: React.FC = () => {
                       id={agent.id}
                       name={agent.name}
                       sentiment={agent.sentiment}
-                      queues={agent.queues.map(queue => queue.name)}
+                      queues={agent.queues}
                       status={agent.status as "ONCALL" | "Available" | "DISCONNECTED" | null}
                       topPriorityAlert={agent.topPriorityAlert}
                     />
