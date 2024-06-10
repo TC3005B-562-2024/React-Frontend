@@ -1,10 +1,10 @@
-import React, { useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { InformationBar, ProgressCard, ErrorCard, AlertExpansionPanel, AgentInfo, InfoLoader } from '../../components';
+import { TitleCase, noUndersocore } from '../../Utils/utils';
+import { AgentInfo, AlertExpansionPanel, ErrorCard, InfoLoader, InformationBar, ProgressCard } from '../../components';
+import { IAlertCard } from '../../components/AlertCard/types';
 import { getQueueInfo } from '../../services';
 import { IQueueInformation } from '../../services/queue/types';
-import { IAlertCard } from '../../components/AlertCard/types';
-import { shortId, noUndersocore, TitleCase } from '../../Utils/utils';
 import './Queue.css';
 
 const Queue: React.FC = () => {
@@ -33,7 +33,10 @@ const Queue: React.FC = () => {
   return (
     <div className='px-2 mb-3'>
       <span data-testid="queue-title" className='queue__sections-text'>
-        Queue: <span data-testid="queue-title-id" className=' text-aci-orange'>{shortId(id ?? '')}</span>
+        Queue: {loading ? 
+        (<div/>) :
+        (<span data-testid="queue-title-id" className=' text-aci-orange'>{queueInfo?.information.sections && (queueInfo.information.sections[0].sectionValue ?? '')}</span>)
+        }
       </span>
       {loading ?
         (<InfoLoader testId='infoloader'/>) :
@@ -161,7 +164,7 @@ const Queue: React.FC = () => {
                   id={agent.id}
                   name={agent.name}
                   sentiment={agent.sentiment}
-                  queues={agent.queues.map(queue => queue.name)}
+                  queues={agent.queues}
                   status={agent.status as "ONCALL" | "Available" | "DISCONNECTED" | null}
                   topPriorityAlert={agent.topPriorityAlert}
                 />
