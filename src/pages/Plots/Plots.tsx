@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Bar, Pie } from "react-chartjs-2";
+import { getInsightCategoryCount, getTrainingCount } from "../../services";
+
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -22,19 +24,100 @@ ChartJS.register(
 );
 
 const Plots: React.FC = () => {
-  const barData = () => ({
-    labels: ["January", "February", "March", "April", "May", "June", "July"],
+  const [insightCategoryCountData, setInsightCategoryCountData] = useState<any>(
+    []
+  );
+  const [trainingCountData, setTrainingCountData] = useState<any>([]);
+
+  const completedTrainingsOfAlertsByInsightAndCategory = () => ({
+    labels: insightCategoryCountData.map(
+      (item: any) =>
+        `${item?.categoryDenomination} / ${item?.insightDenomination}`
+    ),
     datasets: [
       {
         label: "Complete",
-        data: [12, 19, 3, 5, 2, 3, 7],
+        data: insightCategoryCountData.map(
+          (item: any) => item?.trainingCompletedCount
+        ),
         backgroundColor: "rgba(75, 192, 192, 0.2)",
         borderColor: "rgba(75, 192, 192, 1)",
         borderWidth: 1,
       },
       {
         label: "Incomplete",
-        data: [5, 10, 13, 8, 15, 8, 5],
+        data: insightCategoryCountData.map(
+          (item: any) => item?.trainingCompletedDifference
+        ),
+        backgroundColor: "rgba(153, 102, 255, 0.2)",
+        borderColor: "rgba(153, 102, 255, 1)",
+        borderWidth: 1,
+      },
+    ],
+  });
+
+  const completedTrainingsOfAlertsByTraining = () => ({
+    labels: trainingCountData.map((item: any) => item?.denomination),
+    datasets: [
+      {
+        label: "Complete",
+        data: trainingCountData.map(
+          (item: any) => item?.trainingCompletedCount
+        ),
+        backgroundColor: "rgba(75, 192, 192, 0.2)",
+        borderColor: "rgba(75, 192, 192, 1)",
+        borderWidth: 1,
+      },
+      {
+        label: "Incomplete",
+        data: trainingCountData.map(
+          (item: any) => item?.trainingCompletedDifference
+        ),
+        backgroundColor: "rgba(153, 102, 255, 0.2)",
+        borderColor: "rgba(153, 102, 255, 1)",
+        borderWidth: 1,
+      },
+    ],
+  });
+
+  const solvedAlertsByInsightAndCategory = () => ({
+    labels: insightCategoryCountData.map(
+      (item: any) =>
+        `${item?.categoryDenomination} / ${item?.insightDenomination}`
+    ),
+    datasets: [
+      {
+        label: "Complete",
+        data: insightCategoryCountData.map((item: any) => item?.solvedCount),
+        backgroundColor: "rgba(75, 192, 192, 0.2)",
+        borderColor: "rgba(75, 192, 192, 1)",
+        borderWidth: 1,
+      },
+      {
+        label: "Incomplete",
+        data: insightCategoryCountData.map(
+          (item: any) => item?.solvedDifference
+        ),
+        backgroundColor: "rgba(153, 102, 255, 0.2)",
+        borderColor: "rgba(153, 102, 255, 1)",
+        borderWidth: 1,
+      },
+    ],
+  });
+
+  const solvedAlertsByTraining = () => ({
+    labels: trainingCountData.map((item: any) => item?.denomination),
+    datasets: [
+      {
+        label: "Complete",
+        data: trainingCountData.map((item: any) => item?.solvedCount),
+        backgroundColor: "rgba(75, 192, 192, 0.2)",
+        borderColor: "rgba(75, 192, 192, 1)",
+        borderWidth: 1,
+      },
+      {
+        label: "Incomplete",
+        data: trainingCountData.map((item: any) => item?.solvedDifference),
         backgroundColor: "rgba(153, 102, 255, 0.2)",
         borderColor: "rgba(153, 102, 255, 1)",
         borderWidth: 1,
@@ -94,12 +177,42 @@ const Plots: React.FC = () => {
     },
   };
 
-  const pieData = {
-    labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+  const totalAlertsByInsightAndCategoryPlot = {
+    labels: insightCategoryCountData.map(
+      (item: any) =>
+        `${item?.categoryDenomination} / ${item?.insightDenomination}`
+    ),
     datasets: [
       {
-        label: "# of Votes",
-        data: [12, 19, 3, 5, 2, 3],
+        label: "Total count",
+        data: insightCategoryCountData.map((item: any) => item?.groupCount),
+        backgroundColor: [
+          "rgba(255, 99, 132, 0.2)",
+          "rgba(54, 162, 235, 0.2)",
+          "rgba(255, 206, 86, 0.2)",
+          "rgba(75, 192, 192, 0.2)",
+          "rgba(153, 102, 255, 0.2)",
+          "rgba(255, 159, 64, 0.2)",
+        ],
+        borderColor: [
+          "rgba(255, 99, 132, 1)",
+          "rgba(54, 162, 235, 1)",
+          "rgba(255, 206, 86, 1)",
+          "rgba(75, 192, 192, 1)",
+          "rgba(153, 102, 255, 1)",
+          "rgba(255, 159, 64, 1)",
+        ],
+        borderWidth: 1,
+      },
+    ],
+  };
+
+  const totalAlertsByTrainingPlot = {
+    labels: trainingCountData.map((item: any) => item?.denomination),
+    datasets: [
+      {
+        label: "Total count",
+        data: trainingCountData.map((item: any) => item?.groupCount),
         backgroundColor: [
           "rgba(255, 99, 132, 0.2)",
           "rgba(54, 162, 235, 0.2)",
@@ -147,8 +260,37 @@ const Plots: React.FC = () => {
     },
   };
 
+  useEffect(() => {
+    const fetchInsightCategoryCountData = async () => {
+      try {
+        const data = await getInsightCategoryCount();
+        setInsightCategoryCountData(data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    const fetchTrainingCountData = async () => {
+      try {
+        const data = await getTrainingCount();
+        setTrainingCountData(data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchInsightCategoryCountData();
+    fetchTrainingCountData();
+  }, []);
+
   return (
-    <div className="min-h-[200px]">
+    <div
+      className="min-h-[200px]"
+      onClick={() => {
+        console.log(insightCategoryCountData);
+        console.log(trainingCountData);
+      }}
+    >
       <div className="text-title font-bold">Plots</div>
       <div
         style={{
@@ -162,21 +304,46 @@ const Plots: React.FC = () => {
           style={{
             display: "flex",
             justifyContent: "space-around",
-            marginBottom: "20px",
+            marginBottom: "100px",
           }}
         >
-          <div style={{ width: "24%" }}>
-            <Pie data={pieData} options={alertInsightCategoryPieOptions} />
+          <div style={{ width: "40%" }}>
+            <Pie
+              data={totalAlertsByInsightAndCategoryPlot}
+              options={alertInsightCategoryPieOptions}
+            />
           </div>
-          <div style={{ width: "24%" }}>
+          <div style={{ width: "40%" }}>
+            <Pie
+              data={totalAlertsByTrainingPlot}
+              options={alertTrainingPieOptions}
+            />
+          </div>
+        </div>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-around",
+            marginBottom: "100px",
+          }}
+        >
+          <div style={{ width: "90%" }}>
             <Bar
-              data={barData()}
+              data={completedTrainingsOfAlertsByInsightAndCategory()}
               options={alertInsightCategoryTrainingCompletedBarOptions}
             />
           </div>
-          <div style={{ width: "24%" }}>
+        </div>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-around",
+            marginBottom: "100px",
+          }}
+        >
+          <div style={{ width: "90%" }}>
             <Bar
-              data={barData()}
+              data={solvedAlertsByInsightAndCategory()}
               options={alertInsightCategorySolvedBarOptions}
             />
           </div>
@@ -185,20 +352,28 @@ const Plots: React.FC = () => {
           style={{
             display: "flex",
             justifyContent: "space-around",
-            marginBottom: "20px",
+            marginBottom: "100px",
           }}
         >
-          <div style={{ width: "24%" }}>
-            <Pie data={pieData} options={alertTrainingPieOptions} />
-          </div>
-          <div style={{ width: "24%" }}>
+          <div style={{ width: "80%" }}>
             <Bar
-              data={barData()}
+              data={completedTrainingsOfAlertsByTraining()}
               options={alertTrainingTrainingCompletedBarOptions}
             />
           </div>
-          <div style={{ width: "24%" }}>
-            <Bar data={barData()} options={alertTrainingSolvedBarOptions} />
+        </div>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-around",
+            marginBottom: "100px",
+          }}
+        >
+          <div style={{ width: "80%" }}>
+            <Bar
+              data={solvedAlertsByTraining()}
+              options={alertTrainingSolvedBarOptions}
+            />
           </div>
         </div>
       </div>
