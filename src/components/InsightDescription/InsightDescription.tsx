@@ -45,7 +45,7 @@ const InsightDescription: React.FC<IInsightDescription> = ({ priority, alertId, 
                     <h1 className="insight-description__container__card__content__priority">
                         {priority}
                     </h1>
-                    <p className="insight-description__container__card__content__description">
+                    <p className="insight-description__container__card__content__description" data-testid="insight-description-description">
                         {description}
                     </p>
                 </div>

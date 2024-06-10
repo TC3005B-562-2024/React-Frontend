@@ -17,6 +17,7 @@ const meta = {
             control: { type: 'select' },
         },
         placeholder: { control: 'text' },
+        required: { control: 'boolean' },
         id: { control: 'text' },
         label: { control: 'text' },
         labelPosition: {
@@ -41,6 +42,7 @@ export const GeneralExample: Story = {
         helperText: 'Please enter your email',
         color: 'yellow',
         placeholder: 'Enter your email',
+        required: false,
         onChange: () => console.log('On change handler.')
     },
 };
@@ -54,6 +56,7 @@ export const PasswordExample: Story = {
         helperText: 'Incorrect password!',
         color: 'green',
         placeholder: 'Enter your password',
+        required: false,
         onChange: () => console.log('On change handler.')
     },
 };

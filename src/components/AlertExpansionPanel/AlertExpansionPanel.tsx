@@ -36,13 +36,13 @@ const AlertExpansionPanel: React.FC<IAlertExpansionPanel> = ({ alerts }) => {
 
   return (
     <div className='alert-expansion-panel__container'>
-      <div className="alert-expansion-panel__container__header" onClick={handlePanelClick}>
+      <div className="alert-expansion-panel__container__header" onClick={handlePanelClick} data-testid="alert-expansion-panel-expand-button">
         {/* Contenedor flex para alinear el texto y el color */}
         <div className="alert-expansion-panel__container__header__contents">
           {/* Barra de color */}
           <div className={priorityClass}></div>
           {/* Texto */}
-          <span className="alert-expansion-panel__container__header__contents__text">
+          <span className="alert-expansion-panel__container__header__contents__text" data-testid="alert-expansion-panel-alert-priority-text">
             {getAlertText(alerts[0]?.alertPriority)}
           </span>
         </div>

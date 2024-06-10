@@ -23,6 +23,10 @@ export interface IInputField {
   * Placeholder text for the input field
   */
   placeholder: string;
+   /**
+  * Set if the input field is required
+  */
+  required: boolean;
   /**
   * The color of the text
   */

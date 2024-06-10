@@ -27,21 +27,25 @@ const SideBarElement: React.FC<ISideBarElement> = ({ label, isSection = false, i
   };
 
   const renderContent = () => (
-    <div className='side-bar-element__container__content'>
+    <div className='side-bar-element__container__content' data-testid='side-bar-element__container__content'>
       <div className='side-bar-element__container__icon'>
         <Icon iconName={icon.iconName} color={isSelected ? 'orange' : 'white'} />
       </div>
-      {isExpanded && <span className={contentClasses}>{label}</span>}
+      {isExpanded && 
+        <span className={contentClasses} data-testid='side-bar-element__container__label'>
+          {label}
+        </span>
+      }
     </div>
   );
 
   return path ? (
-    <Link to={path} className={containerClasses} onClick={handleClick}>
+    <Link to={path} className={containerClasses} onClick={handleClick} data-testid={`side-bar-element-${label}`}>
       {renderContent()}
       {isSection && <hr />}
     </Link>
   ) : (
-    <div className={containerClasses} onClick={handleClick}>
+    <div className={containerClasses} onClick={handleClick} data-testid='side-bar-element__no-link'>
       {renderContent()}
       {isSection && <hr />}
     </div>

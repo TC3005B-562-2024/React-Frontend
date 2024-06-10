@@ -62,34 +62,35 @@ beforeEach(() => {
 });
 
 describe('Logs Page', () => {
-    test('should render loading indicator while fetching logs', async () => {
+    test('ID: Logs.1 should render loading indicator while fetching logs', async () => {
         render(<Logs />);
         expect(screen.getByRole('progressbar')).toBeInTheDocument();
         await waitFor(() => expect(screen.queryByRole('progressbar')).not.toBeInTheDocument());
       });
       
-      test('should render category when fetch is successful', async () => {
+      test('ID: Logs.2 should render category when fetch is successful', async () => {
         render(<Logs />);
         await screen.findByText(/Logs/i);
         const category = await screen.findByText(/CATEGORY 1 ACTION/i);
         expect(category).toBeInTheDocument();
       });
       
-  test('should display error message when fetch fails', async () => {
+  test('ID: Logs.3 should display error message when fetch fails', async () => {
     (getLogs as jest.Mock).mockRejectedValueOnce(new Error('Error fetching logs'));
     render(<Logs />);
-    await waitFor(() => expect(screen.getByText('Error fetching logs')).toBeInTheDocument());
+    await waitFor(() => expect(screen.queryByRole('progressbar')).not.toBeInTheDocument());
+    await screen.findByText('Error fetching logs');
   });
 
-  test('should display no logs message when there are no logs', async () => {
+  test('ID: Logs.4 should display no logs message when there are no logs', async () => {
     (getLogs as jest.Mock).mockResolvedValueOnce({ high: [], medium: [], low: [] });
     render(<Logs />);
-    await waitFor(() => expect(screen.getByText('No logs found')).toBeInTheDocument());
+    expect(await screen.findByText('No logs found')).toBeInTheDocument();
   });
 
-  test('should display no logs message when logs is null', async () => {
+  test('ID: Logs.5 should display no logs message when logs is null', async () => {
     (getLogs as jest.Mock).mockResolvedValueOnce(null);
     render(<Logs />);
-    await waitFor(() => expect(screen.getByText('No logs found')).toBeInTheDocument());
+    expect(await screen.findByText('No logs found')).toBeInTheDocument();
   });
 });
