@@ -19,20 +19,6 @@ const PrivateRouter = () => {
       });
     setLoading(false);
   };
-
-  const getSkills = async () => {
-    await getAllSkills()
-    .then((res) => {
-      setSkillsReceived(res);
-    }) 
-    .catch(() => {
-      setErrorSkills(true);
-    });
-    setLoading(false);
-
-    console.log(loading)
-    console.log(errorSkills)
-  };
     
   useEffect(() => {
     getSkills();
