@@ -37,7 +37,7 @@ jobs:
         fi
 
     - name: Run tests
-      run: yarn test --watchAll=false
+      run: yarn test --watchAll=false --coverage=false
       env:
         CI: true
         REACT_APP_FIREBASE_API_KEY: ${{ secrets.FIREBASE_API_KEY }}

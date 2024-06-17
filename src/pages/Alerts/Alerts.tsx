@@ -87,5 +87,4 @@ const Alerts: React.FC = () => {
     </>
   );
 };
-
 export default Alerts;

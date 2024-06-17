@@ -1,0 +1,23 @@
+.agent-page__container {
+  @apply flex flex-col space-y-3 overflow-hidden pb-5;
+}
+
+.agent-page__container__header {
+  @apply flex flex-row space-x-2;
+}
+
+.agent-page__container__header__text {
+  @apply text-section-title font-semibold;
+}
+
+.agent-page__container__header__text--orange {
+  @apply text-section-title font-semibold text-aci-orange;
+}
+
+.agent-page__container__card-container {
+  @apply px-1 space-y-3;
+}
+
+.agent-page__container__alert-header {
+  @apply text-section-title font-semibold;
+}
