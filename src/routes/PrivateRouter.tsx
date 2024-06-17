@@ -19,7 +19,7 @@ const PrivateRouter = () => {
       });
     setLoading(false);
   };
-    
+
   useEffect(() => {
     getSkills();
   }, []);
