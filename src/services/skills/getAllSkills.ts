@@ -4,7 +4,7 @@ import { ISkillBrief } from "./types";
 export const getAllSkills = async () => {
   let res: ISkillBrief[] = [];
 
-  const endpoint = '/skills?token=""';
+  const endpoint = '/skills';
   await httpInstance
   .get(endpoint)
   .then((response) => {

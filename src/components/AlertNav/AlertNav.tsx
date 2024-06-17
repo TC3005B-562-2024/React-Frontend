@@ -48,7 +48,7 @@ const AlertNav: React.FC<IAlertNav> = ({ instanceId }) => {
     getHighestPriorityAlertData();
     
     // Create a new SockJS connection
-    const socket = new SockJS('http://localhost:8080/ws');
+    const socket = new SockJS('https://back-p27ymwll2a-uc.a.run.app/ws');
     const client = new Client({
       webSocketFactory: () => socket,
       // debug: (str) => {
